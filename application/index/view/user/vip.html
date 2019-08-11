@@ -1,0 +1,103 @@
+{include file='public:userhead'/}
+<div class="col-md-9">
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h2 class="page-header">充值中心</h2>
+            <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" >
+                <ul class="layui-tab-title">
+                    <li><a href="/recharge">在线充值</a></li>
+                    <li class="layui-this">开通代理</li>
+<!--                    <li><a href="/index/recharge/list.html">充值记录</a></li>-->
+                </ul>
+                <div class="layui-tab-content"></div>
+            </div>  
+            <form id="changepwd-form" class="form-horizontal layui-form" role="form" data-toggle="validator"  target="_blank" onclick='return false'>					 
+                <div class="layui-form-item">
+                    <label class="layui-form-label">余额</label>
+                    <div class="layui-input-block">
+                        <div class="layui-form-mid layui-word-aux" style="color:red !important">{$info.total}</div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">充值</label>
+                    <div class="layui-input-block" id='daili'>
+                        <input type="radio" name="daili" checked="" value="1" title="普通代理({:sysconf('ptdaili')}元)" >
+                        <input type="radio" name="daili" value="2" title="高级代理({:sysconf('gjdaili')}元)" >
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">方式</label>
+                    <div class="layui-input-block">
+<!--                        {if sysconf('alipay') eq 'on'}
+                        <input type="radio" name="payment" value="1" title="支付宝">
+                        {/if}
+                        {if sysconf('wxpay') eq 'on'}
+                        <input type="radio" name="payment" value="2" title="微信" >
+                         {/if}
+                         {if sysconf('qqpay') eq 'on'}
+                         <input type="radio" name="payment" value="3" title="QQ钱包" >
+                         {/if}-->
+                         <input type="radio" name="payment" value="3" checked title="余额支付" >
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit lay-filter="formDemo" onclick="buyvip()">立即提交</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<script src="sink/js/layui.js" charset="utf-8"></script>
+<script>
+//Demo
+    layui.use('form', function() {
+        var form = layui.form, layer = layui.layer,
+                $ = layui.jquery;
+        //监听提交
+        form.on('submit(formDemo)', function(data) {
+            //layer.msg(JSON.stringify(data.field));
+            return true;
+        });
+    });
+</script>
+<script type="text/javascript" src="/static/index/sink/js/jquery-1.8.3.min.js"></script>
+    <script src='/static/index/sink/js/layer/layer.js'></script>
+    <script>
+                                function buyvip() {
+                                    var daili = $('#daili input[name="daili"]:checked ').val();
+                                    $.ajax({
+                                        //几个参数需要注意一下
+                                        type: "POST", //方法类型
+                                        dataType: "json", //预期服务器返回的数据类型
+                                        url: "{:url('user/ajaxbuyvip')}", //url
+                                        data: {daili:daili},
+                                        success: function(result) {
+                                            if (result.status == 1) {
+                                                layer.msg(result.msg, function() {
+                                                    window.location.href = "/user";
+                                                });
+                                            } else {
+                                                layer.msg(result.msg);
+                                            }
+                                            ;
+                                        },
+                                    });
+                                }
+    </script>
+</main>
+
+{include file='public:userfoot'/}
+
+<script src="sink/js/require.min.js" data-main="/assets/js/require-frontend.min.js?v=1.0.1"></script>
+
+</body>
+<script src="https://cdn.demo.fastadmin.net/assets/js/require.min.js" data-main="https://cdn.demo.fastadmin.net/assets/js/require-frontend.min.js?v=20190331"></script>
+</html> 

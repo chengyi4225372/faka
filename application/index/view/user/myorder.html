@@ -1,0 +1,99 @@
+{include file='public:userhead'/}
+<div class="col-md-9">
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h2 class="page-header">充值中心</h2>
+            <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" >
+                <ul class="layui-tab-title">
+                    <li  class="layui-this"><a href="/myorder">我的订单</a></li>
+                    <li><a href="/mychongzi">充值记录</a></li>
+                </ul>
+                <div class="layui-tab-content"></div>
+            </div>  
+            <table class="layui-table">
+                <colgroup>
+                    <col width="150">
+                    <col width="200">
+                    <col>
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>订单号</th>
+                        <th>商品名</th>
+                        <th>数量</th>
+                        <th>单价</th>
+                        <th>总价</th>
+                        <th>状态</th>
+                        <th>发货</th>
+                        <th>时间</th>
+                    </tr> 
+                    
+                </thead>
+                <tbody>
+                  {volist name='orders' id='order'}
+                    <tr>
+                        <td>{$order.order_no}</td>
+                        <td>{$order.goodsname}</td>
+                        <td>{$order.count}</td>
+                        <td>{$order.danjia}</td>
+                        <td>{$order.price}</td>
+                        <td>{if $order.status eq 0}未付款{else /}已付款{/if}</td>
+                        <td>{if $order.type eq 1}自动发货{else /}手动发货（{if $order.fahuo eq 0}未发货{/if}{if $order.fahuo eq 1}已发货{/if}{if $order.fahuo eq 2}联系客服退款{/if}）{/if}</td>
+                        <td>{$order.time}</td>
+                    </tr> 
+                    {/volist}
+                </tbody>
+            </table>
+            <center>
+              {if condition='($count eq 10) or ($count lt 10)'}
+                {else /}
+                <div class="pager">
+                    <ul class="pagination">
+                        {if $page eq 1}
+                        <li class="disabled"><span>«</span></li> 
+                        {else /}
+                        <li><a href="/myorder?page={$spage}">«</a></li>
+                        {/if}
+                        {for start='1' end='$step' name='k'}
+                        {if $k eq $page}
+                        <li class="active"><span>{$k}</span></li>
+                        {else /}
+                        <li><a href="/myorder?page={$k}">{$k}</a></li>
+                        {/if}
+                        {/for}
+                        {if $page eq $allpage}
+                        <li class="disabled"><span>»</span></li> 
+                        {else /}
+                        <li><a href="/myorder?page={$xpage}">»</a></li>
+                        {/if}
+                    </ul>
+                </div>
+                {/if}
+          </center>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<script src="sink/js/layui.js" charset="utf-8"></script>
+<script>
+//Demo
+    layui.use('form', function() {
+        var form = layui.form, layer = layui.layer,
+                $ = layui.jquery;
+        //监听提交
+        form.on('submit(formDemo)', function(data) {
+            layer.msg(JSON.stringify(data.field));
+            return false;
+        });
+    });
+</script>
+</main>
+
+{include file='public:userfoot'/}
+
+
+</body>
+<script src="https://cdn.demo.fastadmin.net/assets/js/require.min.js" data-main="https://cdn.demo.fastadmin.net/assets/js/require-frontend.min.js?v=20190331"></script>
+</html> 

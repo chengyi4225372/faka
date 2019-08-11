@@ -6,9 +6,8 @@
 
 namespace app\index\controller;
 
-use Endroid\QrCode\ErrorCorrectionLevel;
-use Endroid\QrCode\QrCode;
 use think\Config;
+use think\Controller;
 
 class Index extends Controller
 {
@@ -17,9 +16,6 @@ class Index extends Controller
         return $this->fetch();
     }
 
-    public function hello()
-    {
-        return 'hello';
-    }
+
     
 }

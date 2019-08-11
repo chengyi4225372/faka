@@ -1,0 +1,26 @@
+<div id="footer"><div><a>{:sysconf('bottom')}</a></div></p><br/>
+</div>
+{:sysconf('tongjidm')}
+<script type="text/javascript">
+    function htmlmsg(a, b) {
+        layer.open({
+            title: a,
+            type: 1,
+            skin: 'layui-layer-rim', //加上边框
+            area: ['410px', '170px'], //宽高
+            content: '<div style="font-size: 12px;color: #f17100;margin:5px;border:5px;padding:5px;"> ' + b + ' </div>'
+        });
+    }
+    function htmlmsg2(a, b) {
+        layer.open({
+            title: a,
+            type: 1,
+            skin: 'layui-layer-rim', //加上边框
+            area: ['390px', '180px'], //宽高
+            content: '<div align=center><br/>点击下方的按钮进行查阅<br/><br/><a class="button button-3d button-primary button-rounded button-small" href="/Home/User/down/lb/2/id/' + b + '" target="_blank">查看卡密</a> <a class="button button-3d button-highlight button-rounded button-small" href="/Home/User/down/lb/1/id/' + b + '">下载保存</a> </div>'
+        });
+    }
+</script>
+</body> 
+
+</html> 

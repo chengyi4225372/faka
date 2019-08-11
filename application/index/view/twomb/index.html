@@ -1,0 +1,105 @@
+{include file='public:twombhead'/}
+        <div class="am-container" style="padding:2px">
+
+
+            <div class="am-show-portrait">
+                <ul class="am-avg-sm-4 am-avg-md-4 am-avg-lg-4 am-thumbnails" style="text-align:center;margin-top: 10px;">
+                   <li><a href="javascript: void(0)" data-am-modal="{target: '#my-alerts'}"> <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-xingzhuanggongnengtubiao-"></use>
+                            </svg><br>订单查询</a></li>
+                    <li><a href="http://wpa.qq.com/msgrd?v=3&uin={:sysconf('kefuqq')}&site=qq&menu=yes"><svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-icon_kefu"></use>
+                            </svg><br>联系客服</a></li>
+                    <li><a href="/user"><svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-filedicon_memberco"></use>
+                            </svg><br>会员中心</a></li>
+                    <li><a href="/help"><svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-bangzhuyufankui"></use>
+                            </svg><br>帮助中心</a></li>
+                </ul>
+            </div>
+            <div class="am-panel am-panel-default" style="margin:5px 0 5px 0;border-radius: 0px">
+                <div class="am-panel-bd liebiaocatname"><p>
+                        <span style="font-size:18px;color:#E53333;"><strong>{:htmlspecialchars_decode(sysconf('content'))}</strong></span> 
+                    </p>
+                </div>
+            </div>
+            <div class="goods">
+                <div class="am-show-landscape">
+                    <ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-4 am-thumbnails">
+                        {volist name="goods" id="vol"}
+                        <li ><a href="/trade?id={$vol.id}">
+                                <div style="background-color: #fff;" class="index_good_body">                      
+                                    <img class="" src="{$vol.img}" style="width:100%;height:280px"/>
+                                    <div class="pr-info" style="padding:5px">
+                                        <span class="price">￥{$vol.price}</span>
+                                        {if condition="$vol.fahuo eq 1"}
+         
+                                         <span class="pr-xl am-badge am-badge-danger" style="color:#fff">库存{$vol.stock}</span>
+            
+                                        {else /}
+                                        <span class="pr-xl am-badge am-badge-success" style="color:#fff">代充商品</span>
+                                        {/if}
+                                        
+
+                                        <div class="index-goodname-xq" style="height:45px;color:#333"><p title="{$vol.name|subtext=20}">{$vol.name|subtext=20}</p></div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        {/volist}
+                    </ul>
+                </div>
+                <div class="am-show-portrait">
+                    <div class="am-container">
+                        <div class="am-g">
+                            {volist name="lists" id="list"}
+                            <div class="am-u-sm-12 am-u-md-12 am-u-lg-12" style="padding:1px">
+                                <div class="wapcatname" style="padding: 1px;text-align: center;">{$list.title}</div>
+                            </div>
+                            {volist name="goods" id="vol"}
+                            {if condition="$vol.lid eq $list.id"}
+                            <div class="am-u-sm-12 am-u-md-12 am-u-lg-12" style="border-bottom: #ccc 1px dashed">
+                                <div style="background-color: #fff;height: 65px">
+                                    <div style="padding:0px">
+                                        <a href="/trade?id={$vol.id}" style="color: #3c3c3c;">
+                                            <img class="am-radius" alt="{$vol.name|subtext=20}" src="{$vol.img}" width="60" height="60" style="float: left" />
+                                            <div class="index-goodname-xq" style="height:38px;color:#333;"><p title="{$vol.name|subtext=20}" style="margin-left:5px;font-size: 10px">{$vol.name|subtext=20}</p></div>
+                                            <div class="am-text-truncate" style="margin-left: 15px;">
+                                                <div style="">
+                                                    {if condition="$vol.fahuo eq 1"}
+                                                    <span class="am-badge am-badge-primary" style="margin-left: 5px">
+                                                        库存({$vol.stock})
+                                                    </span>
+                                                    {else /}
+                                                    <span class="am-badge am-badge-success" style="margin-left: 5px">代充</span>
+                                                    {/if}
+                                                    
+                                                    <span class="am-badge am-badge-danger">销量({$vol.sale})</span>
+                                                    <span style="color: #ff0000">
+                                                        <b>￥{$vol.price}</b>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            {/if}
+                            {/volist}
+                            {/volist}
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!--            <ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-6 am-thumbnails" style="margin-top:10px">
+
+                <li><a type="button" class="am-btn am-btn-success am-btn-hollow am-square" style="width:100%;color:#000" href="" target="_blank"></a></li>
+
+                <li><a type="button" class="am-btn am-btn-success am-btn-hollow am-square" style="width:100%;color:#000" href="" target="_blank"></a></li>
+            </ul>     -->
+
+        {include file='public:twombfoot'/}    
+        </div>
+    </body>
+</html> 

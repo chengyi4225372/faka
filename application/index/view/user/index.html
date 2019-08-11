@@ -1,0 +1,61 @@
+{include file='public:userhead'/}
+<div class="col-md-9">
+    <div class="panel panel-default ">
+        <div class="panel-body">
+            <h2 class="page-header">
+                会员中心                        
+<!--                <a href="/index/user/profile.html" class="btn btn-success pull-right">
+                    <i class="fa fa-pencil"></i>
+                    个人资料</a>-->
+            </h2>
+            <div class="row user-baseinfo">
+
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <!-- Content -->
+                    <div class="ui-content">
+                        <!-- Heading -->
+                        <h4>欢迎您：{$info.user}</h4>
+                        <!-- Paragraph -->
+                        <br/>
+                        <div class="basicinfo">
+                            <div class="row">
+                                <div class="col-xs-4 col-md-2">会员级别</div>
+                                <div class="col-xs-8 col-md-4">
+                                    <span class="xred">
+                                        {if $info.level eq 0}无{/if}
+                                        {if $info.level eq 1}普通代理{/if}
+                                        {if $info.level eq 2}高级代理{/if}
+                                    </span>
+                                </div>
+                                <div class="col-xs-4 col-md-2">账户余额</div>
+                                <div class="col-xs-8 col-md-4">
+                                    <a href="javascript:;" class="viewmoney">{$info.total}</a>
+                                </div>
+                            </div>
+<!--                            <div class="row">
+                                <div class="col-xs-4 col-md-2">QQ号码</div>
+                                <div class="col-xs-8 col-md-4">123456</div>
+                                <div class="col-xs-4 col-md-2">邮箱帐号</div>
+                                <div class="col-xs-8 col-md-4">123456@qq.com</div>
+                            </div>-->
+                            <div class="row">
+                                <div class="col-xs-4 col-md-2">注册时间</div>
+                                <div class="col-xs-8 col-md-4">{$info.time}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</main>
+
+{include file='public:userfoot'/}
+
+
+</body>
+<script src="https://cdn.demo.fastadmin.net/assets/js/require.min.js" data-main="https://cdn.demo.fastadmin.net/assets/js/require-frontend.min.js?v=20190331"></script>
+</html> 

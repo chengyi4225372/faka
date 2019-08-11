@@ -1,0 +1,192 @@
+{include file='public:twombhead'/}
+
+        <div class="am-container" style="padding:2px">
+
+            <style>
+
+
+            .payment-icon-list ul, .payment-list ul {
+                padding: 1px 0;
+            }
+
+
+
+            .payment-icon-list li.curr:after, .payment-list li.curr:after {
+                content: '';
+                position: absolute;
+                width: 17px;
+                height: 17px;
+                background-image: url(sink/cssimg/zf.png);
+                bottom: 0;
+                right: 0;
+                background-position: 17px -119px;
+            }
+            .payment-list li {
+                padding: 3px 3px;
+                font-size: 14px;
+                border: 1px solid #b4b7bf;
+                border-radius: 3px;
+                display: inline-block;
+                position: relative;
+                cursor: pointer;
+                margin-right: 5px;
+            }
+            .payment-icon-list li.curr, .payment-list li.curr {
+                border: 1px solid #0071ce;
+                border: 1px solid #db5b5a;
+                color: #0071ce;
+
+            }
+            .payment-icon-list li i, .payment-list li i {
+                text-indent: -10000px;
+                overflow: hidden;
+                outline: 0;
+            }
+            .payment-icon-cft {
+                background-image: url(/static/index/sink/cssimg/alipaym.png);
+                background-position: 0px -76px;
+            }
+            .payment-icon-wx {
+                background-image: url(/static/index/sink/cssimg/wxpaym.png);
+                background-position: 0px -75px;
+            }
+            .payment-icon-qq {
+                background-image: url(/static/index/sink/cssimg/qqpaym.png);
+                background-position: 0px 69px;
+            }
+
+            .payment-icon-yu {
+                background-image: url(/static/index/sink/cssimg/yuem.png);
+                background-position: 0px 70px;
+            }
+
+            .payment-icon-cft, .payment-icon-yu, .payment-icon-ms, .payment-icon-qq, .payment-icon-vs, .payment-icon-wx {
+                display: inline-block;
+                vertical-align: top;
+                width: 99px;
+                height: 30px;
+            }
+
+            em, i {
+                font-style: normal;
+                font-weight: 400;
+            }
+
+
+        </style>
+                <div class="am-panel am-panel-default">
+                    <div class="am-panel-hd">确认订单信息</div>
+                    <div class="am-panel-bd">
+                        <ul class="am-list am-list-static" >
+                            <li class="am-text-truncate">商品名称：{$goods.name}</li>
+                            <li>商品单价：{$danjia}元/件</li>
+                            <li>购买数量：{$order.count}件</li>
+                            <li>
+                            {if condition='$goods.fahuo eq 1'}
+                            手机号码:{$lianx}&nbsp;&nbsp;&nbsp;&nbsp;
+                            {else /}
+                            {$moban}:{$lianx}
+                            {/if}
+                            </li>
+                        </ul>
+                        <span style="color:red">温馨提示：请将联系方式写复杂一点,以免有人偷卡</span>
+                    </div>
+                </div>
+<!--                <div class="from">
+                        <div class="from_wz_3"><font color="#363636"  size="3">支付方式：</font></div>
+                        <div class="">
+                            <div class="payment-list">
+
+
+                                <ul>
+                                    {notempty name='info'}
+                                    <li class="yu" data-paytype="yu" onclick="payment(4)"><i class="payment-icon-yu">余额支付</i></li>
+                                    {/notempty}
+                                    {if sysconf('alipay') eq 'on'}
+                                    <li class="tenpay" data-paytype="tenpay" onclick="payment(1)"><i class="payment-icon-cft">支付宝支付</i></li>
+                                    {/if}
+                                    {if sysconf('wxpay') eq 'on'}
+                                    <li class="wx " data-paytype="wx" onclick="payment(2)"><i class="payment-icon-wx">微信支付</i></li>
+                                    {/if}
+                                    {if sysconf('qqpay') eq 'on'}
+                                    <li class="qq" data-paytype="qq" onclick="payment(3)"><i class="payment-icon-qq">QQ支付</i></li>
+                                    {/if}
+                                </ul>
+                            </div>
+                        </div> 
+                </div>-->
+        <div class="am-form-group" >
+            <h3>选择支付方式</h3>
+            <div class="am-container">
+                <div class="am-g">
+                    {notempty name='info'}
+                    <div class="text-area-star" style="float:left">
+                        <div class="am-u-sm-12 am-u-md-2 am-u-lg-2 am-u-end" style="padding:5px">
+                            <label style="padding:5px">
+                                <a class="yu" data-paytype="yu" onclick="payment(4)"><i class="payment-icon-yu"></i></a>
+                            </label>
+                        </div>
+                    </div>
+                    {/notempty}
+                    {if sysconf('alipay') eq 'on'}
+                    <div class="text-area-star" style="float:left">
+                        <div class="am-u-sm-12 am-u-md-2 am-u-lg-2 am-u-end" style="padding:5px">
+                            <label style="padding:5px">
+                                <a class="yu" data-paytype="yu" onclick="payment(1)"><i class="payment-icon-cft"></i></a>
+                            </label>
+                        </div>
+                    </div>
+                    {/if}
+                    {if sysconf('wxpay') eq 'on'}
+                    <div class="text-area-star" style="float:left">
+                        <div class="am-u-sm-12 am-u-md-2 am-u-lg-2 am-u-end" style="padding:5px">
+                            <label style="padding:5px">
+                                <a class="yu" data-paytype="yu" onclick="payment(2)"><i class="payment-icon-wx"></i></a>
+                            </label>
+                        </div>
+                    </div>
+                    {/if}
+                    {if sysconf('qqpay') eq 'on'}
+                    <div class="text-area-star" style="float:left">
+                        <div class="am-u-sm-12 am-u-md-2 am-u-lg-2 am-u-end" style="padding:5px">
+                            <label style="padding:5px">
+                                <a class="yu" data-paytype="yu" onclick="payment(3)"><i class="payment-icon-qq"></i></a>
+                            </label>
+                        </div>
+                    </div>
+                    {/if}
+
+                </div>
+            </div>
+          </div>
+            <hr>
+                <form id="payform" method="post" action="/pay">
+                    <input type="hidden" name="id" value="{$order.id}">
+                    <input type="hidden" name="payment" id="payment">
+                </form>
+                <div style=" text-align: right;">
+                    <button type="submit" onclick="javascript:$('#payform').submit()"  class="am-btn am-btn-danger am-btn-xl" style="width: 100%">立即付款</button>
+                </div>
+                <script>
+                    function payment(id){
+                        $("#payment").val(id);
+                        if(id == 1){
+                            layer.msg('支付宝支付');
+                        }
+                        if(id == 2){
+                            layer.msg('微信支付');
+                        }
+                        if(id == 3){
+                            layer.msg('qq支付');
+                        }
+                        if(id == 4){
+                            layer.msg('余额支付');
+                        }
+                    }
+                </script>
+
+
+             {include file='public:twombfoot'/}   
+        </div>
+    </body>
+</html> 
