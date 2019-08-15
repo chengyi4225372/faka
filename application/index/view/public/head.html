@@ -16,7 +16,7 @@
         <link href="/index/sink/css/css7.css" rel="stylesheet" type="text/css" />
         <link href="/index/sink/css/zzsc.css" rel="stylesheet" type="text/css" />
         <link href="/index/sink/css/buttons.css" rel="stylesheet" type="text/css" />
-        <link rel="shortcut icon" href="" />
+        <link rel="shortcut icon" href="/images/logo.ico" />
         <script type="text/javascript" src="/index/sink/js/Validform_v5.3.2_min.js"></script>
         <script type="text/javascript" src="/index/sink/js/layer/layer.js"></script>
 
@@ -52,11 +52,11 @@
         <div id="head">
 
             <div class="top">
-                <div class="logo_img"><a href="/"><img src="" width="400" height="80"></a></div>
+                <div class="logo_img"><a href="/"><img src="/images/logo.png" width="400" height="80"></a></div>
                     {empty name='info'}
                     <div class="info denglu">
-                    <a class="button button-3d button-primary button-small" href="/login">登陆</a>    
-                    <a class="button button-3d button-caution button-small" href="/reg"><i class="fa fa-tag"></i>注册</a>&nbsp;&nbsp;	
+                    <a class="button button-3d button-primary button-small" href="{:url('login/login')}">登陆</a>
+                    <a class="button button-3d button-caution button-small" href="{:url('login/reg')}"><i class="fa fa-tag"></i>注册</a>&nbsp;&nbsp;
                     </div>
                     {else /}
                     <div class="info">
@@ -75,7 +75,7 @@
     <!-- todo 点击的时候就有class  -->
                 <ul id="nav"> 
                     <li><a    href="/">商品首页</a></li>
-                    <li><a    href="/search">游客订单查询</a></li>
+                    <li><a    href="{:url('configcom/search')}">游客订单查询</a></li>
                     <li><a  class="a2" href="{:url('configcom/address')}">兑换地址</a></li>
                     <li><a    href="{:url('configcom/about')}">关于我们</a></li>
                     <li><a    href="{:url('configcom/help')}">帮助中心？</a></li>

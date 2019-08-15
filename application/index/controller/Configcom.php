@@ -1,4 +1,7 @@
 <?php
+/**
+ * 网站配置
+ */
 namespace app\index\controller;
 
 use think\Config;
@@ -24,5 +27,12 @@ class Configcom extends Controller
     {
         return $this->fetch();
     }
+
+    //搜索
+    public function search()
+    {
+        return $this->fetch();
+    }
+
 
 }
