@@ -276,15 +276,14 @@ return [
 
 
     'qq_login'          => [
-        'app_key'    => '填写你的',
+        'app_key'    => '',
         'app_secret' => '',
         'scope'      => 'get_user_info',
         'callback'   => [
-            'default' => 'https://bearadmin.yufuping.com/admin/auth/qq.html',
-            'mobile'  => 'https://bearadmin.yufuping.com/admin/auth/qq.html',
+            'default' => '',
+            'mobile'  => '',
         ]
     ],
-
     // 设置空模块名为admin
     'empty_module'      => 'admin',
 

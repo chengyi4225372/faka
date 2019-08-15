@@ -7,18 +7,18 @@
 
         <meta charset="utf-8" /> 
 
-        <title>{:sysconf('webtitle')} - {$webtitle}</title> 
+        <title></title>
 
-        <meta name="keywords" content="{:sysconf('keywords')}" />
+        <meta name="keywords" content="" />
 
-        <meta name="description" content="{:sysconf('description')}" />
-        <script type="text/javascript" src="/static/index/sink/js/jquery-1.8.3.min.js"></script>
-        <link href="/static/index/sink/css/css7.css" rel="stylesheet" type="text/css" /> 
-        <link href="/static/index/sink/css/zzsc.css" rel="stylesheet" type="text/css" />
-        <link href="/static/index/sink/css/buttons.css" rel="stylesheet" type="text/css" />
-        <link rel="shortcut icon" href="{:sysconf('ico')}" />
-        <script type="text/javascript" src="/static/index/sink/js/Validform_v5.3.2_min.js"></script>
-        <script type="text/javascript" src="/static/index/sink/js/layer.js"></script>
+        <meta name="description" content="" />
+        <script type="text/javascript" src="/index/sink/js/jquery-1.8.3.min.js"></script>
+        <link href="/index/sink/css/css7.css" rel="stylesheet" type="text/css" />
+        <link href="/index/sink/css/zzsc.css" rel="stylesheet" type="text/css" />
+        <link href="/index/sink/css/buttons.css" rel="stylesheet" type="text/css" />
+        <link rel="shortcut icon" href="" />
+        <script type="text/javascript" src="/index/sink/js/Validform_v5.3.2_min.js"></script>
+        <script type="text/javascript" src="/index/sink/js/layer/layer.js"></script>
 
         <style type="text/css">
             .info.denglu {
@@ -30,21 +30,21 @@
                 width: 400px;
                 margin-top: 10px;
             }
-          .dh {
-            border-top: 3px solid {:sysconf('color1')};
-            	border-bottom: 5px solid {:sysconf('color2')};
-    			background: {:sysconf('color1')};
-		  }
-          ul#nav {
-              background: {:sysconf('color1')};
-          }
-          .a2 {
-              background: {:sysconf('color2')};
-          }
-          ul#nav li a:hover {
-              background: {:sysconf('color2')};
-          }
-      </style>
+            .dh {
+                border-top: 3px solid #00A2CA;
+                border-bottom: 5px solid #017390;
+                background: #00A2CA;
+            }
+            ul#nav {
+                background: #00A2CA;
+            }
+            .a2 {
+                background: #017390;
+            }
+            ul#nav li a:hover {
+                background: #017390;
+            }
+        </style>
     </head> 
 
     <body> 
@@ -52,7 +52,7 @@
         <div id="head">
 
             <div class="top">
-                <div class="logo_img"><a href="/"><img src="{:sysconf('weblogo')}" width="400" height="80"></a></div>
+                <div class="logo_img"><a href="/"><img src="" width="400" height="80"></a></div>
                     {empty name='info'}
                     <div class="info denglu">
                     <a class="button button-3d button-primary button-small" href="/login">登陆</a>    
@@ -61,7 +61,7 @@
                     {else /}
                     <div class="info">
 
-                        <span class="welcome">亲爱的：<span class="lv"><b>{$info.user} </b></span>欢迎您！&nbsp;<span></span><br>
+                        <span class="welcome">亲爱的：<span class="lv"><b> </b></span>欢迎您！&nbsp;<span></span><br>
 
                             <a href="/user" class="button button-primary button-rounded button-small">会员中心</a>  
                             <a href="/lout" class="button button-giant button-rounded button-small" onclick="return confirm('确定要退出吗？')">安全退出</a>
@@ -72,12 +72,13 @@
                 
             </div>
             <div class="dh">
+    <!-- todo 点击的时候就有class  -->
                 <ul id="nav"> 
-                    <li><a {if condition='$selected eq 1'} class="a2" {/if}  href="/">商品首页</a></li>
-                    <li><a  {if condition='$selected eq 2'} class="a2" {/if} href="/search">游客订单查询</a></li>            
-                    <li><a  {if condition='$selected eq 3'} class="a2" {/if} href="/address">兑换地址</a></li>	
-                    <li><a  {if condition='$selected eq 4'} class="a2" {/if} href="/about">关于我们</a></li>	
-                    <li><a  {if condition='$selected eq 5'} class="a2" {/if} href="/help">帮助中心？</a></li>			
+                    <li><a    href="/">商品首页</a></li>
+                    <li><a    href="/search">游客订单查询</a></li>
+                    <li><a  class="a2" href="{:url('configcom/address')}">兑换地址</a></li>
+                    <li><a    href="{:url('configcom/about')}">关于我们</a></li>
+                    <li><a    href="{:url('configcom/help')}">帮助中心？</a></li>
                 </ul> 
             </div>
         </div>

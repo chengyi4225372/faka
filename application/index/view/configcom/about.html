@@ -1,5 +1,5 @@
 
-{include file='public:head'/}	
+{include file='public:head'/}
 
 <div id="bd">
 
@@ -7,10 +7,9 @@
         <div class="bar_top">关于我们</div><br />
 
         <ul id="bar_ul">
-            <li  class="va"><a href="/about">关于我们</a></li>
-
-            <li><a href="/address">兑换地址</a></li>
-            <li ><a href="/help">帮助中心</a></li>
+            <li class="va" ><a href="{:url('configcom/about')}">关于我们</a></li>
+            <li ><a href="{:url('configcom/address')}">兑换地址</a></li>
+            <li ><a href="{:url('configcom/help')}">帮助中心</a></li>
         </ul>
     </div>
 
@@ -20,7 +19,7 @@
 
         <div id="body_xiao">
             <div class="table">
-                    {:sysconf('guanyu')}
+
             </div>
         </div>
     </div>

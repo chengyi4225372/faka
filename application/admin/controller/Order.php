@@ -30,4 +30,18 @@ class Order extends Base
     {
       return false;
     }
+
+
+    //人工发货
+    public function person()
+    {
+        return $this->fetch();
+    }
+
+
+    //充值记录
+    public function chong()
+    {
+    return $this->fetch();
+    }
 }
