@@ -15,11 +15,11 @@ return [
     // 服务器地址
     'hostname'        => 'localhost',
     // 数据库名
-    'database'        => 'lizi',
+    'database'        => 'lizi', //test_956ka_cn
     // 用户名
-    'username'        => 'root',
+    'username'        => 'root', //test_956ka_cn
     // 密码
-    'password'        => 'root',
+    'password'        => 'root', //i37TeLhd28XjxstH
     // 端口
     'hostport'        => '3306',
     // 连接dsn
