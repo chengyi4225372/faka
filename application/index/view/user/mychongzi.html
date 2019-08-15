@@ -6,8 +6,8 @@
             <h2 class="page-header">充值中心</h2>
             <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" >
                 <ul class="layui-tab-title">
-                    <li><a href="/myorder">我的订单</a></li>
-                    <li  class="layui-this"><a href="/mychongzi">充值记录</a></li>
+                    <li><a href="{:url('user/myorder')}">我的订单</a></li>
+                    <li  class="layui-this"><a href="{:url('user/mychongzi')}">充值记录</a></li>
                 </ul>
                 <div class="layui-tab-content"></div>
             </div>  
@@ -27,48 +27,31 @@
                     
                 </thead>
                 <tbody>
-                  {volist name='recharges' id='recharge'}
+
                     <tr>
-                        <td>{$recharge.order_no}</td>
-                        <td>{$recharge.price}</td>
-                        <td>{if $recharge.status eq 0}未付款{else /}已付款{/if}</td>
-                        <td>{$recharge.time}</td>
+                        <td></td>
+                        <td></td>
+                        <td>未付款 ||  已付款</td>
+                        <td></td>
                     </tr>
-                    {/volist}
+
                 </tbody>
             </table>
             <center>
-              {if condition='($count eq 10) or ($count lt 10)'}
-                {else /}
+
                 <div class="pager">
                     <ul class="pagination">
-                        {if $page eq 1}
-                        <li class="disabled"><span>«</span></li> 
-                        {else /}
-                        <li><a href="/mychongzi?page={$spage}">«</a></li>
-                        {/if}
-                        {for start='1' end='$step' name='k'}
-                        {if $k eq $page}
-                        <li class="active"><span>{$k}</span></li>
-                        {else /}
-                        <li><a href="/mychongzi?page={$k}">{$k}</a></li>
-                        {/if}
-                        {/for}
-                        {if $page eq $allpage}
-                        <li class="disabled"><span>»</span></li> 
-                        {else /}
-                        <li><a href="/mychongzi?page={$xpage}">»</a></li>
-                        {/if}
+                      <!--   分页 -->
                     </ul>
                 </div>
-                {/if}
+
           </center>
         </div>
     </div>
 </div>
 </div>
 </div>
-<script src="sink/js/layui.js" charset="utf-8"></script>
+<script src="/index/sink/js/layui.js" charset="utf-8"></script>
 <script>
 //Demo
     layui.use('form', function() {
@@ -87,5 +70,4 @@
 
 
 </body>
-<script src="https://cdn.demo.fastadmin.net/assets/js/require.min.js" data-main="https://cdn.demo.fastadmin.net/assets/js/require-frontend.min.js?v=20190331"></script>
-</html> 
+</html>
