@@ -82,27 +82,97 @@
 
 </div>
 
-<!--配置信息-->
-<div class="box">
-    <div class="box-header with-border">
-        <h3 class="box-title">服务器信息</h3>
 
-        <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-                <i class="fa fa-minus"></i></button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-                <i class="fa fa-times"></i></button>
+<div class="row">
+    <div class="col-md-4">
+        <!-- DIRECT CHAT PRIMARY -->
+        <div class="box box-primary direct-chat direct-chat-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">在线公告</h3>
+
+                <div class="box-tools pull-right">
+                    <span data-toggle="tooltip" title="" class="badge bg-light-blue" data-original-title=""></span>
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body" style="display: block;">
+
+                <div class="direct-chat-messages">
+
+                {$html}
+
+                </div>
+
+            </div>
+
         </div>
+
     </div>
 
-    <div class="box-body">Thinkphp version: thinphp5.1</div>
-    <div class="box-body">环境信息：apcheX.x或nginx X.X (根据服务器环境信息)</div>
-    <div class="box-body">php版本：php7.2</div>
-    <div class="box-body">MySQL数据库版本：mysql5.3</div>
-    <div class="box-body">栗子发卡系统官网：www.956ka.cn</div>
-    <div class="box-body">当前版本：1.0</div>
-    <div class="box-body">个人发卡程序|交流群：123456</div>
-    <div class="box-body">程序说明：xxxxxx</div>
+
+    <div class="col-md-4">
+        <!-- DIRECT CHAT SUCCESS -->
+        <div class="box box-success direct-chat direct-chat-success">
+            <div class="box-header with-border">
+                <h3 class="box-title">友情赞助</h3>
+
+                <div class="box-tools pull-right">
+                    <span data-toggle="tooltip" title="" class="badge bg-green"></span>
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                </div>
+            </div>
+
+            <div class="box-body">
+                <div class="direct-chat-messages">
+
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="col-md-4">
+        <!-- DIRECT CHAT WARNING -->
+        <div class="box box-warning direct-chat direct-chat-warning">
+            <div class="box-header with-border">
+                <h3 class="box-title">配置信息</h3>
+
+                <div class="box-tools pull-right">
+                    <span data-toggle="tooltip" title="" class="badge bg-yellow"></span>
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+
+                <div class="direct-chat-messages">
+                    <div class="box-body">Thinkphp version: thinphp5.1</div>
+                    <div class="box-body">环境信息：apcheX.x或nginx X.X (根据服务器环境信息)</div>
+                    <div class="box-body">php版本：php7.2</div>
+                    <div class="box-body">MySQL数据库版本：mysql5.3</div>
+                    <div class="box-body">栗子发卡系统官网：www.956ka.cn</div>
+                    <div class="box-body">当前版本：1.0</div>
+                    <div class="box-body">个人发卡程序|交流群：123456</div>
+                    <div class="box-body">程序说明：xxxxxx</div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 </div>
 
 <script>

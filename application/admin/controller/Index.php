@@ -13,22 +13,15 @@ class Index extends Base
 {
     public function index()
     {
-        $sysinfo  = new Sysinfo();
-        $sys_info = [
-            'lang'    => $sysinfo->getLang(),
-            'browser' => $sysinfo->getBrowser(),
-            'ip'      => $sysinfo->getIp(),
-            'city'    => $sysinfo->getCity(),
-            'os'      => $sysinfo->getOS(),
-            'date'    => date('Y-m-d')
-        ];
+        $html   = file_get_contents('https://www.956ka.cn/Notice.html');
 
-        $Parsedown = new Parsedown();
+       // $zan  = file_get_contents('https://www.956ka.cn/Sponsor.html');  //页面404
 
-        $this->assign([
-            'readme'=> $Parsedown->text(file_get_contents(ROOT_PATH.'README.md')),
-            'sys'      => $sys_info,
-        ]);
+        //$this->assign('zan',$zan);
+
+        $this->assign('html',$html);
+
         return $this->fetch();
     }
+
 }
