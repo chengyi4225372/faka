@@ -29,7 +29,7 @@
         <div class="box">
             <div class="box-body table-responsive">
                 <div class="form-group">
-                    <a title="添加" class="btn btn-primary btn-sm" href="addg.html">
+                    <a title="添加" class="btn btn-warning btn-sm" href="addg.html">
                         添加商品</a>
                 </div>
                 <table class="table table-hover table-bordered datatable" width="100%">
@@ -53,12 +53,17 @@
                         <td>谁说的</td>
                         <td>二次</td>
                         <td class="td-do">
+                             <!--上架  还是下架 -->
+                            <a href=""
+                               class="btn btn-success btn-xs" title="">
+                                <i class="fa fa-pencil">上架</i>
+                            </a>
                             <a href="edit.html"
                                class="btn btn-primary btn-xs" title="修改">
-                                <i class="fa fa-pencil"></i>
+                                <i class="fa fa-pencil">编辑</i>
                             </a>
                             <a class="btn btn-danger btn-xs AjaxButton" title="删除" data-id="" data-url="del.html">
-                                <i class="fa fa-trash"></i>
+                                <i class="fa fa-trash">删除</i>
                             </a>
                         </td>
                     </tr>

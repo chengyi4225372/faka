@@ -36,6 +36,11 @@ class Goods extends Base
         return $this->fetch();
     }
 
+    public function statusg()
+    {
+        return false;
+    }
+
     public function klist()
     {
         return $this->fetch();
@@ -45,6 +50,13 @@ class Goods extends Base
     {
         return $this->fetch();
     }
+
+    //当前分类下产品
+    public function nodes()
+    {
+        return '未完成';
+    }
+
 
     //导出卡密
     public function exportk()
