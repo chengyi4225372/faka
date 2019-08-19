@@ -7,9 +7,9 @@
 namespace app\index\controller;
 
 use think\Config;
-use think\Controller;
+use app\index\controller\Base;
 
-class Index extends Controller
+class Index extends Base
 {
     //首页
     public function index()

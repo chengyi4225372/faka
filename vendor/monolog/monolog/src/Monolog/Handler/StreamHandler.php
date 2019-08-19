@@ -47,7 +47,8 @@ class StreamHandler extends AbstractProcessingHandler
         } elseif (is_string($stream)) {
             $this->url = $stream;
         } else {
-            throw new \InvalidArgumentException('A stream must either be a resource or a string.');
+           throw new \InvalidArgumentException('A stream must either be a resource or a string.');
+
         }
 
         $this->filePermission = $filePermission;

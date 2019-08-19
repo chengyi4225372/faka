@@ -89,6 +89,3 @@ function isMobile()
     return false;
 }
 
-if(isMobile()){
-    define('BIND_MODULE','mobile');
-}
