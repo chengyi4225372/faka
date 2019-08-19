@@ -74,6 +74,7 @@ class Controller
      */
     protected function _initialize()
     {
+
     }
 
     /**

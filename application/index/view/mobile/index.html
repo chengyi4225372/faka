@@ -4,7 +4,7 @@
 
 
     <div class="m_banner" >
-        {:htmlspecialchars_decode(sysconf('content'))}
+
     </div>
 
 
@@ -13,8 +13,9 @@
 
 
 <div class="m_userx w">
-    <a target="blank" href="http://wpa.qq.com/msgrd?v=3&uin={:sysconf('kefuqq')}&site=qq&menu=yes"><img  style="CURSOR: pointer" border="0" SRC=/static/mobile/sink/img/pa alt="发送消息给我"></a>&nbsp;&nbsp;
-    &nbsp;&nbsp;客服QQ{:sysconf('kefuqq')}  </div>
+    <a target="blank" href="http://wpa.qq.com/msgrd?v=3&uin=123456&site=qq&menu=yes">
+        <img  style="CURSOR: pointer" border="0" SRC=/mobile/sink/img/pa alt="发送消息给我"></a>&nbsp;&nbsp;
+    &nbsp;&nbsp;客服QQ </div>
 <div class="search w">
     <form action="/search" method="post">
         <input name="content" type="text" class="search_input" placeholder="请输入订单号查询">
@@ -24,50 +25,47 @@
 <div class="baoliao w">
 
     <div class="ui-tab-content">
-        
-        {volist name="lists" id="list"}
-        <a><br/><div class="menux"><div align="center">{$list.title}</div></div></a>
-        {volist name="goods" id="vol"}
-        {if condition="$vol.lid eq $list.id"}
-        <a href="/trade?id={$vol.id}">
+
+
+        <a><br/><div class="menux"><div align="center"></div></div></a>
+
+        <a href="/trade?id=">
             <div class="baoliao_content">
 
-                <div class="bl_img" style="position:relative"><img src="{$vol.img}" alt="{$vol.name}" />	
+                <div class="bl_img" style="position:relative"><img src="" alt="" />
                     <div style="width: 100px;position:absolute;z-indent:2;left:2;top:55;">
-                        {if condition="$vol.fahuo eq 1"}
+
                         <span class="bl_type" style="filter:alpha(opacity:50); opacity:0.7;">自动发货</span>
-                        {else /}
+
                         <span class="bl_type" style="background-color:#029008;filter:alpha(opacity:50); opacity:0.7;">手动发货</span>
-                        {/if}
+
                     </div>
                 </div>
                 <div class="bl_right">
-                    <div class="bl_title">{$vol.name|subtext=20}</div>
+                    <div class="bl_title"></div>
 
                     <div class="bl_tag">
                         <div class="bl_price">
 
 
                             <span class="bl_type" style="background-color:#0086EE;">
-                                  {if condition="$vol.fahuo eq 1"}
+
                                                     <span class="am-badge am-badge-primary" style="margin-left: 5px">
-                                                     库存({$vol.stock})
+                                                     库存()
                                                     </span>
-                                                    {else /}
+
                                                     <span class="am-badge am-badge-success" style="margin-left: 5px">代充</span>
-                                                    {/if}</span>&nbsp;
-                                <span class="bl_type" style="background-color:#B187C1;">销量({$vol.sale})</span> ￥{$vol.price}&nbsp;&nbsp;&nbsp;
-                                <font color="#F8A059">批发价￥{$vol.tradeprice}</font></div>
+                                                   </span>&nbsp;
+                                <span class="bl_type" style="background-color:#B187C1;">销量()</span> ￥&nbsp;&nbsp;&nbsp;
+                                <font color="#F8A059">批发价￥</font></div>
                     </div>
 
                 </div>
             </div>
         </a>
-        {/if}
-        {/volist}
-        {/volist}
-        
-                  
+
+
+
 
     </div>
     <div class="bl_more"> </div>
@@ -77,7 +75,7 @@
 
 
 
-<div class="m_user w"> 	
+<div class="m_user w">
     <a href="#">返回顶部</a>
 </div>
 
@@ -87,4 +85,4 @@
 
 </div>
 </body>
-</html> 
+</html>

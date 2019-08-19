@@ -1,13 +1,13 @@
 <html>
 <head lang="en">
   <meta charset="UTF-8">
-  <title>{:sysconf('webtitle')} - 卡密提取</title>
+  <title> 卡密提取</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="format-detection" content="telephone=no">
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp" />
-  <link rel="stylesheet" href="/static/index/sink/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="/index/sink/css/amazeui.min.css"/>
   <style>
     .header {
       text-align: center;
@@ -25,8 +25,8 @@
 <body>
 <div class="header">
   <div class="am-g">
-    <h1>{:sysconf('webtitle')}</h1>
-    <p><h3>购买时间为：{$time}</h3></p>
+    <h1></h1>
+    <p><h3>购买时间为：</h3></p>
   </div>
   <hr />
 </div>
@@ -35,14 +35,14 @@
     <h3>以下是卡密内容，请自行保存&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="window.opener=null; window.open('','_self');window.close();">[返回]</a></h3>
     <hr>
     <div class="am-btn-group">
-      {volist name="cards" id="card" key="k"}
-      {$card.cardpas}<br>
-      {/volist}
+
+     <br>
+
     </div>
     <br>
     <br>
     <hr>
-    <p>{:sysconf('bottom')}</p>
+    <p></p>
   </div>
 </div>
 </body>
