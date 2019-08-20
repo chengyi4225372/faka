@@ -11,9 +11,10 @@ namespace app\admin\controller;
 
 use Parsedown;
 use tools\Sysinfo;
-
+use think\Db;
 class Wconfig extends Base
 {
+    public $table = 'content';
 
     //首页公告
     public function index()
@@ -25,7 +26,28 @@ class Wconfig extends Base
     //兑换地址
     public function duihuan()
     {
-        return $this->fetch();
+        if($this->request->isGet()){
+            $id = 5;
+            $info = Db::name($this->table)->where('id',$id)->find();
+            $this->assign('info',$info);
+
+            return $this->fetch();
+        }
+
+        if($this->request->isAjax()){
+            $content = input('post.content');
+            $id      = input('post.id');
+            if(isset($id) || empty($id)){
+                $res = Db::name($this->table)->insertGetId(['content'=>$content]);
+            }else {
+                $res = Db::name($this->table)->where(['id'=>$id])->save(['content'=>$content]);
+            }
+
+            if($res && !empty($res)){
+                $this->result($res,'200','操作成功','json');
+            }
+        }
+
     }
 
 
