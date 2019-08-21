@@ -34,16 +34,19 @@ class Wconfig extends Base
             return $this->fetch();
         }
 
-        if($this->request->isAjax()){
+        if($this->request->isPost()){
             $content = input('post.content');
             $id      = input('post.id');
-            if(isset($id) || empty($id)){
+
+            if(empty($id)|| $id == ''){
+
                 $res = Db::name($this->table)->insertGetId(['content'=>$content]);
             }else {
-                $res = Db::name($this->table)->where(['id'=>$id])->save(['content'=>$content]);
+
+                $res = Db::name($this->table)->where(['id'=>$id])->update(['content'=>$content]);
             }
 
-            if($res && !empty($res)){
+            if($res){
                 $this->result($res,'200','操作成功','json');
             }
         }
@@ -54,14 +57,53 @@ class Wconfig extends Base
     //关于我们
     public function contact()
     {
-        return $this->fetch();
+        if($this->request->isGet()){
+            $id = 20;
+            $info = Db::name($this->table)->where('id',$id)->find();
+            $this->assign('info',$info);
+
+            return $this->fetch();
+        }
+
+        if($this->request->isPost()){
+            $content = input('post.content');
+            $id      = input('post.id');
+            if(!isset($id) || empty($id)){
+                $res = Db::name($this->table)->insertGetId(['content'=>$content]);
+            }else {
+                $res = Db::name($this->table)->where(['id'=>$id])->update(['content'=>$content]);
+            }
+
+            if($res){
+                $this->result($res,'200','操作成功','json');
+            }
+        }
     }
   
     
     //帮助中心 
     public function about()
     {
-        return $this->fetch();
+        if($this->request->isGet()){
+            $id = 21;
+            $info = Db::name($this->table)->where('id',$id)->find();
+            $this->assign('info',$info);
+            return $this->fetch();
+        }
+
+        if($this->request->isAjax()){
+            $content = input('post.content');
+            $id      = input('post.id');
+            if(!isset($id) || empty($id)){
+                $res = Db::name($this->table)->insertGetId(['content'=>$content]);
+            }else {
+                $res = Db::name($this->table)->where(['id'=>$id])->update(['content'=>$content]);
+            }
+
+            if($res){
+                $this->result($res,'200','操作成功','json');
+            }
+        }
     }
 
 }

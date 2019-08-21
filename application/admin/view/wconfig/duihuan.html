@@ -4,14 +4,13 @@
         <div class="box box-primary">
             {include file="template/form_header" /}
             <form id="dataForm" class="form-horizontal" method="post"  enctype="multipart/form-data">
-                <input type="hidden"  id="id" value="">
+                <input type="hidden"  id="id" value="{$info['id']}">
 
                 <div class="box-body">
                     <div class="fields-group">
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <script id="editor" name="content" type="text/plain">{$info['content']|htmlspecialchars_decode}</script>
-
+                                  <textarea type="text" name="content" id="editor" placeholder="请输入内容">{$info['content']|htmlspecialchars_decode}</textarea>
                             </div>
                         </div>
                     </div>
@@ -50,12 +49,6 @@
 <script src="__STATIC__/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <script src="__STATIC__/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.zh-CN.js"></script>
 <!-- Page Script -->
-<script>
-    $(function () {
-        //Add text editor
-        $("#content").wysihtml5({locale: "zh-CN"});
-    });
-</script>
 <script>
     var url="{:url('extend/ueserver')}";
     //实例化编辑器
