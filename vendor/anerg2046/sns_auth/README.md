@@ -8,6 +8,26 @@
 
 >微信可获取unionid（如有）
 
+## update 2018-07-03
+*现在支持支付宝登录
+
+```php
+//支付宝配置参数
+$config = [
+    'app_id'      => '********',
+    'scope'       => 'auth_user',
+    'pem_private' => 'pathto/private.pem', // 你的私钥
+    'pem_public'  => 'pathto/public.pem', // 支付宝公钥
+    'callback'    => [
+        'default' => 'http://user.abc.cn/sns/alipay',
+        'mobile'  => 'http://user.abc.cn/sns/alipay',
+        ],
+    ];
+```
+
+## update 2018-06-28
+**现在支持微信公众号多域名登录**
+
 ## 安装方法
 ```
 composer require anerg2046/sns_auth
@@ -35,7 +55,7 @@ class SnsLogin {
      */
     public function qq() {
         $config = [
-            'app_key'    => 'xxxxxx',
+            'app_id'    => 'xxxxxx',
             'app_secret' => 'xxxxxxxxxxxxxxxxxxxx',
             'scope'      => 'get_user_info',
             'callback'   => [
@@ -50,7 +70,7 @@ class SnsLogin {
 
     public function callback($channel) {
         $config   = [
-            'app_key'    => 'xxxxxx',
+            'app_id'    => 'xxxxxx',
             'app_secret' => 'xxxxxxxxxxxxxxxxxxxx',
             'scope'      => 'get_user_info',
             'callback'   => [
@@ -74,4 +94,34 @@ class SnsLogin {
     }
 
 }
+```
+
+## 新增微信登录代理用法
+
+>本方式解决了微信公众号登录只能设定一个回调域名的问题
+
+### 使用方法
+
+* 将wx_proxy.php放置在微信公众号设定的回调域名某个地址，如 http://www.abc.com/proxy/wx_proxy.php
+* config中加入配置参数proxy_url，地址为 http://www.abc.com/proxy/wx_proxy.php
+* 跳转的时候直接跳转到 $OAuth->getProxyURL($config['proxy_url']) 返回的地址即可
+
+```php
+    //其他代码略
+    $config = [
+        'app_id'    => 'xxxxxx',
+        'app_secret' => 'xxxxxxxxxxxxxxxxxxxx',
+        'scope'      => 'snsapi_base',
+        'proxy_url'  => 'http://www.abc.com/proxy/wx_proxy.php',
+        'callback'   => [
+            'default' => 'http://xxx.com/sns_login/callback/qq',
+            'mobile'  => 'http://h5.xxx.com/sns_login/callback/qq',
+        ]
+    ];
+
+    $OAuth = OAuth::getInstance($config, 'weixin');
+    $OAuth->setDisplay('mobile');
+    return redirect($OAuth->getProxyURL($config['proxy_url']));
+    //其他代码略
+…………
 ```

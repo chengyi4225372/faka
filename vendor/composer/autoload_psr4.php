@@ -7,11 +7,13 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'think\\composer\\' => array($vendorDir . '/topthink/think-installer/src'),
-    'think\\' => array($vendorDir . '/topthink/think-image/src', $baseDir . '/thinkphp/library/think'),
+    'think\\captcha\\' => array($vendorDir . '/topthink/think-captcha/src'),
+    'think\\' => array($vendorDir . '/topthink/framework/library/think', $vendorDir . '/topthink/think-image/src'),
     'anerg\\helper\\' => array($vendorDir . '/anerg2046/helper/src'),
     'anerg\\OAuth2\\' => array($vendorDir . '/anerg2046/sns_auth/src'),
     'Zxing\\' => array($vendorDir . '/khanamiryan/qrcode-detector-decoder/lib'),
     'Symfony\\Polyfill\\Php70\\' => array($vendorDir . '/symfony/polyfill-php70'),
+    'Symfony\\Polyfill\\Ctype\\' => array($vendorDir . '/symfony/polyfill-ctype'),
     'Symfony\\Component\\PropertyAccess\\' => array($vendorDir . '/symfony/property-access'),
     'Symfony\\Component\\OptionsResolver\\' => array($vendorDir . '/symfony/options-resolver'),
     'Symfony\\Component\\Inflector\\' => array($vendorDir . '/symfony/inflector'),

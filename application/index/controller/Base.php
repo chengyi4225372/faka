@@ -4,6 +4,7 @@ namespace app\index\controller;
 use think\Config;
 use think\Controller;
 
+
 class Base extends Controller
 {
     public function _initialize()
@@ -12,5 +13,16 @@ class Base extends Controller
         if(isMobile()){
            $this->redirect('mobile/index');
         }
+        $this->is_login();
     }
+
+
+    /**
+     * 检测用户是否登录
+     */
+    public function is_login()
+    {
+     return true;
+    }
+
 }

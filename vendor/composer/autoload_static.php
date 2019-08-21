@@ -8,6 +8,8 @@ class ComposerStaticInit443956b24f067b1276320c6ebfceab0d
 {
     public static $files = array (
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
+        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '023d27dca8066ef29e6739335ea73bad' => __DIR__ . '/..' . '/symfony/polyfill-php70/bootstrap.php',
@@ -15,12 +17,14 @@ class ComposerStaticInit443956b24f067b1276320c6ebfceab0d
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         'a9ed0d27b5a698798a89181429f162c5' => __DIR__ . '/..' . '/khanamiryan/qrcode-detector-decoder/lib/Common/customFunctions.php',
         '841780ea2e1d6545ea3a253239d59c05' => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu/functions.php',
+        '1cfd2761b63b0a29ed23657ea394cb2d' => __DIR__ . '/..' . '/topthink/think-captcha/src/helper.php',
     );
 
     public static $prefixLengthsPsr4 = array (
         't' => 
         array (
             'think\\composer\\' => 15,
+            'think\\captcha\\' => 14,
             'think\\' => 6,
         ),
         'a' => 
@@ -35,6 +39,7 @@ class ComposerStaticInit443956b24f067b1276320c6ebfceab0d
         'S' => 
         array (
             'Symfony\\Polyfill\\Php70\\' => 23,
+            'Symfony\\Polyfill\\Ctype\\' => 23,
             'Symfony\\Component\\PropertyAccess\\' => 33,
             'Symfony\\Component\\OptionsResolver\\' => 34,
             'Symfony\\Component\\Inflector\\' => 28,
@@ -79,10 +84,14 @@ class ComposerStaticInit443956b24f067b1276320c6ebfceab0d
         array (
             0 => __DIR__ . '/..' . '/topthink/think-installer/src',
         ),
+        'think\\captcha\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/topthink/think-captcha/src',
+        ),
         'think\\' => 
         array (
-            0 => __DIR__ . '/..' . '/topthink/think-image/src',
-            1 => __DIR__ . '/../..' . '/thinkphp/library/think',
+            0 => __DIR__ . '/..' . '/topthink/framework/library/think',
+            1 => __DIR__ . '/..' . '/topthink/think-image/src',
         ),
         'anerg\\helper\\' => 
         array (
@@ -99,6 +108,10 @@ class ComposerStaticInit443956b24f067b1276320c6ebfceab0d
         'Symfony\\Polyfill\\Php70\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-php70',
+        ),
+        'Symfony\\Polyfill\\Ctype\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
         ),
         'Symfony\\Component\\PropertyAccess\\' => 
         array (

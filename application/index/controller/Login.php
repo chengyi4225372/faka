@@ -6,8 +6,10 @@ namespace app\index\controller;
 
 use think\Config;
 use think\Controller;
+use think\Db;
+use app\index\controller\Base;
 
-class Login extends Controller
+class Login extends Base
 {
     public function login()
     {

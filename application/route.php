@@ -11,6 +11,7 @@
 
 use think\Route;
 
+
 Route::rule('hello/:name', function ($name) {
     return 'Hello,' . $name . '!';
 });
