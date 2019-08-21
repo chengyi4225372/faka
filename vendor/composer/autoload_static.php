@@ -27,6 +27,10 @@ class ComposerStaticInit443956b24f067b1276320c6ebfceab0d
             'think\\captcha\\' => 14,
             'think\\' => 6,
         ),
+        'f' => 
+        array (
+            'fyflzjz\\payment\\' => 16,
+        ),
         'a' => 
         array (
             'anerg\\helper\\' => 13,
@@ -90,8 +94,12 @@ class ComposerStaticInit443956b24f067b1276320c6ebfceab0d
         ),
         'think\\' => 
         array (
-            0 => __DIR__ . '/..' . '/topthink/framework/library/think',
+            0 => __DIR__ . '/../..' . '/thinkphp/library/think',
             1 => __DIR__ . '/..' . '/topthink/think-image/src',
+        ),
+        'fyflzjz\\payment\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/fyflzjz/payment/src',
         ),
         'anerg\\helper\\' => 
         array (

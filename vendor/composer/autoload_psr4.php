@@ -8,7 +8,8 @@ $baseDir = dirname($vendorDir);
 return array(
     'think\\composer\\' => array($vendorDir . '/topthink/think-installer/src'),
     'think\\captcha\\' => array($vendorDir . '/topthink/think-captcha/src'),
-    'think\\' => array($vendorDir . '/topthink/framework/library/think', $vendorDir . '/topthink/think-image/src'),
+    'think\\' => array($baseDir . '/thinkphp/library/think', $vendorDir . '/topthink/think-image/src'),
+    'fyflzjz\\payment\\' => array($vendorDir . '/fyflzjz/payment/src'),
     'anerg\\helper\\' => array($vendorDir . '/anerg2046/helper/src'),
     'anerg\\OAuth2\\' => array($vendorDir . '/anerg2046/sns_auth/src'),
     'Zxing\\' => array($vendorDir . '/khanamiryan/qrcode-detector-decoder/lib'),

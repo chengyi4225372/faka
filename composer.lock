@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "81d5d1afc07c4fc918220d80559546c9",
+    "content-hash": "e3dac0dbffdd0dee61d0c2a0830d243e",
     "packages": [
         {
             "name": "aliyuncs/oss-sdk-php",
@@ -284,6 +284,59 @@
                 "parser"
             ],
             "time": "2019-03-17T18:48:37+00:00"
+        },
+        {
+            "name": "fyflzjz/payment",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fyflzjz/payment.git",
+                "reference": "f25d6567d8f3e29e8b2cda0a3a66b64964cca953"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fyflzjz/payment/zipball/f25d6567d8f3e29e8b2cda0a3a66b64964cca953",
+                "reference": "f25d6567d8f3e29e8b2cda0a3a66b64964cca953",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "fyflzjz\\payment\\": "/src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "fyflzjz",
+                    "email": "ferminfeng@gmail.com",
+                    "homepage": "http://fyflzjz.github.io"
+                }
+            ],
+            "description": "基于ThinkPHP的Alipay和WeChat的支付、退款、支付查询SDK",
+            "homepage": "https://github.com/fyflzjz/payment",
+            "keywords": [
+                "alipay",
+                "payment",
+                "refund",
+                "wechat",
+                "weixin",
+                "微信支付",
+                "支付宝支付",
+                "支付接口"
+            ],
+            "time": "2018-07-11T07:51:23+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",

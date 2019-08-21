@@ -291,6 +291,61 @@
         ]
     },
     {
+        "name": "fyflzjz/payment",
+        "version": "v0.1.0",
+        "version_normalized": "0.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/fyflzjz/payment.git",
+            "reference": "f25d6567d8f3e29e8b2cda0a3a66b64964cca953"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/fyflzjz/payment/zipball/f25d6567d8f3e29e8b2cda0a3a66b64964cca953",
+            "reference": "f25d6567d8f3e29e8b2cda0a3a66b64964cca953",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.6"
+        },
+        "time": "2018-07-11T07:51:23+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "0.1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "fyflzjz\\payment\\": "/src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "fyflzjz",
+                "email": "ferminfeng@gmail.com",
+                "homepage": "http://fyflzjz.github.io"
+            }
+        ],
+        "description": "基于ThinkPHP的Alipay和WeChat的支付、退款、支付查询SDK",
+        "homepage": "https://github.com/fyflzjz/payment",
+        "keywords": [
+            "alipay",
+            "payment",
+            "refund",
+            "wechat",
+            "weixin",
+            "微信支付",
+            "支付宝支付",
+            "支付接口"
+        ]
+    },
+    {
         "name": "guzzlehttp/guzzle",
         "version": "6.3.3",
         "version_normalized": "6.3.3.0",

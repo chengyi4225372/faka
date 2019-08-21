@@ -20,7 +20,8 @@
         "overtrue/easy-sms": "^0.0.10",
         "qiniu/php-sdk": "^7.2",
         "lcobucci/jwt": "^3.2",
-        "topthink/think-captcha":"1.*"
+        "topthink/think-captcha":"1.*",
+        "fyflzjz/payment": "^0.1.0"
     },
     "extra": {
         "think-path": "thinkphp"
