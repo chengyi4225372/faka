@@ -1,0 +1,187 @@
+{include file='public:twombhead'/}
+
+<div class="am-container" style="padding:2px">
+
+
+
+    <div class="am-panel am-panel-default" style="margin:5px 0 5px 0;border-radius: 0px">
+        <div class="am-panel-bd liebiaocatname">
+            <p>
+                <span style="font-size:18px;color:#E53333;"><strong> </strong></span>
+            </p>
+        </div>
+    </div>
+    <script>
+        $(function() {
+            if ($("#kucun").val() == 0) {
+                $("#paysubmit").attr("class", 'am-btn am-btn-danger am-btn-xl am-disabled');
+                $("#paysubmit").attr("disabled", true);
+                $("#paysubmit").html("库存不足");
+            }
+        });
+    </script>
+    <div class="good-trade">
+
+        <div class="am-container" style="">
+            <div class="am-g ">
+
+                <div class="am-u-sm-12 am-u-md-5 am-u-lg-5 trade-goodimg am-u-end" style="padding: 0px;text-align: center">
+
+                    <img src="" alt="">
+
+                </div>
+                <div class="am-u-sm-12 am-u-md-7 am-u-lg-7  am-u-end" style="">
+                    <!-- 网格开始 -->
+
+                    <h2 style="margin-top: 0px;color: #333;font-family: 微软雅黑;" class="am-text-truncate">   </h2>
+                    <p class="trade-goodinfo" style="background-color:#f5f3ef;margin-top: 20px">
+                        <span style="color:#6c6c6c">促销：</span>
+                        <span class="trade-price">
+                                        ￥
+
+                                    </span>
+
+                        <span style="float:right">
+                                        <span style="color: #6C6C6C;">累积销量：</span>
+                                        <span style="color:#6c6c6c;font-size:18px;">1111</span>
+                                    </span><br>
+
+                        <span style="color:#6C6C6C">库存：1111件</span>
+
+                        <a id="lookpf" style="margin-left:5px;font-size:10px" href="javascript:;" onclick="lookpf()">查看批发价</a>
+                        <br><span style="color:#6c6c6c;">服务： 自动发货 无忧售后  手动发货 </span>
+                    </p>
+                    <script>
+                        function lookpf() {
+                            layer.tips('满11件222元/件', '#lookpf', {
+                                tips: [3, '#78BA32']
+                            });
+                        }
+
+                    </script>
+                    <form action="/buy" id="p_form" method="post" onsubmit="return false;">
+                        <input type="hidden" name='gid' value=''>
+
+                        <div class="from">
+                                    <span style="color:#6c6c6c;margin-left:10px">联系方式：
+                                        <input id="mobile" name="mobile" style="padding: 0.5em;font-size: 1rem;line-height: 1.2;color: #333;" placeholder="请输入联系方式" required>
+                                    </span>
+                        </div>
+
+                        <div class="from">
+                                    <span style="color:#6c6c6c;margin-left:10px">：
+                                        <input  name="moban[]" style="padding: 0.5em;font-size: 1rem;line-height: 1.2;color: #333;" placeholder="{" required>
+                                    </span>
+                        </div>
+                        <br>
+
+                        <br>
+                        <span style="color:#6c6c6c;margin-left:10px">数量：
+                                    <input type="button" value="+" style="margin-right:-6px;" class="trade-input-count-button" onclick="countoper('jia')">
+                                    <input type="text" class="trade-input-count" id="p_num" name="num" value="" placeholder="请输入购买数量" required min="" max="" >
+                                    <input type="button" value="-" style="margin-left:-6px;" class="trade-input-count-button" onclick="countoper('jian')">
+                                </span>
+                    </form>
+                    <input id="minnum" name="minnum" type="hidden" value="" >
+                    <input id="maxnum" name="maxnum" type="hidden" value="" >
+                    <input id="beishu" name="beishu" type="hidden" value="" >
+                    <br>
+                    <button type="submit" onclick="buy( , )" class="am-btn am-btn-danger am-btn-xl am-square"  id="paysubmit" style="margin-top:20px"><span class="am-icon-shopping-cart"></span>立即购买</button>
+
+
+                    <!-- 网格结束 -->
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="am-panel am-panel-default" style="border-radius:0px;margin-top: 10px">
+            <div class="am-panel-hd">商品描述</div>
+            <div class="am-panel-bd">
+                <p>
+                    <span style="background-color:#FFFFFF;"><b></b></span>
+                </p>
+            </div>
+        </div>
+    </div>
+    {include file='public:twombfoot'/}
+</div>
+</body>
+<script>
+    function countoper(oper){
+        count=$("#p_num").val();
+        if(oper=='jia'){
+            count=parseInt(count)+1;
+        }else{
+            count=parseInt(count)-1;
+        }
+        if(parseInt(count)<0){
+            count=0;
+        }
+        $("#p_num").val(count);
+    }
+
+</script>
+<script type="text/javascript" src="/static/index/sink/js/jquery-1.8.3.min.js"></script>
+<script src='/static/index/sink/js/layer/layer.js'></script>
+<script>
+    function buy(a,b) {
+        var p_num = document.getElementById("p_num").value;
+        var minnum = document.getElementById("minnum").value;
+        var maxnum = document.getElementById("maxnum").value;
+        var beishu = document.getElementById("beishu").value;
+        if (p_num < minnum){
+            layer.alert('最小购买数是'+minnum);
+            document.getElementById("p_num").value = minnum;
+            return false;
+        }
+        if (p_num > maxnum){
+            layer.alert('最大购买数是'+maxnum);
+            document.getElementById("p_num").value = maxnum;
+            return false;
+        }
+        if(b == 2){
+            $.ajax({
+                //几个参数需要注意一下
+                type: "POST", //方法类型
+                dataType: "json", //预期服务器返回的数据类型
+                url: "/ajaxbuy", //url
+                data: $('#p_form').serialize(),
+                success: function(result) {
+                    if (result.status == 1) {
+                        layer.msg(result.msg, function() {
+                            window.location.href = "/buy?gid="+result.gid+"&order_no="+result.order_no;
+                        });
+                    } else {
+                        layer.msg(result.msg);
+                    }
+                    ;
+                },
+            });
+            return false;
+        }
+        if (a >= (parseInt(p_num)*parseInt(beishu))) {
+            $.ajax({
+                //几个参数需要注意一下
+                type: "POST", //方法类型
+                dataType: "json", //预期服务器返回的数据类型
+                url: "/ajaxbuy", //url
+                data: $('#p_form').serialize(),
+                success: function(result) {
+                    if (result.status == 1) {
+                        layer.msg(result.msg, function() {
+                            window.location.href = "/buy?gid="+result.gid+"&order_no="+result.order_no;
+                        });
+                    } else {
+                        layer.msg(result.msg);
+                    }
+                    ;
+                },
+            });
+        } else {
+            layer.alert('库存不足！');
+        }
+    }
+</script>
+</html>

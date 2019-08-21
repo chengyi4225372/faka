@@ -16,4 +16,10 @@ class Index extends Base
     {
         return $this->fetch();
     }
+
+    //购买页面
+    public function trade()
+    {
+        return $this->fetch();
+    }
 }
