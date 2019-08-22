@@ -2,7 +2,6 @@
 
 // 应用公共文件
 
-
 /**
  *  array_column 获取数组下标对应的值
  *   php 函数兼容
@@ -88,4 +87,7 @@ function isMobile()
     }
     return false;
 }
+
+
+
 

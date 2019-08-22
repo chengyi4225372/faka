@@ -3,7 +3,7 @@ namespace app\index\controller;
 
 use think\Config;
 use think\Controller;
-
+use  think\captcha\Captcha;
 
 class Base extends Controller
 {
@@ -15,6 +15,25 @@ class Base extends Controller
         }
         $this->is_login();
     }
+
+    /**
+     * 系统验证码
+     */
+   public  function verify()
+    {
+        $config =    [
+            // 验证码字体大小
+            'fontSize'    =>    30,
+            // 验证码位数
+            'length'      =>    3,
+            // 关闭验证码杂点
+            'useNoise'    =>    false,
+        ];
+        $captcha = new Captcha($config);
+        return $captcha->entry();
+
+    }
+
 
 
     /**

@@ -57,7 +57,7 @@
                                         </div>
                                     </div>-->
                     <div class="form-group">
-                        <button type="submit" onclick="login()" class="btn btn-primary btn-lg btn-block">登 录</button>
+                        <button type="button"  class="btn btn-primary btn-lg btn-block login">登 录</button>
                     </div>
                 </form>
 
@@ -68,25 +68,51 @@
 
 {include file="public:loginfoot" /}
 <script>
-    function login() {
-        $.ajax({
-            //几个参数需要注意一下
-            type: "POST", //方法类型
-            dataType: "json", //预期服务器返回的数据类型
-            url: "/index/login/ajaxlogin.html", //url
-            data: $('#loginform').serialize(),
-            success: function(result) {
-                if (result.status == 1) {
-                    layer.msg(result.msg, function() {
-                        window.location.href = "/user";
-                    });
-                } else {
-                    layer.msg(result.msg);
-                }
-                ;
-            },
-        });
-    }
+  $('.login').click(function(){
+
+      var log = {};
+
+      log.account = $('#account').val();
+      log.pwd     = $('#password').val();
+
+      if(log.account =='' ||log.account ==undefined){
+          layer.tips('用户名不能为空','#account');
+          return ;
+      }
+
+      if(log.pwd =='' ||log.pwd ==undefined){
+          layer.tips('密码不能为空','#password');
+          return ;
+      }
+
+      $.ajax({
+          //几个参数需要注意一下
+          type: "POST", //方法类型
+          dataType: "json", //预期服务器返回的数据类型
+          url: "{:url('login/login')}", //url
+          data: log,
+          success: function(ret) {
+           if(ret.code  == '405'){
+              layer.msg(ret.msg,{time:1500});
+              return;
+            };
+
+           if(ret.code  == '403'){
+                  layer.msg(ret.msg,{time:1500});
+                  return;
+              };
+
+           if(ret.code  == '200'){
+                  layer.msg(ret.msg,{time:1500},function(){
+                     parent.location.href="{:url('user/index')}";
+                  });
+              };
+          },
+          error:function(ret){
+              console.log(111);
+          }
+      });
+  });
 </script>
 
 </body>

@@ -6,19 +6,74 @@ namespace app\index\controller;
 
 use think\Config;
 use think\Controller;
-use think\Db;
 use app\index\controller\Base;
-
+use think\Db;
 class Login extends Base
 {
+    public $table = 'member';
+
     public function login()
     {
-        return $this->fetch();
+        if($this->request->isGet()){
+            return $this->fetch();
+        }
+
+        if($this->request->isAjax()){
+          $account = input('post.account','','trim');
+          $pwd     = input('post.pwd','','trim');
+
+          $name = Db::name($this->table)->where(['account'=>$account])->whereOr(['email'=>$account])->find();
+
+          if(!$name || empty($name)){
+              $this->result('','403','用户名不存在','json');
+          }
+
+          if($name['pwd'] != (md5(md5($pwd).$name['rand']))){
+              $this->result('','405','密码错误','json');
+          }
+
+          if(isset($name) && ($name['pwd'] == md5(md5($pwd).$name['rand']))){
+              session('user_id',$name['id']);
+              $this->result('','200','登录成功','json');
+          }
+
+        }
     }
 
 
     public function reg()
     {
-      return $this->fetch();
+     if($this->request->isGet()){
+         return $this->fetch();
+     }
+
+     if($this->request->isAjax()){
+         $email   = input('post.email','','trim');
+         $user    = input('post.user','','trim');
+         $pwd     = input('post.password','','trim');
+         $qq      = input('post.qq','','trim');
+         $captcha = input('post.captcha');
+         $rand    = uniqid();
+         if(!captcha_check($captcha)){
+             $this->result('','401','验证码错误','json');
+         }
+
+         $array = array(
+           'email'    =>$email,
+           'account'  =>$user,
+           'pwd'      =>md5(md5($pwd).$rand),
+           'qq'       =>$qq,
+           'rand'     =>$rand,
+         );
+
+         $ret  = Db::name($this->table)->insertGetId($array);
+         if($ret){
+             $this->result('','200','注册成功','json');
+         }else {
+             $this->result('','405','注册失败','json');
+         }
+     }
+
     }
+
 }

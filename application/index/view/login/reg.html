@@ -35,7 +35,7 @@
                 <a href="{:url('login/login')}">登 录</a> <a class="active" href="{:url('login/reg')}">注 册</a> </div>
             <div class="login-main">
 
-                <form name="form1" id="regform" class="form-vertical" onsubmit='return false;'>
+                <form  class="form-vertical">
                     <div class="form-group">
                         <label class="control-label required">邮箱<span class="text-success"></span></label>
                         <div class="controls">
@@ -70,7 +70,7 @@
                             <div class="input-group input-group-lg">
                                 <input type="text" name="captcha" class="form-control" placeholder="验证码" data-rule="required;length(4)" style="border-radius: 0;" />
                                 <span class="input-group-addon" style="padding:0;border:none;">
-                                <img src="{:captcha_src()}" width="140" height="42" onclick="this.src = this.src"/>
+                                <img src="{:url('base/verify')}" width="140" height="42" onclick="this.src = this.src"/>
                             </span>
                             </div>
                             <p class="help-block"></p>
@@ -78,7 +78,7 @@
                     </div>
 
                     <div class="form-group">
-                        <button type="submit" onclick='reg()' class="btn btn-primary btn-lg btn-block">注 册</button>
+                        <button type="button"  class="btn btn-primary btn-lg btn-block">注 册</button>
                     </div>
                 </form>
             </div>
@@ -90,24 +90,64 @@
 
 
 <script>
-    function reg(){
+    $('.btn-block').click(function(){
+
+        var data = {};
+
+        data.email = $('#email').val();
+        data.user  = $('#user').val();
+        data.pwd   = $('#password').val();
+        data.qq    = $('#qq').val();
+        data.captcha = $("input[name='captcha']").val();
+
+        var re = /^\w+@[a-zA-Z0-9]{2,10}(?:\.[a-z]{2,4}){1,3}$/;
+
+        if(data.email == '' ||  re.test(data.email)== false){
+            layer.tips('邮箱地址不合法','#email');
+            return false;
+        }
+
+        if(data.user == '' ||  data.user== undefined){
+            layer.tips('用户名不能为空','#user');
+            return false;
+        }
+
+        if(data.pwd == '' ||  data.pwd== undefined){
+            layer.tips('请输入密码','#password');
+            return false;
+        }
+
+        if(data.qq == '' ||  data.qq== undefined){
+            layer.tips('请输入qq账号','#qq');
+            return false;
+        }
+
         $.ajax({
             //几个参数需要注意一下
             type: "POST",//方法类型
             dataType: "json",//预期服务器返回的数据类型
-            url: "/index/login/ajaxreg.html" ,//url
-            data: $('#regform').serialize(),
+            url: "{:url('login/reg')}" ,//url
+            data: data,
             success: function (result) {
-                if (result.status == 1) {
+                if (result.code == '200'){
                     layer.msg(result.msg, function(){
-                        window.location.href="/login";
+                       parent.location.href="{:url('login/login')}";
                     });
-                }else{
-                    layer.msg(result.msg);
                 };
+                if(result.code == '401'){
+                    layer.msg(result.msg, function(){
+                       parent.location.reload();
+                    });
+                };
+                if(result.code == '405'){
+                    layer.msg(result.msg);
+                    return false;
+                }
+
             },
         });
-    }
+    });
+
 </script>
 
 </body>
