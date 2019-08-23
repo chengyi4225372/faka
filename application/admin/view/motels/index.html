@@ -2,10 +2,10 @@
     <div class="col-md-12">
         <div class="box">
             <div class="box-body">
-                <form class="form-inline" name="searchForm" id="searchForm" action="" method="GET">
+                <form class="form-inline" name="searchForm" id="searchForm" action="{:url('motels/index')}" method="GET">
                     <div class="form-group">
-                        <input value="{$keywords ? $keywords : '' ;}"
-                               name="keywords" id="keywords" class="form-control input-sm" placeholder="帐号/昵称/手机号/邮箱">
+                        <input value="{$Think.get.keywords ? $Think.get.keywords : '' ;}"
+                               name="keywords" id="keywords" class="form-control input-sm" placeholder="模板名称">
                     </div>
 
                     <div class="form-group">
@@ -36,27 +36,31 @@
                     <thead>
                     <tr>
                         <th>ID</th>
+                        <th>排序</th>
                         <th>模板名称</th>
                         <th>创建时间</th>
                         <th>操作</th>
                     </tr>
                     </thead>
+                    {volist name='list' id='vo'}
                     <tbody>
                     <tr>
-                        <td>000</td>
-                        <td>000</td>
-                        <td>000</td>
+                        <td>{$vo.id}</td>
+                        <td>{$vo.sort|default=''}</td>
+                        <td>{$vo.title}</td>
+                        <td>{$vo.create_time}</td>
                         <td class="td-do">
-                            <a href="edit.html"
+                            <a href="{:url('motels/edit',array('id'=>$vo.id))}"
                                class="btn btn-primary btn-xs" title="修改">
-                                <i class="fa fa-pencil"></i>
+                                <i class="fa fa-pencil">编辑</i>
                             </a>
-                            <a class="btn btn-danger btn-xs AjaxButton" title="删除" data-id="" data-url="del.html">
-                                <i class="fa fa-trash"></i>
+                            <a class="btn btn-danger btn-xs " href="{:url('motels/del',array('id'=>$vo.id))}" >
+                                <i class="fa fa-trash">删除</i>
                             </a>
                         </td>
                     </tr>
                     </tbody>
+                    {/volist}
                 </table>
             </div>
         </div>
