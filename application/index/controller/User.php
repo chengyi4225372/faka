@@ -48,6 +48,9 @@ class User extends Controller
     //注销
     public function lout()
     {
-        return '未完成';
+       session('user_id','');
+       session_destroy();
+       return  $this->redirect('index/index');
     }
+
 }

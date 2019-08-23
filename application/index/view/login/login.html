@@ -70,17 +70,16 @@
 <script>
   $('.login').click(function(){
 
-      var log = {};
 
-      log.account = $('#account').val();
-      log.pwd     = $('#password').val();
+      let account = $('#account').val();
+      let pwd     = $('#password').val();
 
-      if(log.account =='' ||log.account ==undefined){
+      if(account =='' ||account ==undefined){
           layer.tips('用户名不能为空','#account');
           return ;
       }
 
-      if(log.pwd =='' ||log.pwd ==undefined){
+      if(pwd =='' ||pwd ==undefined){
           layer.tips('密码不能为空','#password');
           return ;
       }
@@ -90,7 +89,7 @@
           type: "POST", //方法类型
           dataType: "json", //预期服务器返回的数据类型
           url: "{:url('login/login')}", //url
-          data: log,
+          data:{account:account,pwd:pwd},
           success: function(ret) {
            if(ret.code  == '405'){
               layer.msg(ret.msg,{time:1500});
@@ -101,7 +100,10 @@
                   layer.msg(ret.msg,{time:1500});
                   return;
               };
-
+           if(ret.status == '500'){
+               layer.msg(ret.msg,{time:1500});
+               return ;
+            };
            if(ret.code  == '200'){
                   layer.msg(ret.msg,{time:1500},function(){
                      parent.location.href="{:url('user/index')}";

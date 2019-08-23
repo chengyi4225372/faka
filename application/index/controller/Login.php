@@ -18,21 +18,26 @@ class Login extends Base
             return $this->fetch();
         }
 
-        if($this->request->isAjax()){
+        if($this->request->isPost()){
           $account = input('post.account','','trim');
           $pwd     = input('post.pwd','','trim');
 
           $name = Db::name($this->table)->where(['account'=>$account])->whereOr(['email'=>$account])->find();
 
+
           if(!$name || empty($name)){
               $this->result('','403','用户名不存在','json');
           }
 
-          if($name['pwd'] != (md5(md5($pwd).$name['rand']))){
-              $this->result('','405','密码错误','json');
+          if($name['status'] == '0'){
+              $this->result('','500','该用户禁止登录，请联系客服','json');
           }
 
-          if(isset($name) && ($name['pwd'] == md5(md5($pwd).$name['rand']))){
+          if($name['password'] !== md5(md5($pwd).$name['rand'])){
+                $this->result('','405','密码错误','json');
+            }
+
+          if($name && $name['password'] === md5(md5($pwd).$name['rand'])){
               session('user_id',$name['id']);
               $this->result('','200','登录成功','json');
           }
@@ -50,7 +55,7 @@ class Login extends Base
      if($this->request->isAjax()){
          $email   = input('post.email','','trim');
          $user    = input('post.user','','trim');
-         $pwd     = input('post.password','','trim');
+         $pwd     = input('post.pwd','','trim');
          $qq      = input('post.qq','','trim');
          $captcha = input('post.captcha');
          $rand    = uniqid();
@@ -61,12 +66,12 @@ class Login extends Base
          $array = array(
            'email'    =>$email,
            'account'  =>$user,
-           'pwd'      =>md5(md5($pwd).$rand),
+           'password' =>md5(md5($pwd).$rand),
            'qq'       =>$qq,
            'rand'     =>$rand,
          );
 
-         $ret  = Db::name($this->table)->insertGetId($array);
+         $ret  = Db::name($this->table)->insert($array);
          if($ret){
              $this->result('','200','注册成功','json');
          }else {
