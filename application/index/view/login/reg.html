@@ -158,13 +158,13 @@
 
         $.post(url,{account:name},function(ret){
              if(ret.code == '404'){
-                 layer.tips(ret.msg,'#user',{time:2000});
+                 layer.tips(ret.msg,'#user');
                  $('#password').attr('disabled',true);
                  $('#qq').attr('disabled',true);
                  $("input[name='captcha']").attr('disabled',true);
              };
              if(ret.code == '200'){
-                 layer.tips(ret.msg,'#user',{time:2000});
+                 layer.tips(ret.msg,'#user',{tips:[2,'#009688'],time:2000});
                  $('#password').removeAttr('disabled');
                  $('#qq').removeAttr('disabled');
                  $("input[name='captcha']").removeAttr('disabled');
