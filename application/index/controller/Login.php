@@ -15,7 +15,12 @@ class Login extends Base
     public function login()
     {
         if($this->request->isGet()){
-            return $this->fetch();
+            //如果已经登录
+            if(session('user_id')){
+                $this->redirect('user/index');
+            }else {
+                return $this->fetch();
+            }
         }
 
         if($this->request->isPost()){
@@ -63,6 +68,8 @@ class Login extends Base
              $this->result('','401','验证码错误','json');
          }
 
+
+
          $array = array(
            'email'    =>$email,
            'account'  =>$user,
@@ -77,6 +84,23 @@ class Login extends Base
          }else {
              $this->result('','405','注册失败','json');
          }
+     }
+
+    }
+
+    //检测用户名
+    public function check_name()
+    {
+     $account = input('post.account','','trim');
+
+     $res     = Db::name($this->table)->where(['account'=>$account])->find();
+
+     if($res  || !empty($res)){
+        $this->result('','404','用户名已经注册，请更换一个','json');
+     }
+
+     if(empty($res)){
+        $this->result('','200','用户可以使用','json');
      }
 
     }
