@@ -34,33 +34,46 @@
                         <th>ID</th>
                         <th>账号</th>
                         <th>余额</th>
-                        <th>充值金额</th>
                         <th>qq账号</th>
                         <th>邮箱</th>
                         <th>注册时间</th>
+                        <th>状态</th>
                         <th>操作</th>
                     </tr>
                     </thead>
+                    {volist name='list' id='vo'}
                     <tbody>
                     <tr>
-                        <td>000</td>
-                        <td>000</td>
-                        <td>000</td>
-                        <td>000</td>
-                        <td>000</td>
-                        <td>000</td>
-                        <td>003</td>
+                        <td>{$vo.id}</td>
+                        <td>{$vo.account}</td>
+                        <td>{$vo.money|default='0.00'}</td>
+                        <td>{$vo.qq|default=''}</td>
+                        <td>{$vo.email|default=''}</td>
+                        <td>{$vo.create_time}</td>
+                        <td>
+                            {eq name='vo.status' value='1'}
+                              有效客户
+                             {else  /}
+                              无效客户
+                            {/eq}
+                        </td>
                         <td class="td-do">
-                            <a href="edit.html"
+                            <a href="{:url('member/edit',array('id'=>$vo.id))}"
                                class="btn btn-primary btn-xs" title="修改">
-                                <i class="fa fa-pencil"></i>
+                                <i class="fa fa-pencil">编辑</i>
                             </a>
-                            <a class="btn btn-danger btn-xs AjaxButton" title="删除" data-id="" data-url="del.html">
-                                <i class="fa fa-trash"></i>
+                            <a class="btn btn-danger btn-xs AjaxButton" title="删除" data-id="{$vo.id}" data-url="del.html">
+                                <i class="fa fa-trash">删除</i>
                             </a>
                         </td>
+
                     </tr>
                     </tbody>
+                    {/volist}
                 </table>
             </div>
         </div>
+
+        <script>
+
+        </script>
