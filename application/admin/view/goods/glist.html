@@ -2,10 +2,10 @@
     <div class="col-md-12">
         <div class="box">
             <div class="box-body">
-                <form class="form-inline" name="searchForm"  action="" method="GET">
+                <form class="form-inline" name="searchForm"  action="{:url('goods/glist')}" method="GET">
                     <div class="form-group">
-                        <input value="{$keywords ? $keywords : '' ;}"
-                               name="keywords" id="keywords" class="form-control input-sm" placeholder="帐号/昵称/手机号/邮箱">
+                        <input value="{$Think.get.keywords ? $Think.get.keywords : '' ;}"
+                               name="keywords" id="keywords" class="form-control input-sm" placeholder="请输入商品名称">
                     </div>
 
                     <div class="form-group">
@@ -64,11 +64,11 @@
                                class="btn btn-success btn-xs ajax" title="">
                                 <i class="fa fa-pencil">上架</i>
                             </a>
-                            <a href="edit.html"
+                            <a href="{:url('goods/addg',array('id'=>$vo.id))}"
                                class="btn btn-primary btn-xs" title="修改">
                                 <i class="fa fa-pencil">编辑</i>
                             </a>
-                            <a class="btn btn-danger btn-xs " title="删除" data-id="" data-url="del.html">
+                            <a class="btn btn-danger btn-xs " href="{:url('goods/delg',array('id'=>$vo.id))}" title="删除" >
                                 <i class="fa fa-trash">删除</i>
                             </a>
                         </td>

@@ -81,7 +81,6 @@ class Goods extends Base
     }
 
 
-
     //商品列表
     public function glist()
     {
@@ -101,7 +100,48 @@ class Goods extends Base
 
     public function addg()
     {
-        return $this->fetch();
+      if($this->request->isGet()){
+          $id = input('get.id','','int|trim');
+          $info = Db::name('goods')->where(['id'=>$id])->find();
+          $this->assign('info',$info);
+          return $this->fetch();
+      }
+
+
+      if($this->request->isAjax()){
+         return true;
+       }
+
+    }
+
+
+    public function delg()
+    {
+     if($this->request->isGet()){
+         $id = input('get.id','','int');
+
+         if($id <= 0 || empty($id)){
+             return false;
+         }
+
+         if($id){
+
+             $res = Db::name('goods')->where(['id'=>$id])->delete();
+
+             if($res){
+                 $this->success('删除成功');
+             }else{
+                 $this->error('删除失败');
+             }
+         }
+       }
+
+    }
+
+
+    public function uploads_img()
+    {
+        $this->request->file();
     }
 
     //排序
@@ -109,6 +149,7 @@ class Goods extends Base
     {
         return false;
     }
+
 
     public function klist()
     {

@@ -8,6 +8,7 @@ use think\Config;
 use think\Controller;
 use app\index\controller\Base;
 use think\Db;
+use think\Session;
 class Login extends Base
 {
     public $table = 'member';
@@ -43,9 +44,8 @@ class Login extends Base
             }
 
           if($name && $name['password'] === md5(md5($pwd).$name['rand'])){
-              session('user_id',$name['id']);
-              session('user_name',$name['account']);
-              $this->result('','200','登录成功','json');
+               Session::set('info',$name);
+               $this->result('','200','登录成功','json');
           }
 
         }
@@ -109,9 +109,7 @@ class Login extends Base
     //注销
     public function lout()
     {
-        session('user_id','');
-        session('user_name','');
-        session_destroy();
+        Session::delete('info');
         return  $this->redirect('index/index');
     }
 
