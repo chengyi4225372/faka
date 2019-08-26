@@ -15,9 +15,9 @@ class Index extends Base
     {
         $html   = file_get_contents('https://www.956ka.cn/Notice.html');
 
-       // $zan  = file_get_contents('https://www.956ka.cn/Sponsor.html');  //页面404
+        $zan  = file_get_contents('https://www.956ka.cn/Sponsor.html');  //页面404
 
-        //$this->assign('zan',$zan);
+        $this->assign('zan',$zan);
 
         $this->assign('html',$html);
 

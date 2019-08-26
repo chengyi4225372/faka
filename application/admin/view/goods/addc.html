@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <div class="box box-primary">
             <form  class="form-horizontal dataForm" enctype="multipart/form-data">
-                <input type="hidden" name="id"  value="{$info.id}">
+                <input type="hidden" id="id" value="{$info.id|default=''}">
                 <div class="box-body">
                     <div class="fields-group">
 
@@ -11,7 +11,7 @@
                             <div class="col-sm-10 col-md-4">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    <input  id="title" name="title" value="{$info.title}" class="form-control" placeholder="">
+                                    <input  id="title" name="title" value="{$info.title|default=''}" class="form-control" placeholder="">
                                 </div>
                             </div>
                         </div>
