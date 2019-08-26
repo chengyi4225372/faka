@@ -45,12 +45,5 @@ class User extends Controller
         return $this->fetch();
     }
 
-    //注销
-    public function lout()
-    {
-       session('user_id','');
-       session_destroy();
-       return  $this->redirect('index/index');
-    }
 
 }

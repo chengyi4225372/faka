@@ -44,6 +44,7 @@ class Login extends Base
 
           if($name && $name['password'] === md5(md5($pwd).$name['rand'])){
               session('user_id',$name['id']);
+              session('user_name',$name['account']);
               $this->result('','200','登录成功','json');
           }
 
@@ -104,5 +105,15 @@ class Login extends Base
      }
 
     }
+
+    //注销
+    public function lout()
+    {
+        session('user_id','');
+        session('user_name','');
+        session_destroy();
+        return  $this->redirect('index/index');
+    }
+
 
 }

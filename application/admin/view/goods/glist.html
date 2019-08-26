@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <div class="box">
             <div class="box-body">
-                <form class="form-inline" name="searchForm" id="searchForm" action="" method="GET">
+                <form class="form-inline" name="searchForm"  action="" method="GET">
                     <div class="form-group">
                         <input value="{$keywords ? $keywords : '' ;}"
                                name="keywords" id="keywords" class="form-control input-sm" placeholder="帐号/昵称/手机号/邮箱">
@@ -35,39 +35,47 @@
                 <table class="table table-hover table-bordered datatable" width="100%">
                     <thead>
                     <tr>
-                        <th>订单号</th>
-                        <th>账号</th>
+                        <th>商品Id</th>
+                        <th>排序</th>
+                        <th>商品名称</th>
+                        <th>商品数量</th>
                         <th>价格</th>
-                        <th>账号</th>
                         <th>状态</th>
+                        <th>发货状态</th>
+                        <th>商品所属分类</th>
                         <th>创建时间</th>
                         <th>操作</th>
                     </tr>
                     </thead>
+                    {volist name='list' id='vo'}
                     <tbody>
                     <tr>
-                        <td>000</td>
-                        <td>000</td>
-                        <td>000</td>
-                        <td>hhh</td>
-                        <td>谁说的</td>
+                        <td>{$vo.id}</td>
+                        <td>{$vo.sort|default=''}</td>
+                        <td>{$vo.title}</td>
+                        <td>{$vo.num|default='0'}</td>
+                        <td>{$vo.money}</td>
+                        <td></td>
                         <td>二次</td>
+                        <td>{$vo.create_time}</td>
                         <td class="td-do">
                              <!--上架  还是下架 -->
                             <a href=""
-                               class="btn btn-success btn-xs" title="">
+                               class="btn btn-success btn-xs ajax" title="">
                                 <i class="fa fa-pencil">上架</i>
                             </a>
                             <a href="edit.html"
                                class="btn btn-primary btn-xs" title="修改">
                                 <i class="fa fa-pencil">编辑</i>
                             </a>
-                            <a class="btn btn-danger btn-xs AjaxButton" title="删除" data-id="" data-url="del.html">
+                            <a class="btn btn-danger btn-xs " title="删除" data-id="" data-url="del.html">
                                 <i class="fa fa-trash">删除</i>
                             </a>
                         </td>
                     </tr>
                     </tbody>
+                    {/volist}
                 </table>
             </div>
         </div>
+        {$list->render()}

@@ -85,7 +85,18 @@ class Goods extends Base
     //商品列表
     public function glist()
     {
-     return $this->fetch();
+      if($this->request->isGet()){
+          $keywords = input('get.keywords','','trim');
+          $keywords = $keywords?$keywords:'';
+          if(!isset($keywords) || empty($keywords)){
+              $list = Db::name('goods')->where(['title'=>$keywords])->order(['sort'=>'desc','id'=>'desc'])->paginate(15);
+          }else {
+              $list = Db::name('goods')->order(['sort'=>'desc','id'=>'desc'])->paginate(15);
+          }
+          $this->assign('list',$list);
+          return $this->fetch();
+      }
+
     }
 
     public function addg()
@@ -93,6 +104,7 @@ class Goods extends Base
         return $this->fetch();
     }
 
+    //排序
     public function statusg()
     {
         return false;
