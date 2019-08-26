@@ -25,7 +25,7 @@ class Goods extends Base
            if(!empty($keywords)){
                $list     = Db::name('good_cates')->where(['title'=>$keywords])->order('id desc')->paginate(15);
            }else {
-               $list     = Db::name('good_cates')->order('id desc')->paginate(15);
+               $list     = Db::name('good_cates')->order('id desc')->paginate(2);
            }
 
            $this->assign('list',$list);

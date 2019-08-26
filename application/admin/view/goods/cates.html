@@ -4,7 +4,7 @@
             <div class="box-body">
                 <form class="form-inline" name="searchForm" action="{:url('goods/cates')}" method="GET">
                     <div class="form-group">
-                        <input value="{$keywords ? $keywords : '' ;}"
+                        <input value="{$Think.get.keywords ? $Think.get.keywords : '' ;}"
                                name="keywords" id="keywords" class="form-control input-sm" placeholder="">
                     </div>
 
@@ -63,3 +63,4 @@
                 </table>
             </div>
         </div>
+        {$list->render()}
