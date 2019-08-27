@@ -11,6 +11,7 @@ namespace app\admin\controller;
 use Parsedown;
 use tools\Sysinfo;
 use think\Db;
+use think\View;
 
 class Goods extends Base
 {
@@ -78,6 +79,22 @@ class Goods extends Base
                 $this->error('操作失败');
             }
         }
+    }
+
+    //当前分类下产品
+    public function nodes()
+    {
+      if($this->request->isGet()){
+          $cid  = trim(input('get.id','','int'));
+          $list = Db::name('goods')->where(['cid'=>$cid])->paginate(15);
+          $cates= Db::name('good_cates')->order('id desc')->select();
+          $category = array_column($cates,'title','id');
+          $this->assign('cates',$cates);
+          $this->assign('category',$category);
+          $this->assign('list',$list);
+      }
+
+        return $this->fetch();
     }
 
 
@@ -211,6 +228,12 @@ class Goods extends Base
        }
     }
 
+    //商品排序
+    public function set_sort()
+    {
+     return 11;
+    }
+
 
     public function klist()
     {
@@ -222,11 +245,7 @@ class Goods extends Base
         return $this->fetch();
     }
 
-    //当前分类下产品
-    public function nodes()
-    {
-        return '未完成';
-    }
+
 
 
     //导出卡密

@@ -1,0 +1,60 @@
+{__NOLAYOUT__}
+
+<link rel="stylesheet" href="__STATIC__/css/app.min.css">
+<script src="__STATIC__/js/app.min.js"></script>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-body table-responsive">
+                <table class="table table-hover table-bordered datatable" width="100%">
+                    <thead>
+                    <tr>
+                        <th>商品Id</th>
+                        <th>排序</th>
+                        <th>商品名称</th>
+                        <th>商品数量</th>
+                        <th>价格</th>
+                        <th>发货状态</th>
+                        <th>商品所属分类</th>
+                        <th>创建时间</th>
+                        <th>商品状态</th>
+                    </tr>
+                    </thead>
+                    {volist name='list' id='vo'}
+                    <tbody>
+                    <tr>
+                        <td>{$vo.id}</td>
+                        <td>{$vo.sort|default=''}</td>
+                        <td>{$vo.title}</td>
+                        <td>{$vo.num|default='0'}</td>
+                        <td>{$vo.money}</td>
+                        <td>
+                            {eq name='$vo.huo' value='0'}
+                            自动发货
+                            {else /}
+                            手动发货
+                            {/eq}
+                        </td>
+                        <td>{$category[$vo.cid]}</td>
+                        <td>{$vo.create_time}</td>
+                        <td class="td-do">
+                            {eq name='$vo.status' value='1'}
+                            <a data-href="{:url('goods/jiag',array('id'=>$vo.id))}"
+                               class="btn btn-success btn-xs ajax" data="{$vo.status}">
+                                <i class="fa fa-pencil">上架</i>
+                            </a>
+                            {else /}
+                            <a data-href="{:url('goods/jiag',array('id'=>$vo.id))}" class="btn btn-warning  btn-xs ajax" data="{$vo.status}">
+                                <i class="fa fa-pencil">下架</i>
+                            </a>
+                            {/eq}
+                        </td>
+                    </tr>
+                    </tbody>
+                    {/volist}
+                </table>
+            </div>
+        </div>
+        {$list->render()}
+

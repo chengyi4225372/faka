@@ -47,7 +47,7 @@
                         <td>{$vo.title}</td>
                         <td>{$vo.create_time}</td>
                         <td class="td-do">
-                            <a href="nodes.html" class="btn btn-success btn-xs" title="">
+                            <a data-href="{:url('goods/nodes',array('id'=>$vo.id))}" class="btn btn-success btn-xs nodes" title="">
                                 <i class="fa fa-pencil">分类下产品</i>
                             </a>
                             <a href="{:url('goods/addc',array('id'=>$vo.id))}" class="btn btn-primary btn-xs" title="修改">
@@ -64,3 +64,18 @@
             </div>
         </div>
         {$list->render()}
+
+        <script>
+            $('.nodes').click(function(){
+
+                var url = $(this).attr('data-href');
+                layer.open({
+                    type: 2,
+                    title: '所属分类商品',
+                    shadeClose: true,
+                    shade: 0.8,
+                    area: ['70%', '70%'],
+                    content: url //iframe的url
+                })
+            })
+        </script>
