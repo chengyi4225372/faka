@@ -42,6 +42,8 @@
                         <th>价格</th>
                         <th>发货状态</th>
                         <th>商品所属分类</th>
+                        <th>销量</th>
+                        <th>批发价</th>
                         <th>创建时间</th>
                         <th>商品状态</th>
                         <th>操作</th>
@@ -63,6 +65,8 @@
                             {/eq}
                         </td>
                         <td>{$category[$vo.cid]}</td>
+                        <td>{$vo.paynum}</td>
+                        <td>批发价</td>
                         <td>{$vo.create_time}</td>
                         <td class="td-do">
                             {eq name='$vo.status' value='1'}

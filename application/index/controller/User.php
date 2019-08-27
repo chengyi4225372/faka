@@ -7,8 +7,9 @@ namespace app\index\controller;
 
 use think\Config;
 use think\Controller;
+use app\index\controller\Base;
 
-class User extends Controller
+class User extends Base
 {
     //会员中心
     public function index()

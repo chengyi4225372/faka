@@ -38,84 +38,50 @@
 
                     <tr >
                         <th class="indexlistlb">商品名称</th>
-
-
                         <th class="indexlistlb">单价</th>
-
-
                         <th class="indexlistlb">批发价</th>
-
-
                         <th class="indexlistlb">库存</th>
                         <th class="indexlistlb">操作</th>
                     </tr>
+                    {volist name='list' id='vo'}
                     <tr>
                         <th colspan="5" align="center" class="greencoler" >
-                            <div align="center"><font size="3">栗子发卡系统授权码</font></div>
+                            <div align="center"><font size="3">{$categorys[$vo.id]}</font></div>
                         </th>
                     </tr>
                     <tr>
                         <td>
                             <div align="left">
+                                {eq name='$vo.huo' value='0'}
                                 <a class="button button-action button-circle button-small" title="自动发货商品，购买后自动发货">自动</a>
-                                <font size="3" title="★栗子个人发卡源码★授权码★最新版&radic;正版授权&radic;24小时自动发货&radic;">★栗子个人发卡源码★授权码★最新版&radic;正版...</font>
+                                {else /}
+                                <a class="button button-highlight button-circle button-small" title="手动发货商品，购买后客服手动发货给你">手动</a>
+                                {/eq}
+                                <font size="3" title="{$vo.title}">{$vo.title}</font>
                             </div>
                         </td>
                         <td>
-                            <font color="#FF5400"  size="2" title="会员单价">58.00元</font>
+                            <font color="#FF5400"  size="2" title="会员单价">{$vo.money}</font>
                             <br/>
-                            <font color="#BBBBBB"  size="1" title="销量">销量292</font>
+                            <font color="#BBBBBB"  size="1" title="销量">销量{$vo.paynum}</font>
                         </td>
                         <td>
-                            <font color="#0281D2"  size="2" title="批发单价">58.00元<br/></font>
+                            <font color="#0281D2"  size="2" title="批发单价">{$vo.money}元<br/></font>
                             <font color="#BBBBBB"  size="1" title="普通用户购买数量2个起按照批发单价计算">2个起</font>
                         </td>
                         <td >
                             <font color="#000CF9"  size="3" title="物品库存">
-                                9
+                                {$vo.num}
                             </font>
                         </td>
 
 
                         <td >
-                            <a class="button button-primary button-rounded button-small" onclick="location.href = '{:url('index/trade')}?id='">购买</a>
+                            <a class="button button-primary button-rounded button-small"  href = "{:url('index/trade',array('id'=>$vo.id))}">购买</a>
                         </td>
                     </tr>
-                    <th colspan="5" align="center" class="greencoler" >
-                        <div align="center"><font size="3">栗子发卡系统代理商</font></div>
-                    </th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div align="left">
-                                <a class="button button-highlight button-circle button-small" title="手动发货商品，购买后客服手动发货给你">手动</a>
-                                <font size="3" title="栗子发卡系统/授权代理/低价授权/包更新+售后群">栗子发卡系统/授权代理/低价授权/包更新...</font>
-                            </div>
-                        </td>
-                        <td>
-                            <font color="#FF5400"  size="2" title="会员单价">888.00元</font>
-                            <br/>
-                            <font color="#BBBBBB"  size="1" title="销量">销量0</font>
-                        </td>
-                        <td>
-                            <font color="#0281D2"  size="2" title="批发单价">888.00元<br/></font>
-                            <font color="#BBBBBB"  size="1" title="普通用户购买数量2个起按照批发单价计算">2个起</font>
-                        </td>
-                        <td >
-                            人工发货
-                        </td>
-
-
-                        <td >
-                            <a class="button button-primary button-rounded button-small" onclick="location.href = '/trade?id=19'">购买</a>
-                        </td>
-                    </tr>
-                    <th colspan="5" align="center" class="greencoler" >
-                        <div align="center"><font size="3">栗子发卡系统 - 自营产品</font></div>
-                    </th>
-                    </tr>
-
-
+                   {/volist}
+<!--                    </tr>-->
 
                 </table>
 

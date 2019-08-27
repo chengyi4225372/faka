@@ -139,14 +139,15 @@ class Goods extends Base
           //edit
           if(!empty($this->param['dat']['id']) && isset($this->param['dat']['id'])){
               $res = Db::name('goods')->where(['id'=>$this->param['dat']['id']])->update(
-                  ['title' =>$this->param['dat']['title'],
-                   'sort'  =>$this->param['dat']['sort'],
-                   'num'   =>$this->param['dat']['num'],
-                   'images'  =>$this->param['dat']['images'],
-                   'money'  =>$this->param['dat']['money'],
+                  ['title'    =>$this->param['dat']['title'],
+                   'sort'     =>$this->param['dat']['sort'],
+                   'num'      =>$this->param['dat']['num'],
+                   'images'   =>$this->param['dat']['images'],
+                   'money'    =>$this->param['dat']['money'],
                    'content'  =>$this->param['dat']['content'],
-                   'huo'  =>$this->param['dat']['huo'],
-                   'cid'  =>$this->param['dat']['cid'],
+                   'huo'      =>$this->param['dat']['huo'],
+                   'cid'      =>$this->param['dat']['cid'],
+                   'paynum'   =>$this->param['dat']['paynum'],
                  ]);
           }
 
