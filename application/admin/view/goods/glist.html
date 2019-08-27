@@ -40,10 +40,10 @@
                         <th>商品名称</th>
                         <th>商品数量</th>
                         <th>价格</th>
-                        <th>状态</th>
                         <th>发货状态</th>
                         <th>商品所属分类</th>
                         <th>创建时间</th>
+                        <th>商品状态</th>
                         <th>操作</th>
                     </tr>
                     </thead>
@@ -55,15 +55,28 @@
                         <td>{$vo.title}</td>
                         <td>{$vo.num|default='0'}</td>
                         <td>{$vo.money}</td>
-                        <td></td>
-                        <td>二次</td>
+                        <td>
+                            {eq name='$vo.huo' value='0'}
+                             自动发货
+                            {else /}
+                             手动发货
+                            {/eq}
+                        </td>
+                        <td>{$category[$vo.cid]}</td>
                         <td>{$vo.create_time}</td>
                         <td class="td-do">
-                             <!--上架  还是下架 -->
-                            <a href=""
-                               class="btn btn-success btn-xs ajax" title="">
+                            {eq name='$vo.status' value='1'}
+                            <a data-href="{:url('goods/jiag',array('id'=>$vo.id))}"
+                               class="btn btn-success btn-xs ajax" data="{$vo.status}">
                                 <i class="fa fa-pencil">上架</i>
                             </a>
+                            {else /}
+                            <a data-href="{:url('goods/jiag',array('id'=>$vo.id))}" class="btn btn-warning  btn-xs ajax" data="{$vo.status}">
+                                <i class="fa fa-pencil">下架</i>
+                            </a>
+                            {/eq}
+                        </td>
+                        <td class="td-do">
                             <a href="{:url('goods/addg',array('id'=>$vo.id))}"
                                class="btn btn-primary btn-xs" title="修改">
                                 <i class="fa fa-pencil">编辑</i>
@@ -79,3 +92,25 @@
             </div>
         </div>
         {$list->render()}
+
+        <script>
+
+            $('.ajax').click(function(){
+                var url  = $(this).attr('data-href');
+
+                var data = $(this).attr('data');
+
+                $.post(url,{data:data},function(ret){
+                     if(ret.code == '200'){
+                         layer.msg(ret.msg,{time:1500},function(){
+                             parent.location.reload();
+                         })
+                     };
+                    if(ret.code == '400'){
+                        layer.msg(ret.msg,{time:1500},function(){
+                            parent.location.reload();
+                        })
+                    }
+                },'json')
+            })
+        </script>

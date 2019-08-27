@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <div class="box box-primary">
             <form class="form-horizontal dataForm"  method="post" enctype="multipart/form-data">
-                <input type="hidden" id="id" value="" >
+                <input type="hidden" id="id" value="{$info.id}" >
 
                 <div class="box-body">
                     <div class="fields-group">
@@ -12,7 +12,7 @@
                             <div class="col-sm-10 col-md-4">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    <input  id="title" name="title" value="" class="form-control" placeholder="商品名称">
+                                    <input  id="title" name="title" value="{$info.title}" class="form-control" placeholder="商品名称">
                                 </div>
                             </div>
                         </div>
@@ -22,7 +22,7 @@
                             <div class="col-sm-10 col-md-4">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    <input  id="sort" name="sort" value="" class="form-control" placeholder="">
+                                    <input  id="sort" name="sort" value="{$info.sort|default=''}" class="form-control" placeholder="">
                                 </div>
                             </div>
                         </div>
@@ -32,8 +32,16 @@
                             <div class="col-sm-10 col-md-4">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-list"></i></span>
-                                    <select name="level_id" id="level_id" class="form-control">
-                                        <option value="">请选择商品类型...</option>
+                                    <select name="cid" id="cid" class="form-control">
+
+                                        {volist name='cates' id='vv'}
+                                        {if isset($info.cid)}
+                                        <option value="{$vv.id}" {if condition="$info.cid eq $vv.id"} aria-selected="" -checked="" {/if}>{$vv.title}</option>
+                                        {else /}
+                                        <option value="{$vv.id}">{$vv.title}</option>
+
+                                        {/if}
+                                     {/volist}
                                     </select>
                                 </div>
                             </div>
@@ -44,7 +52,7 @@
                             <div class="col-sm-10 col-md-4">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    <input  id="num" name="num" value="" class="form-control" >
+                                    <input  id="num" name="num" value="{$info.num}" class="form-control" >
                                 </div>
                             </div>
                         </div>
@@ -53,115 +61,41 @@
                             <label for="images" class="col-sm-2 control-label">商品图片</label>
                             <div class="col-sm-10 col-md-4">
                                 <div class="input-group iconpicker-container">
-                                    <input type="file" class="layui-btn" id="test1" />
-                                    <div class="layui-upload-list">
-                                        <img class="layui-upload-img" id="imgs" src="">
-                                        <input type="hidden" id="images" value="">
-                                    </div>
+                                    <input type="file" class="layui-btn" name="uploadImg" id="uploadImg" onchange="uploadImages();" />
+                             <div class="timeline-body">
+
+                              <img style="width:150px;height:100px;" src="{$info.images|default='http://placehold.it/150x100'}" id="imgs" class="margin">
+
+                               <input type="hidden" id="images" value="{$info.images|default=''}">
+                             </div>
                                 </div>
                             </div>
-                            <!--
-                            <div class="layui-upload">
-
-                                <div class="layui-upload-list">
-
-                                </div>
-                            </div>
-                            -->
                         </div>
 
                         <div class="form-group">
-                            <label for="status" class="col-sm-2 control-label">发货类型</label>
+                            <label for="huo" class="col-sm-2 control-label">发货类型</label>
                             <div class="col-sm-10 col-md-4">
                                 <div class="input-group iconpicker-container">
-                                    自动发货： <input type="radio" value="0">
-                                    人工发货： <input type="radio" value="1">
+                                    自动发货： <input type="radio" name="huo" {eq name="$info.huo" value="0"} checked=""  {/eq}  value="0">
+                                    人工发货： <input type="radio" name="huo" {eq name="$info.huo" value="1"} checked=""  {/eq} value="1">
                                 </div>
                             </div>
                         </div>
-                        <!--
-                        <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">最少购买</label>
-                            <div class="col-sm-10 col-md-4">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    <input maxlength="20" id="" name="name" value="" class="form-control" >
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">最多购买</label>
-                            <div class="col-sm-10 col-md-4">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    <input maxlength="20" id="" name="name" value="" class="form-control" >
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">发货倍数</label>
-                            <div class="col-sm-10 col-md-4">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    <input maxlength="20" id="" name="name" value="" class="form-control" >
-                                </div>
-                            </div>
-                        </div>
-                        -->
 
                         <div class="form-group">
                             <label for="money" class="col-sm-2 control-label">商品价格</label>
                             <div class="col-sm-10 col-md-4">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    <input  id="money" name="money" value="" class="form-control" >
+                                    <input  id="money" name="money" value="{$info.money}" class="form-control" >
                                 </div>
                             </div>
                         </div>
-                        <!--
-                        <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">普通代理</label>
-                            <div class="col-sm-10 col-md-4">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    <input maxlength="20" id="" name="name" value="" class="form-control" >
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">高级代理</label>
-                            <div class="col-sm-10 col-md-4">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    <input maxlength="20" id="" name="name" value="" class="form-control" >
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">商品批发价</label>
-                            <div class="col-sm-10 col-md-4">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    <input maxlength="20" id="" name="name" value="" class="form-control" >
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">批发价数量</label>
-                            <div class="col-sm-10 col-md-4">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    <input maxlength="20" id="" name="name" value="" class="form-control" >
-                                </div>
-                            </div>
-                        </div>
-
-                        -->
                         <div class="form-group">
                             <label for="content" class="col-sm-2 control-label">使用说明</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                <textarea type="text" name="content" id="editor" placeholder="商品描述"></textarea>
+                                <textarea type="text" name="content" id="editor" placeholder="商品描述">{$info.content|htmlspecialchars_decode}</textarea>
 
                                 </div>
                             </div>
@@ -204,24 +138,84 @@
 </script>
 
 <script>
-    var formData = new FormData();
-    formData.append('file', $('#test')[0].files[0]);
-    $.ajax({
-        url: "{:url('goods/upload_img')}",
-        type: 'POST',
-        cache: false,
-        data: formData,
-        processData: false,
-        contentType: false
-    }).done(function(res) {
+    function uploadImages(){
+        var formdata = new FormData();
 
-    }).fail(function(res) {
+        var url = "{:url('goods/uploads_img')}";
+        // 将文件追加到 formdata对象中。
+        formdata.append("file",document.getElementById('uploadImg').files[0]);
+        $.ajax({
+                type: "POST",
+                url: url,
+                data:formdata,
+                processData: false,
+                contentType: false,
+                dataType: "json",
+                success: function (data) {
+                    if (data.code == '200') {
+                        layer.msg(data.msg,{time:1000},function(){
+                            $("#images").attr('src',data.path);
+                            $("#imgs").attr('src',data.path);
+                        })
+                    };
+                    
+                    if(data.code == '400'){
+                          layer.msg(data.msg,{time:1500},function(){
+                              location.reload();
+                          });
+                    }
 
-    });
+
+                },
+               error: function(data){
+                console.log(data);
+            },
+        });
+    }
 </script>
 
 <script>
     $('.addg').click(function(){
+         var dat      = {};
+         dat.title    = $('#title').val();
+         dat.sort     = $('#sort').val();
+         dat.num      = $('#num').val();
+         dat.images   = $('#images').val();
+         dat.money    = $('#money').val();
+         dat.content  = UE.getEditor('editor').getContent();
+         dat.huo      = $("input[name='huo']:checked").val();
+         dat.cid      = $('#cid option:selected').val();
+         dat.id       = $('#id').val();
 
+
+
+         if( dat.title=='' || dat.title ==undefined ){
+              layer.msg('商品名称不能为空',{time:2000});
+              return false;
+         }
+
+         if( dat.money=='' || dat.money ==undefined ){
+                layer.msg('商品价格',{time:2000});
+                return false;
+            }
+
+        if( dat.images=='' || dat.images ==undefined ){
+            layer.msg('请上传图片',{time:2000});
+            return false;
+        }
+        var url = "{:url('goods/addg')}";
+
+        $.post(url,{dat:dat},function(ret){
+             if(ret.code == '200'){
+              layer.msg(ret.msg,{time:2000},function(){
+                  parent.location.href="{:url('goods/glist')}";
+              });
+             };
+             if(ret.code == '400'){
+               layer.msg(layer.msg,{time:2000},function(){
+                  parent.location.reload();
+               })
+             }
+        },'json');
     });
 </script>
