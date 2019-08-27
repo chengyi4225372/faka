@@ -7,16 +7,15 @@
 namespace app\index\controller;
 
 use think\Config;
-use think\Db;
 use app\index\controller\Base;
-
+use think\Db;
 class Index extends Base
 {
     //首页
     public function index()
     {
         if($this->request->isGet()){
-            $list  = Db::name('goods')->where(['status'=>1])->select();
+            $list  = Db::name('goods')->where(['status'=>1])->order(['sort'=>'desc','id'=>'desc'])->select();
             $cates = Db::name('good_cates')->select();
             $categorys = array_column($cates,'title','id');
             $this->assign('categorys',$categorys);
@@ -25,9 +24,49 @@ class Index extends Base
         return $this->fetch();
     }
 
+
     //购买页面
     public function trade()
     {
+       if($this->request->isGet()){
+          $id = input('get.id','','int');
+          if(empty($id)|| $id<=0){
+              return false;
+          }
+          $info = Db::name('goods')->where(['id'=>$id])->find();
+          $this->assign('info',$info);
+       }
         return $this->fetch();
     }
+
+    //购买页面 生成订单
+    public function buy()
+    {
+      if($this->request->isGet()){
+          $this->param = $this->request->param();
+          //todo 需要生成订单
+          //$order
+
+          //组装 订单页面信息
+          if(empty($this->param['data']['id']) || !isset($this->param['data']['id'])){
+             return false;
+          }
+
+          $orderInfo = Db::name('goods')->field('id,title,num')->where(['id',$this->param['data']['id']])->find();
+
+          if(empty($orderInfo)){
+              $this->result('','400','请求数据丢失','json');
+          }
+
+          if(!empty($orderInfo) && isset($orderInfo) && is_array($orderInfo)){
+              $orderInfo['mobile'] =  $this->param['data']['mobile'];
+              $orderInfo['num']    =  $this->param['data']['num'];
+              $orderInfo['order']  =  time(); //todo 订单号 造假数据 真是数据应该进去订单表
+              $this->result('','200','操作成功','json');
+          }
+          return $this->fetch();
+      }
+
+    }
+
 }

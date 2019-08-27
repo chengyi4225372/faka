@@ -7,17 +7,18 @@ namespace app\index\controller;
 use think\Config;
 use think\Controller;
 use think\Db;
+use app\index\controller\Base;
 
-class Configcom extends Controller
+class Configcom extends Base
 {
-   public $table = 'content';
+    public $table = 'content';
 
-   //兑换地址
+    //兑换地址
     public function address()
     {
-     $info = Db::name($this->table)->where(['id'=>5])->find();
-     $this->assign('info',$info);
-     return $this->fetch();
+        $info = Db::name($this->table)->where(['id'=>5])->find();
+        $this->assign('info',$info);
+        return $this->fetch();
     }
 
     //关于我们
@@ -35,12 +36,5 @@ class Configcom extends Controller
         $this->assign('info',$info);
         return $this->fetch();
     }
-
-    //搜索
-    public function search()
-    {
-        return $this->fetch();
-    }
-
 
 }

@@ -3,7 +3,8 @@ namespace app\index\controller;
 
 use think\Config;
 use think\Controller;
-use  think\captcha\Captcha;
+use think\captcha\Captcha;
+use think\Request;
 
 class Base extends Controller
 {
