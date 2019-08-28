@@ -15,11 +15,13 @@ class Index extends Base
     public function index()
     {
         if($this->request->isGet()){
-            $list  = Db::name('goods')->where(['status'=>1])->order(['sort'=>'desc','id'=>'desc'])->select();
-            $cates = Db::name('good_cates')->select();
+            $list   = Db::name('goods')->where(['status'=>1])->order(['sort'=>'desc','id'=>'desc'])->select();
+            $cates  = Db::name('good_cates')->select();
+            $indexs = Db::name('content')->where(['id'=>24])->find();
             $categorys = array_column($cates,'title','id');
             $this->assign('categorys',$categorys);
             $this->assign('list',$list);
+            $this->assign('indexs',$indexs);
         }
         return $this->fetch();
     }

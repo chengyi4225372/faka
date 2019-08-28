@@ -19,7 +19,30 @@ class Wconfig extends Base
     //首页公告
     public function index()
     {
-        return $this->fetch();
+        if($this->request->isGet()){
+            $id = 24;
+            $info = Db::name($this->table)->where('id',$id)->find();
+            $this->assign('info',$info);
+
+            return $this->fetch();
+        }
+
+        if($this->request->isPost()){
+            $content = input('post.content');
+            $id      = input('post.id');
+
+            if(empty($id)|| $id == ''){
+
+                $res = Db::name($this->table)->insertGetId(['content'=>$content]);
+            }else {
+
+                $res = Db::name($this->table)->where(['id'=>$id])->update(['content'=>$content]);
+            }
+
+            if($res){
+                $this->result($res,'200','操作成功','json');
+            }
+        }
     }  
     
 
@@ -104,6 +127,53 @@ class Wconfig extends Base
                 $this->result($res,'200','操作成功','json');
             }
         }
+    }
+
+
+    //网站设置
+    public function setconfig()
+    {
+      if($this->request->isGet()){
+          $id   = '';
+          $info = Db::name('config')->where(['id'=>$id])->find();
+          $this->assign('info',$info);
+          return $this->fetch();
+      }
+
+      if($this->request->isAjax()){
+          $this->param = $this->request->param();
+
+          if(empty($this->param['dat']['id']) || $this->param['dat']['id'] <=0 ){
+                $res = Db::name('config')->insert($this->param['dat']);
+          }
+
+          if(isset($this->param['dat']['id']) && $this->param['dat']['id']){
+              $res = Db::name('config')->where(['id'=>$this->param['dat']['id']])->update(
+                  [
+                      'title'      =>$this->param['dat']['title'],
+                      'modou'      =>$this->param['dat']['modou'],
+                      'images'     =>$this->param['dat']['images'],
+                      'logo'       =>$this->param['dat']['logo'],
+                      'qcode'      =>$this->param['dat']['qcode'],
+                      'miao'       =>$this->param['dat']['miao'],
+                      'keywords'   =>$this->param['dat']['keywords'],
+                      'kefu'       =>$this->param['dat']['kefu'],
+                      'qq1'        =>$this->param['dat']['qq1'],
+                      'qq2'        =>$this->param['dat']['qq2'],
+                      'content'    =>$this->param['dat']['content'],
+                  ]
+              );
+
+          }
+
+          if($res){
+              $this->result('','200','操作成功','json');
+          }else{
+              $this->result('','400','操作失败','json');
+          }
+      }
+
+
     }
 
 }
