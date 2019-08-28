@@ -134,7 +134,7 @@ class Wconfig extends Base
     public function setconfig()
     {
       if($this->request->isGet()){
-          $id   = '';
+          $id   = '1';
           $info = Db::name('config')->where(['id'=>$id])->find();
           $this->assign('info',$info);
           return $this->fetch();
@@ -160,7 +160,7 @@ class Wconfig extends Base
                       'kefu'       =>$this->param['dat']['kefu'],
                       'qq1'        =>$this->param['dat']['qq1'],
                       'qq2'        =>$this->param['dat']['qq2'],
-                      'content'    =>$this->param['dat']['content'],
+                      'info'       =>$this->param['dat']['content'],
                   ]
               );
 
@@ -174,6 +174,25 @@ class Wconfig extends Base
       }
 
 
+    }
+
+    //上传
+    public function UploadImg()
+    {
+        // 获取上传文件
+        $file =$this->request->file('file');
+        // 验证图片,并移动图片到框架目录下。
+        $path = ROOT_PATH.'public/Upload/imgs/';
+        $info = $file-> move($path);
+        if($info){
+            $mes = $info->getSaveName();
+            $mes = str_replace("\\",'/',$mes);
+            return json(['code'=>'200','msg'=>'上传成功','path'=>'/Upload/imgs/'.$mes]);
+        }else{
+            // 文件上传失败后的错误信息
+            $mes = $file->getError();
+            return json(['code'=>'400','msg'=>$mes]);
+        }
     }
 
 }

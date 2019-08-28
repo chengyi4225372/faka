@@ -5,6 +5,7 @@ use think\Config;
 use think\Controller;
 use think\captcha\Captcha;
 use think\Request;
+use think\Db;
 
 class Base extends Controller
 {
@@ -14,7 +15,11 @@ class Base extends Controller
         if(isMobile()){
            $this->redirect('mobile/index');
         }
+
         $this->is_login();
+
+        $config = Db::name('config')->where(['id'=>1])->find();
+        $this->assign('config',$config);
     }
 
     /**

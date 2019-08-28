@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <div class="box box-primary">
             <form class="form-horizontal dataForm"  method="post" enctype="multipart/form-data">
-                <input type="hidden" id="id" value="" >
+                <input type="hidden" id="id" value="{$info.id}" >
 
                 <div class="box-body">
                     <div class="fields-group">
@@ -12,7 +12,7 @@
                             <div class="col-sm-10 col-md-10">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    <input  id="title" name="title" value="" class="form-control" placeholder="网站标题">
+                                    <input  id="title" name="title" value="{$info.title}" class="form-control" placeholder="网站标题">
                                 </div>
                             </div>
                         </div>
@@ -21,8 +21,8 @@
                         <div class="form-group">
                             <label for="modou" class="col-sm-2 control-label">首页模板</label>
                                 <div class="input-group iconpicker-container">
-                                    默认模板： <input type="radio" name="modou" checked=""   value="1">
-                                    商城模板： <input type="radio" name="modou"   value="2">
+                                    默认模板： <input type="radio" name="modou" {eq name="$info.modou" value="1"} checked="" {/eq}   value="1">
+                                    商城模板： <input type="radio" name="modou" {eq name="$info.modou" value="2"} checked="" {/eq}   value="2">
                                 </div>
                         </div>
 
@@ -30,12 +30,12 @@
                             <label for="images" class="col-sm-2 control-label">导航栏图片</label>
                             <div class="col-sm-10 col-md-4">
                                 <div class="input-group iconpicker-container">
-                                    <input type="file" class="layui-btn" name="uploadImg" id="uploadImg" onchange="uploadImages();" />
+                                    <input type="file" class="layui-btn" name="uploadImg" id="uploadImg" onchange="UploadImages();" />
                                     <div class="timeline-body">
 
-                                        <img style="width:150px;height:100px;" src="http://placehold.it/150x100" id="img1" class="margin">
+                                        <img style="width:150px;height:100px;" src="{$info.images|default='http://placehold.it/150x100'}" id="img1" class="margin">
 
-                                        <input type="hidden" id="images" value="">
+                                        <input type="hidden" id="images" value="{$info.images}">
                                     </div>
                                 </div>
                             </div>
@@ -46,12 +46,12 @@
                             <label for="images" class="col-sm-2 control-label">网站logo</label>
                             <div class="col-sm-10 col-md-4">
                                 <div class="input-group iconpicker-container">
-                                    <input type="file" class="layui-btn" name="uploadImg1" id="uploadImg1" onchange="uploadImages();" />
+                                    <input type="file" class="layui-btn" name="uploadImg1" id="uploadImg1" onchange="UploadLogo();" />
                                     <div class="timeline-body">
 
-                                        <img style="width:150px;height:100px;" src="http://placehold.it/150x100" id="img2" class="margin">
+                                        <img style="width:150px;height:100px;" src="{$info.logo|default='http://placehold.it/150x100'}" id="img2" class="margin">
 
-                                        <input type="hidden" id="logo" value="">
+                                        <input type="hidden" id="logo" value="{$info.logo}">
                                     </div>
                                 </div>
                             </div>
@@ -62,12 +62,12 @@
                             <label for="images" class="col-sm-2 control-label">手机二维码</label>
                             <div class="col-sm-10 col-md-4">
                                 <div class="input-group iconpicker-container">
-                                    <input type="file" class="layui-btn" name="qcode" id="qcode" onchange="uploadImages();" />
+                                    <input type="file" class="layui-btn" name="uploadImg2" id="uploadImg2" onchange="UploadQcode();" />
                                     <div class="timeline-body">
 
-                                        <img style="width:150px;height:100px;" src="http://placehold.it/150x100" id="img3" class="margin">
+                                        <img style="width:150px;height:100px;" src="{$info.qcode|default='http://placehold.it/150x100'}" id="img3" class="margin">
 
-                                        <input type="hidden" id="qcode" value="">
+                                        <input type="hidden" id="qcode" value="{$info.qcode}">
                                     </div>
                                 </div>
                             </div>
@@ -78,7 +78,7 @@
                             <div class="col-sm-10 col-md-10">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    <input  id="keywords" name="keywords" value="" class="form-control" placeholder="网站关键字">
+                                    <input  id="keywords" name="keywords" value="{$info.keywords|default=''}" class="form-control" placeholder="网站关键字">
                                 </div>
                             </div>
                         </div>
@@ -88,7 +88,7 @@
                             <div class="col-sm-10 col-md-10">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    <input  id="miao" name="miao" value="" class="form-control" placeholder="网站描述">
+                                    <input  id="miao" name="miao" value="{$info.miao|default=''}" class="form-control" placeholder="网站描述">
                                 </div>
                             </div>
                         </div>
@@ -98,7 +98,7 @@
                             <div class="col-sm-10 col-md-6">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    <input  id="kefu" name="kefu" value="" class="form-control" placeholder="客服qq">
+                                    <input  id="kefu" name="kefu" value="{$info.kefu}" class="form-control" placeholder="客服qq">
                                 </div>
                             </div>
                         </div>
@@ -108,7 +108,7 @@
                             <div class="col-sm-10 col-md-6">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    <input  id="qq1" name="qq1" value="" class="form-control" placeholder="">
+                                    <input  id="qq1" name="qq1" value="{$info.qq1}" class="form-control" placeholder="">
                                 </div>
                             </div>
                         </div>
@@ -118,7 +118,7 @@
                             <div class="col-sm-10 col-md-6">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    <input  id="qq2" name="qq2" value="" class="form-control" placeholder="">
+                                    <input  id="qq2" name="qq2" value="{$info.qq2}" class="form-control" placeholder="">
                                 </div>
                             </div>
                         </div>
@@ -129,7 +129,7 @@
                             <div class="col-sm-10 col-md-7">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa  fa-television"></i></span>
-                                    <textarea  name="content" id="content" class="form-control" rows="5" placeholder="Enter ..."></textarea>
+                                    <textarea  name="content" id="content" class="form-control" rows="5" placeholder="Enter ...">{$info.info}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -156,10 +156,10 @@
 </div>
 
 <script>
-    function uploadImages(){
+    function UploadImages(){
         var formdata = new FormData();
 
-        var url = "{:url('goods/uploads_img')}";
+        var url = "{:url('wconfig/UploadImg')}";
         // 将文件追加到 formdata对象中。
         formdata.append("file",document.getElementById('uploadImg').files[0]);
         $.ajax({
@@ -173,7 +173,7 @@
                 if (data.code == '200') {
                     layer.msg(data.msg,{time:1000},function(){
                         $("#images").val(data.path);
-                        $("#imgs").attr('src',data.path);
+                        $("#img1").attr('src',data.path);
                     })
                 };
 
@@ -190,6 +190,79 @@
             },
         });
     }
+
+    function UploadLogo(){
+        var formdata = new FormData();
+
+        var url = "{:url('wconfig/UploadImg')}";
+        // 将文件追加到 formdata对象中。
+        formdata.append("file",document.getElementById('uploadImg1').files[0]);
+        $.ajax({
+            type: "POST",
+            url: url,
+            data:formdata,
+            processData: false,
+            contentType: false,
+            dataType: "json",
+            success: function (data) {
+                if (data.code == '200') {
+                    layer.msg(data.msg,{time:1000},function(){
+                        $("#logo").val(data.path);
+                        $("#img2").attr('src',data.path);
+                    })
+                };
+
+                if(data.code == '400'){
+                    layer.msg(data.msg,{time:1500},function(){
+                        location.reload();
+                    });
+                }
+
+
+            },
+            error: function(data){
+                console.log(data);
+            },
+        });
+    }
+
+
+    function UploadQcode(){
+        var formdata = new FormData();
+
+        var url = "{:url('wconfig/UploadImg')}";
+        // 将文件追加到 formdata对象中。
+        formdata.append("file",document.getElementById('uploadImg2').files[0]);
+        $.ajax({
+            type: "POST",
+            url: url,
+            data:formdata,
+            processData: false,
+            contentType: false,
+            dataType: "json",
+            success: function (data) {
+                if (data.code == '200') {
+                    layer.msg(data.msg,{time:1000},function(){
+                        $("#qcode").val(data.path);
+                        $("#img3").attr('src',data.path);
+                    })
+                };
+
+                if(data.code == '400'){
+                    layer.msg(data.msg,{time:1500},function(){
+                        location.reload();
+                    });
+                }
+
+
+            },
+            error: function(data){
+                console.log(data);
+            },
+        });
+    }
+
+
 </script>
 
 <script>
@@ -217,7 +290,7 @@
         $.post(url,{dat:dat},function(ret){
             if(ret.code == '200'){
                 layer.msg(ret.msg,{time:2000},function(){
-                    parent.location.href="{:url('goods/glist')}";
+                    parent.location.reload();
                 });
             };
             if(ret.code == '400'){

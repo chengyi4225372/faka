@@ -1,4 +1,8 @@
-{include file='public:twombhead'/}
+{eq name='$config.modou' value='1'}
+{include file="public:head" /}
+{else /}
+{include file="public:twombhead" /}
+{/eq}
 
 <div class="am-container" style="padding:2px">
 
@@ -104,7 +108,11 @@
             </div>
         </div>
     </div>
-    {include file='public:twombfoot'/}
+    {eq name='$config.modou' value='1'}
+    {include file="public:foot" /}
+    {else /}
+    {include file="public:twombfoot" /}
+    {/eq}
 </div>
 </body>
 <script>

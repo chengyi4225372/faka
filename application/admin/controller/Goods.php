@@ -185,24 +185,6 @@ class Goods extends Base
 
     }
 
-   //上传图片
-    public function uploads_img()
-    {
-        // 获取上传文件
-        $file =$this->request->file('file');
-        // 验证图片,并移动图片到框架目录下。
-        $path = ROOT_PATH.'public/Upload/imgs/';
-        $info = $file-> move($path);
-        if($info){
-            $mes = $info->getSaveName();
-            $mes = str_replace("\\",'/',$mes);
-            return json(['code'=>'200','msg'=>'上传成功','path'=>'/Upload/imgs/'.$mes]);
-        }else{
-            // 文件上传失败后的错误信息
-            $mes = $file->getError();
-            return json(['code'=>'400','msg'=>$mes]);
-        }
-    }
 
     //商品 上架状态
     public function jiag()
@@ -253,5 +235,24 @@ class Goods extends Base
     public function exportk()
     {
         return false;
+    }
+
+    //上传图片
+    public function uploads_img()
+    {
+        // 获取上传文件
+        $file =$this->request->file('file');
+        // 验证图片,并移动图片到框架目录下。
+        $path = ROOT_PATH.'public/Upload/imgs/';
+        $info = $file-> move($path);
+        if($info){
+            $mes = $info->getSaveName();
+            $mes = str_replace("\\",'/',$mes);
+            return json(['code'=>'200','msg'=>'上传成功','path'=>'/Upload/imgs/'.$mes]);
+        }else{
+            // 文件上传失败后的错误信息
+            $mes = $file->getError();
+            return json(['code'=>'400','msg'=>$mes]);
+        }
     }
 }

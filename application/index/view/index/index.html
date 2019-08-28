@@ -1,4 +1,11 @@
-{include file="public:head" /}
+
+{eq name='$config.modou' value='1'}
+  {include file="public:head" /}
+ {else /}
+{include file="public:twombhead" /}
+{/eq}
+
+
 <style>
     #bar .bar_top {
         background-color: #00A2CA;
@@ -17,15 +24,16 @@
         <div id="bar">
             <div class="bar_top">商家信息</div>
             <div class="from_wz_41">
-                <div class="kefu"><a target="blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=26591626&amp;Site=添加客服QQ购买续费不迷路&amp;Menu=yes">QQ:26591626</a> </div>                <div class="kefu">
-                    QQ群：285555187</div>
+                <div class="kefu"><a target="blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin={$config['kefu']}&amp;Site=添加客服QQ购买续费不迷路&amp;Menu=yes">QQ:{$config['kefu']}</a> </div>
                 <div class="kefu">
-                微信：26591626</div>
+                    QQ群：{$config['qq1']}</div>
+                <div class="kefu">
+                   微信：{$config['qq2']}</div>
 
             </div>
 
             <div class="bar_top">手机扫码购买</div><div class="erweima">
-            <img src="/images/code.png"> </div>
+            <img src="{$config['qcode']}"> </div>
         </div>
 
 

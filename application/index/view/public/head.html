@@ -7,16 +7,17 @@
 
         <meta charset="utf-8" /> 
 
-        <title></title>
+        <title>{$config.title}</title>
 
-        <meta name="keywords" content="" />
+        <meta name="keywords" content="{$config.keywords}" />
 
-        <meta name="description" content="" />
+        <meta name="description" content="{$config.miao}" />
+        <link rel="shortcut icon" href="{$config.logo}" />
+
         <script type="text/javascript" src="/index/sink/js/jquery-1.8.3.min.js"></script>
         <link href="/index/sink/css/css7.css" rel="stylesheet" type="text/css" />
         <link href="/index/sink/css/zzsc.css" rel="stylesheet" type="text/css" />
         <link href="/index/sink/css/buttons.css" rel="stylesheet" type="text/css" />
-        <link rel="shortcut icon" href="/images/logo.ico" />
         <script type="text/javascript" src="/index/sink/js/Validform_v5.3.2_min.js"></script>
         <script type="text/javascript" src="/index/sink/js/layer/layer.js"></script>
 
@@ -52,7 +53,7 @@
         <div id="head">
 
             <div class="top">
-                <div class="logo_img"><a href="/"><img src="/images/logo.png" width="400" height="80"></a></div>
+                <div class="logo_img"><a href="/"><img src="{$config.images}" width="400" height="80"></a></div>
                     {empty name='$Think.session.info'}
                     <div class="info denglu">
                     <a class="button button-3d button-primary button-small" href="{:url('login/login')}">登陆</a>

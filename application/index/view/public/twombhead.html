@@ -5,12 +5,14 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title></title>
-        <meta name="keywords" content="" />
+        <title>{$config.title}</title>
+        <meta name="keywords" content="{$config.keywords}" />
 
-        <meta name="description" content="" />
+        <meta name="description" content="{$config.miao}" />
+        <link rel="shortcut icon" href="{$config.logo}" />
+
         <link rel="stylesheet" href="/twomb/css/amazeui.css" >
-        <link rel="shortcut icon" href="" />
+
         <script type="text/javascript" src="/index/sink/js/jquery-1.8.3.min.js"></script>
         <script src='/index/sink/js/layer/layer.js'></script>
         <script src="/twomb/js/amazeui.min.js"></script>
@@ -51,7 +53,7 @@
                 <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse-2"> 
                     <ul class="am-nav am-nav-pills am-topbar-nav"> 
                         <li><a href="/"><span class="am-icon-home am-icon-sm"></span>首页</a></li> 
-                        <li><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=123456&amp;site=qq&amp;menu=yes" target="_blank"><i class="am-icon-qq am-icon-fw"></i>客服</a></li>
+                        <li><a href="http://wpa.qq.com/msgrd?v=3&amp;uin={$config.kefu}&amp;site=qq&amp;menu=yes" target="_blank"><i class="am-icon-qq am-icon-fw"></i>客服</a></li>
                         <li><a href="{:url('configcom/help')}"><span class="am-icon-list-alt"></span>帮助</a></li>
                     </ul> 
                     <div class="am-topbar-right"> 

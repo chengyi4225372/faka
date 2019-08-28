@@ -1,4 +1,8 @@
+{eq name='$config.modou' value='1'}
 {include file="public:head" /}
+{else /}
+{include file="public:twombhead" /}
+{/eq}
 
 <style type="text/css">
     .query {
@@ -76,13 +80,13 @@
 <div id="kong">
     <div class="query">
         <div class="title">请输入订单号，交易单号，手机号查询</div>
-        <form action="/search" method="post">
+        <form action="{:url('configcom/serach')}" method="post">
             <div class="in">
                 <div class="in_l"><input type="text" name="content" placeholder="请输入订单号查询"></div>
                 <div class="in_r"><input type="submit" value="订单查询"></div>
             </div>
         </form><br>
-        <!--        <div class="title2">注意：超过24小时的订单禁止查询，如果您想长期保留订单，请您注册成为我们的会员。</div>-->
+         <div class="title2">注意：超过24小时的订单禁止查询，如果您想长期保留订单，请您注册成为我们的会员。</div>
         <br><font size="4" color="#000000" title="这是您最近的购买记录">这是您的购买记录</font>
         <br> <table width="100%" border="0" cellspacing="0" cellpadding="10">
         <tbody><tr>

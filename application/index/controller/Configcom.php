@@ -37,4 +37,10 @@ class Configcom extends Base
         return $this->fetch();
     }
 
+    //搜索
+    public function search()
+    {
+        return $this->fetch();
+    }
+
 }
