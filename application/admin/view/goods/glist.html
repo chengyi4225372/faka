@@ -38,7 +38,6 @@
                         <th>商品Id</th>
                         <th>排序</th>
                         <th>商品名称</th>
-                        <th>库存</th>
                         <th>价格</th>
                         <th>发货状态</th>
                         <th>商品所属分类</th>
@@ -54,7 +53,6 @@
                         <td>{$vo.id}</td>
                         <td>{$vo.sort|default=''}</td>
                         <td>{$vo.title}</td>
-                        <td>{$vo.num|default='0'}</td>
                         <td>{$vo.money}</td>
                         <td>
                             {eq name='$vo.huo' value='0'}

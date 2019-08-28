@@ -47,15 +47,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="num" class="col-sm-2 control-label">商品库存</label>
-                            <div class="col-sm-10 col-md-4">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    <input  id="num" name="num" value="{$info.num}" class="form-control" >
-                                </div>
-                            </div>
-                        </div>
 
                         <div class="form-group">
                             <label for="images" class="col-sm-2 control-label">商品图片</label>
@@ -76,11 +67,31 @@
                             <label for="huo" class="col-sm-2 control-label">发货类型</label>
                             <div class="col-sm-10 col-md-4">
                                 <div class="input-group iconpicker-container">
-                                    自动发货： <input type="radio" name="huo" {eq name="$info.huo" value="0"} checked=""  {/eq}  value="0">
-                                    人工发货： <input type="radio" name="huo" {eq name="$info.huo" value="1"} checked=""  {/eq} value="1">
+                                    自动发货： <input type="radio" name="huo" onclick="show_moban();" {eq name="$info.huo" value="0"} checked=""  {/eq}  value="0">
+                                    人工发货： <input type="radio" name="huo" onclick="show_moban();" {eq name="$info.huo" value="1"} checked=""  {/eq} value="1">
                                 </div>
                             </div>
                         </div>
+
+                        <div class="form-group" id="moban" style="display:{eq name='$info.huo' value='0'} none{else /} block{/eq};">
+                            <label for="moban" class="col-sm-2 control-label">人工发货模板</label>
+                            <div class="col-sm-10 col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-list"></i></span>
+                                    <select name="rengong" id="rengong" class="form-control">
+
+                                        {volist name='moban' id='mo'}
+                                        {if condition="$info.rengong neq null")}
+                                        <option value="{$mo.id}" {if condition="$info.rengong eq $mo.id"} selected=""  {/if}>{$mo.title}</option>
+                                        {else /}
+                                        <option value="{$mo.id}">{$mo.title}</option>
+                                        {/if}
+                                        {/volist}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
 
                         <div class="form-group">
                             <label for="money" class="col-sm-2 control-label">商品价格</label>
@@ -102,8 +113,85 @@
                             </div>
                         </div>
 
+
                         <div class="form-group">
-                            <label for="content" class="col-sm-2 control-label">使用说明</label>
+                            <label for="money" class="col-sm-2 control-label">普通代理</label>
+                            <div class="col-sm-10 col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input  id="nomal" name="nomal" value="{$info.nomal}" class="form-control" >
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label for="money" class="col-sm-2 control-label">高级代理</label>
+                            <div class="col-sm-10 col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input  id="high" name="high" value="{$info.high}" class="form-control" >
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="money" class="col-sm-2 control-label">批发价格</label>
+                            <div class="col-sm-10 col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input  id="pipay" name="pipay" value="{$info.pipay}" class="form-control" >
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="money" class="col-sm-2 control-label">批发数量</label>
+                            <div class="col-sm-10 col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input  id="pinum" name="pinum" value="{$info.pinum}" class="form-control" >
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="money" class="col-sm-2 control-label">最多购买</label>
+                            <div class="col-sm-10 col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input  id="maxs" name="maxs" value="{$info.maxs}" class="form-control" >
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="money" class="col-sm-2 control-label">最少购买</label>
+                            <div class="col-sm-10 col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input  id="mins" name="mins" value="{$info.mins}" class="form-control" >
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="money" class="col-sm-2 control-label">发货倍数</label>
+                            <div class="col-sm-10 col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input  id="bei" name="bei" value="{$info.bei}" class="form-control" >
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="contents" class="col-sm-2 control-label">使用说明</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
                                 <textarea type="text" name="content" id="editor" placeholder="商品描述">{$info.content|htmlspecialchars_decode}</textarea>
@@ -186,11 +274,36 @@
 </script>
 
 <script>
+    function show_moban(){
+      var  vals = $("input[name='huo']:checked").val();
+
+      if(vals == 1){
+          $('#moban').show();
+      }
+      if(vals == 0 || vals == ''){
+          $('#moban').hide();
+      }
+    }
+</script>
+
+
+
+<script>
     $('.addg').click(function(){
          var dat      = {};
+
+         var url = "{:url('goods/addg')}";
+
+         var ren = $("input[name='huo']:checked").val();
+
+          if(ren == '0'){
+              dat.rengong  = 0;
+          }else {
+              dat.rengong  = $("#rengong option:selected").val();
+          }
+
          dat.title    = $('#title').val();
          dat.sort     = $('#sort').val();
-         dat.num      = $('#num').val();
          dat.images   = $('#images').val();
          dat.money    = $('#money').val();
          dat.content  = UE.getEditor('editor').getContent();
@@ -198,6 +311,13 @@
          dat.cid      = $('#cid option:selected').val();
          dat.id       = $('#id').val();
          dat.paynum   = $('#paynum').val();
+         dat.nomal    = $('#nomal').val();
+         dat.high     = $('#high').val();
+         dat.pipay    = $('#pipay').val();
+         dat.pinum    = $('#pinum').val();
+         dat.maxs     = $('#maxs').val();
+         dat.mins     = $('#mins').val();
+         dat.bei      = $('#bei').val();
 
 
 
@@ -215,19 +335,27 @@
             layer.msg('请上传图片',{time:2000});
             return false;
         }
-        var url = "{:url('goods/addg')}";
 
-        $.post(url,{dat:dat},function(ret){
-             if(ret.code == '200'){
-              layer.msg(ret.msg,{time:2000},function(){
-                  parent.location.href="{:url('goods/glist')}";
-              });
-             };
-             if(ret.code == '400'){
-               layer.msg(layer.msg,{time:2000},function(){
-                  parent.location.reload();
-               })
-             }
-        },'json');
+        $.ajax({
+            url:url,
+            data:{dat:dat},
+            type:'post',
+            dataType:'json',
+            success:function(ret){
+                if(ret.code == '200'){
+                    layer.msg(ret.msg,{time:2000},function(){
+                        parent.location.href="{:url('goods/glist')}";
+                    })
+                };
+                if(ret.code == '400'){
+                    layer.msg(layer.msg,{time:2000},function(){
+                        parent.location.reload();
+                    })
+                };
+            },
+            error:function(ret){
+                console.log(ret);
+            }
+        });
     });
 </script>

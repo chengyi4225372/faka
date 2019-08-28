@@ -161,6 +161,8 @@ class Wconfig extends Base
                       'qq1'        =>$this->param['dat']['qq1'],
                       'qq2'        =>$this->param['dat']['qq2'],
                       'info'       =>$this->param['dat']['content'],
+                      'high'       =>$this->param['dat']['high'],
+                      'nomal'      =>$this->param['dat']['nomal'],
                   ]
               );
 

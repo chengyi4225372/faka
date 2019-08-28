@@ -122,8 +122,10 @@ class Goods extends Base
           $id    = input('get.id','','int');
           $info  = Db::name('goods')->where(['id'=>$id])->find();
           $cates = Db::name('good_cates')->order('id desc')->select();
+          $moban = Db::name('moban')->order('sort desc')->select();
           $this->assign('info',$info);
           $this->assign('cates',$cates);
+          $this->assign('moban',$moban);
           return $this->fetch();
       }
 
@@ -138,16 +140,24 @@ class Goods extends Base
 
           //edit
           if(!empty($this->param['dat']['id']) && isset($this->param['dat']['id'])){
+
               $res = Db::name('goods')->where(['id'=>$this->param['dat']['id']])->update(
-                  ['title'    =>$this->param['dat']['title'],
-                   'sort'     =>$this->param['dat']['sort'],
-                   'num'      =>$this->param['dat']['num'],
-                   'images'   =>$this->param['dat']['images'],
-                   'money'    =>$this->param['dat']['money'],
-                   'content'  =>$this->param['dat']['content'],
-                   'huo'      =>$this->param['dat']['huo'],
-                   'cid'      =>$this->param['dat']['cid'],
-                   'paynum'   =>$this->param['dat']['paynum'],
+                  ['title'     =>$this->param['dat']['title'],
+                   'sort'      =>$this->param['dat']['sort'],
+                   'images'    =>$this->param['dat']['images'],
+                   'money'     =>$this->param['dat']['money'],
+                   'content'   =>$this->param['dat']['content'],
+                   'huo'       =>$this->param['dat']['huo'],
+                   'cid'       =>$this->param['dat']['cid'],
+                   'paynum'    =>$this->param['dat']['paynum'],
+                   'rengong'   =>$this->param['dat']['rengong'],
+                   'nomal'     =>$this->param['dat']['nomal'],
+                   'high'      =>$this->param['dat']['high'],
+                   'maxs'      =>$this->param['dat']['maxs'],
+                   'mins'      =>$this->param['dat']['mins'],
+                   'bei'       =>$this->param['dat']['bei'],
+                   'pipay'     =>$this->param['dat']['pipay'],
+                   'pinum'     =>$this->param['dat']['pinum'],
                  ]);
           }
 
@@ -218,17 +228,45 @@ class Goods extends Base
     }
 
 
+    //卡密
     public function klist()
     {
-        return $this->fetch();
+       if($this->request->isGet()){
+           $list  = Db::name('card')->order('id desc')->paginate(15);
+
+           $cates = Db::name('good_cates')->select();
+           $goods = Db::name('goods')->field('id,title')->where('huo',1)->select();
+
+           $this->assign('list',$list);
+           return $this->fetch();
+       }
     }
 
     public function addk()
     {
-        return $this->fetch();
+      if($this->request->isGet()){
+          $cates = Db::name('good_cates')->field('id,title')->order('id desc')->select();
+          $this->assign('cates',$cates);
+          return $this->fetch();
+      }
+
+      if($this->request->isAjax()){
+         $id = input('get.id','','int');
+         dump($id);
+         exit();
+      }
+
+      if($this->request->isPost()){
+
+      }
+
     }
 
+   //下载卡密
+    public function downloads()
+    {
 
+    }
 
 
     //导出卡密

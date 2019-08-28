@@ -1,242 +1,112 @@
+{include file='public:head'/}
+<style type="text/css">
 
-{include file="public:head" /}
+</style>
+<br/>
+<div class="topliucheng"><img src="/index/sink/img/goumaizn02.png" title=""></div>
+<div id="body">
 
+    <div class="bobo">
 
-<div class="am-container" style="padding:2px">
+        <div class="left">
 
+            <div class="top">
 
+                <div class="tou">
+                    <img src="" width="150" height="150" alt="" /></div>
+                <div class="bianhao">商品编号：NO0000.{<br />
+                    零售单价：
 
-<!--    <div class="am-panel am-panel-default" style="margin:5px 0 5px 0;border-radius: 0px">-->
-<!--        <div class="am-panel-bd liebiaocatname">-->
-<!--            <p>-->
-<!--                <span style="font-size:18px;color:#E53333;"><strong> </strong></span>-->
-<!--            </p>-->
-<!--        </div>-->
-<!--    </div>-->
-    <script>
-        $(function() {
-            if ($("#kucun").val() == 0) {
-                $("#paysubmit").attr("class", 'am-btn am-btn-danger am-btn-xl am-disabled');
-                $("#paysubmit").attr("disabled", true);
-                $("#paysubmit").html("库存不足");
-            }
-        });
-    </script>
-    <div class="good-trade">
-
-        <div class="am-container" style="">
-            <div class="am-g ">
-
-                <div class="am-u-sm-12 am-u-md-5 am-u-lg-5 trade-goodimg am-u-end" style="padding: 0px;text-align: center">
-
-                    <img src="{$info.images}" alt="">
-
+                    元
+                    <br /><font color="#ff0000"  size="2">
+                        购买{个以上按批发价￥计算</font>
                 </div>
-                <div class="am-u-sm-12 am-u-md-7 am-u-lg-7  am-u-end" style="">
-                    <!-- 网格开始 -->
-
-                    <h2 style="margin-top: 0px;color: #333;font-family: 微软雅黑;" class="am-text-truncate">{$info.title}</h2>
-                    <p class="trade-goodinfo" style="background-color:#f5f3ef;margin-top: 20px">
-                        <span style="color:#6c6c6c">促销：</span>
-                        <span class="trade-price">￥{$info.money}</span>
-
-                        <span style="float:right">
-                                        <span style="color: #6C6C6C;">累积销量：</span>
-                                        <span style="color:#6c6c6c;font-size:18px;">{$info.paynum}</span>
-                                    </span><br>
-
-                        <span style="color:#6C6C6C">库存：{$info.num}件</span>
-
-                        <a id="lookpf" style="margin-left:5px;font-size:10px" href="javascript:;" onclick="lookpf({$info['money']})">查看批发价</a>
-                        <br>
-                        <span style="color:#6c6c6c;">服务：{eq name='$info.status' value='0'} 自动发货{else /} 手动发货{/eq} 无忧售后 </span>
-                    </p>
-                    <script>
-                        function lookpf(obj) {
-                            layer.tips('满1件'+obj+'元/件', '#lookpf', {
-                                tips: [3, '#78BA32']
-                            });
-                        }
-
-                    </script>
-                    <form  id="p_form" method="post" >
-                        <input type="hidden" id='id' value='{$info.id}'>
-
-                        <div class="from">
-                                    <span style="color:#6c6c6c;margin-left:10px">联系方式：
-                                        <input id="mobile" name="mobile" style="padding: 0.5em;font-size: 1rem;line-height: 1.2;color: #333;" placeholder="请输入联系方式" required>
-                                    </span>
-                        </div>
-
-                        <div class="from">
-                                    <span style="color:#6c6c6c;margin-left:10px"> qq账号&nbsp;&nbsp;：&nbsp;
-                                        <input  name="qq"  id="qq" style="padding: 0.5em;font-size: 1rem;line-height: 1.2;color: #333;" placeholder="请输入QQ帐号" required>
-                                    </span>
-                        </div>
-                        <br>
-
-                        <br>
-                        <span style="color:#6c6c6c;margin-left:10px">数量：
-                                    <input type="button" value="+" style="margin-right:-6px;" class="trade-input-count-button" onclick="countoper('jia')">
-                                    <input type="text" data="{$info.num}" class="trade-input-count" id="p_num" name="num" value="{$info.num}" placeholder="请输入购买数量" required min="" max="" >
-                                    <input type="button" value="-" style="margin-left:-6px;" class="trade-input-count-button" onclick="countoper('jian')">
-                                </span>
-                    </form>
-                    <input id="minnum" name="minnum" type="hidden" value="" >
-                    <input id="maxnum" name="maxnum" type="hidden" value="" >
-                    <input id="beishu" name="beishu" type="hidden" value="" >
-                    <br>
-                    <button type="button"  class="am-btn am-btn-danger am-btn-xl am-square"  id="paysubmit" style="margin-top:20px">
-                        <span class="am-icon-shopping-cart"></span>立即购买</button>
 
 
-                    <!-- 网格结束 -->
+                <div class="wu"></div><div class="bianhao">
+                手机扫码购买<br/>
+                <img src="https://www.kuaizhan.com/common/encode-png?large=true&data=http:// /trade?id= ">
+            </div>
+            </div>
+
+
+        </div>
+        <div class="rigth">
+            <div class="trade-goodinfo"></div>
+            <div class="trade-goodinfo2">
+                <span  style="color:#080808">零售单价</span>
+                <span class="trade-price">￥
+
+              </span>
+
+
+                <span style="float:right">
+
+                    <img src="/static/index/sink/img/zdfh.png">
+
+                    <img src="/static/index/sink/img/sdfh.png">
+
+                    <span style="color:#6c6c6c;font-size:14px;">累积销量：个</span>
+                </span>
+            </div><br/>
+
+
+
+            <form action="/buy" id="p_form" method="post">
+                <input type="hidden" name='gid' value=''>
+
+                <div class="from">
+                    <div class="from_wz_3">联系方式：</div>
+                    <div class="from_in_2">
+                        <input id="mobile" name="mobile" class="z"  placeholder="请输入联系方式" required>
+                    </div>
+                </div>
+
+                <div class="from" style="float:left">
+                    <div class="from_wz_3">：</div>
+                    <div class="from_in_2">
+                        <input  name="" class="z"  placeholder="" required>
+                    </div>
+                </div>
+
+                <div class="from">
+                    <div class="from_wz_3">购买数量：</div>
+                    <div class="from_in_2">
+                        <input id="p_num" name="num" class="z" type="number" value="" placeholder="请输入购买数量" />
+                    </div>
+
+                    <div class="from_in_2 yanzheng" style="width:200px"> <font size="2" color="#FF7200"> 库存个</span> </div>
+                </div>
+            </form>
+            <input id="minnum" name="minnum" class="z" type="hidden" value="" >
+            <input id="maxnum" name="maxnum" class="z" type="hidden" value="" >
+            <input id="beishu" name="beishu" class="z" type="hidden" value="" >
+            <div class="from">
+                <div class="from_off_4"></div>
+                <div class="from_in_4" style="width:100px">
+                    <input type="button" style="cursor:pointer;" class="button button-3d button-primary button-small" value="购买" onclick="buy(,)"/>
+                </div>
+                <div class="from_in_2 yanzheng" style="width:100px">
+                    <a href="#" onclick="javascript:history.go(-1);" class="button button-3d button-highlight button-rounded button-small">返回</a>
                 </div>
             </div>
-        </div>
+            <div class="from"><font color="#2581ff"  size="2"><div class="from_off_4"></div><div class="from_in_4" style="width:450px">购买 个以上按批发价￥ 计算</div></font></div>
 
 
 
-        <div class="am-panel am-panel-default" style="border-radius:0px;margin-top: 10px">
-            <div class="am-panel-hd">商品描述</div>
-            <div class="am-panel-bd">
-                <p>
-                    <span style="background-color:#FFFFFF;">{$info.content|htmlspecialchars_decode}</span>
-                </p>
+            <div class="trade-goodinfo2">
+                商品介绍：
             </div>
+            <div class="xiangqing">
+
+            </div>
+
         </div>
+
     </div>
-    {include file="public:foot" /}
 
 </div>
-</body>
-<script>
-    function countoper(oper){
-        count=$("#p_num").val();
-        if(oper=='jia'){
-            count=parseInt(count)+1;
-        }else{
-            count=parseInt(count)-1;
-        }
-        if(parseInt(count)<0){
-            count=0;
-        }
-        var num = $("#p_num").attr('data');
-
-        if(parseInt(count) > num){
-           layer.msg('超过最大库存量');
-           return false;
-        }
-
-        $("#p_num").val(count);
-    }
-
-</script>
 <script type="text/javascript" src="/index/sink/js/jquery-1.8.3.min.js"></script>
 <script src='/index/sink/js/layer/layer.js'></script>
-<script>
-    $("#paysubmit").click(function(){
-        var  data        = {};
 
-        data.order_num   = $('#p_num').val();
-        data. mobile     = $('#mobile').val();
-        data. qq         = $('#qq').val();
-        data. id         = $('#id').val();
-
-        if(data.order_num == 0 || data.order_num == '' || data.order_num == undefined){
-            layer.msg('购买数量不合法');
-            return false;
-        }
-
-        if(data.mobile == '' || data.mobile == undefined){
-            layer.msg('请填写联系方式');
-            return false;
-        }
-
-        var url = "{:url('index/buy')}" ;
-
-        $.get(url,{data:data},function(ret){
-            if(ret.code == '200'){
-              layer.msg(ret.msg,{time:1500},function(){
-
-              })
-            };
-
-            if(ret.code == '400'){
-                layer.msg(ret.msg,{time:2000},function(){
-                    parent.location.href="{:url('index/index')}";
-                })
-            };
-
-        },'json')
-    })
-
-
-
-
-
-
-
-/*
-    function buy(a,b) {
-        var p_num = document.getElementById("p_num").value;
-        var minnum = document.getElementById("minnum").value;
-        var maxnum = document.getElementById("maxnum").value;
-        var beishu = document.getElementById("beishu").value;
-        if (p_num < minnum){
-            layer.alert('最小购买数是'+minnum);
-            document.getElementById("p_num").value = minnum;
-            return false;
-        }
-        if (p_num > maxnum){
-            layer.alert('最大购买数是'+maxnum);
-            document.getElementById("p_num").value = maxnum;
-            return false;
-        }
-        if(b == 2){
-            $.ajax({
-                //几个参数需要注意一下
-                type: "POST", //方法类型
-                dataType: "json", //预期服务器返回的数据类型
-                url: "/ajaxbuy", //url
-                data: $('#p_form').serialize(),
-                success: function(result) {
-                    if (result.status == 1) {
-                        layer.msg(result.msg, function() {
-                            window.location.href = "/buy?gid="+result.gid+"&order_no="+result.order_no;
-                        });
-                    } else {
-                        layer.msg(result.msg);
-                    }
-                    ;
-                },
-            });
-            return false;
-        }
-
-        if (a >= (parseInt(p_num)*parseInt(beishu))) {
-            $.ajax({
-                //几个参数需要注意一下
-                type: "POST", //方法类型
-                dataType: "json", //预期服务器返回的数据类型
-                url: "/ajaxbuy", //url
-                data: $('#p_form').serialize(),
-                success: function(result) {
-                    if (result.status == 1) {
-                        layer.msg(result.msg, function() {
-                            window.location.href = "/buy?gid="+result.gid+"&order_no="+result.order_no;
-                        });
-                    } else {
-                        layer.msg(result.msg);
-                    }
-                    ;
-                },
-            });
-        } else {
-            layer.alert('库存不足！');
-        }
-    }
-
- */
-</script>
-</html>
+{include file='public:foot'/}

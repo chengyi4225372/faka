@@ -123,6 +123,36 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <label for="title" class="col-sm-2 control-label">qq群2</label>
+                            <div class="col-sm-10 col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input  id="qq2" name="qq2" value="{$info.qq2}" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nomal" class="col-sm-2 control-label">普通代理</label>
+                            <div class="col-sm-10 col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input  id="nomal" name="nomal" value="{$info.nomal}" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="high" class="col-sm-2 control-label">高级代理</label>
+                            <div class="col-sm-10 col-md-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input  id="high" name="high" value="{$info.high}" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+
 
                         <div class="form-group">
                             <label for="title" class="col-sm-2 control-label">底部说明</label>
@@ -280,6 +310,8 @@
         dat.qq2      = $('#qq2').val();
         dat.content  = $('#content').val();
         dat.id       = $('#id').val();
+        dat.nomal    = $('#nomal').val();
+        dat.high     = $('#high').val();
 
         if( dat.title=='' || dat.title ==undefined ){
             layer.msg('商品名称不能为空',{time:2000});
