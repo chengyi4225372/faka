@@ -325,10 +325,63 @@ class Goods extends Base
 
        if($this->request->isAjax()){
            $result = $this->request->param();
-           dump($result);
-           exit();
-       }
 
+           if($result['data']['kid'] == '0'){
+               $w['gid']   = $result['data']['gid'];
+           }
+
+           if($result['data']['kid'] == '1'){
+               $w = [
+                   'gid'=>$result['data']['gid'],
+                   'over'=>0,
+               ];
+           }
+
+           if($result['data']['kid'] =='2'){
+               $w = [
+                   'gid'=>$result['data']['gid'],
+                   'over'=>1,
+               ];
+           }
+
+           $card = Db::name('card')->field('kami')->where($w)->select();
+
+
+
+           $path  = ROOT_PATH.'public/txt/'.time('Y-m-d');
+           if(!file_exists($path)){
+               mkdir($path,0777,true);
+           }
+
+           foreach ($card as $k =>$v){
+               file_put_contents($path.'/kami.txt',$v['kami'].PHP_EOL,FILE_APPEND);
+           }
+
+           Db::startTrans();
+           try{
+               //判断导出类型
+               if($result['data']['status']== 1){
+                   Db::name('card')->where(['gid'=>$result['data']['id']])->delete();
+               }
+                $id = Db::name('dcard')->insertGetId([
+                     'cid'=>$result['data']['cid'],
+                     'gid'=>$result['data']['gid'],
+                     'kid'=>$result['data']['kid'],
+                     'status'=>$result['data']['status'],
+                     'path'  =>$path.'/kami.txt',
+                 ]);
+
+               // 提交事务
+               Db::commit();
+               return json(['code'=>200,'msg'=>'导出成功,请下载id='.$id]);
+
+           } catch (\Exception $e) {
+               // 回滚事务
+               Db::rollback();
+               return json(['code'=>400,'msg'=>'操作失败']);
+           }
+       }
+       return true;
     }
 
    //下载卡密
@@ -337,12 +390,6 @@ class Goods extends Base
 
     }
 
-
-    //导出卡密
-    public function exportk()
-    {
-        return false;
-    }
 
     //删除卡密
     public function delkm()

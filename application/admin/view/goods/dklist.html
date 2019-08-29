@@ -16,7 +16,7 @@
                     <div class="input-group">
                         <label>请选择商品</label>
                         <select class="form-control" id="gid" >
-                            <option value="">请选择...</option>
+                            <option value="0">请选择...</option>
                         </select>
                     </div>
 
@@ -34,8 +34,8 @@
                         <label>导出是否删除</label>
                         <select class="form-control">
                             <option value="90">请选择...</option>
-                            <option value="0">导出删除卡密</option>
-                            <option value="1">导出不删除卡密</option>
+                            <option value="0">导出不删除卡密</option>
+                            <option value="1">导出删除卡密</option>
                         </select>
                     </div>
 
@@ -118,14 +118,41 @@
 
                 data.kid = $('#kid option:selected').val();
 
-                data.status = $('#status option:selected').val();
+             data.status = $('#status option:selected').val();
 
-                var url = "{:url('goods/dklist')}";
+               if(data.cid=='0'|| data.cid==undefined){
+                   layer.msg('请选择商品类型');
+                   return false;
+               }
+
+               if(data.gid=='0'|| data.gid==undefined){
+                   layer.msg('请选择商品');
+                   return false;
+               }
+
+               if(data.kid=='100'|| data.kid==undefined){
+                   layer.msg('请选择导出卡密类型');
+                   return false;
+               }
+
+               if(data.status =='90'|| data.status==undefined){
+                   layer.msg('请选择导出是否删除');
+                   return false;
+               }
+
+               var url = "{:url('goods/dklist')}";
 
                 $.post(url,{data:data},function(ret){
-
+                   if(ret.code == 200){
+                       layer.msg(ret.msg,{time:2000},function(){
+                           parent.location.reload();
+                       })
+                   };
+                  if(ret.code == 400){
+                        layer.msg(ret.msg,{time:2000},function(){
+                            parent.location.reload();
+                        })
+                    };
                 },'json')
-
-
            })
         </script>
