@@ -1,0 +1,131 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-body">
+                <form class="form-inline" name="searchForm"  method="POST">
+                    <div class="input-group">
+                        <label>选择商品类型</label>
+                        <select class="form-control" id="cid" onchange="Tselect();">
+                            <option value="0">请选择...</option>
+                            {volist name='cates' id='vo'}
+                            <option value="{$vo.id}">{$vo.title}</option>
+                            {/volist}
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label>请选择商品</label>
+                        <select class="form-control" id="gid" >
+                            <option value="">请选择...</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label>导出卡密类型</label>
+                        <select class="form-control" id="kid">
+                            <option value="100">请选择...</option>
+                            <option value="0">所有类型</option>
+                            <option value="1">未使用卡密</option>
+                            <option value="2">已使用卡密</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group" id="status">
+                        <label>导出是否删除</label>
+                        <select class="form-control">
+                            <option value="90">请选择...</option>
+                            <option value="0">导出删除卡密</option>
+                            <option value="1">导出不删除卡密</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label></label>
+                        <button class="btn btn-block btn-success dao" type="button">
+                            <i class="fa  fa-angle-double-down"></i> 导出卡密
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-body table-responsive">
+                <div class="form-group"></div>
+                <table class="table table-hover table-bordered datatable" width="100%">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>商品类型</th>
+                        <th>商品名称</th>
+                        <th>导出卡密类型</th>
+                        <th>导出卡密是否删除</th>
+                        <th>创建时间</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr>
+                        <td>111</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>谁说的</td>
+                        <td></td>
+                        <td class="td-do">
+                            <a href="{:url('goods/downloads')}" class="btn btn-primary btn-xs" >
+                                <i class="fa fa-pencil">下载卡密</i>
+                            </a>
+                            <a class="btn btn-danger btn-xs"  href="{:url('goods/delk')}">
+                                <i class="fa fa-trash">删除记录</i>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+
+        <script>
+            function Tselect(){
+
+                var id  =$('#cid').val();
+
+                var url = "{:url('goods/twoselect')}";
+
+                $.get(url,{id:id},function(ret){
+                    $('#gid').find("option").remove();
+                    $(ret).each(function(index,item){
+                        $("#gid").append("<option value ="+item.id+">"+item.title+"</option>");
+                    })
+                },'json')
+            };
+
+           $('.dao').click(function(){
+                var data = {};
+
+                data.cid = $('#cid option:selected').val();
+
+                data.gid = $('#gid option:selected').val();
+
+                data.kid = $('#kid option:selected').val();
+
+                data.status = $('#status option:selected').val();
+
+                var url = "{:url('goods/dklist')}";
+
+                $.post(url,{data:data},function(ret){
+
+                },'json')
+
+
+           })
+        </script>

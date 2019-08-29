@@ -1,24 +1,10 @@
 <div class="row">
     <div class="col-md-12">
         <div class="box box-primary">
-            <form id="dataForm" class="form-horizontal dataForm" action="" method="post" enctype="multipart/form-data">
+            <form class="form-horizontal dataForm"  method="post" enctype="multipart/form-data">
                 <div class="box-body">
                     <div class="fields-group">
-
-                        <div class="form-group">
-                            <label for="level" class="col-sm-2 control-label">商品类型</label>
-                            <div class="col-sm-10 col-md-4">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-list"></i></span>
-                                    <select name="cid" id="cid" class="form-control" onchange="show()">
-                                        <option value="">请选择商品类型...</option>
-                                        {volist name='cates' id='vo'}
-                                        <option value="{$vo.id}">{$vo.title}</option>
-                                        {/volist}
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
+                        <input type="hidden" id="vid" value="{$info.id}">
 
                         <div class="form-group">
                             <label for="goods" class="col-sm-2 control-label">所属类型商品</label>
@@ -26,7 +12,14 @@
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-list"></i></span>
                                     <select name="gid" id="gid" class="form-control">
-                                        <option value="">请选择商品类型...</option>
+                                        <option value="">请选择...</option>
+                                        {volist name='goods' id='vo'}
+                                        {if isset($info.gid)}
+                                        <option value="{$vo.id}" {if condition="$info.gid eq $vo.id"} selected=""{/if}>{$vo.title}</option>
+                                          {else /}
+                                        <option value="{$vo.id}">{$vo.title}</option>
+                                        {/if}
+                                        {/volist}
                                     </select>
                                 </div>
                             </div>
@@ -37,17 +30,18 @@
                             <label for="status" class="col-sm-2 control-label">是否过滤</label>
                             <div class="col-sm-10 col-md-4">
                                 <div class="input-group iconpicker-container">
-                                    <input value="" class="form-input-switch" type="checkbox" placeholder="status-switch" data-input="status">
-                                    <input id="status" name="status" value="" type="hidden"/>
+                                    <input {if ($info.status==1)}checked{/if} value="{$info.status|default='1'}"
+                                           class="form-input-switch" type="checkbox" placeholder="status-switch" data-input="status">
+                                    <input id="status" name="status" value="{$info.status|default='0'}" type="hidden"/>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="subject" class="col-sm-2 control-label">商品卡密</label>
+                            <label for="subj" class="col-sm-2 control-label">商品卡密</label>
                             <div class="col-sm-8">
                                 <div class="input-group">
-                                    <textarea id="content" name="content" class="form-control" style="height: 300px;width: 350px;" placeholder="商品卡密"></textarea>
+                                    <textarea id="content" name="content" class="form-control" style="height: 300px;width: 350px;" placeholder="商品卡密">{$info.kami}</textarea>
                                 </div>
                                 <span style="color:#ff2222;">一行显示一个卡密，换一行加一个（多卡上传）</span>
                             </div>
@@ -78,12 +72,50 @@
 <script>
     function show(){
 
-        var id  =
+        var id  =$('#cid').val();
 
-        var url = "{:url('goods/addk')}";
+        var url = "{:url('goods/twoselect')}";
 
         $.get(url,{id:id},function(ret){
-
+           $('#gid').find("option").remove();
+           $(ret).each(function(index,item){
+               $("#gid").append("<option value ="+item.id+">"+item.title+"</option>");
+           })
         },'json')
     }
+
+    $('.kami').click(function(){
+        var dats = {};
+        dats.gid     = $('#gid').val();
+        dats.status  = $('#status').val();
+        dats.content = $('#content').val();
+        dats.id      = $('#vid').val();
+
+
+        if(dats.gid =='' || dats.gid==undefined){
+            layer.msg('请选择商品',{time:2000});
+            return false;
+        }
+
+        if(dats.content =='' || dats.content==undefined){
+            layer.msg('卡密不能为空',{time:2000});
+            return false;
+        }
+        var url = "{:url('goods/addk')}";
+
+        $.post(url,{dats:dats},function(ret){
+             if(ret.code == '200'){
+               layer.msg(ret.msg,{time:2000},function(){
+                   parent.location.href="{:url('goods/klist')}";
+               });
+             };
+
+             if(ret.code == '400'){
+                 layer.msg(ret.msg,{time:2000},function(){
+                     parent.location.reload();
+                 });
+             };
+        },'json')
+    })
+
 </script>

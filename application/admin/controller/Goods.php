@@ -222,9 +222,24 @@ class Goods extends Base
     }
 
     //商品排序
-    public function set_sort()
+    public function setSort()
     {
-     return 11;
+      if($this->request->isAjax()){
+          $id   = input('post.id','','int');
+
+          if(empty($id) || $id<=0){
+              return false;
+          }
+
+          $sort = input('post.zhi','','trim');
+          $ret  = Db::name('goods')->where(['id'=>$id])->update(['sort'=>$sort]);
+
+          if($ret){
+              return json(['code'=>200,'msg'=>'操作成功']);
+          }else{
+              return json(['code'=>400,'msg'=>'操作失败']);
+          }
+      }
     }
 
 
@@ -233,10 +248,9 @@ class Goods extends Base
     {
        if($this->request->isGet()){
            $list  = Db::name('card')->order('id desc')->paginate(15);
-
-           $cates = Db::name('good_cates')->select();
            $goods = Db::name('goods')->field('id,title')->where('huo',1)->select();
-
+           $goods = array_column($goods,'title','id');
+           $this->assign('goods',$goods);
            $this->assign('list',$list);
            return $this->fetch();
        }
@@ -245,20 +259,75 @@ class Goods extends Base
     public function addk()
     {
       if($this->request->isGet()){
-          $cates = Db::name('good_cates')->field('id,title')->order('id desc')->select();
-          $this->assign('cates',$cates);
+          $goods = Db::name('goods')->field('id,title')->where(['huo'=>1])->order('id desc')->select();
+          $this->assign('goods',$goods);
+
+          $id   = input('get.id','','int');
+          $info = Db::name('card')->where(['id'=>$id])->find();
+          $this->assign('info',$info);
           return $this->fetch();
       }
 
       if($this->request->isAjax()){
-         $id = input('get.id','','int');
-         dump($id);
-         exit();
+          $this->param = $this->request->param();
+            if($this->param['dats']['status']==1) {
+              $kami = explode("\n",$this->param['dats']['content']);
+              $kami = array_unique($kami);
+            }
+
+            if($this->param['dats']['status']==0) {
+               $kami = explode("\n",$this->param['dats']['content']);
+            }
+
+              $arr  = [];
+              foreach ($kami as $k =>$val){
+                  $arr[] = ['kami'=>$val,'gid'=>$this->param['dats']['gid'],'status'=>$this->param['dats']['status']];
+              }
+
+            $ret = Db::name('card')->insertAll($arr);
+
+           if($ret){
+               return json(['code'=>'200','msg'=>'操作成功']);
+           }else{
+               return json(['code'=>'400','msg'=>'操作失败']);
+           }
       }
 
-      if($this->request->isPost()){
+    }
 
-      }
+    public function delk()
+    {
+        if($this->request->isGet()){
+            $id = input('get.id','','int');
+            if($id <= 0 || empty($id)){
+                return false;
+            }
+            if(!empty($id) && $id>0){
+                $ret = Db::name('card')->where(['id'=>$id])->delete();
+                if($ret){
+                    $this->success('删除成功');
+                }else {
+                    $this->error('删除失败');
+                }
+            }
+        }
+    }
+
+
+    //导出卡密列表
+    public function dklist()
+    {
+       if($this->request->isGet()){
+           $cates = Db::name('good_cates')->field('id,title')->order('id desc')->select();
+           $this->assign('cates',$cates);
+           return $this->fetch();
+       }
+
+       if($this->request->isAjax()){
+           $result = $this->request->param();
+           dump($result);
+           exit();
+       }
 
     }
 
@@ -274,6 +343,25 @@ class Goods extends Base
     {
         return false;
     }
+
+    //删除卡密
+    public function delkm()
+    {
+
+    }
+
+
+    //二级联动
+    public function twoselect()
+    {
+        if($this->request->isAjax()){
+            $id   = input('get.id','','trim');
+            $list = Db::name('goods')->field('id,title')->where(['cid'=>$id,'huo'=>1])->select();
+            $list?$list:'';
+            return json($list);
+        }
+    }
+
 
     //上传图片
     public function uploads_img()
