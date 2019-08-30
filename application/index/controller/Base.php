@@ -6,6 +6,7 @@ use think\Controller;
 use think\captcha\Captcha;
 use think\Request;
 use think\Db;
+use think\Session;
 
 class Base extends Controller
 {
@@ -16,10 +17,9 @@ class Base extends Controller
            $this->redirect('mobile/index');
         }
 
-        $this->is_login();
-
         $config = Db::name('config')->where(['id'=>1])->find();
         $this->assign('config',$config);
+
     }
 
     /**
@@ -47,7 +47,10 @@ class Base extends Controller
      */
     public function is_login()
     {
-     return true;
+       if(Session::get('info') == null|| !is_array(Session::get('info'))){
+          $this->redirect('login/login');
+       }
+
     }
 
 }

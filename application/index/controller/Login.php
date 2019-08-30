@@ -16,12 +16,10 @@ class Login extends Base
     public function login()
     {
         if($this->request->isGet()){
-            //如果已经登录
-            if(session('info')){
+            if(Session::get('info') != null && is_array(Session::get('info'))){
                 $this->redirect('user/index');
-            }else {
-                return $this->fetch();
             }
+            return $this->fetch();
         }
 
         if($this->request->isPost()){

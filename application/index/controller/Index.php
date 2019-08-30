@@ -23,14 +23,18 @@ class Index extends Base
              //商品库存
             $num = Db::name('card')->field('gid,count(kami) as num')->where(['over'=>0])->group('gid')->select();
 
+
             foreach ($list as $k =>$val){
                 foreach($num as $key =>$v){
                    if($list[$k]['huo'] == 0 && $list[$k]['id'] == $v['gid']){
-                       $list[$k]['num'] = '11';
+                       $list[$k]['num'] = $v['num'];
                    }
-
+                   if($list[$k]['huo'] == 1){
+                       $list[$k]['num'] = '人工发货';
+                   }
                 }
             }
+
 
             $this->assign('list',$list);
             $this->assign('categorys',$categorys);
@@ -50,6 +54,11 @@ class Index extends Base
               return false;
           }
           $info = Db::name('goods')->where(['id'=>$id])->find();
+          //卡密
+          $num  = Db::name('card')->where(['gid'=>$id,'over'=>0])->count('kami');
+          $info['num'] = $num;
+          //模板
+
           $this->assign('info',$info);
        }
         return $this->fetch();

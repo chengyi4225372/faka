@@ -8,9 +8,17 @@ namespace app\index\controller;
 use think\Config;
 use think\Controller;
 use app\index\controller\Base;
+use think\Request;
+
 
 class User extends Base
 {
+    public function __construct(Request $request = null)
+    {
+        parent::__construct($request);
+        $this->is_login();
+    }
+
     //会员中心
     public function index()
     {

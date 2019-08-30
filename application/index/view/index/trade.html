@@ -13,19 +13,17 @@
             <div class="top">
 
                 <div class="tou">
-                    <img src="" width="150" height="150" alt="" /></div>
-                <div class="bianhao">商品编号：NO0000.{<br />
-                    零售单价：
-
-                    元
+                    <img src="{$info.images}" width="150" height="150" alt="" /></div>
+                <div class="bianhao">商品编号：NO0000.{$info.id}<br />
+                    零售单价：{$info.money} 元
                     <br /><font color="#ff0000"  size="2">
-                        购买{个以上按批发价￥计算</font>
+                        购买{$info.pinum}个以上按批发价￥{$info.pinum}计算</font>
                 </div>
 
 
                 <div class="wu"></div><div class="bianhao">
                 手机扫码购买<br/>
-                <img src="https://www.kuaizhan.com/common/encode-png?large=true&data=http:// /trade?id= ">
+                <img src="https://www.kuaizhan.com/common/encode-png?large=true&data=http://{:url('index/trade',array('id'=>$info.id))} ">
             </div>
             </div>
 
@@ -35,18 +33,18 @@
             <div class="trade-goodinfo"></div>
             <div class="trade-goodinfo2">
                 <span  style="color:#080808">零售单价</span>
-                <span class="trade-price">￥
+                <span class="trade-price">￥{$info.money}
 
               </span>
 
 
                 <span style="float:right">
-
-                    <img src="/static/index/sink/img/zdfh.png">
-
-                    <img src="/static/index/sink/img/sdfh.png">
-
-                    <span style="color:#6c6c6c;font-size:14px;">累积销量：个</span>
+                    {eq name='$info.huo' value='0'}
+                    <img src="/index/sink/img/zdfh.png">
+                     {else /}
+                    <img src="/index/sink/img/sdfh.png">
+                    {/eq}
+                    <span style="color:#6c6c6c;font-size:14px;">累积销量：{$info.paynum}个</span>
                 </span>
             </div><br/>
 
@@ -75,7 +73,7 @@
                         <input id="p_num" name="num" class="z" type="number" value="" placeholder="请输入购买数量" />
                     </div>
 
-                    <div class="from_in_2 yanzheng" style="width:200px"> <font size="2" color="#FF7200"> 库存个</span> </div>
+                    <div class="from_in_2 yanzheng" style="width:200px"> <font size="2" color="#FF7200">{$info.num} 库存个</span> </div>
                 </div>
             </form>
             <input id="minnum" name="minnum" class="z" type="hidden" value="" >
@@ -96,6 +94,7 @@
 
             <div class="trade-goodinfo2">
                 商品介绍：
+                {$info.content}
             </div>
             <div class="xiangqing">
 
