@@ -58,13 +58,20 @@ class Index extends Base
           $num  = Db::name('card')->where(['gid'=>$id,'over'=>0])->count('kami');
           $info['num'] = $num;
           //模板
-
+          if($info['rengong'] == 0 || $info['rengong'] == ''){
+              $info['moban'] = 0;
+          }
+          if($info['rengong'] != '' || $info['rengong'] != 0){
+              $moban = Db::name('moban')->field('content')->where(['id'=>$info['rengong']])->find();
+              $info['moban'] = explode('**',$moban['content']);
+          }
+         // halt($info);
           $this->assign('info',$info);
        }
         return $this->fetch();
     }
 
-    //购买页面 生成订单
+    //生成订单
     public function buy()
     {
       if($this->request->isGet()){

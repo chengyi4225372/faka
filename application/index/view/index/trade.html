@@ -50,23 +50,29 @@
 
 
 
-            <form action="/buy" id="p_form" method="post">
-                <input type="hidden" name='gid' value=''>
+            <form  method="post">
+                <input type="hidden" name='sid' id="sid" value='{$info.id}'>
 
+                <input type="hidden" name='hid' id="hid" value='{$info.huo}'>
+
+                {if condition="$info.moban eq 0"}
                 <div class="from">
                     <div class="from_wz_3">联系方式：</div>
                     <div class="from_in_2">
                         <input id="mobile" name="mobile" class="z"  placeholder="请输入联系方式" required>
                     </div>
                 </div>
+                {else /}
 
-                <div class="from" style="float:left">
-                    <div class="from_wz_3">：</div>
+                {volist name='info.moban' id='v1'}
+                <div class="from">
+                    <div class="from_wz_3">{$v1}：</div>
                     <div class="from_in_2">
-                        <input  name="" class="z"  placeholder="" required>
+                        <input  name="moban[]" class=""  placeholder="" required>
                     </div>
                 </div>
-
+                {/volist}
+               {/if}
                 <div class="from">
                     <div class="from_wz_3">购买数量：</div>
                     <div class="from_in_2">
@@ -76,9 +82,9 @@
                     <div class="from_in_2 yanzheng" style="width:200px"> <font size="2" color="#FF7200">{$info.num} 库存个</span> </div>
                 </div>
             </form>
-            <input id="minnum" name="minnum" class="z" type="hidden" value="" >
-            <input id="maxnum" name="maxnum" class="z" type="hidden" value="" >
-            <input id="beishu" name="beishu" class="z" type="hidden" value="" >
+            <input id="minnum" name="minnum" class="z" type="hidden" value="{$info.mins}" >
+            <input id="maxnum" name="maxnum" class="z" type="hidden" value="{$info.maxs}" >
+            <input id="beishu" name="beishu" class="z" type="hidden" value="{$info.bei}" >
             <div class="from">
                 <div class="from_off_4"></div>
                 <div class="from_in_4" style="width:100px">
@@ -88,7 +94,7 @@
                     <a href="#" onclick="javascript:history.go(-1);" class="button button-3d button-highlight button-rounded button-small">返回</a>
                 </div>
             </div>
-            <div class="from"><font color="#2581ff"  size="2"><div class="from_off_4"></div><div class="from_in_4" style="width:450px">购买 个以上按批发价￥ 计算</div></font></div>
+            <div class="from"><font color="#2581ff"  size="2"><div class="from_off_4"></div><div class="from_in_4" style="width:450px">购买{$info.pinum}个以上按批发价￥{$info.pipay} 计算</div></font></div>
 
 
 
@@ -107,5 +113,65 @@
 </div>
 <script type="text/javascript" src="/index/sink/js/jquery-1.8.3.min.js"></script>
 <script src='/index/sink/js/layer/layer.js'></script>
-
 {include file='public:foot'/}
+
+
+<script>
+    function buy(a,b) {
+        var p_num = document.getElementById("p_num").value;
+        var minnum = document.getElementById("minnum").value;
+        var maxnum = document.getElementById("maxnum").value;
+        var beishu = document.getElementById("beishu").value;
+        if (p_num < minnum){
+            layer.alert('最小购买数是'+minnum);
+            document.getElementById("p_num").value = minnum;
+            return false;
+        }
+        if (p_num > maxnum){
+            layer.alert('最大购买数是'+maxnum);
+            document.getElementById("p_num").value = maxnum;
+            return false;
+        }
+        if(b == 2){
+            $.ajax({
+                //几个参数需要注意一下
+                type: "POST", //方法类型
+                dataType: "json", //预期服务器返回的数据类型
+                url: "/ajaxbuy", //url
+                data: $('#p_form').serialize(),
+                success: function(result) {
+                    if (result.status == 1) {
+                        layer.msg(result.msg, function() {
+                            window.location.href = "/buy?gid="+result.gid+"&order_no="+result.order_no;
+                        });
+                    } else {
+                        layer.msg(result.msg);
+                    }
+                    ;
+                },
+            });
+            return false;
+        }
+        if (a >= (parseInt(p_num)*parseInt(beishu))) {
+            $.ajax({
+                //几个参数需要注意一下
+                type: "POST", //方法类型
+                dataType: "json", //预期服务器返回的数据类型
+                url: "/ajaxbuy", //url
+                data: $('#p_form').serialize(),
+                success: function(result) {
+                    if (result.status == 1) {
+                        layer.msg(result.msg, function() {
+                            window.location.href = "/buy?gid="+result.gid+"&order_no="+result.order_no;
+                        });
+                    } else {
+                        layer.msg(result.msg);
+                    }
+                    ;
+                },
+            });
+        } else {
+            layer.alert('库存不足！');
+        }
+    }
+</script>
