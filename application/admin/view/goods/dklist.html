@@ -70,29 +70,44 @@
                         <th>操作</th>
                     </tr>
                     </thead>
-
+                   {volist name='list' id='vo'}
                     <tbody>
                     <tr>
-                        <td>111</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>谁说的</td>
-                        <td></td>
+                        <td>{$vo.id}</td>
+                        <td>{$categorys[$vo.cid]}</td>
+                        <td>{$goods[$vo.gid]}</td>
+                        <td>
+                            {if condition="$vo.kid eq 0"}
+                            <span class=" btn-warning btn-xs">所有类型</span>
+                            {elseif condition="$vo.id eq 1" /}
+                            <span class=" btn-success btn-xs">未使用卡密</span>
+                            {else /}
+                            <span class=" btn-block btn-xs">已使用卡密</span>
+                            {/if}
+                        </td>
+                        <td>
+                            {eq name='$vo.status' value='0'}
+                            <span class="btn-primary btn-xs">导出不删除</span>
+                            {else /}
+                            <span class=" btn-danger btn-xs">导出删除</span>
+                            {/eq}
+                        </td>
+                        <td>{$vo.create_time}</td>
                         <td class="td-do">
-                            <a href="{:url('goods/downloads')}" class="btn btn-primary btn-xs" >
+                            <a download="{$goods[$vo.gid]}" href="{$vo.path}" class="btn btn-primary btn-xs down" >
                                 <i class="fa fa-pencil">下载卡密</i>
                             </a>
-                            <a class="btn btn-danger btn-xs"  href="{:url('goods/delk')}">
+                            <a class="btn btn-danger btn-xs"  href="{:url('goods/delkm',array('id'=>$vo.id))}">
                                 <i class="fa fa-trash">删除记录</i>
                             </a>
                         </td>
                     </tr>
                     </tbody>
-
+                   {/volist}
                 </table>
             </div>
         </div>
+        {$list->render()}
 
         <script>
             function Tselect(){
@@ -154,5 +169,7 @@
                         })
                     };
                 },'json')
-           })
+           });
+
+
         </script>

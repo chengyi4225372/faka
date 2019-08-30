@@ -320,6 +320,13 @@ class Goods extends Base
        if($this->request->isGet()){
            $cates = Db::name('good_cates')->field('id,title')->order('id desc')->select();
            $this->assign('cates',$cates);
+           $goods = Db::name('goods')->field('id,title,huo')->where(['huo'=>1])->select();
+           $list = Db::name('dcard')->where(['is_delete'=>0])->order('id desc')->paginate(15);
+           $this->assign('list',$list);
+           $categorys = array_column($cates,'title','id');
+           $goods = array_column($goods,'title','id');
+           $this->assign('categorys',$categorys);
+           $this->assign('goods',$goods);
            return $this->fetch();
        }
 
@@ -368,32 +375,35 @@ class Goods extends Base
                      'gid'=>$result['data']['gid'],
                      'kid'=>$result['data']['kid'],
                      'status'=>$result['data']['status'],
-                     'path'  =>$path.'/kami.txt',
+                     'path'  =>'/txt/'.time('Y-m-d').'/kami.txt',
                  ]);
 
                // 提交事务
                Db::commit();
-               return json(['code'=>200,'msg'=>'导出成功,请下载id='.$id]);
-
            } catch (\Exception $e) {
                // 回滚事务
                Db::rollback();
                return json(['code'=>400,'msg'=>'操作失败']);
            }
+           return json(['code'=>200,'msg'=>'导出成功,请下载id='.$id]);
        }
        return true;
-    }
-
-   //下载卡密
-    public function downloads()
-    {
-
     }
 
 
     //删除卡密
     public function delkm()
     {
+      $id = input('get.id','','int');
+      if(empty($id)|| $id<=0 ){
+          return false;
+      }
+      $ret = Db::name('dcard')->where(['id'=>$id])->update(['is_delete'=>'-1']);
+      if($ret){
+          $this->success('删除成功');
+      }else {
+          $this->error('删除失败');
+      }
 
     }
 
