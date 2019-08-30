@@ -248,7 +248,7 @@ class Goods extends Base
     {
        if($this->request->isGet()){
            $list  = Db::name('card')->order('id desc')->paginate(15);
-           $goods = Db::name('goods')->field('id,title')->where('huo',1)->select();
+           $goods = Db::name('goods')->field('id,title')->where('huo',0)->select();
            $goods = array_column($goods,'title','id');
            $this->assign('goods',$goods);
            $this->assign('list',$list);
@@ -259,7 +259,7 @@ class Goods extends Base
     public function addk()
     {
       if($this->request->isGet()){
-          $goods = Db::name('goods')->field('id,title')->where(['huo'=>1])->order('id desc')->select();
+          $goods = Db::name('goods')->field('id,title')->where(['huo'=>0])->order('id desc')->select();
           $this->assign('goods',$goods);
 
           $id   = input('get.id','','int');
@@ -319,9 +319,9 @@ class Goods extends Base
     {
        if($this->request->isGet()){
            $cates = Db::name('good_cates')->field('id,title')->order('id desc')->select();
+           $goods = Db::name('goods')->field('id,title,huo')->where(['huo'=>0])->select();
+           $list  = Db::name('dcard')->where(['is_delete'=>0])->order('id desc')->paginate(15);
            $this->assign('cates',$cates);
-           $goods = Db::name('goods')->field('id,title,huo')->where(['huo'=>1])->select();
-           $list = Db::name('dcard')->where(['is_delete'=>0])->order('id desc')->paginate(15);
            $this->assign('list',$list);
            $categorys = array_column($cates,'title','id');
            $goods = array_column($goods,'title','id');
@@ -413,7 +413,7 @@ class Goods extends Base
     {
         if($this->request->isAjax()){
             $id   = input('get.id','','trim');
-            $list = Db::name('goods')->field('id,title')->where(['cid'=>$id,'huo'=>1])->select();
+            $list = Db::name('goods')->field('id,title')->where(['cid'=>$id,'huo'=>0])->select();
             $list?$list:'';
             return json($list);
         }

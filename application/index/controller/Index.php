@@ -15,15 +15,29 @@ class Index extends Base
     public function index()
     {
         if($this->request->isGet()){
-            $list   = Db::name('goods')->where(['status'=>1])->order(['sort'=>'desc','id'=>'desc'])->select();
-            $cates  = Db::name('good_cates')->select();
+
+            $list   = Db::name('goods')->where(['status'=>1])->order('sort desc')->select();
+            $cates  = Db::name('good_cates')->order('id desc')->select();
             $indexs = Db::name('content')->where(['id'=>24])->find();
             $categorys = array_column($cates,'title','id');
-            $this->assign('categorys',$categorys);
+             //商品库存
+            $num = Db::name('card')->field('gid,count(kami) as num')->where(['over'=>0])->group('gid')->select();
+
+            foreach ($list as $k =>$val){
+                foreach($num as $key =>$v){
+                   if($list[$k]['huo'] == 0 && $list[$k]['id'] == $v['gid']){
+                       $list[$k]['num'] = '11';
+                   }
+
+                }
+            }
+
             $this->assign('list',$list);
+            $this->assign('categorys',$categorys);
             $this->assign('indexs',$indexs);
+            return $this->fetch();
         }
-        return $this->fetch();
+
     }
 
 

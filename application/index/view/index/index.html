@@ -1,7 +1,4 @@
-
-  {include file="public:head" /}
-
-
+{include file="public:head" /}
 
 <style>
     #bar .bar_top {
@@ -35,8 +32,6 @@
 
 
         <div id="bar_r">
-
-
             <div id="body_xiao">
                 <table style="width:100%" border="0" cellpadding="10" cellspacing="0"  >
 
@@ -50,7 +45,7 @@
                     {volist name='list' id='vo'}
                     <tr>
                         <th colspan="5" align="center" class="greencoler" >
-                            <div align="center"><font size="3">{$categorys[$vo.id]}</font></div>
+                            <div align="center"><font size="3">{$categorys[$vo.cid]}</font></div>
                         </th>
                     </tr>
                     <tr>
@@ -67,15 +62,15 @@
                         <td>
                             <font color="#FF5400"  size="2" title="会员单价">{$vo.money}</font>
                             <br/>
-                            <font color="#BBBBBB"  size="1" title="销量">销量{$vo.paynum}</font>
+                            <font color="#BBBBBB"  size="1" title="销量">销量:{$vo.paynum}</font>
                         </td>
                         <td>
-                            <font color="#0281D2"  size="2" title="批发单价">{$vo.money}元<br/></font>
-<!--                            <font color="#BBBBBB"  size="1" title="普通用户购买数量2个起按照批发单价计算">2个起</font>-->
+                            <font color="#0281D2"  size="2" title="批发单价">{$vo.pipay}元<br/></font>
+     <font color="#BBBBBB"  size="1" title="普通用户购买数量{$vo.pinum}个起按照批发单价计算">{$vo.pinum}个起</font>
                         </td>
                         <td >
                             <font color="#000CF9"  size="3" title="物品库存">
-                                  111
+                                111
                             </font>
                         </td>
 

@@ -17,7 +17,7 @@ class Login extends Base
     {
         if($this->request->isGet()){
             //如果已经登录
-            if(session('user_id')){
+            if(session('info')){
                 $this->redirect('user/index');
             }else {
                 return $this->fetch();
