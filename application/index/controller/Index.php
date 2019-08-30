@@ -44,7 +44,6 @@ class Index extends Base
 
     }
 
-
     //购买页面
     public function trade()
     {
