@@ -9,6 +9,8 @@ use think\Config;
 use think\Controller;
 use app\index\controller\Base;
 use think\Request;
+use think\Session;
+use think\Db;
 
 
 class User extends Base
@@ -51,7 +53,33 @@ class User extends Base
     //修改密码
     public function editpwd()
     {
-        return $this->fetch();
+        if($this->request->isGet()){
+            return $this->fetch();
+        }
+
+        if($this->request->isPost()){
+            $pwd = $this->request->param();
+            $info  = Session::get('info');
+            $ret = Db::name('member')->where(['id'=>$info['id']])->find();
+            if($ret['password'] != md5(md5($pwd['data']['oldpwd']).$ret['rand'])){
+                return json(['code'=>400,'msg'=>'原始密码输入不对']);
+            }
+
+            if($ret['password'] == md5(md5($pwd['data']['oldpwd']).$ret['rand'])){
+                $result = Db::name('member')->where(['id'=>$info['id']])->update(
+                    [
+                   'password'=>md5(md5($pwd['data']['newpwd']).$ret['rand'])
+                   ]);
+                if($result){
+                    return json(['code'=>200,'msg'=>'操作成功']);
+                }else {
+                    return json(['code'=>500,'msg'=>'操作失败']);
+                }
+
+            }
+
+        }
+
     }
 
 
