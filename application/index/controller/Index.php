@@ -23,7 +23,6 @@ class Index extends Base
              //商品库存
             $num = Db::name('card')->field('gid,count(kami) as num')->where(['over'=>0])->group('gid')->select();
 
-
             foreach ($list as $k =>$val){
                 foreach($num as $key =>$v){
                    if($list[$k]['huo'] == 0 && $list[$k]['id'] == $v['gid']){
@@ -34,7 +33,6 @@ class Index extends Base
                    }
                 }
             }
-
 
             $this->assign('list',$list);
             $this->assign('categorys',$categorys);

@@ -44,4 +44,10 @@ class Order extends Base
     {
     return $this->fetch();
     }
+
+    //代充订单
+    public function dorder()
+    {
+        return $this->fetch();
+    }
 }

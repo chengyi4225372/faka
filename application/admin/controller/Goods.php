@@ -247,10 +247,17 @@ class Goods extends Base
     public function klist()
     {
        if($this->request->isGet()){
-           $list  = Db::name('card')->order('id desc')->paginate(15);
-           $goods = Db::name('goods')->field('id,title')->where('huo',0)->select();
-           $goods = array_column($goods,'title','id');
+           $gid  = input('get.gid','','int');
+           $over = input('get.over','','int');
+           if(empty($gid) && empty($over)){
+               $list  = Db::name('card')->order('id desc')->paginate(15);
+           }else {
+               $list  = Db::name('card')->where(['gid'=>$gid,'over'=>$over])->order('id desc')->paginate(15);
+           }
+           $goods_cates = Db::name('goods')->field('id,title')->where('huo',0)->select();
+           $goods = array_column($goods_cates,'title','id');
            $this->assign('goods',$goods);
+           $this->assign('goods_cates',$goods_cates);
            $this->assign('list',$list);
            return $this->fetch();
        }
