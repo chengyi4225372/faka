@@ -4,12 +4,23 @@
             <div class="box-body">
                 <form class="form-inline" name="searchForm" id="searchForm" action="" method="GET">
                     <div class="form-group">
-                        <input value="{$keywords ? $keywords : '' ;}"
-                               name="keywords" id="keywords" class="form-control input-sm" placeholder="帐号/昵称/手机号/邮箱">
+                        <input value="{$Think.get.keywords ? $Think.get.keywords : '' ;}"
+                               name="keywords" id="keywords" class="form-control" placeholder="商品名称">
                     </div>
 
                     <div class="form-group">
-                        <button class="btn btn-sm btn-primary" type="submit"><i class="fa fa-search"></i> 查询
+                        <select name="paytype" id="paytype" class="form-control">
+                            <option value="">请选择...</option>
+
+                            <option value="1" {if condition="$Think.get.paytype eq 1" } selected="" {/if}>支付宝</option>
+                            <option value="2" {if condition="$Think.get.paytype eq 2" } selected="" {/if}>微信</option>
+                            <option value="3" {if condition="$Think.get.paytype eq 3" } selected="" {/if}>qq支付</option>
+
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-sm btn-primary serach" type="button"><i class="fa fa-search"></i> 查询
                         </button>
                     </div>
 
@@ -64,12 +75,14 @@
                         <td>二次</td>
                         <td>二次</td>
                         <td class="td-do">
-                            <a href="edit.html"
-                               class="btn btn-primary btn-xs" title="修改">
-                                <i class="fa fa-pencil"></i>
+                            <a href="edit.html" class="btn btn-success btn-xs" title="修改">
+                                <i class="fa fa-pencil">补单</i>
+                            </a>
+                            <a href="edit.html" class="btn btn-primary btn-xs" title="修改">
+                                <i class="fa fa-pencil">编辑</i>
                             </a>
                             <a class="btn btn-danger btn-xs AjaxButton" title="删除" data-id="" data-url="del.html">
-                                <i class="fa fa-trash"></i>
+                                <i class="fa fa-trash">删除</i>
                             </a>
                         </td>
                     </tr>

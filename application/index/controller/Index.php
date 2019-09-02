@@ -61,7 +61,11 @@ class Index extends Base
           if($info['rengong'] != '' || $info['rengong'] != 0){
               $moban = Db::name('moban')->field('content')->where(['id'=>$info['rengong']])->find();
               $info['moban'] = explode('**',$moban['content']);
+              foreach ($info['moban'] as $i =>$val){
+                  $info['moban'][$i] = explode('-',  $info['moban'][$i]);
+              }
           }
+
          // halt($info);
           $this->assign('info',$info);
        }
@@ -71,29 +75,44 @@ class Index extends Base
     //生成订单
     public function buy()
     {
-      if($this->request->isGet()){
+      if($this->request->isPost()){
           $this->param = $this->request->param();
-          //todo 需要生成订单
-          //$order
 
           //组装 订单页面信息
-          if(empty($this->param['data']['id']) || !isset($this->param['data']['id'])){
+          if(empty($this->param['data']['gid']) || !isset($this->param['data']['gid'])){
              return false;
           }
 
-          $orderInfo = Db::name('goods')->field('id,title,num')->where(['id',$this->param['data']['id']])->find();
+          $array = [
+              'gid'  =>$this->param['data']['gid'],
+              'huo'  =>$this->param['data']['huo'],
+              'num'  =>$this->param['data']['num'],
+              'content'  =>$this->param['data']['content'],
+              'danpay'  =>$this->param['data']['danpay'],
+              'countpay'  =>$this->param['data']['countpay'],
+              'order_no'  => create_order(),
+          ];
 
-          if(empty($orderInfo)){
-              $this->result('','400','请求数据丢失','json');
-          }
 
-          if(!empty($orderInfo) && isset($orderInfo) && is_array($orderInfo)){
-              $orderInfo['mobile'] =  $this->param['data']['mobile'];
-              $orderInfo['num']    =  $this->param['data']['num'];
-              $orderInfo['order']  =  time(); //todo 订单号 造假数据 真是数据应该进去订单表
-              $this->result('','200','操作成功','json');
+          $res = Db::name('order')->insertGetId($array);
+
+          if($res){
+              return json(['code'=>200,'msg'=>'订单生成成功，马上跳转....','order'=>$array['order_no'],'gid'=>$res]);
+          }else {
+              return json(['code'=>400,'msg'=>'订单生成失败']);
           }
-          return $this->fetch();
+      }
+
+      if($this->request->isGet()){
+           $id = input('get.sid');
+           $order_no = input('get.order_no');
+           if(empty($id) && empty($order_no)){
+               return false;
+           }
+
+           $order = Db::name('order')->where(['id'=>$id,'order_no'=>$order_no])->find();
+           $this->assign('order',$order);
+           return $this->fetch();
       }
 
     }

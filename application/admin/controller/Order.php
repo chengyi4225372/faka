@@ -14,9 +14,20 @@ use tools\Sysinfo;
 
 class Order extends Base
 {
+    //自动发货
     public function index()
     {
         return $this->fetch();
+    }
+
+    public function zedit()
+    {
+        return $this->fetch();
+    }
+
+    public function zdel()
+    {
+        return true;
     }
 
     //补单
@@ -25,15 +36,24 @@ class Order extends Base
      return  111;
     }
 
-
-    public function del()
-    {
-      return false;
-    }
-
-
     //人工发货
     public function person()
+    {
+        return $this->fetch();
+    }
+
+    public function pedit()
+    {
+        return $this->fetch();
+    }
+
+    public function pdel()
+    {
+        return true;
+    }
+
+    //代充订单
+    public function dorder()
     {
         return $this->fetch();
     }
@@ -41,12 +61,6 @@ class Order extends Base
 
     //充值记录
     public function chong()
-    {
-    return $this->fetch();
-    }
-
-    //代充订单
-    public function dorder()
     {
         return $this->fetch();
     }

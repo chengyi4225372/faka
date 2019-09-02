@@ -88,6 +88,13 @@ function isMobile()
     return false;
 }
 
+//唯一单号
+
+function create_order(){
+    $str = date('Ymd') . str_pad(mt_rand(1, 99999), 5, '0', STR_PAD_LEFT);
+    return $str;
+}
+
 
 
 

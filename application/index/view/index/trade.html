@@ -65,10 +65,10 @@
                 {else /}
 
                 {volist name='info.moban' id='v1'}
-                <div class="from">
-                    <div class="from_wz_3">{$v1}：</div>
+                <div class="from" id="mo">
+                    <div class="from_wz_3">{$v1['0']}：</div>
                     <div class="from_in_2">
-                        <input  name="moban[]" class=""  placeholder="" required>
+                        <input  name="moban[]" class=""  placeholder="{$v1['1']}"  />
                     </div>
                 </div>
                 {/volist}
@@ -82,7 +82,7 @@
                 <div class="from">
                     <div class="from_wz_3">购买数量：</div>
                     <div class="from_in_2">
-                        <input id="p_num" name="num" class="z" type="number" value="" placeholder="请输入购买数量" />
+                        <input id="p_num" name="p_num" class="z" type="number" value="{$info.mins}" placeholder="请输入购买数量" />
                     </div>
 
                     <div class="from_in_2 yanzheng" style="width:200px"> <font size="2" color="#FF7200">{$info.num} 库存个</span> </div>
@@ -91,16 +91,19 @@
             <input id="minnum" name="minnum" class="z" type="hidden" value="{$info.mins}" >
             <input id="maxnum" name="maxnum" class="z" type="hidden" value="{$info.maxs}" >
             <input id="beishu" name="beishu" class="z" type="hidden" value="{$info.bei}" >
+            <input id="num" name="num" class="z" type="hidden" value="{$info.num}" >
             <div class="from">
                 <div class="from_off_4"></div>
                 <div class="from_in_4" style="width:100px">
-                    <input type="button" style="cursor:pointer;" class="button button-3d button-primary button-small" value="购买" onclick="buy(,)"/>
+                    <input type="button" style="cursor:pointer;" class="button button-3d button-primary button-small" value="购买" onclick="buy('{$info.money}');"/>
                 </div>
                 <div class="from_in_2 yanzheng" style="width:100px">
                     <a href="#" onclick="javascript:history.go(-1);" class="button button-3d button-highlight button-rounded button-small">返回</a>
                 </div>
             </div>
-            <div class="from"><font color="#2581ff"  size="2"><div class="from_off_4"></div><div class="from_in_4" style="width:450px">购买{$info.pinum}个以上按批发价￥{$info.pipay} 计算</div></font></div>
+            <div class="from"><font color="#2581ff"  size="2"><div class="from_off_4"></div>
+                <div class="from_in_4" style="width:450px">购买{$info.pinum}个以上按批发价￥{$info.pipay} 计算</div>
+            </font></div>
 
 
 
@@ -123,6 +126,77 @@
 
 
 <script>
+    function buy(money){
+
+        var sid    = $('#sid').val();//id
+        var hid    = $('#hid').val(); //0 自动 1 手动
+        var mobile = $('#mobile').val();
+        var paynum = $('#p_num').val(); //购买数量
+        var min    = $('#minnum').val();
+        var max    = $('#maxnum').val();
+        var bei    = $('#beishu').val();
+        var num    = $('#num').val();
+        var moban  = {};
+
+        $("input[name='moban[]']").each(function(i,key){
+             moban[i] =$(this).val();
+        });
+
+        if(mobile == '' || mobile== undefined){
+            layer.msg('请输入联系方式');
+            return ;
+        }
+
+        //自动发货
+        if(hid ==0){
+           if(paynum > num){
+               layer.msg('商品购买数量大于库存');
+               return ;
+           }
+
+           if(paynum < min){
+               layer.msg('商品购买数量，小于最少购买数量');
+               return;
+           }
+
+           if(paynum > max){
+               layer.msg('商品购买数量，大于最多购买数量');
+               return;
+           }
+        }
+
+        //传递数据
+        var data = {};
+        data.gid  = sid;
+        data.huo  = hid;
+        if(hid ==1){
+            data.num  = parseInt(paynum) * parseInt(bei);
+        }else{
+            data.num  = 1; //手动默认购买一个
+        }
+        data.content  = moban;
+        data.danpay   = money;
+        data.countpay = money * data.num;
+
+        var url = "{:url('index/buy')}";
+        $.post(url,{data:data},function(ret){
+              if(ret.code== 200){
+                  layer.msg(ret.msg,function(){
+                      parent.location.href= url+'?order_no='+ret.order+'&did='+ret.gid;
+                  })
+              };
+              if(ret.code == 400){
+               layer.msg(ret.msg,function(){
+                   parent.location.reload();
+               });
+              };
+        },'json')
+    }
+
+
+
+
+  /*
     function buy(a,b) {
         var p_num = document.getElementById("p_num").value;
         var minnum = document.getElementById("minnum").value;
@@ -180,4 +254,5 @@
             layer.alert('库存不足！');
         }
     }
+   */
 </script>
