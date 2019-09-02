@@ -104,7 +104,7 @@ class Index extends Base
       }
 
       if($this->request->isGet()){
-           $id = input('get.sid');
+           $id = input('get.did');
            $order_no = input('get.order_no');
            if(empty($id) && empty($order_no)){
                return false;

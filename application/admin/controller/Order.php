@@ -11,12 +11,16 @@ namespace app\admin\controller;
 
 use Parsedown;
 use tools\Sysinfo;
+use Think\Db;
 
 class Order extends Base
-{
+{  
+    public $table = 'order';
     //自动发货
     public function index()
     {
+        $list = Db::name($this->table)->where(['huo'=>0])->paginate(15);
+        $this->assign('list',$list);
         return $this->fetch();
     }
 
@@ -39,6 +43,8 @@ class Order extends Base
     //人工发货
     public function person()
     {
+        $list = Db::name($this->table)->where(['huo'=>1])->paginate(15);
+        $this->assign('list',$list);
         return $this->fetch();
     }
 

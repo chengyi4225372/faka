@@ -52,28 +52,34 @@
                         <th>操作</th>
                     </tr>
                     </thead>
+                    {volist name='list' id='vo'}
                     <tbody>
                     <tr>
-                        <td>000</td>
-                        <td>000</td>
-                        <td>000</td>
-                        <td>hhh</td>
-                        <td>不知道</td>
-                        <td>谁说的</td>
-                        <td>二次</td>
-                        <td>二次</td>
-                        <td>二次</td>
+                        <td>{$vo.order_no}</td>
+                        <td>{$vo.gid}</td>
+                        <td>{$vo.num}</td>
+                        <td>null</td>
+                        <td>{$vo.countpay}</td>
+                        <td>支付宝</td>
+                        <td>status</td>
+                        <td>电话</td>
+                        <td>{$vo.create_time}</td>
                         <td class="td-do">
-                            <a href="edit.html"
-                               class="btn btn-primary btn-xs" title="修改">
-                                <i class="fa fa-pencil"></i>
+                            <a href="edit.html" class="btn btn-success btn-xs" title="修改">
+                                <i class="fa fa-pencil">补单</i>
+                            </a>
+                            <a href="edit.html" class="btn btn-primary btn-xs" title="修改">
+                                <i class="fa fa-pencil">编辑</i>
                             </a>
                             <a class="btn btn-danger btn-xs AjaxButton" title="删除" data-id="" data-url="del.html">
-                                <i class="fa fa-trash"></i>
+                                <i class="fa fa-trash">删除</i>
                             </a>
                         </td>
                     </tr>
                     </tbody>
+                    {/volist}
+
                 </table>
             </div>
         </div>
+        {$list->render()}
