@@ -147,6 +147,11 @@
             return ;
         }
 
+        if(paynum <= 0){
+            layer.msg('最少购买数量为1');
+            return ;
+        }
+
         //自动发货
         if(hid ==0){
            if(paynum > num){
@@ -177,6 +182,8 @@
         data.content  = moban;
         data.danpay   = money;
         data.countpay = money * data.num;
+        data.mobile   = mobile;
+        data.member_id= {$Think.get.info.id}?{$Think.get.info.id}:'';
 
         var url = "{:url('index/buy')}";
         $.post(url,{data:data},function(ret){

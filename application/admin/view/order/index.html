@@ -71,9 +71,15 @@
                         <td>{$vo.num}</td>
                         <td>null</td>
                         <td>{$vo.countpay}</td>
-                        <td>支付宝</td>
-                        <td>status</td>
-                        <td>电话</td>
+                        <td></td>
+                        <td>
+                            {eq name='$vo.status' value='0'}
+                            <a class="btn btn-block btn-primary btn-xs">未支付</a>
+                            {else /}
+                            <a class="btn btn-block btn-success btn-xs">已支付</a>
+                            {/eq}
+                        </td>
+                        <td>{$vo.mobile}</td>
                         <td>{$vo.create_time}</td>
                         <td class="td-do">
                             <a href="edit.html" class="btn btn-success btn-xs" title="修改">

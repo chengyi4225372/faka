@@ -56,13 +56,27 @@
                     <tbody>
                     <tr>
                         <td>{$vo.order_no}</td>
-                        <td>{$vo.gid}</td>
+                        <td>{$goods[$vo.gid]}</td>
                         <td>{$vo.num}</td>
-                        <td>null</td>
+                        <td>{$vo.member_id}</td>
                         <td>{$vo.countpay}</td>
-                        <td>支付宝</td>
-                        <td>status</td>
-                        <td>电话</td>
+                        <td>
+                            {switch name="vo.paytype"}
+                            {case value="1"}支付宝支付{/case}
+                            {case value="2"}微信支付{/case}
+                            {case value="3"}QQ支付{/case}
+                            {case value="4"}余额支付{/case}
+                            {default /} 'null'
+                            {/switch}
+                        </td>
+                        <td>
+                            {eq name='$vo.status' value='0'}
+                            <a class="btn btn-block btn-primary btn-xs">未支付</a>
+                            {else /}
+                            <a class="btn btn-block btn-success btn-xs">已支付</a>
+                            {/eq}
+                        </td>
+                        <td>{$vo.mobile}</td>
                         <td>{$vo.create_time}</td>
                         <td class="td-do">
                             <a href="edit.html" class="btn btn-success btn-xs" title="修改">

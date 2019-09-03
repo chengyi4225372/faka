@@ -43,7 +43,10 @@ class Order extends Base
     //人工发货
     public function person()
     {
-        $list = Db::name($this->table)->where(['huo'=>1])->paginate(15);
+        $list  = Db::name($this->table)->where(['huo'=>1])->paginate(15);
+        $goods =Db::name('goods')->where('huo',1)->select();
+        $goods = array_column($goods,'title','id');
+        $this->assign('goods',$goods);
         $this->assign('list',$list);
         return $this->fetch();
     }
