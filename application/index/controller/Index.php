@@ -87,10 +87,12 @@ class Index extends Base
               'gid'  =>$this->param['data']['gid'],
               'huo'  =>$this->param['data']['huo'],
               'num'  =>$this->param['data']['num'],
-              'content'  =>$this->param['data']['content'],
-              'danpay'  =>$this->param['data']['danpay'],
+              'content'   =>$this->param['data']['content'],
+              'danpay'    =>$this->param['data']['danpay'],
               'countpay'  =>$this->param['data']['countpay'],
               'order_no'  => create_order(),
+              'mobile'    => $this->param['data']['mobile'],
+              'member_id' => $this->param['data']['member_id'],
           ];
 
 
@@ -109,9 +111,12 @@ class Index extends Base
            if(empty($id) && empty($order_no)){
                return false;
            }
-
+           $goods = Db::name('goods')->order('id desc')->select();
            $order = Db::name('order')->where(['id'=>$id,'order_no'=>$order_no])->find();
+           $goods = array_column($goods,'title','id');
+
            $this->assign('order',$order);
+           $this->assign('goods',$goods);
            return $this->fetch();
       }
 

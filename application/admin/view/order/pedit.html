@@ -1,0 +1,66 @@
+{__NOLAYOUT__}
+
+<link rel="stylesheet" href="__STATIC__/css/app.min.css">
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-primary">
+            <form  class="form-horizontal dataForm" enctype="multipart/form-data">
+                <input type="hidden" id="id" value="{$info.id}">
+
+                <div class="box-body">
+
+                    <div class="fields-group">
+                        <div class="form-group">
+                            <label for="title" class="col-sm-2 control-label">订单号</label>
+                            <div class="col-sm-10 col-md-4">
+                                <div class="input-group">
+                                    <input  id="order_no" name="order_no" value="{$info.order_no}" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="fields-group">
+                        <div class="form-group">
+                            <label for="title" class="col-sm-2 control-label">类型名称</label>
+                            <div class="col-sm-10 col-md-4">
+                                <div class="input-group">
+                                    <input  id="title" name="title" value="{$goods[$info.gid]}" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fields-group">
+                        <div class="form-group">
+                            <label for="num" class="col-sm-2 control-label">商品数量</label>
+                            <div class="col-sm-10 col-md-4">
+                                <div class="input-group">
+                                    <input  id="num" name="num" value="{$info.num}" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="fields-group">
+                        <div class="form-group">
+                            <label for="mobile" class="col-sm-2 control-label">商品总价</label>
+                            <div class="col-sm-10 col-md-4">
+                                <div class="input-group">
+                                    <input  id="countpay" name="countpay" value="{$info.countpay}" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

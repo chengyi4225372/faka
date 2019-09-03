@@ -92,6 +92,7 @@
             <input id="maxnum" name="maxnum" class="z" type="hidden" value="{$info.maxs}" >
             <input id="beishu" name="beishu" class="z" type="hidden" value="{$info.bei}" >
             <input id="num" name="num" class="z" type="hidden" value="{$info.num}" >
+            <input id="member_id" class="z" type="hidden" value="{$Think.session.info.id}" >
             <div class="from">
                 <div class="from_off_4"></div>
                 <div class="from_in_4" style="width:100px">
@@ -138,9 +139,6 @@
         var num    = $('#num').val();
         var moban  = {};
 
-        $("input[name='moban[]']").each(function(i,key){
-             moban[i] =$(this).val();
-        });
 
         if(mobile == '' || mobile== undefined){
             layer.msg('请输入联系方式');
@@ -168,6 +166,10 @@
                layer.msg('商品购买数量，大于最多购买数量');
                return;
            }
+            $("input[name='moban[]']").each(function(i,key){
+                moban[i] =$(this).val();
+            });
+
         }
 
         //传递数据
@@ -176,14 +178,16 @@
         data.huo  = hid;
         if(hid ==1){
             data.num  = parseInt(paynum) * parseInt(bei);
+            moban ='';
         }else{
             data.num  = 1; //手动默认购买一个
+            moban ='';
         }
         data.content  = moban;
         data.danpay   = money;
         data.countpay = money * data.num;
         data.mobile   = mobile;
-        data.member_id= {$Think.get.info.id}?{$Think.get.info.id}:'';
+        data.member_id= $('#member_id').val();
 
         var url = "{:url('index/buy')}";
         $.post(url,{data:data},function(ret){

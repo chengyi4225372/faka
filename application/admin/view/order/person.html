@@ -82,8 +82,8 @@
                             <a href="edit.html" class="btn btn-success btn-xs" title="修改">
                                 <i class="fa fa-pencil">补单</i>
                             </a>
-                            <a href="edit.html" class="btn btn-primary btn-xs" title="修改">
-                                <i class="fa fa-pencil">编辑</i>
+                            <a  data-href="{:url('order/pedit')}" class="btn btn-primary btn-xs pedit" title="修改">
+                                <i class="fa fa-pencil">查看订单</i>
                             </a>
                             <a class="btn btn-danger btn-xs AjaxButton" title="删除" data-id="" data-url="del.html">
                                 <i class="fa fa-trash">删除</i>
@@ -97,3 +97,16 @@
             </div>
         </div>
         {$list->render()}
+        <script>
+            $('.pedit').click(function(){
+                var url = $(this).attr('data-href');
+                layer.open({
+                        type: 2,
+                        title: '查看订单',
+                        shadeClose: true,
+                        shade: false,
+                        area: ['60%', '60%'],
+                        content: url,
+                    })
+            })
+        </script>

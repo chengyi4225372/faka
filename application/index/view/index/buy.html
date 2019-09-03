@@ -85,26 +85,30 @@
         </div>
 
         <div class="from">
-            <div class="from_wz_3"><font color="#363636"  size="3">所购商品：</font></div><div class="from_in_7"><font color="#363636"  size="3"><a href="{:url('index/trade',array('id'=>$order.id))}" target="_blank"></a></font></div>
+            <div class="from_wz_3"><font color="#363636"  size="3">所购商品：</font></div><div class="from_in_7"><font color="#363636"  size="3">{$goods[$order.gid]}<a href="{:url('index/trade',array('id'=>$order.id))}" target="_blank"></a></font></div>
         </div>
         <div class="from">
             <div class="from_wz_3"><font color="#363636"  size="3">商品单价：</font></div><div class="from_in_5"><font color="#363636"  size="3">{$order.danpay}元 (单价)</font></div>
         </div>
         <div class="from">
             <div class="from_wz_3"><font color="#363636"  size="3">购买数量：</font></div><div class="from_in_5"><font color="#363636"  size="3">{$order.num}个</font> <font color="#2bb800"  size="2">
-           自动发货  人工发货</font></div>
+            {eq name="$order.huo" value='0'}自动发货 {else /} 人工发货{/eq}</font></div>
         </div>
         <div class="from">
             <div class="from_wz_3">
                 <font color="#363636"  size="3">订单总价：</font></div><div class="from_in_5"><font color="#FF0000"  size="3">{$order.countpay}<b>元</b></font> &nbsp;&nbsp;
-                <font color="#ee6500"  size="2">可用余额：元</font> 【<a href="{:url('user/index')}">充值余额</a>】
+                <font color="#ee6500"  size="2">可用余额:**元</font> 【<a href="{:url('user/index')}">充值余额</a>】
         </div>
         </div>
         <div class="from">
             <div class="from_wz_3"><font color="#363636"  size="3">备注信息：</font></div>
             <div class="from_in_5">
                 <font color="#2bb800"  size="2">
+                 {if condition="$order.huo eq 1"}
 
+                    {else /}
+                    电话：{$order.mobile}
+                    {/if}
                 </font>
             </div>
         </div>
@@ -116,7 +120,7 @@
 
 
                     <ul>
-                        {notempty name='info'}
+                        {notempty name="$Think.session.info" }
                         <li class="yu" data-paytype="yu" onclick="payment(4)"><i class="payment-icon-yu">余额支付</i></li>
                         {/notempty}
 
@@ -146,7 +150,7 @@
             <div class="from_wz_3">&nbsp;</div>
             <div class="from_in_5" style="width:150px">
                 <form id="payform" method="post" action="/pay">
-                    <input type="hidden" name="id" value=" ">
+                    <input type="hidden" name="id" value="{$order.id} ">
                     <input type="hidden" name="payment" id="payment">
                 </form>
                 <input name="" type="submit" onclick="javascript:$('#payform').submit()" class="button button-3d button-primary button-rounded button-small"  value="确认购买" />

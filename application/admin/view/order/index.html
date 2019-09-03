@@ -67,7 +67,7 @@
                     <tbody>
                     <tr>
                         <td>{$vo.order_no}</td>
-                        <td>{$vo.gid}</td>
+                        <td>{$goods[$vo.gid]}</td>
                         <td>{$vo.num}</td>
                         <td>null</td>
                         <td>{$vo.countpay}</td>
@@ -85,10 +85,10 @@
                             <a href="edit.html" class="btn btn-success btn-xs" title="修改">
                                 <i class="fa fa-pencil">补单</i>
                             </a>
-                            <a href="edit.html" class="btn btn-primary btn-xs" title="修改">
-                                <i class="fa fa-pencil">编辑</i>
+                            <a data-href="{:url('order/zedit',array('id'=>$vo.id))}" class="btn btn-primary btn-xs edit" title="修改">
+                                <i class="fa fa-pencil">查看订单</i>
                             </a>
-                            <a class="btn btn-danger btn-xs AjaxButton" title="删除" data-id="" data-url="del.html">
+                            <a class="btn btn-danger btn-xs del" title="删除"  data-href="{:url('order/zdel',array('id'=>$vo.id))}">
                                 <i class="fa fa-trash">删除</i>
                             </a>
                         </td>
@@ -99,3 +99,39 @@
             </div>
         </div>
         {$list->render();}
+
+        <script>
+            $('.edit').click(function(){
+                var url = $(this).attr('data-href');
+                layer.open({
+                    type: 2,
+                    title: '查看订单',
+                    shadeClose: true,
+                    shade: false,
+                    area: ['60%', '60%'],
+                    content: url,
+                })
+            });
+
+            $('.del').click(function(){
+                var url = $(this).attr('data-href');
+                layer.confirm('是否确定删除？', {
+                    btn: ['确定','取消'] //按钮
+                }, function(){
+                   $.get(url,function(ret){
+                       if(ret.code == 200){
+                           layer.msg(ret.msg,function(){
+                               parent.location.reload();
+                           });
+                       };
+                       if(ret.code == 400){
+                           layer.msg(ret.msg,function(){
+                               parent.location.reload();
+                           });
+                       }
+                   },'json')
+                }, function(){
+                    parent.layer.close();
+                });
+            })
+        </script>
