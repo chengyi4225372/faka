@@ -2,10 +2,14 @@
     <div class="col-md-12">
         <div class="box">
             <div class="box-body">
-                <form class="form-inline" name="searchForm" id="searchForm" action="" method="GET">
+                <form class="form-inline" name="searchForm"  method="GET">
                     <div class="form-group">
-                        <input value="{$Think.get.keywords ? $Think.get.keywords : '' ;}"
-                               name="keywords" id="keywords" class="form-control" placeholder="商品名称">
+                        <select name="gid" id="gid" class="form-control">
+                            <option value="">请选择...</option>
+                            {volist name='goodes' id='vv'}
+                            <option value="{$vv.id}" {if condition="$Think.get.gid eq $vv.id"}selected="" {/if} >{$vv.title}</option>
+                            {/volist}
+                        </select>
                     </div>
 
                     <div class="form-group">
@@ -20,7 +24,8 @@
                     </div>
 
                     <div class="form-group">
-                        <button class="btn btn-sm btn-primary serach" type="button"><i class="fa fa-search"></i> 查询
+                        <button data-href="{:url('order/index')}"  class="btn btn-sm btn-primary search" type="button">
+                            <i class="fa fa-search"></i> 查询
                         </button>
                     </div>
 
@@ -69,9 +74,23 @@
                         <td>{$vo.order_no}</td>
                         <td>{$goods[$vo.gid]}</td>
                         <td>{$vo.num}</td>
-                        <td>null</td>
+                        <td>
+                            {empty name='$vo.member_id'}
+                              null
+                            {else /}
+                            {$info[$vo.member_id]}
+                            {/empty}
+                        </td>
                         <td>{$vo.countpay}</td>
-                        <td></td>
+                        <td>
+                            {switch name="vo.paytype"}
+                            {case value="1"}支付宝支付{/case}
+                            {case value="2"}微信支付{/case}
+                            {case value="3"}QQ支付{/case}
+                            {case value="4"}余额支付{/case}
+                            {default /} 'null'
+                            {/switch}
+                        </td>
                         <td>
                             {eq name='$vo.status' value='0'}
                             <a class="btn btn-block btn-primary btn-xs">未支付</a>
@@ -133,5 +152,24 @@
                 }, function(){
                     parent.layer.close();
                 });
+            });
+
+            //搜索
+            $('.search').click(function(){
+                var url = $(this).attr('data-href');
+                var gid = $('#gid option:selected').val();
+                var paytype =$('#paytype option:selected').val();
+
+                if(gid ==  '' || gid==undefined){
+                    layer.msg('请选择商品');
+                    return ;
+                }
+
+                if(paytype ==  '' || paytype==undefined){
+                    layer.msg('请选择支付类型');
+                    return ;
+                }
+                location.href= url+"?gid="+gid+"&paytype="+paytype;
             })
+
         </script>

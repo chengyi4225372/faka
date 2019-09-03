@@ -2,14 +2,30 @@
     <div class="col-md-12">
         <div class="box">
             <div class="box-body">
-                <form class="form-inline" name="searchForm" id="searchForm" action="" method="GET">
+                <form class="form-inline" name="searchForm"  method="GET">
                     <div class="form-group">
-                        <input value="{$keywords ? $keywords : '' ;}"
-                               name="keywords" id="keywords" class="form-control input-sm" placeholder="帐号/昵称/手机号/邮箱">
+                        <select name="gid" id="gid" class="form-control">
+                            <option value="">请选择...</option>
+                            {volist name='goodes' id='vv'}
+                            <option value="{$vv.id}" {if condition="$Think.get.gid eq $vv.id"}selected="" {/if} >{$vv.title}</option>
+                            {/volist}
+                        </select>
                     </div>
 
                     <div class="form-group">
-                        <button class="btn btn-sm btn-primary" type="submit"><i class="fa fa-search"></i> 查询
+                        <select name="paytype" id="paytype" class="form-control">
+                            <option value="">请选择...</option>
+
+                            <option value="1" {if condition="$Think.get.paytype eq 1" } selected="" {/if}>支付宝</option>
+                            <option value="2" {if condition="$Think.get.paytype eq 2" } selected="" {/if}>微信</option>
+                            <option value="3" {if condition="$Think.get.paytype eq 3" } selected="" {/if}>qq支付</option>
+
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <button data-href="{:url('order/person')}"  class="btn btn-sm btn-primary search" type="button">
+                            <i class="fa fa-search"></i> 查询
                         </button>
                     </div>
 
@@ -58,7 +74,13 @@
                         <td>{$vo.order_no}</td>
                         <td>{$goods[$vo.gid]}</td>
                         <td>{$vo.num}</td>
-                        <td>{$vo.member_id}</td>
+                        <td>
+                            {empty name='$vo.member_id'}
+                                 null
+                            {else /}
+                            {$info[$vo.member_id]}
+                            {/empty}
+                        </td>
                         <td>{$vo.countpay}</td>
                         <td>
                             {switch name="vo.paytype"}
@@ -82,10 +104,10 @@
                             <a href="edit.html" class="btn btn-success btn-xs" title="修改">
                                 <i class="fa fa-pencil">补单</i>
                             </a>
-                            <a  data-href="{:url('order/pedit')}" class="btn btn-primary btn-xs pedit" title="修改">
+                            <a  data-href="{:url('order/pedit',array('id'=>$vo.id))}" class="btn btn-primary btn-xs pedit" title="修改">
                                 <i class="fa fa-pencil">查看订单</i>
                             </a>
-                            <a class="btn btn-danger btn-xs AjaxButton" title="删除" data-id="" data-url="del.html">
+                            <a class="btn btn-danger btn-xs del" title="删除" data-id="" data-href="{:url('order/pdel',array('id'=>$vo.id))}">
                                 <i class="fa fa-trash">删除</i>
                             </a>
                         </td>
@@ -96,7 +118,8 @@
                 </table>
             </div>
         </div>
-        {$list->render()}
+        {$list->render();}
+
         <script>
             $('.pedit').click(function(){
                 var url = $(this).attr('data-href');
@@ -108,5 +131,49 @@
                         area: ['60%', '60%'],
                         content: url,
                     })
+            });
+
+            //删除
+            $('.del').click(function(){
+               var url = $(this).attr('data-href');
+               layer.confirm('您确定删除？',
+                   {btn:['确定','取消']},
+                    function(){
+                       $.get(url,function(ret){
+                           if(ret.code ==200){
+                             layer.msg(ret.msg,function(){
+                                 parent.location.reload();
+                             })
+                           }
+                           if(ret.code == 400){
+                             layer.msg(ret.msg,function(){
+                                 parent.location.reload();
+                             })
+                           }
+                       })
+                    },
+                   function(){
+                    parent.layer.close();
+                   }
+               )
+            });
+
+            $('.search').click(function(){
+                var url     = $(this).attr('data-href');
+                var gid     = $('#gid option:selected').val();
+                var paytype = $('#paytype option:selected').val();
+
+                if(gid ==  '' || gid==undefined){
+                    layer.msg('请选择商品');
+                    return ;
+                }
+
+                if(paytype ==  '' || paytype==undefined){
+                    layer.msg('请选择支付类型');
+                    return ;
+                }
+
+                location.href= url+"?gid="+gid+"&paytype="+paytype;
+
             })
         </script>
