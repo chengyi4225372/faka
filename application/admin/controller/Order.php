@@ -12,7 +12,6 @@ namespace app\admin\controller;
 use Parsedown;
 use tools\Sysinfo;
 use Think\Db;
-use Think\Session;
 
 class Order extends Base
 {  
