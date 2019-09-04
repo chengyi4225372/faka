@@ -360,8 +360,6 @@ class Goods extends Base
 
            $card = Db::name('card')->field('kami')->where($w)->select();
 
-
-
            $path  = ROOT_PATH.'public/txt/'.time('Y-m-d');
            if(!file_exists($path)){
                mkdir($path,0777,true);
@@ -371,12 +369,13 @@ class Goods extends Base
                file_put_contents($path.'/kami.txt',$v['kami'].PHP_EOL,FILE_APPEND);
            }
 
+           //判断导出类型
+           if($result['data']['status']== 1){
+               Db::name('card')->where(['gid'=>$result['data']['id']])->delete();
+           }
+
            Db::startTrans();
            try{
-               //判断导出类型
-               if($result['data']['status']== 1){
-                   Db::name('card')->where(['gid'=>$result['data']['id']])->delete();
-               }
                 $id = Db::name('dcard')->insertGetId([
                      'cid'=>$result['data']['cid'],
                      'gid'=>$result['data']['gid'],
