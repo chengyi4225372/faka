@@ -130,7 +130,7 @@ class Goods extends Base
       }
 
 
-      if($this->request->isAjax()){
+      if($this->request->isPost()){
           $this->param = $this->request->param();
 
           //add
@@ -139,7 +139,7 @@ class Goods extends Base
           }
 
           //edit
-          if(!empty($this->param['dat']['id']) && isset($this->param['dat']['id'])){
+          if(!empty($this->param['dat']['id']) || isset($this->param['dat']['id'])){
 
               $res = Db::name('goods')->where(['id'=>$this->param['dat']['id']])->update(
                   ['title'     =>$this->param['dat']['title'],
@@ -162,9 +162,9 @@ class Goods extends Base
           }
 
           if($res){
-              $this->result('','200','操作成功','json');
+              return json(['code'=>200,'msg'=>'操作成功']);
           }else{
-              $this->result('','400','操作失败','json');
+              return json(['code'=>400,'msg'=>'操作失败']);
           }
 
       }
