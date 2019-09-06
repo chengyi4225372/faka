@@ -100,16 +100,43 @@ class Order extends Base
 
     public function pedit()
     {
-        $id   = input('get.id','','int');
-        if($id<=0 || empty($id)){
-            return false;
-        }
-        $info = Db::name('order')->where(['id'=>$id,'huo'=>0,'is_delete'=>0])->find();
-        $goods= Db::name('goods')->field('id,title')->select();
-        $goods= array_column($goods,'title','id');
-        $this->assign('info',$info);
-        $this->assign('goods',$goods);
-        return $this->fetch();
+       if($this->request->isGet()){
+           $id   = input('get.id','','int');
+           if($id<=0 || empty($id)){
+               return false;
+           }
+           $info = Db::name('order')->where(['id'=>$id,'huo'=>1,'is_delete'=>0])->find();
+           $goods= Db::name('goods')->field('id,title')->select();
+           $goods= array_column($goods,'title','id');
+           $this->assign('info',$info);
+           $this->assign('goods',$goods);
+           return $this->fetch();
+       }
+
+       if($this->request->isAjax()){
+           $up = $this->request->param();
+
+           if(empty($up['data']['id']) || $up['data']['id']<=0 ){
+               return false;
+           }
+
+           $res = Db::name('order')->where(['id'=>$up['data']['id']])->update(
+               [
+                'content' =>$up['data']['content'],
+                'status'  =>$up['data']['status'],
+                'num'     =>$up['data']['num'],
+                'countpay'=>$up['data']['countpay'],
+               ]
+           );
+
+           if($res){
+               return json(['code'=>200,'msg'=>'操作成功']);
+           }else{
+               return json(['code'=>400,'msg'=>'操作失败']);
+           }
+
+       }
+
     }
 
     public function pdel()

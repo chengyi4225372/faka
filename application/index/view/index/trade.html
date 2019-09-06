@@ -110,7 +110,7 @@
 
             <div class="trade-goodinfo2">
                 商品介绍：
-                {$info.content}
+                {$info.content|default=''}
             </div>
             <div class="xiangqing">
 
@@ -135,7 +135,7 @@
            layer.msg('购买商品，请不要超过存库数量');
        }
    }
-   
+
     function buy(money){
 
         var sid    = $('#sid').val();//id

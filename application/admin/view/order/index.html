@@ -64,6 +64,7 @@
                         <th>支付方式</th>
                         <th>状态</th>
                         <th>联系方式</th>
+                        <th>发货方式</th>
                         <th>创建时间</th>
                         <th>操作</th>
                     </tr>
@@ -88,17 +89,33 @@
                             {case value="2"}微信支付{/case}
                             {case value="3"}QQ支付{/case}
                             {case value="4"}余额支付{/case}
-                            {default /} 'null'
+                            {default /}
+                            <span class="btn btn-danger btn-xs">未支付</span>
                             {/switch}
                         </td>
                         <td>
-                            {eq name='$vo.status' value='0'}
-                            <a class="btn btn-block btn-primary btn-xs">未支付</a>
-                            {else /}
+                            {switch name="vo.status"}
+                            {case value="1"}
                             <a class="btn btn-block btn-success btn-xs">已支付</a>
-                            {/eq}
+                            {/case}
+                            {case value="2"}
+                            <a class="btn btn-block btn-linkedin btn-xs">已发货</a>
+                            {/case}
+                            {case value="3"}
+                            <a class="btn btn-block btn-foursquare btn-xs">联系客服退款</a>
+                            {/case}
+                            {default /}
+                            <a class="btn btn-block btn-primary btn-xs">未支付</a>
+                            {/switch}
                         </td>
                         <td>{$vo.mobile}</td>
+                        <td>
+                            {eq name='$vo.huo' value='0'}
+                            <a class="btn btn-block btn-github btn-xs">人工发货</a>
+                             {else /}
+                            <a class="btn btn-block btn-github btn-xs">手动发货</a>
+                            {/eq}
+                        </td>
                         <td>{$vo.create_time}</td>
                         <td class="td-do">
                             <a href="edit.html" class="btn btn-success btn-xs" title="修改">
