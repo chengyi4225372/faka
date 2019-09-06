@@ -82,7 +82,7 @@
                 <div class="from">
                     <div class="from_wz_3">购买数量：</div>
                     <div class="from_in_2">
-                        <input id="p_num" name="p_num" class="z" type="number" value="{$info.mins}" placeholder="请输入购买数量" />
+                        <input onclick="check_num('{$info.num}')" id="p_num" name="p_num" class="z" type="number" value="{$info.mins}" placeholder="请输入购买数量" />
                     </div>
 
                     <div class="from_in_2 yanzheng" style="width:200px"> <font size="2" color="#FF7200">{$info.num} 库存个</span> </div>
@@ -127,6 +127,15 @@
 
 
 <script>
+
+   //检查数量
+   function check_num(num){
+       var pnum = $('#p_num').val();
+       if(pnum > num){
+           layer.msg('购买商品，请不要超过存库数量');
+       }
+   }
+   
     function buy(money){
 
         var sid    = $('#sid').val();//id
@@ -152,6 +161,9 @@
 
         //自动发货
         if(hid ==0){
+
+           check_num();
+
            if(paynum > num){
                layer.msg('商品购买数量大于库存');
                return ;

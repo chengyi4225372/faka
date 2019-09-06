@@ -407,7 +407,7 @@ class Goods extends Base
       if(empty($id)|| $id<=0 ){
           return false;
       }
-      
+
       $ret  = Db::name('dcard')->where(['id'=>$id])->update(['is_delete'=>'-1']);
       $link = unlink($path);
       if($ret && $link){
