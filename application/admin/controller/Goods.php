@@ -369,13 +369,15 @@ class Goods extends Base
                file_put_contents($path.'/kami.txt',$v['kami'].PHP_EOL,FILE_APPEND);
            }
 
-           //判断导出类型
-           if($result['data']['status']== 1){
-               Db::name('card')->where(['gid'=>$result['data']['id']])->delete();
-           }
 
            Db::startTrans();
            try{
+
+               //判断导出类型
+               if($result['data']['status']== '1'){
+                   Db::name('card')->where(['gid'=>$result['data']['gid']])->delete();
+               }
+
                 $id = Db::name('dcard')->insertGetId([
                      'cid'=>$result['data']['cid'],
                      'gid'=>$result['data']['gid'],
@@ -400,12 +402,15 @@ class Goods extends Base
     //删除卡密
     public function delkm()
     {
-      $id = input('get.id','','int');
+      $id   = input('get.id','','int');
+      $path = input('get.path','','trim');
       if(empty($id)|| $id<=0 ){
           return false;
       }
-      $ret = Db::name('dcard')->where(['id'=>$id])->update(['is_delete'=>'-1']);
-      if($ret){
+      
+      $ret  = Db::name('dcard')->where(['id'=>$id])->update(['is_delete'=>'-1']);
+      $link = unlink($path);
+      if($ret && $link){
           $this->success('删除成功');
       }else {
           $this->error('删除失败');

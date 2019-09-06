@@ -101,7 +101,7 @@
                             <a download="{$goods[$vo.gid]}" href="{$vo.path}" class="btn btn-primary btn-xs down" >
                                 <i class="fa fa-pencil">下载卡密</i>
                             </a>
-                            <a class="btn btn-danger btn-xs"  href="{:url('goods/delkm',array('id'=>$vo.id))}">
+                            <a class="btn btn-danger btn-xs"  href="{:url('goods/delkm',array('id'=>$vo.id,'path'=>$vo.path))}">
                                 <i class="fa fa-trash">删除记录</i>
                             </a>
                         </td>
