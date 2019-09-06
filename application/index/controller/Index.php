@@ -24,13 +24,20 @@ class Index extends Base
             $num = Db::name('card')->field('gid,count(kami) as num')->where(['over'=>0])->group('gid')->select();
 
             foreach ($list as $k =>$val){
-                foreach($num as $key =>$v){
-                   if($list[$k]['huo'] == 0 && $list[$k]['id'] == $v['gid']){
-                       $list[$k]['num'] = $v['num'];
-                   }
-                   if($list[$k]['huo'] == 1){
-                       $list[$k]['num'] = '人工发货';
-                   }
+                if(!is_array($num) || empty($num)){
+                    $list[$k]['num'] = null;
+                }
+
+                if(is_array($num) && !empty($num)){
+                    foreach($num as $key =>$v){
+                        if($list[$k]['huo'] == 0 && $list[$k]['id'] == $v['gid']){
+                            $list[$k]['num'] = $v['num'];
+                        }
+                    }
+                }
+
+                if($list[$k]['huo'] == 1){
+                    $list[$k]['num'] = '人工发货';
                 }
             }
 
@@ -120,6 +127,12 @@ class Index extends Base
            return $this->fetch();
       }
 
+    }
+
+    //zhifu
+    public  function pay()
+    {
+        return false;
     }
 
 }

@@ -76,7 +76,11 @@
 
 
                         <td >
+                            {if condition="$vo.num eq null"}
+                             <a class="button button-tiny button-rounded button-small" >缺货</a>
+                             {else /}
                             <a class="button button-primary button-rounded button-small"  href = "{:url('index/trade',array('id'=>$vo.id))}">购买</a>
+                            {/if}
                         </td>
                     </tr>
                    {/volist}
