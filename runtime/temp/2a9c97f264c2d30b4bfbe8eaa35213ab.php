@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\trade.html";i:1570861034;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\trade.html";i:1571034758;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
 
 <!DOCTYPE html> 
 
@@ -154,14 +154,15 @@
                         <input id="mobile" name="mobile" class="z"  placeholder="请输入联系方式" required>
                     </div>
                 </div>
-                <?php else: if(is_array($info['moban']) || $info['moban'] instanceof \think\Collection || $info['moban'] instanceof \think\Paginator): $i = 0; $__LIST__ = $info['moban'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v1): $mod = ($i % 2 );++$i;?>
-                <div class="from" id="mo">
-                    <div class="from_wz_3"><?php echo $v1['0']; ?>：</div>
+                <?php else: if(is_array($info['moban']) || $info['moban'] instanceof \think\Collection || $info['moban'] instanceof \think\Paginator): $k = 0; $__LIST__ = $info['moban'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v1): $mod = ($k % 2 );++$k;?>
+                <div class="from mo">
+                    <div class="from_wz_3" id="title<?php echo $k; ?>"><?php echo $v1['0']; ?>：</div>
                     <div class="from_in_2">
-                        <input  name="moban[]" class=""  placeholder="<?php echo $v1['1']; ?>"  />
+                        <input  id="moban<?php echo $k; ?>" class="" value=""  placeholder="<?php echo $v1['1']; ?>"  />
                     </div>
                 </div>
                 <?php endforeach; endif; else: echo "" ;endif; ?>
+
                 <div class="from">
                     <div class="from_wz_3">联系方式：</div>
                     <div class="from_in_2">
@@ -172,7 +173,7 @@
                 <div class="from">
                     <div class="from_wz_3">购买数量：</div>
                     <div class="from_in_2">
-                        <input onclick="check_num('<?php echo $info['num']; ?>')" id="p_num" name="p_num" class="z" type="number" value="<?php echo $info['mins']; ?>" placeholder="请输入购买数量" />
+                        <input min="0" id="p_num" name="p_num" class="z" type="number" value="<?php echo $info['mins']; ?>" placeholder="请输入购买数量" />
                     </div>
 
                     <div class="from_in_2 yanzheng" style="width:200px"> <font size="2" color="#FF7200"><?php echo $info['num']; ?> 库存个</span> </div>
@@ -246,13 +247,6 @@
 
 <script>
 
-   //检查数量
-   function check_num(num){
-       var pnum = $('#p_num').val();
-       if(pnum > num){
-           layer.msg('购买商品，请不要超过存库数量');
-       }
-   }
 
    function buy(money){
 
@@ -264,23 +258,21 @@
         var max    = $('#maxnum').val();
         var bei    = $('#beishu').val();
         var num    = $('#num').val();
-        var moban  = {};
+        var moban  = [];
 
 
-        if(mobile == '' || mobile== undefined){
+            if(mobile == '' || mobile== undefined){
             layer.msg('请输入联系方式');
             return ;
         }
 
-        if(paynum <= 0){
+            if(paynum <= 0){
             layer.msg('最少购买数量为1');
             return ;
         }
 
-        //自动发货
-        if(hid ==0){
-
-           check_num();
+          //自动发货
+           if(hid ==0){
 
            if(paynum > num){
                layer.msg('商品购买数量大于库存');
@@ -296,24 +288,27 @@
                layer.msg('商品购买数量，大于最多购买数量');
                return;
            }
-            $("input[name='moban[]']").each(function(i,key){
-                moban[i] =$(this).val();
-            });
-
         }
 
         //传递数据
         var data = {};
+
         data.gid  = sid;
         data.huo  = hid;
         if(hid ==1){
             data.num  = parseInt(paynum) * parseInt(bei);
-            moban ='';
+            var len   = $('form .mo').length;
+            for(var i=1;i<=len;i++){
+                moban.push($("#title"+i).text());
+                moban.push($("#moban"+i).val());;
+            }
+            console.log(moban);
         }else{
             data.num  = 1; //手动默认购买一个
             moban ='';
         }
-        data.content  = moban;
+        console.log(moban);
+        data.content  = JSON.stringify(moban);
         data.danpay   = money;
         data.countpay = money * data.num;
         data.mobile   = mobile;

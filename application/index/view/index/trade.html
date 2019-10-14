@@ -64,14 +64,15 @@
                 </div>
                 {else /}
 
-                {volist name='info.moban' id='v1'}
-                <div class="from" id="mo">
-                    <div class="from_wz_3">{$v1['0']}：</div>
+                {volist name='info.moban' id='v1' key='k'}
+                <div class="from mo">
+                    <div class="from_wz_3" id="title{$k}">{$v1['0']}：</div>
                     <div class="from_in_2">
-                        <input  name="moban[]" class=""  placeholder="{$v1['1']}"  />
+                        <input  id="moban{$k}" class="" value=""  placeholder="{$v1['1']}"  />
                     </div>
                 </div>
                 {/volist}
+
                 <div class="from">
                     <div class="from_wz_3">联系方式：</div>
                     <div class="from_in_2">
@@ -82,7 +83,7 @@
                 <div class="from">
                     <div class="from_wz_3">购买数量：</div>
                     <div class="from_in_2">
-                        <input onclick="check_num('{$info.num}')" id="p_num" name="p_num" class="z" type="number" value="{$info.mins}" placeholder="请输入购买数量" />
+                        <input min="0" id="p_num" name="p_num" class="z" type="number" value="{$info.mins}" placeholder="请输入购买数量" />
                     </div>
 
                     <div class="from_in_2 yanzheng" style="width:200px"> <font size="2" color="#FF7200">{$info.num} 库存个</span> </div>
@@ -128,13 +129,6 @@
 
 <script>
 
-   //检查数量
-   function check_num(num){
-       var pnum = $('#p_num').val();
-       if(pnum > num){
-           layer.msg('购买商品，请不要超过存库数量');
-       }
-   }
 
    function buy(money){
 
@@ -146,23 +140,21 @@
         var max    = $('#maxnum').val();
         var bei    = $('#beishu').val();
         var num    = $('#num').val();
-        var moban  = {};
+        var moban  = [];
 
 
-        if(mobile == '' || mobile== undefined){
+            if(mobile == '' || mobile== undefined){
             layer.msg('请输入联系方式');
             return ;
         }
 
-        if(paynum <= 0){
+            if(paynum <= 0){
             layer.msg('最少购买数量为1');
             return ;
         }
 
-        //自动发货
-        if(hid ==0){
-
-           check_num();
+          //自动发货
+           if(hid ==0){
 
            if(paynum > num){
                layer.msg('商品购买数量大于库存');
@@ -178,24 +170,27 @@
                layer.msg('商品购买数量，大于最多购买数量');
                return;
            }
-            $("input[name='moban[]']").each(function(i,key){
-                moban[i] =$(this).val();
-            });
-
         }
 
         //传递数据
         var data = {};
+
         data.gid  = sid;
         data.huo  = hid;
         if(hid ==1){
             data.num  = parseInt(paynum) * parseInt(bei);
-            moban ='';
+            var len   = $('form .mo').length;
+            for(var i=1;i<=len;i++){
+                moban.push($("#title"+i).text());
+                moban.push($("#moban"+i).val());;
+            }
+            console.log(moban);
         }else{
             data.num  = 1; //手动默认购买一个
             moban ='';
         }
-        data.content  = moban;
+        console.log(moban);
+        data.content  = JSON.stringify(moban);
         data.danpay   = money;
         data.countpay = money * data.num;
         data.mobile   = mobile;
