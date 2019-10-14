@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:105:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\buy.html";i:1567480276;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:105:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\buy.html";i:1571043765;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
 
 <!DOCTYPE html> 
 
@@ -173,11 +173,18 @@
 
         <div class="wu"></div>
         <div class="from">
-            <div class="from_wz_3"><font color="#363636"  size="3">商品订单：</font></div><div class="from_in_7"><font color="#363636"  size="3"><?php echo $order['order_no']; ?></font></div>
+            <div class="from_wz_3">
+                <font color="#363636"  size="3">商品订单：</font></div>
+            <div class="from_in_7 order"><font color="#363636"  size="3"><?php echo $order['order_no']; ?></font>
+            </div>
         </div>
 
         <div class="from">
-            <div class="from_wz_3"><font color="#363636"  size="3">所购商品：</font></div><div class="from_in_7"><font color="#363636"  size="3"><?php echo $goods[$order['gid']]; ?><a href="<?php echo url('index/trade',array('id'=>$order['id'])); ?>" target="_blank"></a></font></div>
+            <div class="from_wz_3"><font color="#363636"  size="3">所购商品：</font></div>
+            <div class="from_in_7 paynames"><font color="#363636"  size="3"><?php echo $goods[$order['gid']]; ?>
+                <a href="<?php echo url('index/trade',array('id'=>$order['id'])); ?>" target="_blank">
+                </a></font>
+            </div>
         </div>
         <div class="from">
             <div class="from_wz_3"><font color="#363636"  size="3">商品单价：</font></div><div class="from_in_5"><font color="#363636"  size="3"><?php echo $order['danpay']; ?>元 (单价)</font></div>
@@ -188,15 +195,18 @@
         </div>
         <div class="from">
             <div class="from_wz_3">
-                <font color="#363636"  size="3">订单总价：</font></div><div class="from_in_5"><font color="#FF0000"  size="3"><?php echo $order['countpay']; ?><b>元</b></font> &nbsp;&nbsp;
-                <font color="#ee6500"  size="2">可用余额:**元</font> 【<a href="<?php echo url('user/index'); ?>">充值余额</a>】
+                <font color="#363636"  size="3">订单总价：</font></div>
+            <div class="from_in_5 countpay"><font color="#FF0000"  size="3"><?php echo $order['countpay']; ?><b>元</b>
+            </font> &nbsp;&nbsp;
+            <font color="#ee6500"  size="2">可用余额:**元</font> 【<a href="<?php echo url('user/index'); ?>">充值余额</a>】
         </div>
         </div>
         <div class="from">
             <div class="from_wz_3"><font color="#363636"  size="3">备注信息：</font></div>
             <div class="from_in_5">
                 <font color="#2bb800"  size="2">
-                 <?php if($order['huo'] == 1): else: ?>
+                 <?php if($order['huo'] == 1): ?>
+                    <?php echo $order['content']; else: ?>
                     电话：<?php echo $order['mobile']; endif; ?>
                 </font>
             </div>
@@ -213,12 +223,12 @@
                         <li class="yu" data-paytype="yu" onclick="payment(4)"><i class="payment-icon-yu">余额支付</i></li>
                         <?php endif; ?>
 
-                        <li class="tenpay" data-paytype="tenpay" onclick="payment(1)"><i class="payment-icon-cft">支付宝支付</i></li>
+                        <li class="tenpay" data-paytype="alipay" onclick="payment(1)"><i class="payment-icon-cft">支付宝支付</i></li>
 
 
-                        <li class="wx " data-paytype="wx" onclick="payment(2)"><i class="payment-icon-wx">微信支付</i></li>
+                        <li class="wx " data-paytype="wxpay" onclick="payment(2)"><i class="payment-icon-wx">微信支付</i></li>
 
-                        <li class="qq" data-paytype="qq" onclick="payment(3)"><i class="payment-icon-qq">QQ支付</i></li>
+                        <li class="qq" data-paytype="qqpay" onclick="payment(3)"><i class="payment-icon-qq">QQ支付</i></li>
 
                     </ul>
                 </div>
@@ -238,11 +248,11 @@
 
             <div class="from_wz_3">&nbsp;</div>
             <div class="from_in_5" style="width:150px">
-                <form id="payform" method="post" action="/pay">
+<!--                <form id="payform" method="post" action="/pay">-->
                     <input type="hidden" name="id" value="<?php echo $order['id']; ?> ">
                     <input type="hidden" name="payment" id="payment">
-                </form>
-                <input name="" type="submit" onclick="javascript:$('#payform').submit()" class="button button-3d button-primary button-rounded button-small"  value="确认购买" />
+<!--                </form>-->
+                <input type="button"  class="button button-3d button-primary button-rounded button-small kuan"  value="确认购买" />
 
 
             </div>
@@ -256,9 +266,49 @@
 
 </div>
 <script>
-    function payment(id){
-        $("#payment").val(id);
+
+  function payment(obj){
+
+       if(obj == '1'){
+          return   'alipay';
+       }
+
+      if(obj == '2'){
+           return 'wxpay';
+      }
+
+      if(obj == '3'){
+          return 'qqpay';
+      }
+
+      if(obj == '4'){
+          return 'yu';
+      }
+     return false;
     }
+
+   $('.kuan').click(function(){
+      var notify_url = "" ;
+
+      var return_url = "";
+
+      var data = {};
+      data.pay = 'alipay'; //支付类型
+      data.goodnames = $('.paynames').text();//商品名称
+      data.order_no  = $('.order').text();
+      data.paynum    = $('.countpay').text(); //商品总价
+      data.pid       =  '4229'; //商户id
+      data.sign      = '5p6E61Q4hhPu21PUQqxPQgPv5E2UqQxg'; //秘钥
+      data.sitename  = '';
+
+
+      window.location.href = "http://pays.sddyun.cn/submit.php?pid="+data.pid+"&type="+data.pay+"&out_trade_no="+data.order_no+"&notify_url="+notify_url+"&return_url="+return_url+"&name="+data.goodnames+"&money="+data.paynum+"&sitename="+data.sitename+"&sign="+data.sign+"&sign_type=MD5"
+
+   })
+
+/* 支付地址
+ http://pays.sddyun.cn/submit.php?pid={商户ID}&type={支付方式}&out_trade_no={商户订单号}&notify_url={服务器异步通知地址}&return_url={页面跳转通知地址}&name={商品名称}&money={金额}&sitename={网站名称}&sign={签名字符串}&sign_type=MD5
+ */
 </script>
 <div id="footer"><div>
     <a><?php echo $config['info']; ?></a>

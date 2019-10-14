@@ -97,7 +97,7 @@ class Index extends Base
               'content'   =>$this->param['data']['content'],
               'danpay'    =>$this->param['data']['danpay'],
               'countpay'  =>$this->param['data']['countpay'],
-              'order_no'  => create_order(),
+              'order_no'  => date("YmdHis").mt_rand(100,999),
               'mobile'    => $this->param['data']['mobile'],
               'member_id' => $this->param['data']['member_id'],
           ];
