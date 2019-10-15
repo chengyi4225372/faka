@@ -13,7 +13,7 @@
 <script type="text/javascript" src="/mobile/sink/js/Validform_v5.3.2_min.js"></script>
 <link href="/mobile/sink/css/owl.carousel.css" rel="stylesheet">
 <script src="/mobile/sink/js/owl.carousel.min.js"></script>
-<script src="/mobile/sink/js/layer.js"></script>
+<script src="/index/sink/js/layer/layer.js"></script>
 </head>
 
 <body>
@@ -44,10 +44,16 @@ $(document).ready(function(){
 
 <div class="header1">
     <header>
-    <div class="header"> <a class="new-a-back" href="javascript:history.back();"> <span>
-        <img src="/mobile/sink/img/iconfont-fanhui.png"></span> </a>
-      <div class="m_logo"><a href="#"><img src="/mobile/sink/img/m-index_02.png"></a></div>
-<div class="header_right shaixuan"><img src="/mobile/sink/img/iconfont-shouye.png"></div>
+    <div class="header">
+        <a class="new-a-back" href="javascript:history.back();"> <span>
+        <img src="/mobile/sink/img/iconfont-fanhui.png"></span>
+        </a>
+      <div class="m_logo">
+          <a href="#"><img src="/mobile/sink/img/m-index_02.png"></a>
+      </div>
+     <div class="header_right shaixuan">
+        <img src="/mobile/sink/img/iconfont-shouye.png">
+     </div>
       </div>
   </header>
     <div class="shaixuan_box">
@@ -67,15 +73,14 @@ $(document).ready(function(){
   </div>
 
 
-
+    {empty name="$Think.session.get.member"}
 	<div class="m_user w">&nbsp;&nbsp;<a href="/search">游客订单查询</a>
 	&nbsp;&nbsp;&nbsp;&nbsp;【<a href="/login">登录</a>】&nbsp;&nbsp;【<a href="/reg">注册</a>】
-  </div>
-
-<div class="m_user w">
-
-<a><b>你好,</b></a>
-<a>余额:元</a>
+    </div>
+   {else /}
+     <div class="m_user w">
+         <a><b>你好,</b></a>
+         <a>余额:元</a>
     <a href="/lout" onclick="return confirm('确定要退出吗？')">【安全退出】</a>
-
-	 </div>
+     </div>
+  {/empty}
