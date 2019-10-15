@@ -16,10 +16,6 @@ class Base extends Controller
         if(isMobile()){
            $this->redirect('mobile/index');
         }
-
-        $config = Db::name('config')->where(['id'=>1])->find();
-        $this->assign('config',$config);
-
     }
 
     /**

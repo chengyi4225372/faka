@@ -72,6 +72,7 @@ class Mobile extends Controller
         return false;
     }
 
+    //支付
     public function buy()
     {
        if($this->request->isGet()){
@@ -79,6 +80,7 @@ class Mobile extends Controller
        }
 
     }
+
 
     public function orderinfo()
     {
@@ -94,7 +96,6 @@ class Mobile extends Controller
     {
         return $this->fetch();
     }
-
 
     public function zdfahuo()
     {
