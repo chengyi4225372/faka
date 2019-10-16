@@ -15,6 +15,9 @@ class Two extends Base
         $config = Db::name('config')->where(['id'=>1])->find();
         $this->assign('config',$config);
 
+        $content =Db::name('content')->where('id',5)->find();
+        $this->assign('content',$content);
+
         if($config['modou'] ==1){
             $this->redirect('index/index');
         }
@@ -71,6 +74,7 @@ class Two extends Base
             //卡密
             $num  = Db::name('card')->where(['gid'=>$id,'over'=>0])->count('kami');
             $info['num'] = $num;
+
             //模板
             if($info['rengong'] == 0 || $info['rengong'] == ''){
                 $info['moban'] = 0;

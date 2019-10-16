@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:105:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\two\index.html";i:1571187897;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombhead.html";i:1571190314;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombfoot.html";i:1571190465;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:105:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\two\index.html";i:1571195028;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombhead.html";i:1571190314;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombfoot.html";i:1571190465;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -87,86 +87,39 @@
     <div class="goods">
         <div class="am-show-landscape">
             <ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-4 am-thumbnails">
-                <li><a href="<?php echo url('two/trade',array('id'=>'')); ?>">
+                <?php if(is_array($list) || $list instanceof \think\Collection || $list instanceof \think\Paginator): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;if($vo['huo'] == '0'): ?>
+                <li><a href="<?php echo url('two/trade',array('id'=>$vo['id'])); ?>">
                     <div style="background-color: #fff;" class="index_good_body">
-                        <img class="" src="" style="width:100%;height:280px">
+                        <img class="" src="<?php echo (isset($vo['images']) && ($vo['images'] !== '')?$vo['images']:''); ?>" style="width:100%;height:280px">
                         <div class="pr-info" style="padding:5px">
-                            <span class="price">￥0.10</span>
+                            <span class="price">￥<?php echo (isset($vo['money']) && ($vo['money'] !== '')?$vo['money']:''); ?></span>
 
-                            <span class="pr-xl am-badge am-badge-danger" style="color:#fff">库存0</span>
+                            <span class="pr-xl am-badge am-badge-danger" style="color:#fff">库存<?php echo (isset($vo['num']) && ($vo['num'] !== '')?$vo['num']:'0'); ?></span>
 
-
-
-                            <div class="index-goodname-xq" style="height:45px;color:#333"><p title="【CDK】爱奇艺周卡 无限叠加 质保5天...">【CDK】爱奇艺周卡 无限叠加 质保5天...</p></div>
+                            <div class="index-goodname-xq" style="height:45px;color:#333">
+                                <p title="【CDK】爱奇艺周卡 无限叠加 质保5天..."><?php echo (isset($vo['title']) && ($vo['title'] !== '')?$vo['title']:''); ?></p>
+                            </div>
                         </div>
                     </div>
                 </a></li>
-                <li><a href="/trade?id=22">
+                <?php else: ?>
+                <li><a href="<?php echo url('two/trade',array('id'=>$vo['id'])); ?>">
                     <div style="background-color: #fff;" class="index_good_body">
-                        <img class="" src="/static/upload/uploadimg/54564.jpg" style="width:100%;height:280px">
+                        <img class="" src="<?php echo $vo['images']; ?>" style="width:100%;height:280px">
                         <div class="pr-info" style="padding:5px">
-                            <span class="price">￥1.00</span>
-
-                            <span class="pr-xl am-badge am-badge-danger" style="color:#fff">库存0</span>
-
-
-
-                            <div class="index-goodname-xq" style="height:45px;color:#333"><p title="影视VIP（优酷土豆黄金会员 1个月CD...">影视VIP（优酷土豆黄金会员 1个月CD...</p></div>
-                        </div>
-                    </div>
-                </a></li>
-                <li><a href="/trade?id=21">
-                    <div style="background-color: #fff;" class="index_good_body">
-                        <img class="" src="/static/upload/uploadimg/u=346107982,1458088848&amp;fm=26&amp;gp=0.jpg" style="width:100%;height:280px">
-                        <div class="pr-info" style="padding:5px">
-                            <span class="price">￥1.00</span>
+                            <span class="price">￥<?php echo (isset($vo['money']) && ($vo['money'] !== '')?$vo['money']:''); ?></span>
                             <span class="pr-xl am-badge am-badge-success" style="color:#fff">代充商品</span>
 
-
-                            <div class="index-goodname-xq" style="height:45px;color:#333"><p title="QQ超级会员丨点播官方超30天 显示到期...">QQ超级会员丨点播官方超30天 显示到期...</p></div>
+                            <div class="index-goodname-xq" style="height:45px;color:#333">
+                                <p title="<?php echo $vo['title']; ?>"><?php echo (isset($vo['title']) && ($vo['title'] !== '')?$vo['title']:''); ?></p>
+                            </div>
                         </div>
                     </div>
                 </a></li>
-                <li><a href="/trade?id=20">
-                    <div style="background-color: #fff;" class="index_good_body">
-                        <img class="" src="/static/upload/uploadimg/545.jpg" style="width:100%;height:280px">
-                        <div class="pr-info" style="padding:5px">
-                            <span class="price">￥1.00</span>
-                            <span class="pr-xl am-badge am-badge-success" style="color:#fff">代充商品</span>
-
-
-                            <div class="index-goodname-xq" style="height:45px;color:#333"><p title="官方直充|腾讯视频会员（好莱坞会员）一月...">官方直充|腾讯视频会员（好莱坞会员）一月...</p></div>
-                        </div>
-                    </div>
-                </a></li>
-                <li><a href="/trade?id=19">
-                    <div style="background-color: #fff;" class="index_good_body">
-                        <img class="" src="/static/upload/uploadimg/1233.jpg" style="width:100%;height:280px">
-                        <div class="pr-info" style="padding:5px">
-                            <span class="price">￥1.00</span>
-
-                            <span class="pr-xl am-badge am-badge-danger" style="color:#fff">库存50</span>
-
-
-
-                            <div class="index-goodname-xq" style="height:45px;color:#333"><p title="爱奇艺激活码1个月31天激活码 质保3天...">爱奇艺激活码1个月31天激活码 质保3天...</p></div>
-                        </div>
-                    </div>
-                </a></li>
-                <li><a href="/trade?id=18">
-                    <div style="background-color: #fff;" class="index_good_body">
-                        <img class="" src="/static/upload/uploadimg/timg.jpg" style="width:100%;height:280px">
-                        <div class="pr-info" style="padding:5px">
-                            <span class="price">￥1.00</span>
-                            <span class="pr-xl am-badge am-badge-success" style="color:#fff">代充商品</span>
-
-
-                            <div class="index-goodname-xq" style="height:45px;color:#333"><p title="蓝月亮洗衣液500g*10袋包邮 支持渠...">蓝月亮洗衣液500g*10袋包邮 支持渠...</p></div>
-                        </div>
-                    </div>
-                </a></li>
+                <?php endif; endforeach; endif; else: echo "" ;endif; ?>
             </ul>
         </div>
+        <!--
         <div class="am-show-portrait">
             <div class="am-container">
                 <div class="am-g">
@@ -308,6 +261,7 @@
                 </div>
             </div>
         </div>
+        -->
     </div>
     <!--            <ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-6 am-thumbnails" style="margin-top:10px">
 
