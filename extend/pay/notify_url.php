@@ -11,9 +11,8 @@
  * 该页面不能在本机电脑测试，请到服务器上做测试。请确保外部可以访问该页面。
  * 该页面调试工具请使用写文本函数logResult，该函数已被默认关闭，见alipay_notify_class.php中的函数verifyNotify
  */
-
-require_once("epay.config.php");
-require_once("lib/epay_notify.class.php");
+require_once(__DIR__."epay.config.php");
+require_once(__DIR__."lib/epay_notify.class.php");
 
 //计算得出通知验证结果
 $alipayNotify = new AlipayNotify($alipay_config);

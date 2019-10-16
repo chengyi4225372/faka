@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\index.html";i:1567739563;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\index.html";i:1571211150;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
 
 <!DOCTYPE html> 
 
@@ -171,7 +171,7 @@
                             <?php if($vo['num'] == null): ?>
                              <a class="button button-tiny button-rounded button-small" >缺货</a>
                              <?php else: ?>
-                            <a class="button button-primary button-rounded button-small"  href = "<?php echo url('index/trade',array('id'=>$vo['id'])); ?>">购买</a>
+                            <a class="button button-primary button-rounded button-small"  href = "<?php echo url('index/trade'); ?>?id=<?php echo $vo['id']; ?>">购买</a>
                             <?php endif; ?>
                         </td>
                     </tr>

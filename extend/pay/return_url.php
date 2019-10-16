@@ -10,9 +10,8 @@
  * 可放入HTML等美化页面的代码、商户业务逻辑程序代码
  * 该页面可以使用PHP开发工具调试，也可以使用写文本函数logResult，该函数已被默认关闭，见epay_notify_class.php中的函数verifyReturn
  */
-
-require_once("epay.config.php");
-require_once("lib/epay_notify.class.php");
+require_once(__DIR__."epay.config.php");
+require_once(__DIR__."lib/epay_notify.class.php");
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -29,10 +28,12 @@ if($verify_result) {//验证成功
 	//——请根据您的业务逻辑来编写程序（以下代码仅作参考）——
     //获取支付宝的通知返回参数，可参考技术文档中页面跳转同步通知参数列表
 
-	//商户订单号
+	//商户订单号
+
 	$out_trade_no = $_GET['out_trade_no'];
 
-	//支付宝交易号
+	//支付宝交易号
+
 	$trade_no = $_GET['trade_no'];
 
 	//交易状态

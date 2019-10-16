@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:105:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\buy.html";i:1571043765;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:105:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\buy.html";i:1571213259;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
 
 <!DOCTYPE html> 
 
@@ -217,18 +217,17 @@
             <div class="">
                 <div class="payment-list">
 
-
                     <ul>
                         <?php if(!(empty(\think\Session::get('info')) || ((\think\Session::get('info') instanceof \think\Collection || \think\Session::get('info') instanceof \think\Paginator ) && \think\Session::get('info')->isEmpty()))): ?>
-                        <li class="yu" data-paytype="yu" onclick="payment(4)"><i class="payment-icon-yu">余额支付</i></li>
+                        <li class="yu" data-paytype="yu" ><i class="payment-icon-yu">余额支付</i></li>
                         <?php endif; ?>
 
-                        <li class="tenpay" data-paytype="alipay" onclick="payment(1)"><i class="payment-icon-cft">支付宝支付</i></li>
+                        <li class="tenpay" data-paytype="alipay" ><i class="payment-icon-cft">支付宝支付</i></li>
 
 
-                        <li class="wx " data-paytype="wxpay" onclick="payment(2)"><i class="payment-icon-wx">微信支付</i></li>
+                        <li class="wx " data-paytype="wxpay" onclick="payment($(this).attr('data-paytype'))"><i class="payment-icon-wx">微信支付</i></li>
 
-                        <li class="qq" data-paytype="qqpay" onclick="payment(3)"><i class="payment-icon-qq">QQ支付</i></li>
+                        <li class="qq" data-paytype="qqpay" onclick="payment($(this).attr('data-paytype'))"><i class="payment-icon-qq">QQ支付</i></li>
 
                     </ul>
                 </div>
@@ -267,39 +266,23 @@
 </div>
 <script>
 
-  function payment(obj){
 
-       if(obj == '1'){
-          return   'alipay';
-       }
-
-      if(obj == '2'){
-           return 'wxpay';
-      }
-
-      if(obj == '3'){
-          return 'qqpay';
-      }
-
-      if(obj == '4'){
-          return 'yu';
-      }
-     return false;
-    }
 
    $('.kuan').click(function(){
-      var notify_url = "" ;
+      var notify_url = "<?php echo url('pays/notify_url'); ?>" ;
 
-      var return_url = "";
+      var return_url = "<?php echo url('pays/return_url'); ?>";
 
       var data = {};
-      data.pay = 'alipay'; //支付类型
+      data.pay = $('ul li.curr').attr('data-paytype'); //支付类型
       data.goodnames = $('.paynames').text();//商品名称
-      data.order_no  = $('.order').text();
+      data.order_no  = $('.order').text();//商户订单号
       data.paynum    = $('.countpay').text(); //商品总价
-      data.pid       =  '4229'; //商户id
-      data.sign      = '5p6E61Q4hhPu21PUQqxPQgPv5E2UqQxg'; //秘钥
-      data.sitename  = '';
+      // data.pid       = 4229; //商户id
+      //data.sign      = '5p6E61Q4hhPu21PUQqxPQgPv5E2UqQxg'; //秘钥
+       data.pid       = 50; //商户id
+       data.sign      = "2bzWQqfnhH62363ZHcCQgcHwCW86GjGM"; //秘钥
+       data.sitename  = 'xxxx';
 
 
       window.location.href = "http://pays.sddyun.cn/submit.php?pid="+data.pid+"&type="+data.pay+"&out_trade_no="+data.order_no+"&notify_url="+notify_url+"&return_url="+return_url+"&name="+data.goodnames+"&money="+data.paynum+"&sitename="+data.sitename+"&sign="+data.sign+"&sign_type=MD5"
