@@ -16,6 +16,11 @@ class Base extends Controller
         if(isMobile()){
            $this->redirect('mobile/index');
         }
+
+        $config = Db::name('config')->where(['id'=>1])->find();
+        $shouye = Db::name('content')->where(['id'=>24])->find();
+        $this->assign('config',$config);
+        $this->assign('shouye',$shouye);
     }
 
     /**

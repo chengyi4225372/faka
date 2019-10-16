@@ -1,11 +1,11 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\mobile\trade.html";i:1571127921;s:103:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\mobilehead.html";i:1571121495;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\mobile\trade.html";i:1571187540;s:103:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\mobilehead.html";i:1571186975;}*/ ?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="author" content="欢迎光临" />
 <meta name="applicable-device" content="mobile" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-<title></title>
+<title><?php echo $config['title']; ?></title>
 <link href="/mobile/sink/css/frozen.css" rel="stylesheet" type="text/css">
 <link href="/mobile/sink/css/public.css" rel="stylesheet" type="text/css" />
 <link href="/mobile/sink/css/index.css" rel="stylesheet" type="text/css" />
@@ -166,8 +166,8 @@ $(document).ready(function(){
 </div>
 
 
-<script type="text/javascript" src="/static/index/sink/js/jquery-1.8.3.min.js"></script>
-    <script src='/static/index/sink/js/layer/layer.js'></script>
+<script type="text/javascript" src="/index/sink/js/jquery-1.8.3.min.js"></script>
+<script src='/index/sink/js/layer/layer.js'></script>
     <script>
 
 

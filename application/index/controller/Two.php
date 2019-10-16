@@ -147,4 +147,13 @@ class Two extends Base
         return false;
     }
 
+    //帮助
+    public function help(){
+        if($this->request->isGet()){
+            $content = Db::name('content')->where('id',21)->find();
+            $this->assign('content',$content);
+            return $this->fetch();
+        }
+    }
+
 }
