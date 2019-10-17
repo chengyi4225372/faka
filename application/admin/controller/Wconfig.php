@@ -24,6 +24,23 @@ class Wconfig extends Base
             $info = Db::name($this->table)->where('id',$id)->find();
             $this->assign('info',$info);
 
+            $id = 5;
+            $infod = Db::name($this->table)->where('id',$id)->find();
+            $this->assign('infod',$infod);
+
+
+            $id = 20;
+            $infoc = Db::name($this->table)->where('id',$id)->find();
+            $this->assign('infoc',$infoc);
+
+            $id = 21;
+            $infoa = Db::name($this->table)->where('id',$id)->find();
+            $this->assign('infoa',$infoa);
+
+            //支付参数
+            $pay = Db::name('pay')->where('id',7)->find();
+            $this->assign('pay',$pay);
+
             return $this->fetch();
         }
 
@@ -40,7 +57,9 @@ class Wconfig extends Base
             }
 
             if($res){
-                $this->result($res,'200','操作成功','json');
+                return json(['code'=>200,'msg'=>'操作成功']);
+            }else {
+                return json(['code'=>400,'msg'=>'操作失败']);
             }
         }
     }  
@@ -49,13 +68,6 @@ class Wconfig extends Base
     //兑换地址
     public function duihuan()
     {
-        if($this->request->isGet()){
-            $id = 5;
-            $info = Db::name($this->table)->where('id',$id)->find();
-            $this->assign('info',$info);
-
-            return $this->fetch();
-        }
 
         if($this->request->isPost()){
             $content = input('post.content');
@@ -70,7 +82,9 @@ class Wconfig extends Base
             }
 
             if($res){
-                $this->result($res,'200','操作成功','json');
+                return json(['code'=>200,'msg'=>'操作成功']);
+            }else {
+                return json(['code'=>400,'msg'=>'操作失败']);
             }
         }
 
@@ -80,14 +94,6 @@ class Wconfig extends Base
     //关于我们
     public function contact()
     {
-        if($this->request->isGet()){
-            $id = 20;
-            $info = Db::name($this->table)->where('id',$id)->find();
-            $this->assign('info',$info);
-
-            return $this->fetch();
-        }
-
         if($this->request->isPost()){
             $content = input('post.content');
             $id      = input('post.id');
@@ -98,7 +104,9 @@ class Wconfig extends Base
             }
 
             if($res){
-                $this->result($res,'200','操作成功','json');
+                return json(['code'=>200,'msg'=>'操作成功']);
+            }else {
+                return json(['code'=>400,'msg'=>'操作失败']);
             }
         }
     }
@@ -107,13 +115,6 @@ class Wconfig extends Base
     //帮助中心 
     public function about()
     {
-        if($this->request->isGet()){
-            $id = 21;
-            $info = Db::name($this->table)->where('id',$id)->find();
-            $this->assign('info',$info);
-            return $this->fetch();
-        }
-
         if($this->request->isAjax()){
             $content = input('post.content');
             $id      = input('post.id');
@@ -124,7 +125,9 @@ class Wconfig extends Base
             }
 
             if($res){
-                $this->result($res,'200','操作成功','json');
+                return json(['code'=>200,'msg'=>'操作成功']);
+            }else {
+                return json(['code'=>400,'msg'=>'操作失败']);
             }
         }
     }

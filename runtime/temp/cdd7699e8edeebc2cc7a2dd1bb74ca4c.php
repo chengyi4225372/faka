@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:105:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\pay\index.html";i:1571280763;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\view\template\layout.html";i:1567134813;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\syslog\index.html";i:1565573409;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\view\template\layout.html";i:1567134813;s:106:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\view\template\data_footer.html";i:1565573409;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -137,92 +137,115 @@
             </ol>
         </section>
         <section class="content">
-            <div class="row">
+            <script src="/static/admin/plugins/laydate/laydate.js"></script>
+<div class="row">
     <div class="col-md-12">
-        <div class="box box-primary">
-            <form class="form-horizontal dataForm"  enctype="multipart/form-data">
-                <input type="hidden" id="payid" value="<?php echo $pay['id']; ?>">
-
-                <div class="box-body">
-                    <div class="fields-group">
-
-                        <div class="form-group">
-                            <label for="title" class="col-sm-2 control-label">商户id</label>
-                            <div class="col-sm-10 col-md-4">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    <input id="pid" name="pid" value="<?php echo $pay['pid']; ?>" class="form-control" >
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="title" class="col-sm-2 control-label">商户秘钥</label>
-                            <div class="col-sm-10 col-md-4">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    <input id="keys" name="keys" value="<?php echo $pay['key']; ?>" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="title" class="col-sm-2 control-label">支付地址</label>
-                            <div class="col-sm-10 col-md-4">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    <input id="url" name="url" value="<?php echo $pay['url']; ?>" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-
+        <div class="box">
+            <div class="box-body">
+                <form class="form-inline" name="searchForm" id="searchForm" action="" method="GET">
+                    <div class="form-group">
+                        <input id="start_date" style="background: #fff" readonly name="start_date" value="<?php echo !empty($start_date)?$start_date : '' ;; ?>"
+                               class=" form-control input-sm" placeholder="起始日期">
                     </div>
-                </div>
-
-                <div class="box-footer">
-                    <div class="col-sm-2">
+                    <div class="form-group">
+                        <input id="end_date" style="background: #fff" readonly name="end_date" value="<?php echo !empty($end_date)?$end_date : '' ;; ?>"
+                               class=" form-control input-sm " placeholder="截止日期">
                     </div>
-                    <div class="col-sm-10 col-md-4">
-                        <div class="btn-group">
-                            <button type="button" class="btn flat btn-info dataform-submit add-pay">保存</button>
-                        </div>
-                        <div class="btn-group">
-                            <button type="reset" class="btn flat btn-default dataform-reset">重置</button>
-                        </div>
+                    <div class="form-group" >
+                        <input value="<?php echo !empty($keywords)?$keywords : '' ;; ?>"
+                               name="keywords" id="keywords" class="form-control input-sm" placeholder="关键字">
                     </div>
-                </div>
-
-            </form>
+                    <div class="form-group">
+                        <button class="btn btn-sm btn-primary" type="submit"><i class="fa fa-search"></i> 查询
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <button onclick="clear_form()" class="btn btn-sm btn-default" type="button">
+                            <i class="fa  fa-eraser"></i> 清空查询
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-body table-responsive">
+                <table id="datalist" class="table table-hover table-bordered datatable" width="100%">
+                    <thead>
+                    <tr>
+                        <th>日志ID</th>
+                        <th>错误消息</th>
+                        <th>所在文件</th>
+                        <th>所在行数</th>
+                        <th>记录日期</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php if(is_array($list) || $list instanceof \think\Collection || $list instanceof \think\Paginator): if( count($list)==0 ) : echo "" ;else: foreach($list as $key=>$item): ?>
+                    <tr>
+                        <td><?php echo $item['id']; ?></td>
+                        <td class="td-log" title="<?php echo $item['message']; ?>"><?php echo $item['message']; ?></td>
+                        <td  class="td-log" title="<?php echo $item['file']; ?>"><?php echo $item['file']; ?></td>
+                        <td><?php echo $item['line']; ?></td>
+                        <td><?php echo $item['create_time']; ?></td>
+                        <td class="td-do">
+                            <a data-id="<?php echo $item['id']; ?>" data-url="trace" data-confirm="2" data-type="2"
+                               class="btn btn-default btn-xs AjaxButton" title="查看Trace">
+                                <i class="fa fa-eye"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <?php endforeach; endif; else: echo "" ;endif; ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="box-footer">
+    <?php echo $page; ?>
+    <label class="control-label pull-right" style="margin-right: 10px; font-weight: 100;">
+        <?php if(isset($total)): ?>
+        <small>共<?php echo $total; ?>条记录</small>
+        &nbsp;
+        <?php endif; ?>
+        <small>每页显示</small>
+        &nbsp;
+        <select class="input-sm" onchange="changePageRows(this)">
+            <option value="10" <?php if($webData['list_rows']==10): ?>selected=""<?php endif; ?>>10</option>
+            <option value="20" <?php if($webData['list_rows']==20): ?>selected=""<?php endif; ?>>20</option>
+            <option value="30" <?php if($webData['list_rows']==30): ?>selected=""<?php endif; ?>>30</option>
+            <option value="50" <?php if($webData['list_rows']==50): ?>selected=""<?php endif; ?>>50</option>
+            <option value="100" <?php if($webData['list_rows']==100): ?>selected=""<?php endif; ?>>100</option>
+        </select>
+        &nbsp;
+        <small>条记录</small>
+    </label>
+</div>
         </div>
     </div>
 </div>
 
 <script>
-    $('.add-pay').click(function(){
-
-        var pid   = $('#pid').val();
-        var urls  = $('#url').val();
-        var id    = $("#payid").val();
-        var keys   = $("#keys").val();
-
-        var url = "<?php echo url('pay/index'); ?>";
-
-
-        $.post(url,{'id':id,'url':urls,'pid':pid,'key':keys},function(ret){
-
-            if(ret.code == 200){
-                layer.msg(ret.msg,{time:2000},function(){
-                    parent.location.reload();
-                });
-            };
-
-            if(ret.code == 400){
-                layer.msg(ret.msg,{time:2000},function(){
-                    parent.location.reload();
-                });
-            };
-        },'json')
-    });
+    var start = {
+        elem: '#start_date',
+        max: laydate.now(),
+        istoday: false,
+        choose: function (datas) {
+            end.min = datas; //开始日选好后，重置结束日的最小日期
+            end.start = datas; //将结束日的初始值设定为开始日
+        }
+    };
+    var end = {
+        elem: '#end_date',
+        max: laydate.now(),
+        choose: function (datas) {
+            start.max = datas; //结束日选好后，重置开始日的最大日期
+        }
+    };
+    laydate(start);
+    laydate(end);
 </script>
         </section>
     </div>

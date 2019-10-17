@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:109:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\wconfig\index.html";i:1566955126;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\view\template\layout.html";i:1567134813;s:106:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\view\template\form_header.html";i:1565573409;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:109:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\wconfig\index.html";i:1571281144;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\view\template\layout.html";i:1567134813;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -138,64 +138,240 @@
         </section>
         <section class="content">
             <div class="row">
-    <div class="col-md-12">
-        <div class="box box-primary">
-            <?php if($showFormHeader): ?>
-<div class="box-header with-border">
-    <?php if($showFormHeaderBackButton): ?>
-    <div class="btn-group">
-        <a class="btn flat btn-sm btn-default form-history-back">
-            <i class="fa fa-arrow-left"></i>
-            返回
-        </a>
-    </div>
-    <?php endif; ?>
-</div>
-<?php endif; ?>
-            <form  class="form-horizontal" method="post"  enctype="multipart/form-data">
 
-                <input type="hidden" id="id" value="<?php echo $info['id']; ?>">
-                <div class="box-body">
-                    <div class="fields-group">
-                        <div class="form-group">
-                            <div class="col-sm-20">
-                       <textarea type="text" name="content" id="editor" placeholder="请输入内容"><?php echo htmlspecialchars_decode($info['content']); ?></textarea>
+    <div class="col-md-9">
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#activity" data-toggle="tab" aria-expanded="true">首页公告</a></li>
+                <li class=""><a href="#duihuan" data-toggle="tab" aria-expanded="false">兑换地址</a></li>
+                <li class=""><a href="#contact" data-toggle="tab" aria-expanded="false">关于我们</a></li>
+                <li class=""><a href="#help" data-toggle="tab" aria-expanded="false">帮助中心</a></li>
+                <li class=""><a href="#set" data-toggle="tab" aria-expanded="false">支付参数</a></li>
+            </ul>
+            <div class="tab-content">
+               <div class="tab-pane active" id="activity">
+
+                   <form  class="form-horizontal" method="post"  enctype="multipart/form-data">
+
+                       <input type="hidden" id="id" value="<?php echo $info['id']; ?>">
+                       <div class="box-body">
+                           <div class="fields-group">
+                               <div class="form-group">
+                                   <div class="col-sm-20">
+                                       <textarea type="text" name="content" id="editor" placeholder="请输入内容"><?php echo htmlspecialchars_decode($info['content']); ?></textarea>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+
+                       <div class="box-footer">
+
+                           <div class="col-sm-2">
+                           </div>
+                           <div class="col-sm-10 col-md-4">
+
+                               <div class="btn-group">
+                                   <button type="button" class="btn flat btn-info dataform-submit shouye">
+                                       保存
+                                   </button>
+                               </div>
+
+                               <div class="btn-group">
+                                   <button type="reset" class="btn flat btn-default dataform-reset">
+                                       重置
+                                   </button>
+                               </div>
+
+                           </div>
+                       </div>
+
+                   </form>
+
+                </div>
+
+                <div class="tab-pane" id="duihuan">
+                    <form  class="form-horizontal" method="post"  enctype="multipart/form-data">
+                        <input type="hidden"  id="did" value="<?php echo $infod['id']; ?>">
+
+                        <div class="box-body">
+                            <div class="fields-group">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                          <textarea type="text" name="content" id="editord" placeholder="请输入内容"><?php echo htmlspecialchars_decode($infod['content']); ?></textarea>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+
+
+
+                        <div class="box-footer">
+
+                            <div class="col-sm-2">
+                            </div>
+                            <div class="col-sm-10 col-md-4">
+
+                                <div class="btn-group">
+                                    <button type="button" class="btn flat btn-info dataform-submit dui">
+                                        保存
+                                    </button>
+                                </div>
+
+                                <div class="btn-group">
+                                    <button type="reset" class="btn flat btn-default dataform-reset">
+                                        重置
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
                 </div>
 
+                <div class="tab-pane" id="contact">
+                    <form class="form-horizontal" method="post"  target="_blank" enctype="multipart/form-data">
+                        <input type="hidden"  id="cid" value="<?php echo $infoc['id']; ?>">
 
-
-                <div class="box-footer">
-
-                    <div class="col-sm-2">
-                    </div>
-                    <div class="col-sm-10 col-md-4">
-
-                        <div class="btn-group">
-                            <button type="button" class="btn flat btn-info dataform-submit">
-                                保存
-                            </button>
+                        <div class="box-body">
+                            <div class="fields-group">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                          <textarea type="text" name="content" id="editorc" placeholder="请输入内容"><?php echo htmlspecialchars_decode($infoc['content']); ?></textarea>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="btn-group">
-                            <button type="reset" class="btn flat btn-default dataform-reset">
-                                重置
-                            </button>
+                        <div class="box-footer">
+
+                            <div class="col-sm-2">
+                            </div>
+                            <div class="col-sm-10 col-md-4">
+
+                                <div class="btn-group">
+                                    <button type="button" class="btn flat btn-info dataform-submit contact">
+                                        保存
+                                    </button>
+                                </div>
+
+                                <div class="btn-group">
+                                    <button type="reset" class="btn flat btn-default dataform-reset">
+                                        重置
+                                    </button>
+                                </div>
+
+                            </div>
                         </div>
 
-                    </div>
+                    </form>
                 </div>
 
+                <div class="tab-pane" id="help">
+                    <form  class="form-horizontal" method="post"  target="_blank" enctype="multipart/form-data">
+                        <input type="hidden"  id="aid" value="<?php echo $infoa['id']; ?>">
 
-            </form>
+                        <div class="box-body">
+                            <div class="fields-group">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                          <textarea type="text" name="content" id="editora" placeholder="请输入内容"><?php echo htmlspecialchars_decode($infoa['content']); ?></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="box-footer">
+
+                            <div class="col-sm-2">
+                            </div>
+                            <div class="col-sm-10 col-md-4">
+
+                                <div class="btn-group">
+                                    <button type="button" class="btn flat btn-info dataform-submit about">
+                                        保存
+                                    </button>
+                                </div>
+
+                                <div class="btn-group">
+                                    <button type="reset" class="btn flat btn-default dataform-reset">
+                                        重置
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+                <div class="tab-pane" id="set">
+                    <form class="form-horizontal dataForm"  enctype="multipart/form-data">
+                        <input type="hidden" id="payid" value="<?php echo $pay['id']; ?>">
+
+                        <div class="box-body">
+                            <div class="fields-group">
+
+                                <div class="form-group">
+                                    <label for="title" class="col-sm-2 control-label">商户id</label>
+                                    <div class="col-sm-10 col-md-4">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                            <input id="pid" name="pid" value="<?php echo $pay['pid']; ?>" class="form-control" >
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="title" class="col-sm-2 control-label">商户秘钥</label>
+                                    <div class="col-sm-10 col-md-4">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                            <input id="keys" name="keys" value="<?php echo $pay['key']; ?>" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="title" class="col-sm-2 control-label">支付地址</label>
+                                    <div class="col-sm-10 col-md-4">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                            <input id="url" name="url" value="<?php echo $pay['url']; ?>" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="box-footer">
+                            <div class="col-sm-2">
+                            </div>
+                            <div class="col-sm-10 col-md-4">
+                                <div class="btn-group">
+                                    <button type="button" class="btn flat btn-info dataform-submit add-pay">保存</button>
+                                </div>
+                                <div class="btn-group">
+                                    <button type="reset" class="btn flat btn-default dataform-reset">重置</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+
         </div>
+
     </div>
 </div>
+
 <script type="text/javascript" charset="utf-8" src="/static/admin/plugins/ueditor/ueditor.config.js"></script>
 <script type="text/javascript" charset="utf-8" src="/static/admin/plugins/ueditor/ueditor.all.js"> </script>
 <script type="text/javascript" charset="utf-8" src="/static/admin/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
+<!--公告-->
 <script>
     var url="<?php echo url('extend/ueserver'); ?>";
     //实例化编辑器
@@ -205,7 +381,7 @@
         initialFrameHeight:400,
     });
 
-    $(".dataform-submit").click(function(){
+    $(".shouye").click(function(){
 
 
         var   content = UE.getEditor('editor').getContent();
@@ -218,7 +394,13 @@
             data:{content:content,id:id},
             dataType:'json',
             success:function(ret){
-                if(ret.code == '200'){
+                if(ret.code == 200){
+                    layer.msg(ret.msg,{time:2000},function(){
+                        parent.location.reload();
+                    })
+                }
+
+                if(ret.code == 400){
                     layer.msg(ret.msg,{time:2000},function(){
                         parent.location.reload();
                     })
@@ -233,6 +415,170 @@
 
     })
 
+</script>
+<!-- 兑换-->
+<script>
+    var url="<?php echo url('extend/ueserver'); ?>";
+    //实例化编辑器
+    var ue = UE.getEditor('editord',{
+        serverUrl :url,
+        initialFrameWidth:1000,
+        initialFrameHeight:400,
+    });
+
+    $(".dui").click(function(){
+
+
+        var   content = UE.getEditor('editord').getContent();
+
+        var    did     = $("#did").val();
+
+        $.ajax({
+            url:"<?php echo url('wconfig/duihuan'); ?>",
+            type:'post',
+            data:{content:content,id:did},
+            dataType:'json',
+            success:function(ret){
+                if(ret.code == 200){
+                    layer.msg(ret.msg,{time:2000},function(){
+                        parent.location.reload();
+                    })
+                }
+
+                if(ret.code == 400){
+                    layer.msg(ret.msg,{time:2000},function(){
+                        parent.location.reload();
+                    })
+                }
+
+            },
+            error:function(ret){
+                console.log();
+            }
+        })
+
+
+
+    })
+
+
+</script>
+<!-- 关于我们-->
+<script>
+    var url="<?php echo url('extend/ueserver'); ?>";
+    //实例化编辑器
+    var ue = UE.getEditor('editorc',{
+        serverUrl :url,
+        initialFrameWidth:1000,
+        initialFrameHeight:400,
+    });
+
+
+    $(".contact").click(function(){
+
+
+        var   content = UE.getEditor('editorc').getContent();
+
+        var   cid     = $("#cid").val();
+
+        $.ajax({
+            url:"<?php echo url('wconfig/contact'); ?>",
+            type:'post',
+            data:{content:content,id:cid},
+            dataType:'json',
+            success:function(ret){
+                if(ret.code == 200){
+                    layer.msg(ret.msg,{time:2000},function(){
+                        parent.location.reload();
+                    })
+                }
+                if(ret.code == 400){
+                    layer.msg(ret.msg,{time:2000},function(){
+                        parent.location.reload();
+                    })
+                }
+            },
+            error:function(ret){
+                console.log();
+            }
+        })
+
+
+
+    })
+</script>
+<!--帮助中心-->
+<script>
+    var url="<?php echo url('extend/ueserver'); ?>";
+    //实例化编辑器
+    var ue = UE.getEditor('editora',{
+        serverUrl :url,
+        initialFrameWidth:1000,
+        initialFrameHeight:400,
+    });
+
+
+    $(".about").click(function(){
+
+
+        var   content = UE.getEditor('editora').getContent();
+
+        var    aid     = $("#aid").val();
+
+        $.ajax({
+            url:"<?php echo url('wconfig/about'); ?>",
+            type:'post',
+            data:{content:content,id:aid},
+            dataType:'json',
+            success:function(ret){
+                if(ret.code == 200){
+                    layer.msg(ret.msg,{time:2000},function(){
+                        parent.location.reload();
+                    })
+                }
+
+                if(ret.code == 400){
+                    layer.msg(ret.msg,{time:2000},function(){
+                        parent.location.reload();
+                    })
+                }
+            },
+            error:function(ret){
+                console.log();
+            }
+        })
+
+
+
+    })
+</script>
+<!--支付参数-->
+<script>
+    $('.add-pay').click(function(){
+
+        var pid   = $('#pid').val();
+        var urls  = $('#url').val();
+        var id    = $("#payid").val();
+        var keys   = $("#keys").val();
+
+        var url = "<?php echo url('pay/index'); ?>";
+
+
+        $.post(url,{'id':id,'url':urls,'pid':pid,'key':keys},function(ret){
+
+            if(ret.code == 200){
+                layer.msg(ret.msg,{time:2000},function(){
+                    parent.location.reload();
+                });
+            };
+
+            if(ret.code == 400){
+                layer.msg(ret.msg,{time:2000},function(){
+                    parent.location.reload();
+                });
+            };
+        },'json')
+    });
 </script>
         </section>
     </div>

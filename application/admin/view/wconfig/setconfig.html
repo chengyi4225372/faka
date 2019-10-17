@@ -326,7 +326,7 @@
                 });
             };
             if(ret.code == '400'){
-                layer.msg(layer.msg,{time:2000},function(){
+                layer.msg(ret.msg,{time:2000},function(){
                     parent.location.reload();
                 })
             }

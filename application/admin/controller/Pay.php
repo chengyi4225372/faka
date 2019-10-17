@@ -11,8 +11,8 @@ class Pay extends Base
 
     public function index(){
         if($this->request->isGet()){
-         $info = Db::name($this->table)->where('id',7)->find();
-         $this->assign('info',$info);
+         $pay = Db::name($this->table)->where('id',7)->find();
+         $this->assign('pay',$pay);
          return $this->fetch();
         }
 
