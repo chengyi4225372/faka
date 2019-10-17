@@ -4,8 +4,9 @@
  * 功能：彩虹易支付接口请求提交类
  * 详细：构造易支付接口表单HTML文本，获取远程HTTP数据
  */
-require_once("epay_core.function.php");
-require_once("epay_md5.function.php");
+namespace pay;
+require_once(__DIR__."epay_core.function.php");
+require_once(__DIR__."epay_md5.function.php");
 
 class AlipaySubmit {
 

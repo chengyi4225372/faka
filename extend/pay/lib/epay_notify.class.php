@@ -4,9 +4,10 @@
  * 功能：彩虹易支付通知处理类
  * 详细：处理易支付接口通知返回
  */
+namespace pay;
 
-require_once("epay_core.function.php");
-require_once("epay_md5.function.php");
+require_once(__DIR__."epay_core.function.php");
+require_once(__DIR__."epay_md5.function.php");
 
 class AlipayNotify {
 

@@ -159,7 +159,7 @@
             <div class="from_in_5" style="width:150px">
 <!--                <form id="payform" method="post" action="/pay">-->
                     <input type="hidden" name="id" value="{$order.id} ">
-                    <input type="hidden" name="payment" id="payment">
+                    <input type="hidden" name="payment" id="{$order.countpay}">
 <!--                </form>-->
                 <input type="button"  class="button button-3d button-primary button-rounded button-small kuan"  value="确认购买" />
 
@@ -176,22 +176,19 @@
 </div>
 <script>
 
-
-
    $('.kuan').click(function(){
       var data = {};
-      data.pay = $('ul li.curr').attr('data-paytype'); //支付类型
+      data.type = $('ul li.curr').attr('data-paytype'); //支付类型
       data.goodnames = $('.paynames').text();//商品名称
       data.order_no  = $('.order').text();//商户订单号
-      data.paynum    = $('.countpay').text(); //商品总价
-      data.pid       = 4229; //商户id
-      data.sign      = '5p6E61Q4hhPu21PUQqxPQgPv5E2UqQxg'; //秘钥
-      // data.pid       = 50; //商户id
-      // data.sign      = "2bzWQqfnhH62363ZHcCQgcHwCW86GjGM"; //秘钥
-       data.sitename  = 'xxxx';
+      data.paynum    = $('#payment').val(); //商品总价
+      data.sitename  = '栗子发卡网';
 
-      var url = "{:url('pays/return_url')}";
+      var  url = "{:url('pays/index')}";
 
+      $.post(url,data,function(ret){
+           console.log(ret);
+      })
 
 
    })

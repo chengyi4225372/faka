@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:105:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\buy.html";i:1571213259;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:105:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\buy.html";i:1571296951;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
 
 <!DOCTYPE html> 
 
@@ -249,7 +249,7 @@
             <div class="from_in_5" style="width:150px">
 <!--                <form id="payform" method="post" action="/pay">-->
                     <input type="hidden" name="id" value="<?php echo $order['id']; ?> ">
-                    <input type="hidden" name="payment" id="payment">
+                    <input type="hidden" name="payment" id="<?php echo $order['countpay']; ?>">
 <!--                </form>-->
                 <input type="button"  class="button button-3d button-primary button-rounded button-small kuan"  value="确认购买" />
 
@@ -269,23 +269,19 @@
 
 
    $('.kuan').click(function(){
-      var notify_url = "<?php echo url('pays/notify_url'); ?>" ;
-
-      var return_url = "<?php echo url('pays/return_url'); ?>";
-
       var data = {};
-      data.pay = $('ul li.curr').attr('data-paytype'); //支付类型
+      data.type = $('ul li.curr').attr('data-paytype'); //支付类型
       data.goodnames = $('.paynames').text();//商品名称
       data.order_no  = $('.order').text();//商户订单号
-      data.paynum    = $('.countpay').text(); //商品总价
-      // data.pid       = 4229; //商户id
-      //data.sign      = '5p6E61Q4hhPu21PUQqxPQgPv5E2UqQxg'; //秘钥
-       data.pid       = 50; //商户id
-       data.sign      = "2bzWQqfnhH62363ZHcCQgcHwCW86GjGM"; //秘钥
-       data.sitename  = 'xxxx';
+      data.paynum    = $('#payment').val(); //商品总价
+      data.sitename  = '栗子发卡网';
 
+      var  url = "<?php echo url('pays/index'); ?>";
 
-      window.location.href = "http://pays.sddyun.cn/submit.php?pid="+data.pid+"&type="+data.pay+"&out_trade_no="+data.order_no+"&notify_url="+notify_url+"&return_url="+return_url+"&name="+data.goodnames+"&money="+data.paynum+"&sitename="+data.sitename+"&sign="+data.sign+"&sign_type=MD5"
+      $.post(url,data,function(ret){
+           console.log(ret);
+      })
+
 
    })
 
