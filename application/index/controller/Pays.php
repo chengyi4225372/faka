@@ -2,9 +2,12 @@
 namespace app\index\controller;
 
 use think\Controller;
-use think\Db;
 use pay\AlipaySubmit;
 use pay\AlipayNotify;
+use think\Db;
+use think\Loader;
+
+
 
 class Pays extends Controller
 {
@@ -58,7 +61,7 @@ class Pays extends Controller
             $sitename = input('post.sitename','','trim');
             //构造要请求的参数数组，无需改动
             $parameter = array(
-                "pid" => trim($pay['pid']),
+                "pid" =>$pay['pid'],
                 "type" => $type,
                 "notify_url"	=> $notify_url,
                 "return_url"	=> $return_url,
@@ -69,7 +72,8 @@ class Pays extends Controller
             );
 
             //建立请求
-            $alipaySubmit = new AlipaySubmit($this->alipay_config);
+            Loader::import("AlipaySubmit",EXTEND_PATH);
+            $alipaySubmit = new \AlipaysSubmit($this->alipay_config);
             $html_text = $alipaySubmit->buildRequestForm($parameter);
             echo $html_text;
         }
@@ -78,12 +82,36 @@ class Pays extends Controller
 
 
     public function return_url(){
+        Loader::import("AlipayNotify",EXTEND_PATH);
+        $alipayNotify = new \AlipayNotify($this->alipay_config);
+        $verify_result = $alipayNotify->verifyReturn();
+        if($verify_result) {//验证成功
+            //商户订单号
+            $out_trade_no = $_GET['out_trade_no'];
+            //支付宝交易号
+            $trade_no = $_GET['trade_no'];
+            //交易状态
+            $trade_status = $_GET['trade_status'];
+            //支付方式
+            $type = $_GET['type'];
 
+            if($_GET['trade_status'] == 'TRADE_SUCCESS') {
+                //判断该笔订单是否在商户网站中已经做过处理
+                //如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
+                //如果有做过处理，不执行商户的业务程序
+            } else {
+                echo "trade_status=".$_GET['trade_status'];
+            }
+            echo "验证成功<br />";
+        } else {
+            echo "验证失败";
+        }
     }
 
 
     public function notify_url(){
-        $alipayNotify = new AlipayNotify($this->alipay_config);
+        Loader::import("AlipayNotify",EXTEND_PATH);
+        $alipayNotify = new \AlipayNotify($this->alipay_config);
         $verify_result = $alipayNotify->verifyNotify();
 
         if($verify_result) {//验证成功

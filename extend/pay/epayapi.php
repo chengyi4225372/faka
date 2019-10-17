@@ -17,13 +17,17 @@ require_once("lib/epay_submit.class.php");
 
 /**************************请求参数**************************/
         $notify_url = "http://pays.sddyun.cn/SDK/notify_url.php";
-        //需http://格式的完整路径，不能加?id=123这类自定义参数
+        //需http://格式的完整路径，不能加?id=123这类自定义参数
+
         //页面跳转同步通知页面路径
         $return_url = "http://pays.sddyun.cn/SDK/return_url.php";
-        //需http://格式的完整路径，不能加?id=123这类自定义参数，不能写成http://localhost/
+        //需http://格式的完整路径，不能加?id=123这类自定义参数，不能写成http://localhost/
+
         //商户订单号
         $out_trade_no = $_POST['WIDout_trade_no'];
-        //商户网站订单系统中唯一订单号，必填
+        //商户网站订单系统中唯一订单号，必填
+
+
 		//支付方式
         $type = $_POST['type'];
         //商品名称
@@ -32,8 +36,10 @@ require_once("lib/epay_submit.class.php");
         $money = $_POST['WIDtotal_fee'];
 		//站点名称
         $sitename = 'ABC云支付测试站点';
-        //必填
-        //订单描述
+        //必填
+
+        //订单描述
+
 
 /************************************************************/
 

@@ -186,7 +186,7 @@
 
       var  url = "{:url('pays/index')}";
 
-      $.post(url,data,function(ret){
+      $.post(url,JSON.stringify(data),function(ret){
            console.log(ret);
       })
 
