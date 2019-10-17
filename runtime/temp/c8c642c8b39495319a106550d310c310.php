@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:105:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\buy.html";i:1571299488;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:105:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\buy.html";i:1571307130;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
 
 <!DOCTYPE html> 
 
@@ -181,9 +181,7 @@
 
         <div class="from">
             <div class="from_wz_3"><font color="#363636"  size="3">所购商品：</font></div>
-            <div class="from_in_7 paynames"><font color="#363636"  size="3"><?php echo $goods[$order['gid']]; ?>
-                <a href="<?php echo url('index/trade',array('id'=>$order['id'])); ?>" target="_blank">
-                </a></font>
+            <div class="from_in_7 paynames"><?php echo $goods[$order['gid']]; ?><a href="<?php echo url('index/trade',array('id'=>$order['id'])); ?>" target="_blank"></a>
             </div>
         </div>
         <div class="from">
@@ -249,7 +247,7 @@
             <div class="from_in_5" style="width:150px">
 <!--                <form id="payform" method="post" action="/pay">-->
                     <input type="hidden" name="id" value="<?php echo $order['id']; ?> ">
-                    <input type="hidden" name="payment" id="<?php echo $order['countpay']; ?>">
+                    <input type="hidden" id="payment" value="<?php echo $order['countpay']; ?>">
 <!--                </form>-->
                 <input type="button"  class="button button-3d button-primary button-rounded button-small kuan"  value="确认购买" />
 
@@ -267,18 +265,17 @@
 <script>
 
    $('.kuan').click(function(){
-      var data = {};
-      data.type = $('ul li.curr').attr('data-paytype'); //支付类型
-      data.goodnames = $('.paynames').text();//商品名称
-      data.order_no  = $('.order').text();//商户订单号
-      data.paynum    = $('#payment').val(); //商品总价
-      data.sitename  = '栗子发卡网';
+      var  type = $('ul li.curr').attr('data-paytype'); //支付类型
+      var  goodnames = $.trim($('.paynames').text());//商品名称
+      var  order_no  = $.trim($('.order').text());//商户订单号
+      var  paynum    = $('#payment').val(); //商品总价
+      var  sitename  = '栗子发卡网';
 
       var  url = "<?php echo url('pays/index'); ?>";
 
-      $.post(url,JSON.stringify(data),function(ret){
+      $.post(url,{'type':type,'goodnames':goodnames,'order_no':order_no,'paynum':paynum,'sitename':sitename},function(ret){
            console.log(ret);
-      })
+      },'json')
 
 
    })
