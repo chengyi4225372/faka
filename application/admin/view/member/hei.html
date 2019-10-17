@@ -1,0 +1,76 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-body">
+                <form class="form-inline" name="searchForm" id="searchForm" action="{:url('member/hei')}" method="GET">
+                    <div class="form-group">
+                        <input value="{$Think.get.keywords ? $Think.get.keywords : '' ;}"
+                               name="keywords" id="keywords" class="form-control input-sm" placeholder="帐号/昵称/手机号/邮箱">
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-sm btn-primary" type="submit"><i class="fa fa-search"></i> 查询
+                        </button>
+                    </div>
+
+                    <div class="form-group">
+                        <button onclick="clear_form()" class="btn btn-sm btn-" type="button"><i
+                                class="fa  fa-eraser"></i> 清空查询
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-body table-responsive">
+                <table class="table table-hover table-bordered datatable" width="100%">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>账号</th>
+                        <th>余额</th>
+                        <th>qq账号</th>
+                        <th>邮箱</th>
+                        <th>注册时间</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    {volist name='list' id='vo'}
+                    <tbody>
+                    <tr>
+                        <td>{$vo.id}</td>
+                        <td>{$vo.account}</td>
+                        <td>{$vo.money|default='0.00'}</td>
+                        <td>{$vo.qq|default=''}</td>
+                        <td>{$vo.email|default=''}</td>
+                        <td>{$vo.create_time}</td>
+                        <td>
+                            {eq name='vo.status' value='1'}
+                            有效客户
+                            {else  /}
+                            无效客户
+                            {/eq}
+                        </td>
+                        <td class="td-do">
+                            <a href="{:url('member/edit',array('id'=>$vo.id))}"
+                               class="btn btn-primary btn-xs" title="修改">
+                                <i class="fa fa-pencil">编辑</i>
+                            </a>
+                            <a class="btn btn-danger btn-xs" title="删除"  href="{:url('member/del',array('id'=>$vo.id))}">
+                                <i class="fa fa-trash">删除</i>
+                            </a>
+                        </td>
+
+                    </tr>
+                    </tbody>
+                    {/volist}
+                </table>
+            </div>
+        </div>
+        {$list->render()}

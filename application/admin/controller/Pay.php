@@ -29,7 +29,7 @@ class Pay extends Base
             }
 
             $res = Db::name($this->table)->where('id',$id)->update(['pid'=>$pid,'url'=>$url,'key'=>$key]);
-            
+
            if($res !==false){
                return json(['code'=>200,'msg'=>'操作成功']);
            }else {

@@ -22,11 +22,14 @@ class Member extends Base
        $keyword = input('get.keywords','','trim');
 
        if(empty($keyword) || $keyword == ''){
-           $list = Db::name($this->table)->order('id desc')->paginate(10);
+           $list = Db::name($this->table)->where('status',1)->order('id desc')->paginate(10);
        }
 
       if(!empty($keyword) || $keyword != ''){
-          $list = Db::name($this->table)->where(['account|email|qq'=>['like','%'.$keyword.'%']])->order('id desc')->paginate(10);
+          $list = Db::name($this->table)
+              ->where(['account|email|qq'=>['like','%'.$keyword.'%']])
+              ->where('status',1)
+              ->order('id desc')->paginate(10);
       }
 
        $this->assign('list',$list);
@@ -71,7 +74,6 @@ class Member extends Base
 
   }
 
-
   public function del()
   {
       $id  = input('get.id','','trim');
@@ -87,5 +89,32 @@ class Member extends Base
          $this->error('删除失败');
       }
   }
+
+  public function hei(){
+      if($this->request->isGet()){
+          $keyword = input('get.keywords','','trim');
+
+          if(empty($keyword) || $keyword == ''){
+              $list = Db::name($this->table)->where('status',0)->order('id desc')->paginate(10);
+          }
+
+          if(!empty($keyword) || $keyword != ''){
+              $list = Db::name($this->table)
+                  ->where(['account|email|qq'=>['like','%'.$keyword.'%']])
+                  ->where('status',0)
+                  ->order('id desc')
+                  ->paginate(10);
+          }
+
+          $this->assign('list',$list);
+          return $this->fetch();
+      }
+
+      if($this->request->isPost()){
+
+      }
+  }
+
+
 
 }
