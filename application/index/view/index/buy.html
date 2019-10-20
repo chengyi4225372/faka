@@ -175,7 +175,7 @@
 <script>
 
    $('.kuan').click(function(){
-      var  type = $('ul li.curr').attr('data-paytype'); //支付类型
+      var  types = $('ul li.curr').attr('data-paytype'); //支付类型
       var  goodnames = $.trim($('.paynames').text());//商品名称
       var  order_no  = $.trim($('.order').text());//商户订单号
       var  paynum    = $('#payment').val(); //商品总价
@@ -183,10 +183,7 @@
 
       var  url = "{:url('pays/index')}";
 
-      $.post(url,{'type':type,'goodnames':goodnames,'order_no':order_no,'paynum':paynum,'sitename':sitename},function(ret){
-           console.log(ret);
-      },'json')
-
+      window.location.href=url+"?types="+types+"&goodnames="+goodnames+"&order_no="+order_no+"&paynum="+paynum+"&sitename="+sitename;
 
    })
 
