@@ -6,8 +6,8 @@
  */
 namespace pay\lib;
 
-require_once("epay_core.function.php");
-require_once("epay_md5.function.php");
+require_once(__DIR__."/epay_core.function.php");
+require_once(__DIR__."/epay_md5.function.php");
 
 class AlipayNotify {
 
@@ -27,8 +27,7 @@ class AlipayNotify {
 	function verifyNotify(){
 		if(empty($_GET)) {//判断POST来的数组是否为空
 			return false;
-		}
-		else {
+		} else {
 			//生成签名结果
 			$isSign = $this->getSignVeryfy($_GET, $_GET["sign"]);
 			//获取支付宝远程服务器ATN结果（验证是否是支付宝发来的消息）

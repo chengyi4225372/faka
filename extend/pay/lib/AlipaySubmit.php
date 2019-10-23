@@ -5,8 +5,8 @@
  * 详细：构造易支付接口表单HTML文本，获取远程HTTP数据
  */
 namespace pay\lib;
-require_once("epay_core.function.php");
-require_once("epay_md5.function.php");
+require_once(__DIR__."/epay_core.function.php");
+require_once(__DIR__."/epay_md5.function.php");
 
 class AlipaySubmit {
 
@@ -91,8 +91,11 @@ class AlipaySubmit {
         $sHtml = $sHtml."<input type='submit' value='".$button_name."'></form>";
 		
 		$sHtml = $sHtml."<script>document.forms['alipaysubmit'].submit();</script>";
+
+
 		
 		return $sHtml;
+
 	}
 }
 ?>
