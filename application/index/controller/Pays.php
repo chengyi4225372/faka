@@ -37,8 +37,8 @@ class Pays extends Controller
 
     public function index(){
             $pay = Db::name($this->pay)->order('id desc')->find();
-            $return_url =
-            $notify_url = ;
+            $return_url = $this->return_url();
+            $notify_url = $this->notify_url();
             $out_trade_no = input('get.order_no','','trim');
             $type = input('get.types','','trim');
             $name = input('get.goodnames','','trim');

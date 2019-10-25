@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:105:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\buy.html";i:1571307130;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:105:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\buy.html";i:1571818260;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
 
 <!DOCTYPE html> 
 
@@ -265,7 +265,7 @@
 <script>
 
    $('.kuan').click(function(){
-      var  type = $('ul li.curr').attr('data-paytype'); //支付类型
+      var  types = $('ul li.curr').attr('data-paytype'); //支付类型
       var  goodnames = $.trim($('.paynames').text());//商品名称
       var  order_no  = $.trim($('.order').text());//商户订单号
       var  paynum    = $('#payment').val(); //商品总价
@@ -273,10 +273,7 @@
 
       var  url = "<?php echo url('pays/index'); ?>";
 
-      $.post(url,{'type':type,'goodnames':goodnames,'order_no':order_no,'paynum':paynum,'sitename':sitename},function(ret){
-           console.log(ret);
-      },'json')
-
+      window.location.href=url+"?types="+types+"&goodnames="+goodnames+"&order_no="+order_no+"&paynum="+paynum+"&sitename="+sitename;
 
    })
 
