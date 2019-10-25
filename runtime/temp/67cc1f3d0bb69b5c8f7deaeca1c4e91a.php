@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:105:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\two\index.html";i:1571195028;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombhead.html";i:1571190314;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombfoot.html";i:1571190465;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:105:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\two\index.html";i:1571992802;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombhead.html";i:1571190314;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombfoot.html";i:1571190465;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -62,26 +62,24 @@
 
     <div class="am-show-portrait">
         <ul class="am-avg-sm-4 am-avg-md-4 am-avg-lg-4 am-thumbnails" style="text-align:center;margin-top: 10px;">
-            <li><a href="javascript: void(0)" data-am-modal="{target: '#my-alerts'}"> <svg class="icon" aria-hidden="true">
+            <li><a href="javascript: void(0)" data-am-modal="{target: '#my-alerts'}">
+                <svg class="icon" aria-hidden="true">
                 <use xlink:href="#icon-xingzhuanggongnengtubiao-"></use>
             </svg><br>订单查询</a></li>
             <li><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=26591626&amp;site=qq&amp;menu=yes"><svg class="icon" aria-hidden="true">
                 <use xlink:href="#icon-icon_kefu"></use>
             </svg><br>联系客服</a></li>
-            <li><a href="/user"><svg class="icon" aria-hidden="true">
+            <li><a href="<?php echo url('login/login'); ?>"><svg class="icon" aria-hidden="true">
                 <use xlink:href="#icon-filedicon_memberco"></use>
             </svg><br>会员中心</a></li>
-            <li><a href="/help"><svg class="icon" aria-hidden="true">
+            <li><a href="<?php echo url('two/help'); ?>"><svg class="icon" aria-hidden="true">
                 <use xlink:href="#icon-bangzhuyufankui"></use>
             </svg><br>帮助中心</a></li>
         </ul>
     </div>
     <div class="am-panel am-panel-default" style="margin:5px 0 5px 0;border-radius: 0px">
-        <div class="am-panel-bd liebiaocatname"><p>
-            <span style="font-size:18px;color:#E53333;"><strong></strong></span></p><p><strong><span style="color:#d35400;"><span style="font-size:18px;"><strong>本站是栗子发卡系统官方演示网站，可进行支付测试，建议支付时使用支付宝或者微信进行测试！！！</strong></span></span></strong></p><strong>
-
-            <p><span style="color:#8e44ad;"><span style="font-size:18px;"><strong>所有商品只供测试，无实际作用！！！&nbsp; </strong></span></span><span style="color:#e74c3c;"><span style="font-size:18px;"><strong>发卡授权购买搭建：<a href="https://www.17faka.com/build.html" target="_blank">https://www.17faka.com/build.html</a></strong></span></span></p></strong>
-            <p></p>
+        <div class="am-panel-bd liebiaocatname">
+            <p><?php echo htmlspecialchars_decode($indexs['content']); ?></p>
         </div>
     </div>
     <div class="goods">
@@ -97,7 +95,7 @@
                             <span class="pr-xl am-badge am-badge-danger" style="color:#fff">库存<?php echo (isset($vo['num']) && ($vo['num'] !== '')?$vo['num']:'0'); ?></span>
 
                             <div class="index-goodname-xq" style="height:45px;color:#333">
-                                <p title="【CDK】爱奇艺周卡 无限叠加 质保5天..."><?php echo (isset($vo['title']) && ($vo['title'] !== '')?$vo['title']:''); ?></p>
+                                <p title="<?php echo $vo['title']; ?>"><?php echo (isset($vo['title']) && ($vo['title'] !== '')?$vo['title']:''); ?></p>
                             </div>
                         </div>
                     </div>

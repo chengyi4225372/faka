@@ -143,12 +143,6 @@ class Two extends Base
 
     }
 
-    //支付
-    public  function pay()
-    {
-        return false;
-    }
-
     //帮助
     public function help(){
         if($this->request->isGet()){
