@@ -37,8 +37,6 @@ class Pays extends Controller
 
     public function index(){
             $pay = Db::name($this->pay)->order('id desc')->find();
-            $return_url = $this->return_url();
-            $notify_url = $this->notify_url();
             $out_trade_no = input('get.order_no','','trim');
             $type = input('get.types','','trim');
             $name = input('get.goodnames','','trim');
@@ -49,8 +47,8 @@ class Pays extends Controller
             $parameter = array(
                 "pid" =>$pay['pid'],
                 "type" => $type,
-                "notify_url"	=> $notify_url,
-                "return_url"	=> $return_url,
+                "notify_url"	=>"http://".$_SERVER['HTTP_HOST']."index/pays/notify_url",
+                "return_url"	=>"http://".$_SERVER['HTTP_HOST']."index/pays/return_url",
                 "out_trade_no"	=> $out_trade_no,
                 "name"	=> $name,
                 "money"	=> $money,
@@ -61,6 +59,7 @@ class Pays extends Controller
             //建立请求
             $alipaySubmit = new AlipaySubmit($this->alipay_config);
             $html_text = $alipaySubmit->buildRequestForm($parameter);
+
             echo $html_text;
     }
 
@@ -100,6 +99,8 @@ class Pays extends Controller
         $verify_result = $alipayNotify->verifyNotify();
 
         if($verify_result) {//验证成功
+            dump(1111);
+            exit();
             $out_trade_no = $_GET['out_trade_no'];
             $trade_no = $_GET['trade_no'];
             $trade_status = $_GET['trade_status'];

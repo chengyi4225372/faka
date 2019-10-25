@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:109:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\wconfig\index.html";i:1571281144;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\view\template\layout.html";i:1567134813;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:109:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\wconfig\index.html";i:1571992069;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\view\template\layout.html";i:1567134813;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -146,7 +146,6 @@
                 <li class=""><a href="#duihuan" data-toggle="tab" aria-expanded="false">兑换地址</a></li>
                 <li class=""><a href="#contact" data-toggle="tab" aria-expanded="false">关于我们</a></li>
                 <li class=""><a href="#help" data-toggle="tab" aria-expanded="false">帮助中心</a></li>
-                <li class=""><a href="#set" data-toggle="tab" aria-expanded="false">支付参数</a></li>
             </ul>
             <div class="tab-content">
                <div class="tab-pane active" id="activity">
@@ -299,62 +298,6 @@
                                     </button>
                                 </div>
 
-                            </div>
-                        </div>
-
-                    </form>
-                </div>
-
-                <div class="tab-pane" id="set">
-                    <form class="form-horizontal dataForm"  enctype="multipart/form-data">
-                        <input type="hidden" id="payid" value="<?php echo $pay['id']; ?>">
-
-                        <div class="box-body">
-                            <div class="fields-group">
-
-                                <div class="form-group">
-                                    <label for="title" class="col-sm-2 control-label">商户id</label>
-                                    <div class="col-sm-10 col-md-4">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                            <input id="pid" name="pid" value="<?php echo $pay['pid']; ?>" class="form-control" >
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="title" class="col-sm-2 control-label">商户秘钥</label>
-                                    <div class="col-sm-10 col-md-4">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                            <input id="keys" name="keys" value="<?php echo $pay['key']; ?>" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="title" class="col-sm-2 control-label">支付地址</label>
-                                    <div class="col-sm-10 col-md-4">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                            <input id="url" name="url" value="<?php echo $pay['url']; ?>" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="box-footer">
-                            <div class="col-sm-2">
-                            </div>
-                            <div class="col-sm-10 col-md-4">
-                                <div class="btn-group">
-                                    <button type="button" class="btn flat btn-info dataform-submit add-pay">保存</button>
-                                </div>
-                                <div class="btn-group">
-                                    <button type="reset" class="btn flat btn-default dataform-reset">重置</button>
-                                </div>
                             </div>
                         </div>
 
@@ -551,34 +494,6 @@
 
 
     })
-</script>
-<!--支付参数-->
-<script>
-    $('.add-pay').click(function(){
-
-        var pid   = $('#pid').val();
-        var urls  = $('#url').val();
-        var id    = $("#payid").val();
-        var keys   = $("#keys").val();
-
-        var url = "<?php echo url('pay/index'); ?>";
-
-
-        $.post(url,{'id':id,'url':urls,'pid':pid,'key':keys},function(ret){
-
-            if(ret.code == 200){
-                layer.msg(ret.msg,{time:2000},function(){
-                    parent.location.reload();
-                });
-            };
-
-            if(ret.code == 400){
-                layer.msg(ret.msg,{time:2000},function(){
-                    parent.location.reload();
-                });
-            };
-        },'json')
-    });
 </script>
         </section>
     </div>

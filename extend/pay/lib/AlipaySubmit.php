@@ -52,7 +52,7 @@ class AlipaySubmit {
 		//签名结果与签名方式加入请求提交参数组中
 		$para_sort['sign'] = $mysign;
 		$para_sort['sign_type'] = strtoupper(trim($this->alipay_config['sign_type']));
-		
+
 		return $para_sort;
 	}
 
@@ -81,6 +81,7 @@ class AlipaySubmit {
 	function buildRequestForm($para_temp, $method='POST', $button_name='正在跳转') {
 		//待请求参数数组
 		$para = $this->buildRequestPara($para_temp);
+
 		
 		$sHtml = "<form id='alipaysubmit' name='alipaysubmit' action='".$this->alipay_gateway_new."_input_charset=".trim(strtolower($this->alipay_config['input_charset']))."' method='".$method."'>";
 		while (list ($key, $val) = each ($para)) {
@@ -92,8 +93,6 @@ class AlipaySubmit {
 		
 		$sHtml = $sHtml."<script>document.forms['alipaysubmit'].submit();</script>";
 
-
-		
 		return $sHtml;
 
 	}
