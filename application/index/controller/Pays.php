@@ -99,8 +99,6 @@ class Pays extends Controller
         $verify_result = $alipayNotify->verifyNotify();
 
         if($verify_result) {//验证成功
-            dump(1111);
-            exit();
             $out_trade_no = $_GET['out_trade_no'];
             $trade_no = $_GET['trade_no'];
             $trade_status = $_GET['trade_status'];
