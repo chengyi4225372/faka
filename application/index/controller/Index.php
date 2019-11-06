@@ -144,10 +144,17 @@ class Index extends Base
 
     }
 
-    //支付
-    public  function pay()
-    {
-        return false;
+
+    //手动发货
+    public function sdfahuo(){
+
+        return $this->fetch();
     }
 
+
+    //自动发货
+   public function zdfahuo(){
+
+        return $this->fetch();
+   }
 }

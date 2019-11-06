@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:105:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\buy.html";i:1571818260;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:105:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\buy.html";i:1573004643;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
 
 <!DOCTYPE html> 
 
@@ -194,7 +194,7 @@
         <div class="from">
             <div class="from_wz_3">
                 <font color="#363636"  size="3">订单总价：</font></div>
-            <div class="from_in_5 countpay"><font color="#FF0000"  size="3"><?php echo $order['countpay']; ?><b>元</b>
+            <div class="from_in_5 countpay"><font color="#FF0000"  size="3"><?php echo floatval($order['countpay']); ?><b>元</b>
             </font> &nbsp;&nbsp;
             <font color="#ee6500"  size="2">可用余额:**元</font> 【<a href="<?php echo url('user/index'); ?>">充值余额</a>】
         </div>

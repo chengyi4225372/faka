@@ -32,4 +32,5 @@ class Auth extends Controller
             '<h1>'.$sns_info['nick'].'</h1><br>'.
             '<img src="'.$sns_info['avatar'].'">';
     }
+
 }
