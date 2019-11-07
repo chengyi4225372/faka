@@ -37,13 +37,8 @@ class Pays extends Controller
     }
 
     //请求支付
-    public function index(){
+    public function index($out_trade_no, $type,$name,$money,$sitename){
             $pay = Db::name($this->pay)->order('id desc')->find();
-            $out_trade_no = input('get.order_no','','trim');
-            $type = input('get.types','','trim');
-            $name = input('get.goodnames','','trim');
-            $money = input('get.paynum');
-            $sitename = input('get.sitename','','trim');
 
             //构造要请求的参数数组，无需改动
             $parameter = array(
@@ -85,50 +80,12 @@ class Pays extends Controller
                 //判断该笔订单是否在商户网站中已经做过处理
                 //如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
                 //如果有做过处理，不执行商户的业务程序
-
-                /* 订单支付结果处理  */
-               $res = Db::name('order')->where(['order_no'=>$out_trade_no])->find();
-
-               if($res['huo'] == 1){
-
-                   Db::startTrans();
-                   try{
-                       //更新订单表
-                       Db::name('order')->where(['order_no'=>$out_trade_no])->update(
-                           [
-                               'type'=>$type,
-                               '`status`'=>1,
-                               'trade_no' =>$trade_no,
-                           ]
-                       );
-
-                      //取出的秘钥需要修改状态 todo
-
-                       // 提交事务
-                       Db::commit();
-                   } catch (\Exception $e) {
-                       // 回滚事务
-                       Db::rollback();
-                   }
-
-               }
-
-                /* 订单支付结果处理  */
-
-
+                
             } else {
                 //echo "trade_status=".$_GET['trade_status'];
                 echo "支付失败！";
             }
-            echo "验证成功<br />";
-           //跳转到发货页面
-//           if($res['huo'] ==1){
-//               return $this->redirect('index/sdfahuo');
-//           }
-//           if($res['huo'] ==0){
-//               return $this->redirect('index/zdfahuo');
-//           }
-
+             echo "验证成功<br />";
 
         } else {
             echo "验证失败";
@@ -151,12 +108,26 @@ class Pays extends Controller
              /* 订单支付结果处理  */
 
                //查询改订单是否已经支付
-               $order = Db::name('order')->field('id,status')->where(['order_no'=>$out_trade_no])->find();
+               $order = Db::name('order')->where(['order_no'=>$out_trade_no])->find();
                if($order['status'] ==1){
                    echo "<script>alert('该订单已经支付')</script>";
                    exit();
                }
 
+                Db::startTrans();
+                try{
+                  //更新状态
+                  Db::name('order')->where(['order_no'=>$out_trade_no])->update(array(
+                      'type'=>$type,
+                      'status'=>1,
+                      'trade_no'=>$trade_no,
+                  ));
+                    // 提交事务
+                    Db::commit();
+                } catch (\Exception $e) {
+                    // 回滚事务
+                    Db::rollback();
+                }
 
                 /* 订单支付结果处理  */
 
@@ -168,6 +139,10 @@ class Pays extends Controller
             echo "fail";
         }
     }
+
+
+
+
 
 
 

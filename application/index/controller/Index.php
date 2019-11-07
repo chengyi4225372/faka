@@ -8,7 +8,10 @@ namespace app\index\controller;
 
 use think\Config;
 use app\index\controller\Base;
+use app\index\controller\Pays;
 use think\Db;
+
+
 class Index extends Base
 {
     public function _initialize()
@@ -143,6 +146,24 @@ class Index extends Base
       }
 
     }
+
+
+    //支付调用
+    public function pay(){
+
+      if($this->request->isGet()){
+          $out_trade_no = input('get.order_no','','trim');
+          $type = input('get.types','','trim');
+          $name = input('get.goodnames','','trim');
+          $money = input('get.paynum');
+          $sitename = input('get.sitename','','trim');
+          $pays = new \app\index\controller\Pays();
+          $pays->index($out_trade_no,$type,$name,$money,$sitename);
+
+      }
+
+    }
+
 
 
     //手动发货
