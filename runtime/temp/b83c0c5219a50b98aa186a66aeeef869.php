@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\order\index.html";i:1567738378;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\view\template\layout.html";i:1567134813;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\order\index.html";i:1573117809;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\view\template\layout.html";i:1567134813;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -216,7 +216,7 @@
                         <td><?php echo $vo['num']; ?></td>
                         <td>
                             <?php if(empty($vo['member_id']) || (($vo['member_id'] instanceof \think\Collection || $vo['member_id'] instanceof \think\Paginator ) && $vo['member_id']->isEmpty())): ?>
-                              null
+                              游客
                             <?php else: ?>
                             <?php echo $info[$vo['member_id']]; endif; ?>
                         </td>
