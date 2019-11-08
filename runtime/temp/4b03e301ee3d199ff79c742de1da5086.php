@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:109:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\zdfahuo.html";i:1573201794;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:112:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\configcom\search.html";i:1566973489;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
 
 <!DOCTYPE html> 
 
@@ -91,52 +91,108 @@
         <br/>
 
 
-<div class="topliucheng">
-    <img src="/sink/img/goumaizn04.png" title=""></div>
-<div id="errorbg">
-    <div class="wodetitle">以下是你购买的卡密，请直接浏览或下载保存</div>
-    <div class="wu"></div>
 
-    <div class="reg">
+<style type="text/css">
+    .query {
+        padding: 25px;
+        min-height: 300px;
+    }
+    .query .in {
+        height: 45px;
+        border: 1px solid #ff6600;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        width: 65%;
+        margin-right: auto;
+        margin-left: auto;
+        overflow: hidden;
+    }
+    .query .in .in_l {
+        float: left;
+        width: 80%;
+        height: 100%;
+    }
+    .query .in .in_r {
+        float: right;
+        height: 100%;
+        width: 20%;
 
-        <div class="wu"></div><div class="wu"></div><div class="wu"></div>
-
-        <div class="from">
-
-            <div class="from_off_2"></div>
-
-            <div class="from_in_6" style="text-align: center; font-family: '微软雅黑'; font-size: 24px; color: #090;">点击下方的按钮进行查阅</div> 
-
-        </div>
-
-        <div class="wu"></div>
-        <br/>
-        <div class="from">
-            <div align="center">
-                <a  class="button button-3d button-primary button-rounded button-small" data-url="<?php echo url('index/orderinfo'); ?>?order_no=<?php echo $order_no; ?>" onclick="showKm()"  value="" />查看卡密</a>
-                <a  class="button button-3d button-highlight button-rounded button-small"  />下载文件</a>
+    }
+    .query .in input {
+        margin: 0px;
+        border-top-width: 0px;
+        border-right-width: 0px;
+        border-bottom-width: 0px;
+        border-left-width: 0px;
+        border-top-style: none;
+        border-right-style: none;
+        border-bottom-style: none;
+        border-left-style: none;
+        height: 100%;
+        width: 100%;
+        line-height: 45px;
+        font-size: 18px;
+        padding-top: 0px;
+        padding-right: 0px;
+        padding-bottom: 0px;
+        padding-left: 1%;
+    }
+    .query .in .in_r input {
+        cursor: pointer;
+        background-color: #F60;
+        font-size: 20px;
+        line-height: 45px;
+        color: #FFF;
+        font-weight: bold;
+        padding: 0px;
+        width: 100%;
+        -webkit-border-radius: 0px;
+        -moz-border-radius: 0px;
+        border-radius: 0px;
+    }
+    #kong .query .title {
+        text-align: center;
+        height: 50px;
+        line-height: 50px;
+        margin-bottom: 15px;
+    }
+    .title2 {
+        text-align: center;
+        height: 25px;
+        line-height: 25px;
+        margin-bottom: 15px;
+        font-size: 14px;
+        color: #ff253a;
+    }</style>
+<div id="kong">
+    <div class="query">
+        <div class="title">请输入订单号，交易单号，手机号查询</div>
+        <form action="<?php echo url('configcom/serach'); ?>" method="post">
+            <div class="in">
+                <div class="in_l"><input type="text" name="content" placeholder="请输入订单号查询"></div>
+                <div class="in_r"><input type="submit" value="订单查询"></div>
             </div>
+        </form><br>
+         <div class="title2">注意：超过24小时的订单禁止查询，如果您想长期保留订单，请您注册成为我们的会员。</div>
+        <br><font size="4" color="#000000" title="这是您最近的购买记录">这是您的购买记录</font>
+        <br> <table width="100%" border="0" cellspacing="0" cellpadding="10">
+        <tbody><tr>
+            <th scope="col">类型</th>
+            <th scope="col">订单号</th>
+            <th scope="col">名称</th>
+            <th scope="col">数量</th>
+            <th scope="col">单价</th>
+            <th scope="col">总价</th>
+            <th scope="col">状态</th>
+            <th scope="col">日期</th>
+            <th scope="col">操作</th>
+        </tr>
+        </tbody></table><br> <div class="text-right"><ul class="pagination">       <li><span class="rows">共0条</span> </li></ul></div></div>
 
-        </div>
-        <div class="wu"></div> <br/>
-        <div class="from">
-            <div align="center">
-                <font color="#FF0000">注意事项：网站定期清理过期订单，请注意存档，以免丢失</font>
-            </div>
-        </div>
-       </div>
 
 </div>
 
-<div class="wu"></div>
-<div class="wu"></div>
-<div class="wu"></div>
-<div class="wu"></div>
-<div class="wu"></div>
-<div class="wu"></div>
-<div class="wu"></div>
-
-</div>
 <div id="footer"><div>
     <a><?php echo $config['info']; ?></a>
 </div></p><br/>
@@ -166,17 +222,3 @@
 </body> 
 
 </html> 
-
-<script>
-    function showKm(){
-     var url = $(this).attr('data-url');
-        layer.open({
-            type: 2,
-            title: '列表页',
-            shadeClose: true,
-            shade: 0.8,
-            area: ['380px', '90%'],
-            content: url //iframe的url
-        });
-    }
-</script>

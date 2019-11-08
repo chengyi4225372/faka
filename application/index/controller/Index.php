@@ -147,35 +147,40 @@ class Index extends Base
 
     }
 
-
-    //支付调用
-    public function pay(){
-
-      if($this->request->isGet()){
-          $out_trade_no = input('get.order_no','','trim');
-          $type = input('get.types','','trim');
-          $name = input('get.goodnames','','trim');
-          $money = input('get.paynum');
-          $sitename = input('get.sitename','','trim');
-          $pays = new \app\index\controller\Pays();
-          $pays->index($out_trade_no,$type,$name,$money,$sitename);
-
-      }
-
+    //自动发货
+    public function zdfahuo(){
+       if($this->request->isGet()){
+          $order_no = input('get.order_no','','int');
+          $this->assign('order_no',$order_no);
+          return $this->fetch();
+       }
+        return false;
     }
-
 
 
     //手动发货
-    public function sdfahuo(){
+   public function sdfahuo(){
 
         return $this->fetch();
-    }
+   }
 
 
-    //自动发货
-   public function zdfahuo(){
+   //自动发货卡密
+   public function orderinfo(){
+       $order_no = input('get.order_no','','int');
+       dump($order_no);
+       exit();
+       $order = Db::name('order')->where(['order_no'=>$order_no])->find();
+       //购买卡密量
+       $list  = Db::name('card')->where(['gid'=>$order['gid'],'over'=>0])->order('id desc')->limit(0,$order['num'])->select();
 
-        return $this->fetch();
+       $this->assign('list',$list);
+
+       return $this->fetch();
+   }
+
+   //导出方法
+   public function dao(){
+
    }
 }

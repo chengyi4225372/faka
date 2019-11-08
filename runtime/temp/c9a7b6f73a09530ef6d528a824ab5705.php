@@ -1,13 +1,14 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:111:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\orderinfo.html";i:1573200883;}*/ ?>
 <html>
 <head lang="en">
   <meta charset="UTF-8">
-  <title>{$config.title} - 卡密提取</title>
+  <title><?php echo $config['title']; ?> - 卡密提取</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="format-detection" content="telephone=no">
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp" />
-  <link rel="shortcut icon" href="{$config.logo}" />
+  <link rel="shortcut icon" href="<?php echo $config['logo']; ?>" />
   <link rel="stylesheet" href="/index/sink/css/amazeui.min.css"/>
   <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
   <style>
@@ -43,14 +44,14 @@ foreach ($list as $vo) {
     </h3>
     <hr>
     <div class="am-btn-group">
-      {volist name="list" id="vo" key="k"}
-      {$vo.kami}<br>
-      {/volist}
+      <?php if(is_array($list) || $list instanceof \think\Collection || $list instanceof \think\Paginator): $k = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($k % 2 );++$k;?>
+      <?php echo $vo['kami']; ?><br>
+      <?php endforeach; endif; else: echo "" ;endif; ?>
     </div>
     <br>
     <br>
     <hr>
-    <p>{$config.info}</p>
+    <p><?php echo $config['info']; ?></p>
   </div>
 </div>
 </body>

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:109:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\zdfahuo.html";i:1573201794;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:109:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\sdfahuo.html";i:1573002049;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
 
 <!DOCTYPE html> 
 
@@ -91,51 +91,18 @@
         <br/>
 
 
-<div class="topliucheng">
-    <img src="/sink/img/goumaizn04.png" title=""></div>
-<div id="errorbg">
-    <div class="wodetitle">以下是你购买的卡密，请直接浏览或下载保存</div>
-    <div class="wu"></div>
-
-    <div class="reg">
-
-        <div class="wu"></div><div class="wu"></div><div class="wu"></div>
-
-        <div class="from">
-
-            <div class="from_off_2"></div>
-
-            <div class="from_in_6" style="text-align: center; font-family: '微软雅黑'; font-size: 24px; color: #090;">点击下方的按钮进行查阅</div> 
-
-        </div>
-
-        <div class="wu"></div>
-        <br/>
-        <div class="from">
-            <div align="center">
-                <a  class="button button-3d button-primary button-rounded button-small" data-url="<?php echo url('index/orderinfo'); ?>?order_no=<?php echo $order_no; ?>" onclick="showKm()"  value="" />查看卡密</a>
-                <a  class="button button-3d button-highlight button-rounded button-small"  />下载文件</a>
-            </div>
-
-        </div>
-        <div class="wu"></div> <br/>
-        <div class="from">
-            <div align="center">
-                <font color="#FF0000">注意事项：网站定期清理过期订单，请注意存档，以免丢失</font>
-            </div>
-        </div>
-       </div>
-
-</div>
-
-<div class="wu"></div>
-<div class="wu"></div>
-<div class="wu"></div>
-<div class="wu"></div>
-<div class="wu"></div>
-<div class="wu"></div>
-<div class="wu"></div>
-
+<style>
+    #sycontent{
+        display: none !important;
+    }
+</style>
+      <div class="am-container" style="padding:2px">
+      
+<div style="padding:100px 20px;text-align:center;background-color:#fff">
+  <img src="/static/index/images/fkcg.png" alt="付款成功" width="50px">
+  <span style="height:60px;vertical-align:middle;font-size:24px;color:#333333">恭喜您！付款成功！</span>
+  <p style="color:#999999">订单编号：<?php echo $order['order_no']; ?><br>支付金额：<?php echo $order['price']; ?>元</p>
+  <a type="button" class="am-btn am-btn-success" href="/search">查看订单</a>
 </div>
 <div id="footer"><div>
     <a><?php echo $config['info']; ?></a>
@@ -167,16 +134,3 @@
 
 </html> 
 
-<script>
-    function showKm(){
-     var url = $(this).attr('data-url');
-        layer.open({
-            type: 2,
-            title: '列表页',
-            shadeClose: true,
-            shade: 0.8,
-            area: ['380px', '90%'],
-            content: url //iframe的url
-        });
-    }
-</script>
