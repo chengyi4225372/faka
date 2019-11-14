@@ -92,12 +92,19 @@ class Pays extends Controller
                 $order  = Db::name('order')->where(['order_no'=>$out_trade_no])->find();
 
                 if($order['status'] == 1){
-
                     echo "<script>alert('该订单已经支付')</script>";
                     exit();
                 }
 
+                //已支付 自动发货 更新卡密与关联订单id
 
+                     Db::name('order')->where(['order_no'=>$out_trade_no])->update(['status'=>1]);
+
+                     if($order['huo'] ==0){
+                        Db::name('card')->where(['gid'=>$order['gid']])
+                            ->order('id asc')->limit(0,$order['num'])
+                            ->update(['over'=>1,'oid'=>$order['id']]);
+                     }
 
             } else {
                 //echo "trade_status=".$_GET['trade_status'];
@@ -108,19 +115,19 @@ class Pays extends Controller
             $config = Db::name('config')->where(['id'=>1])->find();
            if($config['modou'] == 2){
                if($order['huo'] ==0){
-                   $this->redirect('two/zdfahuo',['order_no'=>$out_trade_no]);
+                   $this->redirect('two/zdfahuo',['orderno'=>$out_trade_no]);
                }
                if($order['huo'] ==1){
-                   $this->redirect('two/sdfahuo',['order_no'=>$out_trade_no]);
+                   $this->redirect('two/sdfahuo',['orderno'=>$out_trade_no]);
                }
 
            }else{
 
                if($order['huo'] ==0){
-                   $this->redirect('index/zdfahuo',['order_no'=>$out_trade_no]);
+                   $this->redirect('index/zdfahuo',['orderno'=>$out_trade_no]);
                }
                if($order['huo'] ==1){
-                   $this->redirect('index/sdfahuo',['order_no'=>$out_trade_no]);
+                   $this->redirect('index/sdfahuo',['orderno'=>$out_trade_no]);
                }
            }
 
@@ -150,31 +157,21 @@ class Pays extends Controller
                    echo "<script>alert('该订单已经支付')</script>";
                    exit();
                }
-               //更新订单状态
-                Db::startTrans();
-                try{
-                  //更新状态
-                  Db::name('order')->where(['order_no'=>$out_trade_no])->update(array(
+
+               Db::name('order')->where(['order_no'=>$out_trade_no])->update(array(
                       'type'=>$type,
                       'status'=>1,
                       'trade_no'=>$trade_no,
                   ));
-                    // 提交事务
-                    Db::commit();
-                } catch (\Exception $e) {
-                    // 回滚事务
-                    Db::rollback();
-                }
-
                 /* 订单支付结果处理  */
 
             }
             echo "success";		//请不要修改或删除
-        }
-        else {
+        } else {
             //验证失败
             echo "fail";
         }
+
     }
 
 
