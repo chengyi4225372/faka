@@ -22,7 +22,7 @@
         <div class="from">
             <div align="center">
                 <a  class="button button-3d button-primary button-rounded button-small" data-url="{:url('index/orderinfo',['order'=>$orders])}" onclick="showKm(this)"  value="" />查看卡密</a>
-                <a  class="button button-3d button-highlight button-rounded button-small"  />下载文件</a>
+                <a  class="button button-3d button-highlight button-rounded button-small" data-url="{:url('index/dao',['order'=>$orders])}"  onclick="dao(this)" />下载文件</a>
             </div>
 
         </div>
@@ -60,4 +60,11 @@
             content: url //iframe的url
         });
     }
+
+    //导出
+    function dao(obj){
+        var  urls  = $(obj).attr('data-url');
+        window.location.href = urls;
+    }
+
 </script>

@@ -28,7 +28,6 @@ class Index extends Base
         return false;
     }
 
-
     //首页
     public function index()
     {
@@ -161,13 +160,17 @@ class Index extends Base
         return false;
     }
 
-
     //手动发货
    public function sdfahuo(){
+        if($this->request->isGet()){
 
-        return $this->fetch();
+            $orders = input('get.order','','trim');
+            $info   = Db::name('order')->where(['order_no'=>$orders])->field('order_no,countpay')->find();
+            $this->assign('info',$info);
+            return $this->fetch();
+        }
+        return false;
    }
-
 
    //自动发货卡密
    public function orderinfo(){
@@ -183,8 +186,32 @@ class Index extends Base
        return $this->fetch();
    }
 
-   //导出方法
+   //导出方法  todo 未测试
    public function dao(){
 
+        if($this->request->isGet()){
+            $orders = input('get.order','','trim');
+            if(empty($orders)){
+                return false;
+            }
+
+            $orderId = Db::name('order')->where(['order_no'=>$orders])->field('id')->find();
+
+            $list    = Db::name('card')->where(['oid'=>$orderId['id']])->order('id asc')->select();
+
+            foreach($list as $k =>$value){
+                $content .= $value."\r\n"; //下载内容
+            }
+            header("Content-type: application/octet-stream");
+            header("Accept-Ranges: bytes");
+            header("Content-Disposition: attachment; filename = 下载文档.txt"); //文件命名
+            header("Expires: 0");
+            header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+            header("Pragma: public");
+            echo $content;
+            exit();
+        }
+        return false;
    }
+
 }
