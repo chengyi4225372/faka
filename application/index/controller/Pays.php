@@ -97,14 +97,43 @@ class Pays extends Controller
                 }
 
                 //已支付 自动发货 更新卡密与关联订单id
+                $pays =  Db::name('order')->where(['order_no'=>$out_trade_no])->update(array(
+                    'types'=>$type,
+                    'status'=>1,
+                    'trade_no'=>$trade_no,
+                 ));
 
-                     Db::name('order')->where(['order_no'=>$out_trade_no])->update(['status'=>1]);
+                //订单支付失败
+                if($pays === false){
+                    echo  "<script>alert('订单支付失败，请重新下单')</script>";
+                }
 
-                     if($order['huo'] ==0){
-                        Db::name('card')->where(['gid'=>$order['gid']])
-                            ->order('id asc')->limit(0,$order['num'])
-                            ->update(['over'=>1,'oid'=>$order['id']]);
-                     }
+               if($order['huo'] ==0){
+
+                       $list = Db::name('card')->where(['gid'=>$order['gid']])->order('id asc')->limit(0,$order['num'])->select();
+
+                       //卡密没有获取到
+                       if($list== false || empty($list)){
+                           echo "<script>alert('卡密不存在，请联系网站管理处理！')</script>";
+                           exit();
+                       }
+
+                       foreach ($list as $k =>$val){
+                           $ids[] = $list[$k]['id'];
+                       }
+
+
+                   Db::startTrans();
+                   try {
+                        Db::name('card')->where(['id'=>['in',$ids]])->update(['over'=>1,'oid'=>$order['id']]);
+                       // 提交事务
+                       Db::commit();
+                   } catch (\Exception $e) {
+                       // 回滚事务
+                       Db::rollback();
+                   }
+
+               }
 
             } else {
                 //echo "trade_status=".$_GET['trade_status'];
@@ -159,7 +188,7 @@ class Pays extends Controller
                }
 
                Db::name('order')->where(['order_no'=>$out_trade_no])->update(array(
-                      'type'=>$type,
+                      'types'=>$type,
                       'status'=>1,
                       'trade_no'=>$trade_no,
                   ));

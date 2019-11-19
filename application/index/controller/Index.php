@@ -150,12 +150,12 @@ class Index extends Base
     //自动发货
     public function zdfahuo(){
        if($this->request->isGet()){
-          $order_no = input('get.orderno','','int');
+          $orders = input('get.orderno','','trim');
            //根据订单 商品 id 查询卡密
-          $order = Db::name('order')->where(['order_no'=>$order_no])->find();
-          $cardlist = Db::name('card')->where(['oid'=>$order['oid'],'over'=>1])->select();
+          $order = Db::name('order')->where(['order_no'=>$orders])->find();
+          $cardlist = Db::name('card')->where(['oid'=>$order['id'],'over'=>1])->select();
           $this->assign('list',$cardlist);
-          $this->assign('order_no',$order_no);
+          $this->assign('orders',$orders);
           return $this->fetch();
        }
         return false;
@@ -171,14 +171,14 @@ class Index extends Base
 
    //自动发货卡密
    public function orderinfo(){
-       $order_no = input('get.order_no','','int');
-       dump($order_no);
-       exit();
+       $order_no = input('get.order','','trim');
+
        $order = Db::name('order')->where(['order_no'=>$order_no])->find();
        //购买卡密量
-       $list  = Db::name('card')->where(['gid'=>$order['gid'],'over'=>0])->order('id desc')->limit(0,$order['num'])->select();
+       $list  = Db::name('card')->where(['oid'=>$order['id'],'over'=>1])->order('id ssc')->limit(0,$order['num'])->select();
 
        $this->assign('list',$list);
+       $this->assign('orders',$order);
 
        return $this->fetch();
    }

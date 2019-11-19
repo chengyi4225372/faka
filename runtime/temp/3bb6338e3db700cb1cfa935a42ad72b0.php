@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:109:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\zdfahuo.html";i:1573201794;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:109:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\zdfahuo.html";i:1574134450;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
 
 <!DOCTYPE html> 
 
@@ -113,7 +113,7 @@
         <br/>
         <div class="from">
             <div align="center">
-                <a  class="button button-3d button-primary button-rounded button-small" data-url="<?php echo url('index/orderinfo'); ?>?order_no=<?php echo $order_no; ?>" onclick="showKm()"  value="" />查看卡密</a>
+                <a  class="button button-3d button-primary button-rounded button-small" data-url="<?php echo url('index/orderinfo',['order'=>$orders]); ?>" onclick="showKm(this)"  value="" />查看卡密</a>
                 <a  class="button button-3d button-highlight button-rounded button-small"  />下载文件</a>
             </div>
 
@@ -168,8 +168,9 @@
 </html> 
 
 <script>
-    function showKm(){
-     var url = $(this).attr('data-url');
+    function showKm(obj){
+     var url = $(obj).attr('data-url');
+
         layer.open({
             type: 2,
             title: '列表页',

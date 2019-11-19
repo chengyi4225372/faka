@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:111:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\orderinfo.html";i:1573200883;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:111:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\orderinfo.html";i:1574134950;}*/ ?>
 <html>
 <head lang="en">
   <meta charset="UTF-8">
@@ -11,6 +11,9 @@
   <link rel="shortcut icon" href="<?php echo $config['logo']; ?>" />
   <link rel="stylesheet" href="/index/sink/css/amazeui.min.css"/>
   <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+  <script type="text/javascript" src="/index/sink/js/jquery-1.8.3.min.js"></script>
+  <script type="text/javascript" src="/index/sink/js/layer/layer.js"></script>
+
   <style>
     .header {
       text-align: center;
@@ -29,13 +32,13 @@
 <div class="header">
   <div class="am-g">
     <h1></h1>
-    <p><h3>购买时间为：</h3></p>
+    <p><h3>购买时间为：<?php echo $orders['create_time']; ?></h3></p>
   </div>
   <hr />
 </div>
 <div class="am-g">
   <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
-    <h3>以下是卡密内容，请自行保存&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="window.opener=null; window.open('','_self');window.close();" class="am-btn am-btn-primary am-btn-sm">返回</a>
+    <h3>以下是卡密内容，请自行保存&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="cancle()" class="am-btn am-btn-primary am-btn-sm">返回</a>
       <button type="button" class="copybtn am-btn am-btn-success am-btn-sm" data-clipboard-text='<?php
 foreach ($list as $vo) {
   echo $vo['kami']."\n";
@@ -65,4 +68,10 @@ foreach ($list as $vo) {
       clipboard.on('error', function(e) {
           alert('复制失败请手动复制');
       });
+
+  function cancle(){
+      parent.layer.closeAll();
+  }
+
+
 </script>

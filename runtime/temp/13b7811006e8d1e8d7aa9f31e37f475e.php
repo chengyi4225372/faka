@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\order\person.html";i:1567736552;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\view\template\layout.html";i:1567134813;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\order\person.html";i:1573204528;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\view\template\layout.html";i:1567134813;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -239,7 +239,7 @@
                         </td>
                         <td>
                             <?php if($vo['huo'] == '0'): ?>
-                            <a class="btn btn-block btn-flickr btn-xs">人工发货</a>
+                            <a class="btn btn-block btn-flickr btn-xs">自动发货</a>
                             <?php else: ?>
                             <a class="btn btn-block btn-github btn-xs">手动发货</a>
                             <?php endif; ?>

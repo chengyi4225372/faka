@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\order\zedit.html";i:1567495604;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\order\zedit.html";i:1574133703;}*/ ?>
 
 
 <link rel="stylesheet" href="/static/admin/css/app.min.css">
@@ -17,6 +17,26 @@
                             <div class="col-sm-10 col-md-4">
                                 <div class="input-group">
                                     <input  id="order_no" name="order_no" value="<?php echo $info['order_no']; ?>" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="fields-group">
+                        <div class="form-group">
+                            <label for="title" class="col-sm-2 control-label">支付类型</label>
+                            <div class="col-sm-10 col-md-4">
+                                <div class="input-group">
+                                    <?php if($info['types'] == null): ?>
+                                     null
+                                    <?php elseif($info['types'] == 'alipay'): ?>
+                                    <img src="/index/images/ali.png" style="height: 40px;width: 40px;">
+                                    <?php elseif($info['types'] == 'wxpay'): ?>
+                                    <img src="/index/images/wechat.png" style="height: 40px;width: 40px;">
+                                    <?php elseif($info['types'] == 'qqpay'): ?>
+                                    <img src="/index/images/qq.png" style="height: 40px;width: 40px;">
+                                    <?php else: endif; ?>
                                 </div>
                             </div>
                         </div>

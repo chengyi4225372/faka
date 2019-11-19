@@ -21,7 +21,7 @@
         <br/>
         <div class="from">
             <div align="center">
-                <a  class="button button-3d button-primary button-rounded button-small" data-url="{:url('index/orderinfo')}?order_no={$order_no}" onclick="showKm()"  value="" />查看卡密</a>
+                <a  class="button button-3d button-primary button-rounded button-small" data-url="{:url('index/orderinfo',['order'=>$orders])}" onclick="showKm(this)"  value="" />查看卡密</a>
                 <a  class="button button-3d button-highlight button-rounded button-small"  />下载文件</a>
             </div>
 
@@ -48,8 +48,9 @@
 {include file='public:foot'/}
 
 <script>
-    function showKm(){
-     var url = $(this).attr('data-url');
+    function showKm(obj){
+     var url = $(obj).attr('data-url');
+
         layer.open({
             type: 2,
             title: '列表页',

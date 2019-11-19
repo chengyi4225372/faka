@@ -24,6 +24,28 @@
 
                     <div class="fields-group">
                         <div class="form-group">
+                            <label for="title" class="col-sm-2 control-label">支付类型</label>
+                            <div class="col-sm-10 col-md-4">
+                                <div class="input-group">
+                                    {if condition = "$info.types eq null"}
+                                     null
+                                    {elseif condition="$info.types eq 'alipay'" /}
+                                    <img src="/index/images/ali.png" style="height: 40px;width: 40px;">
+                                    {elseif condition="$info.types eq 'wxpay'" /}
+                                    <img src="/index/images/wechat.png" style="height: 40px;width: 40px;">
+                                    {elseif condition="$info.types eq 'qqpay'" /}
+                                    <img src="/index/images/qq.png" style="height: 40px;width: 40px;">
+                                    {else /}
+
+                                    {/if}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="fields-group">
+                        <div class="form-group">
                             <label for="title" class="col-sm-2 control-label">商品名称</label>
                             <div class="col-sm-10 col-md-4">
                                 <div class="input-group">
