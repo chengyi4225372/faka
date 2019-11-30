@@ -77,7 +77,7 @@
                         <td>{$vo.num}</td>
                         <td>
                             {empty name='$vo.member_id'}
-                              null
+                              游客
                             {else /}
                             {$info[$vo.member_id]}
                             {/empty}
@@ -111,7 +111,7 @@
                         <td>{$vo.mobile}</td>
                         <td>
                             {eq name='$vo.huo' value='0'}
-                            <a class="btn btn-block btn-github btn-xs">人工发货</a>
+                            <a class="btn btn-block btn-github btn-xs">自动发货</a>
                              {else /}
                             <a class="btn btn-block btn-github btn-xs">手动发货</a>
                             {/eq}

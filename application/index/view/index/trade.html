@@ -15,9 +15,9 @@
                 <div class="tou">
                     <img src="{$info.images}" width="150" height="150" alt="" /></div>
                 <div class="bianhao">商品编号：NO0000.{$info.id}<br />
-                    零售单价：{$info.money} 元
+                    零售单价：{$info.money|floatval} 元
                     <br /><font color="#ff0000"  size="2">
-                        购买{$info.pinum}个以上按批发价￥{$info.pinum}计算</font>
+                        购买{$info.pinum}个以上按批发价￥{$info.pinum|floatval}计算</font>
                 </div>
 
 
@@ -33,7 +33,7 @@
             <div class="trade-goodinfo"></div>
             <div class="trade-goodinfo2">
                 <span  style="color:#080808">零售单价</span>
-                <span class="trade-price">￥{$info.money}
+                <span class="trade-price">￥{$info.money|floatval}
 
               </span>
 
@@ -44,7 +44,7 @@
                      {else /}
                     <img src="/index/sink/img/sdfh.png">
                     {/eq}
-                    <span style="color:#6c6c6c;font-size:14px;">累积销量：{$info.paynum}个</span>
+                    <span style="color:#6c6c6c;font-size:14px;">累积销量：{$info.paynum|floatval}个</span>
                 </span>
             </div><br/>
 
@@ -104,7 +104,7 @@
                 </div>
             </div>
             <div class="from"><font color="#2581ff"  size="2"><div class="from_off_4"></div>
-                <div class="from_in_4" style="width:450px">购买{$info.pinum}个以上按批发价￥{$info.pipay} 计算</div>
+                <div class="from_in_4" style="width:450px">购买{$info.pinum}个以上按批发价￥{$info.pipay|floatval} 计算</div>
             </font></div>
 
 

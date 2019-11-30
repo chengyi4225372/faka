@@ -1,0 +1,70 @@
+{include file='public:head'/}
+<div class="topliucheng">
+    <img src="/sink/img/goumaizn04.png" title=""></div>
+<div id="errorbg">
+    <div class="wodetitle">以下是你购买的卡密，请直接浏览或下载保存</div>
+    <div class="wu"></div>
+
+    <div class="reg">
+
+        <div class="wu"></div><div class="wu"></div><div class="wu"></div>
+
+        <div class="from">
+
+            <div class="from_off_2"></div>
+
+            <div class="from_in_6" style="text-align: center; font-family: '微软雅黑'; font-size: 24px; color: #090;">点击下方的按钮进行查阅</div> 
+
+        </div>
+
+        <div class="wu"></div>
+        <br/>
+        <div class="from">
+            <div align="center">
+                <a  class="button button-3d button-primary button-rounded button-small" data-url="{:url('index/orderinfo',['order'=>$orders])}" onclick="showKm(this)"  value="" />查看卡密</a>
+                <a  class="button button-3d button-highlight button-rounded button-small" data-url="{:url('index/dao',['order'=>$orders])}"  onclick="dao(this)" />下载文件</a>
+            </div>
+
+        </div>
+        <div class="wu"></div> <br/>
+        <div class="from">
+            <div align="center">
+                <font color="#FF0000">注意事项：网站定期清理过期订单，请注意存档，以免丢失</font>
+            </div>
+        </div>
+       </div>
+
+</div>
+
+<div class="wu"></div>
+<div class="wu"></div>
+<div class="wu"></div>
+<div class="wu"></div>
+<div class="wu"></div>
+<div class="wu"></div>
+<div class="wu"></div>
+
+</div>
+{include file='public:foot'/}
+
+<script>
+    function showKm(obj){
+     var url = $(obj).attr('data-url');
+
+        layer.open({
+            type: 2,
+            title: '列表页',
+            shadeClose: true,
+            shade: 0.8,
+            area: ['380px', '90%'],
+            content: url //iframe的url
+        });
+    }
+
+    //导出
+    function dao(obj){
+        var  urls  = $(obj).attr('data-url');
+        window.location.href = urls;
+    }
+
+</script>

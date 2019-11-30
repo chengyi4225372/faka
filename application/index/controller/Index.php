@@ -8,7 +8,10 @@ namespace app\index\controller;
 
 use think\Config;
 use app\index\controller\Base;
+use app\index\controller\Pays;
 use think\Db;
+
+
 class Index extends Base
 {
     public function _initialize()
@@ -24,7 +27,6 @@ class Index extends Base
         }
         return false;
     }
-
 
     //首页
     public function index()
@@ -144,10 +146,72 @@ class Index extends Base
 
     }
 
-    //支付
-    public  function pay()
-    {
+    //自动发货
+    public function zdfahuo(){
+       if($this->request->isGet()){
+          $orders = input('get.orderno','','trim');
+           //根据订单 商品 id 查询卡密
+          $order = Db::name('order')->where(['order_no'=>$orders])->find();
+          $cardlist = Db::name('card')->where(['oid'=>$order['id'],'over'=>1])->select();
+          $this->assign('list',$cardlist);
+          $this->assign('orders',$orders);
+          return $this->fetch();
+       }
         return false;
     }
+
+    //手动发货
+   public function sdfahuo(){
+        if($this->request->isGet()){
+
+            $orders = input('get.order','','trim');
+            $info   = Db::name('order')->where(['order_no'=>$orders])->field('order_no,countpay')->find();
+            $this->assign('info',$info);
+            return $this->fetch();
+        }
+        return false;
+   }
+
+   //自动发货卡密
+   public function orderinfo(){
+       $order_no = input('get.order','','trim');
+
+       $order = Db::name('order')->where(['order_no'=>$order_no])->find();
+       //购买卡密量
+       $list  = Db::name('card')->where(['oid'=>$order['id'],'over'=>1])->order('id ssc')->limit(0,$order['num'])->select();
+
+       $this->assign('list',$list);
+       $this->assign('orders',$order);
+
+       return $this->fetch();
+   }
+
+   //导出方法  todo 未测试
+   public function dao(){
+
+        if($this->request->isGet()){
+            $orders = input('get.order','','trim');
+            if(empty($orders)){
+                return false;
+            }
+
+            $orderId = Db::name('order')->where(['order_no'=>$orders])->field('id')->find();
+
+            $list    = Db::name('card')->where(['oid'=>$orderId['id']])->order('id asc')->select();
+
+            foreach($list as $k =>$value){
+                $content .= $value."\r\n"; //下载内容
+            }
+            header("Content-type: application/octet-stream");
+            header("Accept-Ranges: bytes");
+            header("Content-Disposition: attachment; filename = 下载文档.txt"); //文件命名
+            header("Expires: 0");
+            header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+            header("Pragma: public");
+            echo $content;
+            exit();
+        }
+        return false;
+   }
 
 }

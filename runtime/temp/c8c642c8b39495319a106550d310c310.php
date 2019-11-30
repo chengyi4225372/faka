@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:105:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\buy.html";i:1571307130;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:105:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\buy.html";i:1573116163;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
 
 <!DOCTYPE html> 
 
@@ -194,7 +194,7 @@
         <div class="from">
             <div class="from_wz_3">
                 <font color="#363636"  size="3">订单总价：</font></div>
-            <div class="from_in_5 countpay"><font color="#FF0000"  size="3"><?php echo $order['countpay']; ?><b>元</b>
+            <div class="from_in_5 countpay"><font color="#FF0000"  size="3"><?php echo floatval($order['countpay']); ?><b>元</b>
             </font> &nbsp;&nbsp;
             <font color="#ee6500"  size="2">可用余额:**元</font> 【<a href="<?php echo url('user/index'); ?>">充值余额</a>】
         </div>
@@ -265,7 +265,7 @@
 <script>
 
    $('.kuan').click(function(){
-      var  type = $('ul li.curr').attr('data-paytype'); //支付类型
+      var  types = $('ul li.curr').attr('data-paytype'); //支付类型
       var  goodnames = $.trim($('.paynames').text());//商品名称
       var  order_no  = $.trim($('.order').text());//商户订单号
       var  paynum    = $('#payment').val(); //商品总价
@@ -273,16 +273,10 @@
 
       var  url = "<?php echo url('pays/index'); ?>";
 
-      $.post(url,{'type':type,'goodnames':goodnames,'order_no':order_no,'paynum':paynum,'sitename':sitename},function(ret){
-           console.log(ret);
-      },'json')
-
+      window.location.href=url+"?types="+types+"&goodnames="+goodnames+"&order_no="+order_no+"&paynum="+paynum+"&sitename="+sitename;
 
    })
 
-/* 支付地址
- http://pays.sddyun.cn/submit.php?pid={商户ID}&type={支付方式}&out_trade_no={商户订单号}&notify_url={服务器异步通知地址}&return_url={页面跳转通知地址}&name={商品名称}&money={金额}&sitename={网站名称}&sign={签名字符串}&sign_type=MD5
- */
 </script>
 <div id="footer"><div>
     <a><?php echo $config['info']; ?></a>

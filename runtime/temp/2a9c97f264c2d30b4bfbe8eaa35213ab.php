@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\trade.html";i:1571034758;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\trade.html";i:1573005113;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
 
 <!DOCTYPE html> 
 
@@ -107,9 +107,9 @@
                 <div class="tou">
                     <img src="<?php echo $info['images']; ?>" width="150" height="150" alt="" /></div>
                 <div class="bianhao">商品编号：NO0000.<?php echo $info['id']; ?><br />
-                    零售单价：<?php echo $info['money']; ?> 元
+                    零售单价：<?php echo floatval($info['money']); ?> 元
                     <br /><font color="#ff0000"  size="2">
-                        购买<?php echo $info['pinum']; ?>个以上按批发价￥<?php echo $info['pinum']; ?>计算</font>
+                        购买<?php echo $info['pinum']; ?>个以上按批发价￥<?php echo floatval($info['pinum']); ?>计算</font>
                 </div>
 
 
@@ -125,7 +125,7 @@
             <div class="trade-goodinfo"></div>
             <div class="trade-goodinfo2">
                 <span  style="color:#080808">零售单价</span>
-                <span class="trade-price">￥<?php echo $info['money']; ?>
+                <span class="trade-price">￥<?php echo floatval($info['money']); ?>
 
               </span>
 
@@ -136,7 +136,7 @@
                      <?php else: ?>
                     <img src="/index/sink/img/sdfh.png">
                     <?php endif; ?>
-                    <span style="color:#6c6c6c;font-size:14px;">累积销量：<?php echo $info['paynum']; ?>个</span>
+                    <span style="color:#6c6c6c;font-size:14px;">累积销量：<?php echo floatval($info['paynum']); ?>个</span>
                 </span>
             </div><br/>
 
@@ -194,7 +194,7 @@
                 </div>
             </div>
             <div class="from"><font color="#2581ff"  size="2"><div class="from_off_4"></div>
-                <div class="from_in_4" style="width:450px">购买<?php echo $info['pinum']; ?>个以上按批发价￥<?php echo $info['pipay']; ?> 计算</div>
+                <div class="from_in_4" style="width:450px">购买<?php echo $info['pinum']; ?>个以上按批发价￥<?php echo floatval($info['pipay']); ?> 计算</div>
             </font></div>
 
 
