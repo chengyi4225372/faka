@@ -10,9 +10,11 @@ class Pays extends Controller
 
     protected  $pay = 'pay';
 
-    protected  $alipay_config=array();
+
 
     protected  $error= '支付数据为空';
+
+    public $alipay_config='';
 
     public function _initialize()
     {
@@ -37,8 +39,6 @@ class Pays extends Controller
 
     public function index(){
             $pay = Db::name($this->pay)->order('id desc')->find();
-            $return_url =
-            $notify_url = ;
             $out_trade_no = input('get.order_no','','trim');
             $type = input('get.types','','trim');
             $name = input('get.goodnames','','trim');
@@ -49,8 +49,8 @@ class Pays extends Controller
             $parameter = array(
                 "pid" =>$pay['pid'],
                 "type" => $type,
-                "notify_url"	=> $notify_url,
-                "return_url"	=> $return_url,
+                "notify_url"	=>  "http://pays.sddyun.cn/SDK/notify_url.php",
+                "return_url"	=> "http://pays.sddyun.cn/SDK/return_url.php",
                 "out_trade_no"	=> $out_trade_no,
                 "name"	=> $name,
                 "money"	=> $money,
