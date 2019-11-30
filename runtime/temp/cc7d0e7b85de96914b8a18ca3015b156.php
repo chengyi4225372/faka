@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:85:"C:\Users\Administrator\Desktop\faka\public/../application/admin\view\index\index.html";i:1571549535;s:79:"C:\Users\Administrator\Desktop\faka\application\admin\view\template\layout.html";i:1567323883;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"C:\Users\Administrator\Desktop\faka\public/../application/admin\view\pay\index.html";i:1571549535;s:79:"C:\Users\Administrator\Desktop\faka\application\admin\view\template\layout.html";i:1567323883;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -138,182 +138,92 @@
         </section>
         <section class="content">
             <div class="row">
-    <div class="pad margin no-print">
-        <div class="callout callout-info" style="margin-bottom: 0!important;">
-            <h4><i class="fa fa-info"></i> 你好,<?php echo $webData['user_info']['nickname']; ?>:</h4>
-            欢迎来到后台管理系统，左侧为菜单区域，右侧为功能区。
+    <div class="col-md-12">
+        <div class="box box-primary">
+            <form class="form-horizontal dataForm"  enctype="multipart/form-data">
+                <input type="hidden" id="payid" value="<?php echo $pay['id']; ?>">
+
+                <div class="box-body">
+                    <div class="fields-group">
+
+                        <div class="form-group">
+                            <label for="title" class="col-sm-2 control-label">商户id</label>
+                            <div class="col-sm-10 col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input id="pid" name="pid" value="<?php echo $pay['pid']; ?>" class="form-control" >
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="title" class="col-sm-2 control-label">商户秘钥</label>
+                            <div class="col-sm-10 col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input id="keys" name="keys" value="<?php echo $pay['key']; ?>" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="title" class="col-sm-2 control-label">支付地址</label>
+                            <div class="col-sm-10 col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input id="url" name="url" value="<?php echo $pay['url']; ?>" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="box-footer">
+                    <div class="col-sm-2">
+                    </div>
+                    <div class="col-sm-10 col-md-4">
+                        <div class="btn-group">
+                            <button type="button" class="btn flat btn-info dataform-submit add-pay">保存</button>
+                        </div>
+                        <div class="btn-group">
+                            <button type="reset" class="btn flat btn-default dataform-reset">重置</button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
         </div>
     </div>
 </div>
-<!-- 显示 -->
-<div class="row">
-    <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="info-box">
-            <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
 
-            <div class="info-box-content">
-                <span class="info-box-text">会员总数</span>
-                <span class="info-box-number">90</span>
-            </div>
+<script>
+    $('.add-pay').click(function(){
 
-        </div>
-    </div>
+        var pid   = $('#pid').val();
+        var urls  = $('#url').val();
+        var id    = $("#payid").val();
+        var keys   = $("#keys").val();
+
+        var url = "<?php echo url('pay/index'); ?>";
 
 
-    <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="info-box">
-            <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
+        $.post(url,{'id':id,'url':urls,'pid':pid,'key':keys},function(ret){
 
-            <div class="info-box-content">
-                <span class="info-box-text">未发货订单</span>
-                <span class="info-box-number">41,410</span>
-            </div>
-        </div>
-    </div>
+            if(ret.code == 200){
+                layer.msg(ret.msg,{time:2000},function(){
+                    parent.location.reload();
+                });
+            };
 
-
-    <!-- fix for small devices only -->
-    <div class="clearfix visible-sm-block"></div>
-
-    <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="info-box">
-            <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
-
-            <div class="info-box-content">
-                <span class="info-box-text">昨日订单</span>
-                <span class="info-box-number">760</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- /.col -->
-    <div class="col-md-3 col-sm-6 col-xs-12">
-    <div class="info-box">
-        <span class="info-box-icon bg-blue"><i class="ion ion-ios-people-outline"></i></span>
-
-        <div class="info-box-content">
-            <span class="info-box-text">今日订单</span>
-            <span class="info-box-number">2,000</span>
-        </div>
-    </div>
-  </div>
-
-    <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="info-box">
-            <span class="info-box-icon bg-yellow"><i class="ion ion-ios-cart-outline"></i></span>
-
-            <div class="info-box-content">
-                <span class="info-box-text">昨日金额</span>
-                <span class="info-box-number">2,000</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="info-box">
-            <span class="info-box-icon bg-yellow"><i class="ion ion-ios-cart-outline"></i></span>
-            <div class="info-box-content">
-                <span class="info-box-text">今日金额</span>
-                <span class="info-box-number">2,000</span>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-
-<div class="row">
-    <div class="col-md-4">
-        <!-- DIRECT CHAT PRIMARY -->
-        <div class="box box-primary direct-chat direct-chat-primary">
-            <div class="box-header with-border">
-                <h3 class="box-title">在线公告</h3>
-
-                <div class="box-tools pull-right">
-                    <span data-toggle="tooltip" title="" class="badge bg-light-blue" data-original-title=""></span>
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-
-                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                </div>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body" style="display: block;">
-
-                <div class="direct-chat-messages">
-
-                <?php echo $html; ?>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="col-md-4">
-        <!-- DIRECT CHAT SUCCESS -->
-        <div class="box box-success direct-chat direct-chat-success">
-            <div class="box-header with-border">
-                <h3 class="box-title">友情赞助</h3>
-
-                <div class="box-tools pull-right">
-                    <span data-toggle="tooltip" title="" class="badge bg-green"></span>
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                </div>
-            </div>
-
-            <div class="box-body">
-                <div class="direct-chat-messages">
-
-                 <?php echo $zan; ?>
-
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="col-md-4">
-        <!-- DIRECT CHAT WARNING -->
-        <div class="box box-warning direct-chat direct-chat-warning">
-            <div class="box-header with-border">
-                <h3 class="box-title">配置信息</h3>
-
-                <div class="box-tools pull-right">
-                    <span data-toggle="tooltip" title="" class="badge bg-yellow"></span>
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                </div>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-
-                <div class="direct-chat-messages">
-                    <div class="box-body">Thinkphp version: thinphp5.1</div>
-                    <div class="box-body">环境信息：apcheX.x或nginx X.X (根据服务器环境信息)</div>
-                    <div class="box-body">php版本：php7.2</div>
-                    <div class="box-body">MySQL数据库版本：mysql5.3</div>
-                    <div class="box-body">栗子发卡系统官网：www.956ka.cn</div>
-                    <div class="box-body">当前版本：1.0</div>
-                    <div class="box-body">个人发卡程序|交流群：123456</div>
-                    <div class="box-body">程序说明：xxxxxx</div>
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-</div>
-
+            if(ret.code == 400){
+                layer.msg(ret.msg,{time:2000},function(){
+                    parent.location.reload();
+                });
+            };
+        },'json')
+    });
+</script>
         </section>
     </div>
 
