@@ -19,7 +19,7 @@ return [
     // 用户名
     'username'        => 'root', //test_956ka_cn
     // 密码
-    'password'        => 'root', //i37TeLhd28XjxstH
+    'password'        => '123456', //i37TeLhd28XjxstH
     // 端口
     'hostport'        => '3306',
     // 连接dsn

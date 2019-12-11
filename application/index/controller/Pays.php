@@ -13,7 +13,9 @@ class Pays extends Controller
     //支付参数
     protected  $alipay_config=array();
 
+
     protected  $error= '支付数据为空';
+
 
     public function _initialize()
     {

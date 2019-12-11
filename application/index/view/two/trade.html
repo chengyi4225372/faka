@@ -57,35 +57,48 @@
                         }
 
                     </script>
-                    <form action="/buy" id="p_form" method="post" onsubmit="return false;">
-                        <input type="hidden" name="gid" value="23">
+                    <form  method="post" >
+                        <input type="hidden" name='sid' id="sid" value='{$info.id}'>
+
+                        <input type="hidden" name='hid' id="hid" value='{$info.huo}'>
+
+                        {if condition="$info.moban eq 0"}
                         <div class="from">
                                     <span style="color:#6c6c6c;margin-left:10px">联系方式：
-                                        <input id="mobile" name="mobile"
-                                               style="padding: 0.5em;font-size: 1rem;line-height: 1.2;color: #333;"
-                                               placeholder="请输入联系方式" required="">
+                                        <input id="mobile" name="mobile" style="padding: 0.5em;font-size: 1rem;line-height: 1.2;color: #333;" placeholder="请输入联系方式" required="">
                                     </span>
                         </div>
                         <br>
                         <span style="color:#6c6c6c;margin-left:10px">数量：
-                                    <input type="button" value="+" style="margin-right:-6px;" class="trade-input-count-button" onclick="countoper('jia')">
-                                    <input type="text" class="trade-input-count" id="p_num" name="num" value="1" placeholder="请输入购买数量" required="" min="1" max="9999">
-                                    <input type="button" value="-" style="margin-left:-6px;" class="trade-input-count-button" onclick="countoper('jian')">
-                                </span>
+                          <input type="button" value="+" style="margin-right:-6px;" class="trade-input-count-button" onclick="countoper('jia')">
+                          <input type="text" class="trade-input-count" id="p_num" name="num" value="1" placeholder="请输入购买数量" required="" min="1" max="9999">
+                          <input type="button" value="-" style="margin-left:-6px;" class="trade-input-count-button" onclick="countoper('jian')">
+                       </span>
+                        {else /}
+
+                        {volist name='info.moban' id='v1' key='k'}
+                        <div class="from">
+                                    <span style="color:#6c6c6c;margin-left:10px"  id="title{$k}">{$v1[0]}：
+                                        <input  id="moban{$k}" style="padding: 0.5em;font-size: 1rem;line-height: 1.2;color: #333;" placeholder="{$v1[1]}" required>
+                                    </span>
+                        </div>
+                        <br>
+                        {/volist}
+                        {/if}
+
                     </form>
-                    <input id="minnum" name="minnum" type="hidden" value="1">
-                    <input id="maxnum" name="maxnum" type="hidden" value="9999">
-                    <input id="beishu" name="beishu" type="hidden" value="1">
+                    <input id="minnum" name="minnum" class="z" type="hidden" value="{$info.mins}" >
+                    <input id="maxnum" name="maxnum" class="z" type="hidden" value="{$info.maxs}" >
+                    <input id="beishu" name="beishu" class="z" type="hidden" value="{$info.bei}" >
+                    <input id="num" name="num" class="z" type="hidden" value="{$info.num}" >
+                    <input id="member_id" class="z" type="hidden" value="{$Think.session.info.id}" >
                     <br>
                     <button type="submit" onclick="buy(0,1)" class="am-btn am-btn-danger am-btn-xl am-square" id="paysubmit" style="margin-top:20px"><span class="am-icon-shopping-cart"></span>立即购买</button>
-
 
                     <!-- 网格结束 -->
                 </div>
             </div>
         </div>
-
-
 
         <div class="am-panel am-panel-default" style="border-radius:0px;margin-top: 10px">
             <div class="am-panel-hd">商品描述</div>
@@ -99,26 +112,27 @@
 
 <script type="text/javascript" src="/static/index/sink/js/jquery-1.8.3.min.js"></script>
 <script src="/static/index/sink/js/layer/layer.js"></script>
-
-
 <script>
-        function countoper(oper){
-            count=$("#p_num").val();
-            if(oper=='jia'){
-                count=parseInt(count)+1;
-            }else{
-                count=parseInt(count)-1;
-            }
-            if(parseInt(count)<0){
-                count=0;
-            }
-            $("#p_num").val(count);
+    //数量添加 修改
+    function countoper(oper){
+        count=$("#p_num").val();
+        if(oper=='jia'){
+            count=parseInt(count)+1;
+        }else{
+            count=parseInt(count)-1;
         }
+        if(parseInt(count)<0){
+            count=0;
+        }
+        $("#p_num").val(count);
+    }
 
-    </script>
+
+</script>
+
 
 <script>
-        function buy(a,b) {
+  function buy(a,b) {
             var p_num = document.getElementById("p_num").value;
             var minnum = document.getElementById("minnum").value;
             var maxnum = document.getElementById("maxnum").value;
@@ -175,7 +189,7 @@
                 layer.alert('库存不足！');
             }
         }
-    </script>
+</script>
 
 </div>
 

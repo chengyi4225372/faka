@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:85:"C:\Users\Administrator\Desktop\faka\public/../application/admin\view\index\index.html";i:1571549535;s:79:"C:\Users\Administrator\Desktop\faka\application\admin\view\template\layout.html";i:1567323883;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:86:"C:\Users\Administrator\Desktop\faka\public/../application/admin\view\order\person.html";i:1575129464;s:79:"C:\Users\Administrator\Desktop\faka\application\admin\view\template\layout.html";i:1567323883;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -138,182 +138,191 @@
         </section>
         <section class="content">
             <div class="row">
-    <div class="pad margin no-print">
-        <div class="callout callout-info" style="margin-bottom: 0!important;">
-            <h4><i class="fa fa-info"></i> 你好,<?php echo $webData['user_info']['nickname']; ?>:</h4>
-            欢迎来到后台管理系统，左侧为菜单区域，右侧为功能区。
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-body">
+                <form class="form-inline" name="searchForm"  method="GET">
+                    <div class="form-group">
+                        <select name="gid" id="gid" class="form-control">
+                            <option value="">请选择...</option>
+                            <?php if(is_array($goodes) || $goodes instanceof \think\Collection || $goodes instanceof \think\Paginator): $i = 0; $__LIST__ = $goodes;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vv): $mod = ($i % 2 );++$i;?>
+                            <option value="<?php echo $vv['id']; ?>" <?php if(\think\Request::instance()->get('gid') == $vv['id']): ?>selected="" <?php endif; ?> ><?php echo $vv['title']; ?></option>
+                            <?php endforeach; endif; else: echo "" ;endif; ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <select name="paytype" id="paytype" class="form-control">
+                            <option value="">请选择...</option>
+
+                            <option value="1" <?php if(\think\Request::instance()->get('paytype') == 1): ?> selected="" <?php endif; ?>>支付宝</option>
+                            <option value="2" <?php if(\think\Request::instance()->get('paytype') == 2): ?> selected="" <?php endif; ?>>微信</option>
+                            <option value="3" <?php if(\think\Request::instance()->get('paytype') == 3): ?> selected="" <?php endif; ?>>qq支付</option>
+
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <button data-href="<?php echo url('order/person'); ?>"  class="btn btn-sm btn-primary search" type="button">
+                            <i class="fa fa-search"></i> 查询
+                        </button>
+                    </div>
+
+                    <div class="form-group">
+                        <button onclick="clear_form()" class="btn btn-sm btn-" type="button"><i
+                                class="fa  fa-eraser"></i> 清空查询
+                        </button>
+                    </div>
+                </form>
+
+            </div>
         </div>
     </div>
 </div>
-<!-- 显示 -->
-<div class="row">
-    <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="info-box">
-            <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
-
-            <div class="info-box-content">
-                <span class="info-box-text">会员总数</span>
-                <span class="info-box-number">90</span>
-            </div>
-
-        </div>
-    </div>
-
-
-    <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="info-box">
-            <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
-
-            <div class="info-box-content">
-                <span class="info-box-text">未发货订单</span>
-                <span class="info-box-number">41,410</span>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- fix for small devices only -->
-    <div class="clearfix visible-sm-block"></div>
-
-    <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="info-box">
-            <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
-
-            <div class="info-box-content">
-                <span class="info-box-text">昨日订单</span>
-                <span class="info-box-number">760</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- /.col -->
-    <div class="col-md-3 col-sm-6 col-xs-12">
-    <div class="info-box">
-        <span class="info-box-icon bg-blue"><i class="ion ion-ios-people-outline"></i></span>
-
-        <div class="info-box-content">
-            <span class="info-box-text">今日订单</span>
-            <span class="info-box-number">2,000</span>
-        </div>
-    </div>
-  </div>
-
-    <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="info-box">
-            <span class="info-box-icon bg-yellow"><i class="ion ion-ios-cart-outline"></i></span>
-
-            <div class="info-box-content">
-                <span class="info-box-text">昨日金额</span>
-                <span class="info-box-number">2,000</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="info-box">
-            <span class="info-box-icon bg-yellow"><i class="ion ion-ios-cart-outline"></i></span>
-            <div class="info-box-content">
-                <span class="info-box-text">今日金额</span>
-                <span class="info-box-number">2,000</span>
-            </div>
-        </div>
-    </div>
-
-</div>
-
 
 <div class="row">
-    <div class="col-md-4">
-        <!-- DIRECT CHAT PRIMARY -->
-        <div class="box box-primary direct-chat direct-chat-primary">
-            <div class="box-header with-border">
-                <h3 class="box-title">在线公告</h3>
+    <div class="col-md-12">
+        <div class="box">
 
-                <div class="box-tools pull-right">
-                    <span data-toggle="tooltip" title="" class="badge bg-light-blue" data-original-title=""></span>
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+            <div class="box-body table-responsive">
+
+                <div class="form-group">
+                    <button onclick="clear_form()" class="btn btn-info pull-right" type="button"><i
+                            class="fa  fa-eraser"></i> 删除未完成订单
                     </button>
-
-                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                </div>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body" style="display: block;">
-
-                <div class="direct-chat-messages">
-
-                <?php echo $html; ?>
-
                 </div>
 
-            </div>
+                <table class="table table-hover table-bordered datatable" width="100%">
+                    <thead>
+                    <tr>
+                        <th>订单号</th>
+                        <th>商品名称</th>
+                        <th>数量</th>
+                        <th>账号</th>
+                        <th>价格</th>
+                        <th>支付方式</th>
+                        <th>状态</th>
+                        <th>发货方式</th>
+                        <th>联系方式</th>
+                        <th>创建时间</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <?php if(is_array($list) || $list instanceof \think\Collection || $list instanceof \think\Paginator): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                    <tbody>
+                    <tr>
+                        <td><?php echo $vo['order_no']; ?></td>
+                        <td><?php echo $goods[$vo['gid']]; ?></td>
+                        <td><?php echo $vo['num']; ?></td>
+                        <td>
+                            <?php if(empty($vo['member_id']) || (($vo['member_id'] instanceof \think\Collection || $vo['member_id'] instanceof \think\Paginator ) && $vo['member_id']->isEmpty())): ?>
+                                 游客
+                            <?php else: ?>
+                            <?php echo $info[$vo['member_id']]; endif; ?>
+                        </td>
+                        <td><?php echo $vo['countpay']; ?></td>
+                        <td>
+                            <?php switch($vo['paytype']): case "1": ?>支付宝支付<?php break; case "2": ?>微信支付<?php break; case "3": ?>QQ支付<?php break; case "4": ?>余额支付<?php break; default: ?>
+                             <span class="btn btn-danger btn-xs">未支付</span>
+                            <?php endswitch; ?>
+                        </td>
+                        <td>
+                            <?php switch($vo['status']): case "1": ?>
+                            <a class="btn btn-block btn-success btn-xs">已支付</a>
+                            <?php break; case "2": ?>
+                            <a class="btn btn-block btn-linkedin btn-xs">已发货</a>
+                            <?php break; case "3": ?>
+                            <a class="btn btn-block btn-foursquare btn-xs">联系客服退款</a>
+                            <?php break; default: ?>
+                            <a class="btn btn-block btn-primary btn-xs">未支付</a>
+                            <?php endswitch; ?>
+                        </td>
+                        <td>
+                            <?php if($vo['huo'] == '0'): ?>
+                            <a class="btn btn-block btn-flickr btn-xs">自动发货</a>
+                            <?php else: ?>
+                            <a class="btn btn-block btn-github btn-xs">手动发货</a>
+                            <?php endif; ?>
+                        </td>
+                        <td><?php echo $vo['mobile']; ?></td>
+                        <td><?php echo $vo['create_time']; ?></td>
+                        <td class="td-do">
+                            <a href="edit.html" class="btn btn-success btn-xs" title="修改">
+                                <i class="fa fa-pencil">补单</i>
+                            </a>
+                            <a  data-href="<?php echo url('order/pedit',array('id'=>$vo['id'])); ?>" class="btn btn-primary btn-xs pedit" title="修改">
+                                <i class="fa fa-pencil">编辑订单</i>
+                            </a>
+                            <a class="btn btn-danger btn-xs del" title="删除" data-id="" data-href="<?php echo url('order/pdel',array('id'=>$vo['id'])); ?>">
+                                <i class="fa fa-trash">删除</i>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                    <?php endforeach; endif; else: echo "" ;endif; ?>
 
+                </table>
+            </div>
         </div>
+        <?php echo $list->render();; ?>
 
-    </div>
+        <script>
+            $('.pedit').click(function(){
+                var url = $(this).attr('data-href');
+                layer.open({
+                        type: 2,
+                        title: '编辑订单',
+                        shadeClose: true,
+                        shade: false,
+                        area: ['60%', '70%'],
+                        content: url,
+                    })
+            });
 
+            //删除
+            $('.del').click(function(){
+               var url = $(this).attr('data-href');
+               layer.confirm('您确定删除？',
+                   {btn:['确定','取消']},
+                    function(){
+                       $.get(url,function(ret){
+                           if(ret.code ==200){
+                             layer.msg(ret.msg,function(){
+                                 parent.location.reload();
+                             })
+                           }
+                           if(ret.code == 400){
+                             layer.msg(ret.msg,function(){
+                                 parent.location.reload();
+                             })
+                           }
+                       })
+                    },
+                   function(){
+                    parent.layer.close();
+                   }
+               )
+            });
 
-    <div class="col-md-4">
-        <!-- DIRECT CHAT SUCCESS -->
-        <div class="box box-success direct-chat direct-chat-success">
-            <div class="box-header with-border">
-                <h3 class="box-title">友情赞助</h3>
+            $('.search').click(function(){
+                var url     = $(this).attr('data-href');
+                var gid     = $('#gid option:selected').val();
+                var paytype = $('#paytype option:selected').val();
 
-                <div class="box-tools pull-right">
-                    <span data-toggle="tooltip" title="" class="badge bg-green"></span>
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                </div>
-            </div>
+                if(gid ==  '' || gid==undefined){
+                    layer.msg('请选择商品');
+                    return ;
+                }
 
-            <div class="box-body">
-                <div class="direct-chat-messages">
+                if(paytype ==  '' || paytype==undefined){
+                    layer.msg('请选择支付类型');
+                    return ;
+                }
 
-                 <?php echo $zan; ?>
+                location.href= url+"?gid="+gid+"&paytype="+paytype;
 
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="col-md-4">
-        <!-- DIRECT CHAT WARNING -->
-        <div class="box box-warning direct-chat direct-chat-warning">
-            <div class="box-header with-border">
-                <h3 class="box-title">配置信息</h3>
-
-                <div class="box-tools pull-right">
-                    <span data-toggle="tooltip" title="" class="badge bg-yellow"></span>
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                </div>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-
-                <div class="direct-chat-messages">
-                    <div class="box-body">Thinkphp version: thinphp5.1</div>
-                    <div class="box-body">环境信息：apcheX.x或nginx X.X (根据服务器环境信息)</div>
-                    <div class="box-body">php版本：php7.2</div>
-                    <div class="box-body">MySQL数据库版本：mysql5.3</div>
-                    <div class="box-body">栗子发卡系统官网：www.956ka.cn</div>
-                    <div class="box-body">当前版本：1.0</div>
-                    <div class="box-body">个人发卡程序|交流群：123456</div>
-                    <div class="box-body">程序说明：xxxxxx</div>
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-</div>
-
+            })
+        </script>
         </section>
     </div>
 

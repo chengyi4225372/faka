@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:85:"C:\Users\Administrator\Desktop\faka\public/../application/admin\view\index\index.html";i:1571549535;s:79:"C:\Users\Administrator\Desktop\faka\application\admin\view\template\layout.html";i:1567323883;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"C:\Users\Administrator\Desktop\faka\public/../application/admin\view\member\hei.html";i:1571549535;s:79:"C:\Users\Administrator\Desktop\faka\application\admin\view\template\layout.html";i:1567323883;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -138,181 +138,81 @@
         </section>
         <section class="content">
             <div class="row">
-    <div class="pad margin no-print">
-        <div class="callout callout-info" style="margin-bottom: 0!important;">
-            <h4><i class="fa fa-info"></i> 你好,<?php echo $webData['user_info']['nickname']; ?>:</h4>
-            欢迎来到后台管理系统，左侧为菜单区域，右侧为功能区。
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-body">
+                <form class="form-inline" name="searchForm" id="searchForm" action="<?php echo url('member/hei'); ?>" method="GET">
+                    <div class="form-group">
+                        <input value="<?php echo \think\Request::instance()->get('keywords')?\think\Request::instance()->get('keywords') : '' ;; ?>"
+                               name="keywords" id="keywords" class="form-control input-sm" placeholder="帐号/昵称/手机号/邮箱">
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-sm btn-primary" type="submit"><i class="fa fa-search"></i> 查询
+                        </button>
+                    </div>
+
+                    <div class="form-group">
+                        <button onclick="clear_form()" class="btn btn-sm btn-" type="button"><i
+                                class="fa  fa-eraser"></i> 清空查询
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
-<!-- 显示 -->
-<div class="row">
-    <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="info-box">
-            <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
-
-            <div class="info-box-content">
-                <span class="info-box-text">会员总数</span>
-                <span class="info-box-number">90</span>
-            </div>
-
-        </div>
-    </div>
-
-
-    <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="info-box">
-            <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
-
-            <div class="info-box-content">
-                <span class="info-box-text">未发货订单</span>
-                <span class="info-box-number">41,410</span>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- fix for small devices only -->
-    <div class="clearfix visible-sm-block"></div>
-
-    <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="info-box">
-            <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
-
-            <div class="info-box-content">
-                <span class="info-box-text">昨日订单</span>
-                <span class="info-box-number">760</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- /.col -->
-    <div class="col-md-3 col-sm-6 col-xs-12">
-    <div class="info-box">
-        <span class="info-box-icon bg-blue"><i class="ion ion-ios-people-outline"></i></span>
-
-        <div class="info-box-content">
-            <span class="info-box-text">今日订单</span>
-            <span class="info-box-number">2,000</span>
-        </div>
-    </div>
-  </div>
-
-    <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="info-box">
-            <span class="info-box-icon bg-yellow"><i class="ion ion-ios-cart-outline"></i></span>
-
-            <div class="info-box-content">
-                <span class="info-box-text">昨日金额</span>
-                <span class="info-box-number">2,000</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="info-box">
-            <span class="info-box-icon bg-yellow"><i class="ion ion-ios-cart-outline"></i></span>
-            <div class="info-box-content">
-                <span class="info-box-text">今日金额</span>
-                <span class="info-box-number">2,000</span>
-            </div>
-        </div>
-    </div>
-
-</div>
-
 
 <div class="row">
-    <div class="col-md-4">
-        <!-- DIRECT CHAT PRIMARY -->
-        <div class="box box-primary direct-chat direct-chat-primary">
-            <div class="box-header with-border">
-                <h3 class="box-title">在线公告</h3>
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-body table-responsive">
+                <table class="table table-hover table-bordered datatable" width="100%">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>账号</th>
+                        <th>余额</th>
+                        <th>qq账号</th>
+                        <th>邮箱</th>
+                        <th>注册时间</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <?php if(is_array($list) || $list instanceof \think\Collection || $list instanceof \think\Paginator): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                    <tbody>
+                    <tr>
+                        <td><?php echo $vo['id']; ?></td>
+                        <td><?php echo $vo['account']; ?></td>
+                        <td><?php echo (isset($vo['money']) && ($vo['money'] !== '')?$vo['money']:'0.00'); ?></td>
+                        <td><?php echo (isset($vo['qq']) && ($vo['qq'] !== '')?$vo['qq']:''); ?></td>
+                        <td><?php echo (isset($vo['email']) && ($vo['email'] !== '')?$vo['email']:''); ?></td>
+                        <td><?php echo $vo['create_time']; ?></td>
+                        <td>
+                            <?php if($vo['status'] == '1'): ?>
+                            有效客户
+                            <?php else: ?>
+                            无效客户
+                            <?php endif; ?>
+                        </td>
+                        <td class="td-do">
+                            <a href="<?php echo url('member/edit',array('id'=>$vo['id'])); ?>"
+                               class="btn btn-primary btn-xs" title="修改">
+                                <i class="fa fa-pencil">编辑</i>
+                            </a>
+                            <a class="btn btn-danger btn-xs" title="删除"  href="<?php echo url('member/del',array('id'=>$vo['id'])); ?>">
+                                <i class="fa fa-trash">删除</i>
+                            </a>
+                        </td>
 
-                <div class="box-tools pull-right">
-                    <span data-toggle="tooltip" title="" class="badge bg-light-blue" data-original-title=""></span>
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-
-                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                </div>
+                    </tr>
+                    </tbody>
+                    <?php endforeach; endif; else: echo "" ;endif; ?>
+                </table>
             </div>
-            <!-- /.box-header -->
-            <div class="box-body" style="display: block;">
-
-                <div class="direct-chat-messages">
-
-                <?php echo $html; ?>
-
-                </div>
-
-            </div>
-
         </div>
-
-    </div>
-
-
-    <div class="col-md-4">
-        <!-- DIRECT CHAT SUCCESS -->
-        <div class="box box-success direct-chat direct-chat-success">
-            <div class="box-header with-border">
-                <h3 class="box-title">友情赞助</h3>
-
-                <div class="box-tools pull-right">
-                    <span data-toggle="tooltip" title="" class="badge bg-green"></span>
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                </div>
-            </div>
-
-            <div class="box-body">
-                <div class="direct-chat-messages">
-
-                 <?php echo $zan; ?>
-
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="col-md-4">
-        <!-- DIRECT CHAT WARNING -->
-        <div class="box box-warning direct-chat direct-chat-warning">
-            <div class="box-header with-border">
-                <h3 class="box-title">配置信息</h3>
-
-                <div class="box-tools pull-right">
-                    <span data-toggle="tooltip" title="" class="badge bg-yellow"></span>
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                </div>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-
-                <div class="direct-chat-messages">
-                    <div class="box-body">Thinkphp version: thinphp5.1</div>
-                    <div class="box-body">环境信息：apcheX.x或nginx X.X (根据服务器环境信息)</div>
-                    <div class="box-body">php版本：php7.2</div>
-                    <div class="box-body">MySQL数据库版本：mysql5.3</div>
-                    <div class="box-body">栗子发卡系统官网：www.956ka.cn</div>
-                    <div class="box-body">当前版本：1.0</div>
-                    <div class="box-body">个人发卡程序|交流群：123456</div>
-                    <div class="box-body">程序说明：xxxxxx</div>
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-</div>
+        <?php echo $list->render(); ?>
 
         </section>
     </div>
