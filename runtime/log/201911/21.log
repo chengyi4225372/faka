@@ -1,0 +1,420 @@
+---------------------------------------------------------------
+[ 2019-11-21T13:46:57+08:00 ] 127.0.0.1 GET /
+[ info ] local.lizi.com/ [运行时间：0.108006s][吞吐率：9.26req/s] [内存消耗：3,309.01kb] [文件加载：63]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1570846100,1571035163,1571992560',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.007000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.007001s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_content` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_content` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-11-21T13:46:57+08:00 ] 127.0.0.1 GET /index/two/index.html
+[ info ] local.lizi.com/index/two/index.html [运行时间：0.105006s][吞吐率：9.52req/s] [内存消耗：3,444.13kb] [文件加载：66]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'two',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1570846100,1571035163,1571992560',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Two->index[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\Two.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\two\index.html [ array (
+  0 => 'config',
+  1 => 'shouye',
+  2 => 'content',
+  3 => 'list',
+  4 => 'categorys',
+  5 => 'indexs',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_content` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_content` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_content` WHERE  `id` = 5 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_goods` WHERE  `status` = 1 ORDER BY `sort` DESC [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_good_cates` [ RunTime:0.003000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_good_cates` ORDER BY `id` DESC [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_content` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_card` [ RunTime:0.004001s ]
+[ sql ] [ SQL ] SELECT gid,count(kami) as num FROM `bear_card` WHERE  `over` = 0 GROUP BY `gid` [ RunTime:0.002000s ]
+---------------------------------------------------------------
+[ 2019-11-21T13:47:17+08:00 ] 127.0.0.1 GET /admin
+[ info ] local.lizi.com/admin [运行时间：0.083005s][吞吐率：12.05req/s] [内存消耗：3,992.99kb] [文件加载：71]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1570846100,1571035163,1571992560',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'purpose' => 'prefetch',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_admin_menus` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_admin_menus` WHERE  `url` = 'admin/index/index' LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-11-21T13:47:17+08:00 ] 127.0.0.1 GET /admin/auth/login.html
+[ info ] local.lizi.com/admin/auth/login.html [运行时间：0.147009s][吞吐率：6.80req/s] [内存消耗：4,140.57kb] [文件加载：75]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'auth',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1570846100,1571035163,1571992560; PHPSESSID=s69r2edie9tek4j3tro4b7eaa3',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'purpose' => 'prefetch',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\admin\controller\Auth->login[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\controller\Auth.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\auth\login.html [ array (
+  0 => 'title',
+  1 => 'bg_num',
+  2 => 'showDataHeader',
+  3 => 'showDataHeaderAddButton',
+  4 => 'showDataHeaderDeleteButton',
+  5 => 'showFormHeader',
+  6 => 'showFormHeaderBackButton',
+  7 => 'showFormFooter',
+  8 => 'showFormFooterSubmitButton',
+  9 => 'showFormFooterResetButton',
+  10 => 'webData',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_admin_menus` [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_admin_menus` WHERE  `url` = 'admin/auth/login' LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_admin_users` [ RunTime:0.003000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_admin_users` WHERE (  `id` = 0 ) AND `bear_admin_users`.`delete_time` IS NULL LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_admin_group_access` [ RunTime:0.003000s ]
+[ sql ] [ SQL ] SELECT `AdminGroupAccess`.`uid`,`AdminGroupAccess`.`group_id`,`AdminGroups`.`name`,`AdminGroups`.`rules` FROM `bear_admin_group_access` `AdminGroupAccess` LEFT JOIN `bear_admin_groups` `AdminGroups` ON `AdminGroupAccess`.`group_id`=`AdminGroups`.`id` WHERE  (  AdminGroupAccess.uid='' and AdminGroups.status=1 ) [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_sysconfigs` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_sysconfigs` WHERE (  `code` = 'backend_name'  AND `status` = 1 ) AND `bear_sysconfigs`.`delete_time` IS NULL LIMIT 1 [ RunTime:0.002000s ]
+---------------------------------------------------------------
+[ 2019-11-21T13:47:18+08:00 ] 127.0.0.1 GET /admin/auth/login.html
+[ info ] local.lizi.com/admin/auth/login.html [运行时间：0.108006s][吞吐率：9.26req/s] [内存消耗：4,140.30kb] [文件加载：75]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'auth',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1570846100,1571035163,1571992560; PHPSESSID=s69r2edie9tek4j3tro4b7eaa3',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\admin\controller\Auth->login[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\controller\Auth.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\auth\login.html [ array (
+  0 => 'title',
+  1 => 'bg_num',
+  2 => 'showDataHeader',
+  3 => 'showDataHeaderAddButton',
+  4 => 'showDataHeaderDeleteButton',
+  5 => 'showFormHeader',
+  6 => 'showFormHeaderBackButton',
+  7 => 'showFormFooter',
+  8 => 'showFormFooterSubmitButton',
+  9 => 'showFormFooterResetButton',
+  10 => 'webData',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_admin_menus` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_admin_menus` WHERE  `url` = 'admin/auth/login' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_admin_users` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_admin_users` WHERE (  `id` = 0 ) AND `bear_admin_users`.`delete_time` IS NULL LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_admin_group_access` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT `AdminGroupAccess`.`uid`,`AdminGroupAccess`.`group_id`,`AdminGroups`.`name`,`AdminGroups`.`rules` FROM `bear_admin_group_access` `AdminGroupAccess` LEFT JOIN `bear_admin_groups` `AdminGroups` ON `AdminGroupAccess`.`group_id`=`AdminGroups`.`id` WHERE  (  AdminGroupAccess.uid='' and AdminGroups.status=1 ) [ RunTime:0.002001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_sysconfigs` [ RunTime:0.003000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_sysconfigs` WHERE (  `code` = 'backend_name'  AND `status` = 1 ) AND `bear_sysconfigs`.`delete_time` IS NULL LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-11-21T13:47:18+08:00 ] 127.0.0.1 POST /admin/auth/get_geetest_status.html
+[ info ] local.lizi.com/admin/auth/get_geetest_status.html [运行时间：0.191011s][吞吐率：5.24req/s] [内存消耗：3,952.75kb] [文件加载：70]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'auth',
+    2 => 'get_geetest_status',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1570846100,1571035163,1571992560; PHPSESSID=s69r2edie9tek4j3tro4b7eaa3',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/admin/auth/login.html',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://local.lizi.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '0',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\admin\controller\Auth->get_geetest_status[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\controller\Auth.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.004000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_admin_menus` [ RunTime:0.003000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_admin_menus` WHERE  `url` = 'admin/auth/get_geetest_status' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_admin_users` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_admin_users` WHERE (  `id` = 0 ) AND `bear_admin_users`.`delete_time` IS NULL LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-11-21T13:47:19+08:00 ] 127.0.0.1 GET /favicon.ico
+[ info ] local.lizi.com/favicon.ico [运行时间：0.070004s][吞吐率：14.28req/s] [内存消耗：2,008.60kb] [文件加载：53]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'favicon.ico',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1570846100,1571035163,1571992560; PHPSESSID=s69r2edie9tek4j3tro4b7eaa3',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/admin/auth/login.html',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-21T13:47:26+08:00 ] 127.0.0.1 POST /admin/auth/login.html
+[ info ] local.lizi.com/admin/auth/login.html [运行时间：0.108007s][吞吐率：9.26req/s] [内存消耗：4,477.63kb] [文件加载：83]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'auth',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1570846100,1571035163,1571992560; PHPSESSID=s69r2edie9tek4j3tro4b7eaa3',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/admin/auth/login.html',
+  'content-type' => 'multipart/form-data; boundary=----WebKitFormBoundaryBSlATI2WoO1sKLJV',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://local.lizi.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '785',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+  'name' => 'admin',
+  'password' => 'admin123',
+  'geetest_challenge' => '19ca14e7ea6328a42e0eb13d585e4c2226',
+  'geetest_validate' => 'b077bf06ef815ba69ae6226959e6473b',
+  'geetest_seccode' => 'b077bf06ef815ba69ae6226959e6473b|jordan',
+  '__token__' => '50c44430ec5f501ce37668f797273f0c',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\admin\controller\Auth->login[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\controller\Auth.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_admin_menus` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_admin_menus` WHERE  `url` = 'admin/auth/login' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_admin_users` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_admin_users` WHERE (  `id` = 0 ) AND `bear_admin_users`.`delete_time` IS NULL LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_admin_users` WHERE (  `name` = 'admin'  AND `password` = '0192023a7bbd73250516f069df18b500' ) AND `bear_admin_users`.`delete_time` IS NULL LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_admin_logs` [ RunTime:0.004000s ]
+[ sql ] [ SQL ] INSERT INTO `bear_admin_logs` (`user_id` , `title` , `resource_id` , `log_type` , `log_url` , `log_ip` , `create_time`) VALUES (1 , '登录' , 0 , 2 , 'admin/auth/login.html' , 2130706433 , 1574315246) [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_admin_log_datas` [ RunTime:0.004001s ]
+[ sql ] [ SQL ] INSERT INTO `bear_admin_log_datas` (`data` , `log_id` , `create_time` , `update_time`) VALUES ('33e66072DuzvXgjDplRe2fYYR+2mhgKWvwOUGhT/bXVueQXVx7DG/W2XH1eo/Op4mITktqnH4KNHZKYrlGvq5PT2iyFmM5SP0nk+6vWNtnCYpSaMAWpG/f21V64cvTJqhO2+OQ3RGj6OMPr9m2M9/O9/8ht0+ZVZUO5JQOSUmHJCJAV3Bt0CfseW+URfTJkez/vBO2YTlT3drfJhCO6NCGRBIjlt5H9yXkgK3bAseC5wQBSDkp1XUloK5qz5lWeGamjV3C75e9zq6q2buAJX9+tGRdQxWccTpH+94PfwBlQUqbYGyrplu30qZ7gVKHDAqywsV++yox3ZwVcL4uW7Ukkec3qb4LhNavavPNCXSos8uvXRPRd9uGuesOfYVN/6WRAUeDciBiMwadX2qRfDZ/K4Vo3+CLA9XNyuPGTEvv3Buyc7T3EX0l1jNCnOsFN9/kFlwJjPqU520iea' , 111 , 1574315246 , 1574315246) [ RunTime:0.007000s ]
+---------------------------------------------------------------
+[ 2019-11-21T13:47:28+08:00 ] 127.0.0.1 GET /admin/index/index.html
+[ info ] local.lizi.com/admin/index/index.html [运行时间：2.185125s][吞吐率：0.46req/s] [内存消耗：4,236.02kb] [文件加载：76]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1570846100,1571035163,1571992560; PHPSESSID=s69r2edie9tek4j3tro4b7eaa3',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/admin/auth/login.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Index->index[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\controller\Index.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\index\index.html [ array (
+  0 => 'zan',
+  1 => 'html',
+  2 => 'showDataHeader',
+  3 => 'showDataHeaderAddButton',
+  4 => 'showDataHeaderDeleteButton',
+  5 => 'showFormHeader',
+  6 => 'showFormHeaderBackButton',
+  7 => 'showFormFooter',
+  8 => 'showFormFooterSubmitButton',
+  9 => 'showFormFooterResetButton',
+  10 => 'webData',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_admin_menus` [ RunTime:0.003000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_admin_menus` WHERE  `url` = 'admin/index/index' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_admin_users` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_admin_users` WHERE (  `id` = 1 ) AND `bear_admin_users`.`delete_time` IS NULL LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_admin_group_access` [ RunTime:0.002001s ]
+[ sql ] [ SQL ] SELECT `AdminGroupAccess`.`uid`,`AdminGroupAccess`.`group_id`,`AdminGroups`.`name`,`AdminGroups`.`rules` FROM `bear_admin_group_access` `AdminGroupAccess` LEFT JOIN `bear_admin_groups` `AdminGroups` ON `AdminGroupAccess`.`group_id`=`AdminGroups`.`id` WHERE  (  AdminGroupAccess.uid='1' and AdminGroups.status=1 ) [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `condition`,`url`,`id` FROM `bear_admin_menus` WHERE  `id` IN (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,26,27,28,29,30,31,32,33,34,21,22,23,25,24,35,36,44,37,38,39,40,41,43,42,45,46,47,48,49,50,51,52,53,54)  AND `type` = 1  AND `status` = 1 [ RunTime:0.003000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_admin_menus` WHERE  `is_show` = 1 ORDER BY `sort_id` ASC,`id` ASC [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_sysconfigs` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_sysconfigs` WHERE (  `code` = 'backend_name'  AND `status` = 1 ) AND `bear_sysconfigs`.`delete_time` IS NULL LIMIT 1 [ RunTime:0.000000s ]
