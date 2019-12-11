@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:105:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\two\trade.html";i:1571197156;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombhead.html";i:1571190314;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombfoot.html";i:1571190465;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:105:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\two\trade.html";i:1576030471;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombhead.html";i:1571190314;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombfoot.html";i:1571190465;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -100,7 +100,7 @@
                         <?php if($info['huo'] == '0'): ?>
                         <span style="color:#6C6C6C">库存：<?php echo $info['num']; ?>件</span>
                         <?php endif; ?>
-                        <a id="lookpf" style="margin-left:5px;font-size:10px" href="javascript:;" onclick="lookpf()">查看批发价</a>
+                        <a id="lookpf" style="margin-left:5px;font-size:10px" href="javascript:;" onclick="lookpf('<?php echo $info['pinum']; ?>','<?php echo $info['pipay']; ?>')">查看批发价</a>
                         <?php if($info['huo'] == '0'): ?>
                         <br><span style="color:#6c6c6c;">服务：自动发货 无忧售后</span>
                         <?php else: ?>
@@ -108,42 +108,62 @@
                         <?php endif; ?>
                     </p>
                     <script>
-                        function lookpf() {
-                            layer.tips('满10件0.10元/件', '#lookpf', {
+                        function lookpf(num,pay) {
+                            layer.tips('满'+num+'件'+pay+'元/件', '#lookpf', {
                                 tips: [3, '#78BA32']
                             });
                         }
 
                     </script>
-                    <form action="/buy" id="p_form" method="post" onsubmit="return false;">
-                        <input type="hidden" name="gid" value="23">
+                    <form  method="post" >
+                        <input type="hidden" name='sid' id="sid" value='<?php echo $info['id']; ?>'>
+
+                        <input type="hidden" name='hid' id="hid" value='<?php echo $info['huo']; ?>'>
+
+                        <?php if($info['moban'] == 0): ?>
                         <div class="from">
                                     <span style="color:#6c6c6c;margin-left:10px">联系方式：
-                                        <input id="mobile" name="mobile"
-                                               style="padding: 0.5em;font-size: 1rem;line-height: 1.2;color: #333;"
-                                               placeholder="请输入联系方式" required="">
+                                        <input id="mobile" name="mobile" style="padding: 0.5em;font-size: 1rem;line-height: 1.2;color: #333;" placeholder="请输入联系方式" required="">
                                     </span>
                         </div>
                         <br>
                         <span style="color:#6c6c6c;margin-left:10px">数量：
-                                    <input type="button" value="+" style="margin-right:-6px;" class="trade-input-count-button" onclick="countoper('jia')">
-                                    <input type="text" class="trade-input-count" id="p_num" name="num" value="1" placeholder="请输入购买数量" required="" min="1" max="9999">
-                                    <input type="button" value="-" style="margin-left:-6px;" class="trade-input-count-button" onclick="countoper('jian')">
-                                </span>
-                    </form>
-                    <input id="minnum" name="minnum" type="hidden" value="1">
-                    <input id="maxnum" name="maxnum" type="hidden" value="9999">
-                    <input id="beishu" name="beishu" type="hidden" value="1">
-                    <br>
-                    <button type="submit" onclick="buy(0,1)" class="am-btn am-btn-danger am-btn-xl am-square" id="paysubmit" style="margin-top:20px"><span class="am-icon-shopping-cart"></span>立即购买</button>
+                          <input type="button" value="+" style="margin-right:-6px;" class="trade-input-count-button" onclick="countoper('jia')">
+                          <input type="text" class="trade-input-count" id="p_num" name="num" value="1" placeholder="请输入购买数量" required="" min="1" max="9999">
+                          <input type="button" value="-" style="margin-left:-6px;" class="trade-input-count-button" onclick="countoper('jian')">
+                       </span>
+                        <?php else: if(is_array($info['moban']) || $info['moban'] instanceof \think\Collection || $info['moban'] instanceof \think\Paginator): $k = 0; $__LIST__ = $info['moban'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v1): $mod = ($k % 2 );++$k;?>
+                        <div class="from">
+                                    <span style="color:#6c6c6c;margin-left:10px"  id="title<?php echo $k; ?>"><?php echo $v1[0]; ?>：
+                                        <input  id="moban<?php echo $k; ?>" style="padding: 0.5em;font-size: 1rem;line-height: 1.2;color: #333;" placeholder="<?php echo $v1[1]; ?>" required>
+                                    </span>
+                        </div>
+                        <br>
+                        <?php endforeach; endif; else: echo "" ;endif; ?>
 
+                        <div class="from">
+                                    <span style="color:#6c6c6c;margin-left:10px">联系方式：
+                                        <input id="mobile" name="mobile" style="padding: 0.5em;font-size: 1rem;line-height: 1.2;color: #333;" placeholder="请输入联系方式" required="">
+                                    </span>
+                        </div>
+                        <?php endif; ?>
+
+                    </form>
+                    <input id="minnum" name="minnum"  type="hidden" value="<?php echo $info['mins']; ?>" >
+                    <input id="maxnum" name="maxnum"  type="hidden" value="<?php echo $info['maxs']; ?>" >
+                    <input id="beishu" name="beishu"  type="hidden" value="<?php echo $info['bei']; ?>" >
+                    <input id="num" name="num" class="z" type="hidden" value="<?php echo $info['num']; ?>" >
+                    <input id="member_id" class="z" type="hidden" value="<?php echo \think\Session::get('info.id'); ?>" >
+                    <br>
+                    <button type="button"  class="am-btn am-btn-danger am-btn-xl am-square"
+                            id="paysubmit" style="margin-top:20px">
+                        <span class="am-icon-shopping-cart"></span>立即购买
+                    </button>
 
                     <!-- 网格结束 -->
                 </div>
             </div>
         </div>
-
-
 
         <div class="am-panel am-panel-default" style="border-radius:0px;margin-top: 10px">
             <div class="am-panel-hd">商品描述</div>
@@ -168,28 +188,28 @@
      
             </form>
 
-<script type="text/javascript" src="/static/index/sink/js/jquery-1.8.3.min.js"></script>
-<script src="/static/index/sink/js/layer/layer.js"></script>
-
 
 <script>
-        function countoper(oper){
-            count=$("#p_num").val();
-            if(oper=='jia'){
-                count=parseInt(count)+1;
-            }else{
-                count=parseInt(count)-1;
-            }
-            if(parseInt(count)<0){
-                count=0;
-            }
-            $("#p_num").val(count);
+    //数量添加 修改
+    function countoper(oper){
+        count=$("#p_num").val();
+        if(oper=='jia'){
+            count=parseInt(count)+1;
+        }else{
+            count=parseInt(count)-1;
         }
+        if(parseInt(count)<0){
+            count=0;
+        }
+        $("#p_num").val(count);
+    }
 
-    </script>
+
+</script>
+
 
 <script>
-        function buy(a,b) {
+  function buy(a,b) {
             var p_num = document.getElementById("p_num").value;
             var minnum = document.getElementById("minnum").value;
             var maxnum = document.getElementById("maxnum").value;
@@ -246,7 +266,7 @@
                 layer.alert('库存不足！');
             }
         }
-    </script>
+</script>
 
 </div>
 

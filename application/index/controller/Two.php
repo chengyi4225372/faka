@@ -87,7 +87,6 @@ class Two extends Base
                 }
             }
 
-            // halt($info);
             $this->assign('info',$info);
         }
         return $this->fetch();

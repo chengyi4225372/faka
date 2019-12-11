@@ -42,7 +42,7 @@
                         {eq name='$info.huo' value='0'}
                         <span style="color:#6C6C6C">库存：{$info.num}件</span>
                         {/eq}
-                        <a id="lookpf" style="margin-left:5px;font-size:10px" href="javascript:;" onclick="lookpf()">查看批发价</a>
+                        <a id="lookpf" style="margin-left:5px;font-size:10px" href="javascript:;" onclick="lookpf('{$info.pinum}','{$info.pipay}')">查看批发价</a>
                         {eq name='$info.huo' value='0'}
                         <br><span style="color:#6c6c6c;">服务：自动发货 无忧售后</span>
                         {else /}
@@ -50,8 +50,8 @@
                         {/eq}
                     </p>
                     <script>
-                        function lookpf() {
-                            layer.tips('满10件0.10元/件', '#lookpf', {
+                        function lookpf(num,pay) {
+                            layer.tips('满'+num+'件'+pay+'元/件', '#lookpf', {
                                 tips: [3, '#78BA32']
                             });
                         }
@@ -84,16 +84,25 @@
                         </div>
                         <br>
                         {/volist}
+
+                        <div class="from">
+                                    <span style="color:#6c6c6c;margin-left:10px">联系方式：
+                                        <input id="mobile" name="mobile" style="padding: 0.5em;font-size: 1rem;line-height: 1.2;color: #333;" placeholder="请输入联系方式" required="">
+                                    </span>
+                        </div>
                         {/if}
 
                     </form>
-                    <input id="minnum" name="minnum" class="z" type="hidden" value="{$info.mins}" >
-                    <input id="maxnum" name="maxnum" class="z" type="hidden" value="{$info.maxs}" >
-                    <input id="beishu" name="beishu" class="z" type="hidden" value="{$info.bei}" >
+                    <input id="minnum" name="minnum"  type="hidden" value="{$info.mins}" >
+                    <input id="maxnum" name="maxnum"  type="hidden" value="{$info.maxs}" >
+                    <input id="beishu" name="beishu"  type="hidden" value="{$info.bei}" >
                     <input id="num" name="num" class="z" type="hidden" value="{$info.num}" >
                     <input id="member_id" class="z" type="hidden" value="{$Think.session.info.id}" >
                     <br>
-                    <button type="submit" onclick="buy(0,1)" class="am-btn am-btn-danger am-btn-xl am-square" id="paysubmit" style="margin-top:20px"><span class="am-icon-shopping-cart"></span>立即购买</button>
+                    <button type="button"  class="am-btn am-btn-danger am-btn-xl am-square"
+                            id="paysubmit" style="margin-top:20px">
+                        <span class="am-icon-shopping-cart"></span>立即购买
+                    </button>
 
                     <!-- 网格结束 -->
                 </div>
@@ -110,8 +119,7 @@
 
 {include file="public:twombfoot" /}
 
-<script type="text/javascript" src="/static/index/sink/js/jquery-1.8.3.min.js"></script>
-<script src="/static/index/sink/js/layer/layer.js"></script>
+
 <script>
     //数量添加 修改
     function countoper(oper){
