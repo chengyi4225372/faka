@@ -13,8 +13,14 @@
             <table class="layui-table">
                 <colgroup>
                     <col width="150">
-                    <col width="200">
-                    <col>
+                    <col width="150">
+                    <col width="150">
+                    <col width="150">
+                    <col width="150">
+                    <col width="150">
+                    <col width="180">
+                    <col width="150">
+
                 </colgroup>
                 <thead>
                 <tr>
@@ -24,30 +30,47 @@
                     <th>单价</th>
                     <th>总价</th>
                     <th>状态</th>
-                    <th>发货</th>
+                    <th>商品类型</th>
                     <th>时间</th>
                 </tr>
 
                 </thead>
+                {empty name='list'}
+                {else /}
+                {volist name='list' id='lo'}
                 <tbody>
-
                 <tr>
-                    <td>1111</td>
-                    <td>2222</td>
-                    <td>3333</td>
-                    <td>444</td>
-                    <td> 5555</td>
-                    <td> 未付款  已付款</td>
-                    <td>自动发货 手动发货  未发货  已发货  联系客服退款 </td>
-                    <td>时间</td>
+                    <td>{$lo.order_no}</td>
+                    <td>{$goods[$lo.gid]}</td>
+                    <td>{$lo.num}</td>
+                    <td>{$lo.danpay}</td>
+                    <td>{$lo.countpay}</td>
+                    <td>
+                        {switch name="$lo.status" }
+                        {case value="0"} 未付款 {/case}
+                        {case value="1"}已付款{/case}
+                        {case value="3"}已发货{/case}
+                        {case value="4"}》联系客服退款{/case}
+                        {default /} 未付款
+                        {/switch}
+                    </td>
+                    <td>
+                        {eq name='$lo.huo' value='1'}
+                        自动发货
+                        {else /}
+                        手动发货
+                        {/eq}
+                    </td>
+                    <td>{$lo.create_time}</td>
                 </tr>
-
                 </tbody>
+                {/volist}
+                {/empty}
             </table>
             <center>
                 <!-- 分页-->
                 <div class="pager">
-
+                   {$list->render()}
                 </div>
 
             </center>

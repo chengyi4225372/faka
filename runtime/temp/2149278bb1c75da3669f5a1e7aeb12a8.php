@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html";i:1576137386;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userhead.html";i:1576140186;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userfoot.html";i:1576140011;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html";i:1576141713;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userhead.html";i:1576140186;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userfoot.html";i:1576140011;}*/ ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -121,8 +121,14 @@
             <table class="layui-table">
                 <colgroup>
                     <col width="150">
-                    <col width="200">
-                    <col>
+                    <col width="150">
+                    <col width="150">
+                    <col width="150">
+                    <col width="150">
+                    <col width="150">
+                    <col width="180">
+                    <col width="150">
+
                 </colgroup>
                 <thead>
                 <tr>
@@ -132,30 +138,39 @@
                     <th>单价</th>
                     <th>总价</th>
                     <th>状态</th>
-                    <th>发货</th>
+                    <th>商品类型</th>
                     <th>时间</th>
                 </tr>
 
                 </thead>
+                <?php if(empty($list) || (($list instanceof \think\Collection || $list instanceof \think\Paginator ) && $list->isEmpty())): else: if(is_array($list) || $list instanceof \think\Collection || $list instanceof \think\Paginator): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$lo): $mod = ($i % 2 );++$i;?>
                 <tbody>
-
                 <tr>
-                    <td>1111</td>
-                    <td>2222</td>
-                    <td>3333</td>
-                    <td>444</td>
-                    <td> 5555</td>
-                    <td> 未付款  已付款</td>
-                    <td>自动发货 手动发货  未发货  已发货  联系客服退款 </td>
-                    <td>时间</td>
+                    <td><?php echo $lo['order_no']; ?></td>
+                    <td><?php echo $goods[$lo['gid']]; ?></td>
+                    <td><?php echo $lo['num']; ?></td>
+                    <td><?php echo $lo['danpay']; ?></td>
+                    <td><?php echo $lo['countpay']; ?></td>
+                    <td>
+                        <?php switch($lo['status']): case "0": ?> 未付款 <?php break; case "1": ?>已付款<?php break; case "3": ?>已发货<?php break; case "4": ?>》联系客服退款<?php break; default: ?> 未付款
+                        <?php endswitch; ?>
+                    </td>
+                    <td>
+                        <?php if($lo['huo'] == '1'): ?>
+                        自动发货
+                        <?php else: ?>
+                        手动发货
+                        <?php endif; ?>
+                    </td>
+                    <td><?php echo $lo['create_time']; ?></td>
                 </tr>
-
                 </tbody>
+                <?php endforeach; endif; else: echo "" ;endif; endif; ?>
             </table>
             <center>
                 <!-- 分页-->
                 <div class="pager">
-
+                   <?php echo $list->render(); ?>
                 </div>
 
             </center>

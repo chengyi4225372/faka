@@ -26,16 +26,25 @@
                 </tr>
 
                 </thead>
+
+                {empty name='paylist'}
+                 {else /}
+                {volist name='paylist' id='pay'}
                 <tbody>
-
                 <tr>
-                    <td>111112222</td>
-                    <td>0.1</td>
-                    <td>未付款 已付款</td>
-                    <td>111</td>
+                    <td>{$pay.member_no}</td>
+                    <td>{$pay.pay}</td>
+                    <td>
+                        {eq name='$pay.status' value='2'}
+                          未付款
+                         {else /}
+                          已付款
+                        {/eq}
+                    </td>
+                    <td>{$pay.create_time}</td>
                 </tr>
-
                 </tbody>
+                {/volist}
             </table>
             <center>
                 <!-- 分页-->

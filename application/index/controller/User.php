@@ -32,16 +32,44 @@ class User extends Base
     //我的订单
     public function myorder()
     {
-        return $this->fetch();
+        if($this->request->isGet()){
+            $id = session('info.id');
+
+            if(checkEmptyid($id)){
+                return false;
+            }
+
+            $good  = Db::name('goods')->field('id,title')->where(['status'=>1])->select();
+            $goods = array_column($good,'title','id');
+            $list = Db::name('order')->where(['member_id'=>$id,'is_delete'=>0])->order('create_time desc')->paginate(15);
+            $this->assign('list',$list);
+            $this->assign('goods',$goods);
+            return $this->fetch();
+
+        }
+        return false;
+    }
+
+    //充值记录
+    public function mychongzi()
+    {
+       if($this->request->isGet()){
+           $id  = session('info.id');
+            if(checkEmptyid($id)){
+                return false;
+            }
+            $paylist = Db::name('member_pay')->where(['id'=>$id,'del_time'=>null])->order('create_time desc')->paginate(15);
+            $member  = Db::name('member')->field('account,id')->where(['id'=>$id,'status'=>1])->select();
+            $members = array_column($member,'account','id');
+            $this->assign('paylist',$paylist);
+            $this->assign('members',$members);
+            return $this->fetch();
+       }
+         return false;
     }
 
     //充值中心
     public function recharge()
-    {
-        return $this->fetch();
-    }
-
-    public function mychongzi()
     {
         return $this->fetch();
     }
@@ -51,6 +79,7 @@ class User extends Base
     {
         return $this->fetch();
     }
+
 
     //修改密码
     public function editpwd()

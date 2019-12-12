@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:104:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\vip.html";i:1576140326;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userhead.html";i:1576140186;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userfoot.html";i:1576140011;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\editpwd.html";i:1567152998;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userhead.html";i:1576140186;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userfoot.html";i:1576140011;}*/ ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -108,84 +108,42 @@
 
 
 <div class="col-md-9">
-
     <div class="panel panel-default">
         <div class="panel-body">
-            <h2 class="page-header">充值中心</h2>
-            <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" >
-                <ul class="layui-tab-title">
-                    <li><a href="<?php echo url('user/recharge'); ?>">在线充值</a></li>
-                    <li class="layui-this">开通代理</li>
-<!--                    <li><a href="/index/recharge/list.html">充值记录</a></li>-->
-                </ul>
-                <div class="layui-tab-content"></div>
-            </div>  
-            <form id="changepwd-form" class="form-horizontal layui-form" role="form" data-toggle="validator"  target="_blank" onclick='return false'>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">余额</label>
-                    <div class="layui-input-block">
-                        <div class="layui-form-mid layui-word-aux" style="color:red !important"><?php echo (\think\Session::get('info.money') ?: '0.00'); ?></div>
+            <h2 class="page-header">修改密码</h2>
+            <form class="form-horizontal" role="form" data-toggle="validator">
+                <div class="form-group">
+                    <label for="oldpassword" class="control-label col-xs-12 col-sm-2">旧密码:</label>
+                    <div class="col-xs-12 col-sm-4">
+                        <input type="password" class="form-control" id="oldpwd" name="oldpwd" value="" data-rule="required" placeholder="旧密码">
                     </div>
                 </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">充值</label>
-                    <div class="layui-input-block" id='daili'>
-                        <input type="radio" name="daili" checked="" value="1" title="普通代理({1000}元)" >
-                        <input type="radio" name="daili" value="2" title="高级代理(100元)" >
+                <div class="form-group">
+                    <label for="newpassword" class="control-label col-xs-12 col-sm-2">新密码:</label>
+                    <div class="col-xs-12 col-sm-4">
+                        <input type="password" class="form-control" id="newpwd" name="newpwd" value="" data-rule="required" placeholder="新密码" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="renewpassword" class="control-label col-xs-12 col-sm-2">确认新密码:</label>
+                    <div class="col-xs-12 col-sm-4">
+                        <input type="password" class="form-control" id="renewpwd" name="renewpwd" value="" data-rule="required" placeholder="确认新密码" />
                     </div>
                 </div>
 
-                <div class="layui-form-item">
-                    <label class="layui-form-label">方式</label>
-                    <div class="layui-input-block">
-                         <input type="radio" name="payment" value="1" title="支付宝">
-
-                         <input type="radio" name="payment" value="2" title="微信" >
-
-                         <input type="radio" name="payment" value="3" title="QQ钱包" >
-
-                         <input type="radio" name="payment" value="3" checked title="余额支付" >
+                <div class="form-group normal-footer">
+                    <label class="control-label col-xs-12 col-sm-2"></label>
+                    <div class="col-xs-12 col-sm-8">
+                        <button type="button" class="btn btn-success btn-embossed edit-pwd">提交</button>
+                        <button type="reset" class="btn btn-default btn-embossed">重置</button>
                     </div>
                 </div>
-
-                <div class="layui-form-item">
-                    <div class="layui-input-block">
-                        <button class="layui-btn" lay-submit lay-filter="formDemo" onclick="buyvip()">立即提交</button>
-                    </div>
-                </div>
-
             </form>
         </div>
     </div>
 </div>
 </div>
 </div>
-
-
-
-<script>
-    //升级 vip
-        function buyvip() {
-            var daili = $('#daili input[name="daili"]:checked ').val();
-            $.ajax({
-                //几个参数需要注意一下
-                type: "POST", //方法类型
-                dataType: "json", //预期服务器返回的数据类型
-                url: "<?php echo url('user/ajaxbuyvip'); ?>", //url
-                data: {daili: daili},
-                success: function (result) {
-                    if (result.status == 1) {
-                        layer.msg(result.msg, function () {
-                            window.location.href = "/user";
-                        });
-                    } else {
-                        layer.msg(result.msg);
-                    }
-                    ;
-                },
-            });
-        }
-    </script>
 </main>
 
 
@@ -210,7 +168,50 @@
 
 
 
-<script src="/index/sink/js/require.min.js" data-main="/assets/js/require-frontend.min.js?v=1.0.1"></script>
+<script type="text/javascript" src="/index/sink/js/jquery-1.8.3.min.js"></script>
+    <script src='/index/sink/js/layer/layer.js'></script>
+<script>
+ $('.edit-pwd').click(function(){
+     var data = {};
 
+     data.oldpwd   = $('#oldpwd').val();
+     data.newpwd   = $('#newpwd').val();
+     data.renewpwd = $('#renewpwd').val();
+
+     if(data.oldpwd =='' || data.oldpwd ==''){
+         layer.tips('旧密码不能为空','#oldpwd');
+         return false;
+     }
+
+
+     if(data.newpwd =='' || data.newpwd ==''){
+         layer.tips('新密码不能为空','#newpwd');
+         return false;
+     }
+
+     if(data.renewpwd != data.newpwd){
+         layer.tips('两次密码输入不一致','#renewpwd');
+         layer.tips('两次密码输入不一致','#newpwd');
+         return false;
+     }
+     var url = "<?php echo url('user/editpwd'); ?>";
+     $.post(url,{data:data},function(ret){
+         if(ret.code == 200){
+             layer.msg(ret.msg,function(){
+                 parent.location.reload();
+             })
+         };
+         if(ret.code == 400){
+             layer.msg(ret.msg,function(){
+                 parent.location.reload();
+             })
+         };
+         if(ret.code == 500){
+             layer.msg(ret.msg,'#oldpwd');
+             return false;
+         }
+     },'json')
+ })
+</script>
 </body>
 </html>
