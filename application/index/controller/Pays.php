@@ -69,7 +69,6 @@ class Pays extends Controller
             echo $html_text;
     }
 
-
     //同步
     public function return_url(){
         $alipayNotify = new AlipayNotify($this->alipay_config);
@@ -167,7 +166,6 @@ class Pays extends Controller
         }
     }
 
-
     //异步
     public function notify_url(){
         $alipayNotify = new AlipayNotify($this->alipay_config);
@@ -205,6 +203,34 @@ class Pays extends Controller
 
     }
 
+
+    /**充值提交**/
+    public function addmoney(){
+        $pay = Db::name($this->pay)->order('id desc')->find(); //支付信息
+        $out_trade_no = create_order();
+        $type = input('get.types','','trim');
+        $name = '充值余额';
+        $money = input('get.paynum');
+
+        //构造要请求的参数数组，无需改动
+        $parameter = array(
+            "pid" =>$pay['pid'],
+            "type" => $type,
+            "notify_url"	=>"http://".$_SERVER['HTTP_HOST']."/index/pays/notify_url",
+            "return_url"	=>"http://".$_SERVER['HTTP_HOST']."/index/user/recharge",
+            "out_trade_no"	=> $out_trade_no,
+            "name"	=> $name,
+            "money"	=> $money,
+            "sitename"	=> '发卡会员充值',
+        );
+
+
+        //建立请求
+        $alipaySubmit = new AlipaySubmit($this->alipay_config);
+        $html_text = $alipaySubmit->buildRequestForm($parameter);
+
+        echo $html_text;
+    }
 
 
 

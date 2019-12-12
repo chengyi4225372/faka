@@ -77,13 +77,6 @@ class User extends Base
         return false;
     }
 
-    /***充值提交**/
-    public function addmoney(){
-        if($this->request->isPost()){
-
-        }
-        return false;
-    }
 
     /**开通页面**/
     public function vip()

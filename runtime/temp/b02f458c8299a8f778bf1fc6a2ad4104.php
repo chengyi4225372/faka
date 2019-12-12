@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:110:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\mychongzi.html";i:1576137295;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userhead.html";i:1576140186;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userfoot.html";i:1576140011;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:110:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\mychongzi.html";i:1576144875;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userhead.html";i:1576140186;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userfoot.html";i:1576140011;}*/ ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -134,23 +134,29 @@
                 </tr>
 
                 </thead>
+
+                <?php if(empty($paylist) || (($paylist instanceof \think\Collection || $paylist instanceof \think\Paginator ) && $paylist->isEmpty())): else: if(is_array($paylist) || $paylist instanceof \think\Collection || $paylist instanceof \think\Paginator): $i = 0; $__LIST__ = $paylist;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$pay): $mod = ($i % 2 );++$i;?>
                 <tbody>
-
                 <tr>
-                    <td>111112222</td>
-                    <td>0.1</td>
-                    <td>未付款 已付款</td>
-                    <td>111</td>
+                    <td><?php echo $pay['member_no']; ?></td>
+                    <td><?php echo $pay['pay']; ?></td>
+                    <td>
+                        <?php if($pay['status'] == '2'): ?>
+                          未付款
+                         <?php else: ?>
+                          已付款
+                        <?php endif; ?>
+                    </td>
+                    <td><?php echo $pay['create_time']; ?></td>
                 </tr>
-
                 </tbody>
+                <?php endforeach; endif; else: echo "" ;endif; endif; ?>
             </table>
             <center>
                 <!-- 分页-->
                 <div class="pager">
-
+                  <?php echo $paylist->render(); ?>
                 </div>
-
             </center>
         </div>
     </div>
