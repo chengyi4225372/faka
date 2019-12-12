@@ -10,7 +10,7 @@
                     <li  class="layui-this"><a href="{:url('user/mychongzi')}">充值记录</a></li>
                 </ul>
                 <div class="layui-tab-content"></div>
-            </div>  
+            </div>
             <table class="layui-table">
                 <colgroup>
                     <col width="150">
@@ -18,56 +18,43 @@
                     <col>
                 </colgroup>
                 <thead>
-                    <tr>
-                        <th>订单号</th>
-                        <th>价格</th>
-                        <th>状态</th>
-                        <th>时间</th>
-                    </tr> 
-                    
+                <tr>
+                    <th>订单号</th>
+                    <th>价格</th>
+                    <th>状态</th>
+                    <th>时间</th>
+                </tr>
+
                 </thead>
                 <tbody>
 
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td>未付款 ||  已付款</td>
-                        <td></td>
-                    </tr>
+                <tr>
+                    <td>111112222</td>
+                    <td>0.1</td>
+                    <td>未付款 已付款</td>
+                    <td>111</td>
+                </tr>
 
                 </tbody>
             </table>
             <center>
-
+                <!-- 分页-->
                 <div class="pager">
-                    <ul class="pagination">
-                      <!--   分页 -->
-                    </ul>
+
                 </div>
 
-          </center>
+            </center>
         </div>
     </div>
+
+</div>
+
 </div>
 </div>
-</div>
-<script src="/index/sink/js/layui.js" charset="utf-8"></script>
-<script>
-//Demo
-    layui.use('form', function() {
-        var form = layui.form, layer = layui.layer,
-                $ = layui.jquery;
-        //监听提交
-        form.on('submit(formDemo)', function(data) {
-            layer.msg(JSON.stringify(data.field));
-            return false;
-        });
-    });
-</script>
+
 </main>
 
 {include file='public:userfoot'/}
-
 
 </body>
 </html>

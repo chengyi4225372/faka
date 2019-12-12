@@ -16,11 +16,11 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">余额</label>
                     <div class="layui-input-block">
-                        <div class="layui-form-mid layui-word-aux" style="color:red !important">  </div>
+                        <div class="layui-form-mid layui-word-aux" style="color:red !important">{$Think.session.info.money |default='0.00'}</div>
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label">充值</label>
+                    <label class="layui-form-label">充值金额：</label>
                     <div class="layui-input-block">
                         <input class="form-control input-lg" id="account" required type="text" name="price" data-rule="required" placeholder="充值金额" autocomplete="off">
                     </div>
@@ -29,14 +29,11 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">方式</label>
                     <div class="layui-input-block">
+                        <input type="radio" name="payment" value="1" title="支付宝" checked="" />
 
-                        <input type="radio" name="payment" value="1" title="支付宝">
+                        <input type="radio" name="payment" value="2" title="微信" />
 
-
-                        <input type="radio" name="payment" value="2" title="微信" >
-
-
-                         <input type="radio" name="payment" value="3" title="QQ钱包" >
+                        <input type="radio" name="payment" value="3" title="QQ钱包" />
 
                     </div>
                 </div>
@@ -53,24 +50,15 @@
 </div>
 </div>
 </div>
-<script src="/index/sink/js/layui.js" charset="utf-8"></script>
-<script>
-//Demo
-    layui.use('form', function() {
-        var form = layui.form, layer = layui.layer,
-                $ = layui.jquery;
-        //监听提交
-        form.on('submit(formDemo)', function(data) {
-            //layer.msg(JSON.stringify(data.field));
-            return true;
-        });
-    });
-</script>
+
+
 </main>
+
+
+
 
 {include file='public:userfoot'/}
 
-<script src="/index/sink/js/require.min.js" data-main="/assets/js/require-frontend.min.js?v=1.0.1"></script>
 
 </body>
 

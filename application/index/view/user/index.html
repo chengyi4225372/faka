@@ -14,7 +14,7 @@
                     <!-- Content -->
                     <div class="ui-content">
                         <!-- Heading -->
-                        <h4>欢迎您：</h4>
+                        <h4>欢迎您：{$Think.session.info.account}</h4>
                         <!-- Paragraph -->
                         <br/>
                         <div class="basicinfo">
@@ -22,14 +22,20 @@
                                 <div class="col-xs-4 col-md-2">会员级别</div>
                                 <div class="col-xs-8 col-md-4">
                                     <span class="xred">
+                                      {if condition ="$Think.session.info.level eq 1"}
                                          无
+                                      {elseif condition ="$Think.session.info.level eq 2" /}
                                         普通代理
+                                      {elseif condition ="$Think.session.info.level eq 3" /}
                                         高级代理
+                                      {else /}
+                                        无
+                                      {/if}
                                     </span>
                                 </div>
                                 <div class="col-xs-4 col-md-2">账户余额</div>
                                 <div class="col-xs-8 col-md-4">
-                                    <a href="javascript:;" class="viewmoney"></a>
+                                    <a href="javascript:;" class="viewmoney">{$Think.session.money|default='0.00'}</a>
                                 </div>
                             </div>
 <!--                            <div class="row">
@@ -40,7 +46,7 @@
                             </div>-->
                             <div class="row">
                                 <div class="col-xs-4 col-md-2">注册时间</div>
-                                <div class="col-xs-8 col-md-4">time</div>
+                                <div class="col-xs-8 col-md-4">{$Think.session.info.create_time}</div>
                             </div>
                         </div>
                     </div>

@@ -12,11 +12,11 @@
                 </ul>
                 <div class="layui-tab-content"></div>
             </div>  
-            <form id="changepwd-form" class="form-horizontal layui-form" role="form" data-toggle="validator"  target="_blank" onclick='return false'>					 
+            <form id="changepwd-form" class="form-horizontal layui-form" role="form" data-toggle="validator"  target="_blank" onclick='return false'>
                 <div class="layui-form-item">
                     <label class="layui-form-label">余额</label>
                     <div class="layui-input-block">
-                        <div class="layui-form-mid layui-word-aux" style="color:red !important">100</div>
+                        <div class="layui-form-mid layui-word-aux" style="color:red !important">{$Think.session.info.money|default='0.00'}</div>
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -30,15 +30,12 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">方式</label>
                     <div class="layui-input-block">
-<!--                        {if sysconf('alipay') eq 'on'}
-                        <input type="radio" name="payment" value="1" title="支付宝">
-                        {/if}
-                        {if sysconf('wxpay') eq 'on'}
-                        <input type="radio" name="payment" value="2" title="微信" >
-                         {/if}
-                         {if sysconf('qqpay') eq 'on'}
+                         <input type="radio" name="payment" value="1" title="支付宝">
+
+                         <input type="radio" name="payment" value="2" title="微信" >
+
                          <input type="radio" name="payment" value="3" title="QQ钱包" >
-                         {/if}-->
+
                          <input type="radio" name="payment" value="3" checked title="余额支付" >
                     </div>
                 </div>
@@ -55,42 +52,30 @@
 </div>
 </div>
 </div>
-<script src="/index/sink/js/layui.js" charset="utf-8"></script>
+
+
+
 <script>
-//Demo
-    layui.use('form', function() {
-        var form = layui.form, layer = layui.layer,
-                $ = layui.jquery;
-        //监听提交
-        form.on('submit(formDemo)', function(data) {
-            //layer.msg(JSON.stringify(data.field));
-            return true;
-        });
-    });
-</script>
-<script type="text/javascript" src="/index/sink/js/jquery-1.8.3.min.js"></script>
-    <script src='/index/sink/js/layer/layer.js'></script>
-    <script>
-                                function buyvip() {
-                                    var daili = $('#daili input[name="daili"]:checked ').val();
-                                    $.ajax({
-                                        //几个参数需要注意一下
-                                        type: "POST", //方法类型
-                                        dataType: "json", //预期服务器返回的数据类型
-                                        url: "{:url('user/ajaxbuyvip')}", //url
-                                        data: {daili:daili},
-                                        success: function(result) {
-                                            if (result.status == 1) {
-                                                layer.msg(result.msg, function() {
-                                                    window.location.href = "/user";
-                                                });
-                                            } else {
-                                                layer.msg(result.msg);
-                                            }
-                                            ;
-                                        },
-                                    });
-                                }
+        function buyvip() {
+            var daili = $('#daili input[name="daili"]:checked ').val();
+            $.ajax({
+                //几个参数需要注意一下
+                type: "POST", //方法类型
+                dataType: "json", //预期服务器返回的数据类型
+                url: "{:url('user/ajaxbuyvip')}", //url
+                data: {daili: daili},
+                success: function (result) {
+                    if (result.status == 1) {
+                        layer.msg(result.msg, function () {
+                            window.location.href = "/user";
+                        });
+                    } else {
+                        layer.msg(result.msg);
+                    }
+                    ;
+                },
+            });
+        }
     </script>
 </main>
 

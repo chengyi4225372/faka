@@ -13,7 +13,7 @@
         <link href="/index/sink/css/user.css" rel="stylesheet">
         <script src="/index/sink/js/jquery-1.8.3.min.js" charset="utf-8"></script>
         <script src="/index/sink/js/layui/layui.js" charset="utf-8"></script>
-
+        <link rel="stylesheet" href="/index/sink/js/layui/css/layui.css" media="all">
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
         <!--[if lt IE 9]> -->
         <!--
@@ -54,7 +54,7 @@
                                 <li><a href="{:url('user/index')}"><i class="fa fa-user-circle fa-fw"></i>会员中心</a></li>
                                 <li><a href="{:url('user/editpwd')}"><i class="fa fa-key fa-fw"></i>修改密码</a></li>
                                 <li><a href="{:url('login/lout')}"><i class="fa fa-sign-out fa-fw"></i>注 销</a></li>
-
+                                </ul>
                             </ul>
                         </li>
                     </ul>
@@ -84,34 +84,19 @@
                         <ul class="list-group">
                             <li class="list-group-heading">会员中心</li>
 
-                            <li class="list-group-item active">
-
-                            <li class="list-group-item ">
-
+                            <li {if condition="$path eq url('user/index')"} class="list-group-item active" {else/} class="list-group-item" {/if}>
                                 <a href="{:url('user/index')}"><i class="fa fa-user-circle fa-fw"></i> 会员中心</a>
                             </li>
 
-                            <li class="list-group-item active">
-
-                            <li class="list-group-item ">
-
+                            <li {if condition="$path eq url('user/myorder') or $path eq url('user/mychongzi')"} class="list-group-item active" {else/} class="list-group-item" {/if}>
                                 <a href="{:url('user/myorder')}"><i class="fa fa-shield fa-fw"></i> 订单管理</a>
                             </li>
 
-
-                            <li class="list-group-item active">
-
-                            <li class="list-group-item ">
-
+                            <li {if condition="$path eq url('user/recharge') or $path eq url('user/vip') "} class="list-group-item active" {else/} class="list-group-item" {/if}>
                                 <a href="{:url('user/recharge')}"><i class="fa fa-plane fa-fw"></i> 充值中心</a>
                             </li>
 
-
-
-                            <li class="list-group-item active">
-
                             <li class="list-group-item ">
-
                                 <a href="{:url('login/lout')}"><i class="fa fa-sign-out fa-fw"></i> 安全退出</a>
                             </li>
                         </ul>

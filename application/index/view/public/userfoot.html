@@ -1,5 +1,19 @@
 
 
+<script>
+    //Demo 事件
+    layui.use('form', function() {
+        var form = layui.form, layer = layui.layer,
+            $ = layui.jquery;
+        //监听提交
+        form.on('submit(formDemo)', function(data) {
+            //layer.msg(JSON.stringify(data.field));
+            return true;
+        });
+    });
+</script>
+
+
 <footer class="footer" style="clear:both">
         <p class="copyright">{$config.info}</p>
     </footer>
