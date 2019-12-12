@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\login\login.html";i:1566963072;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\loginhead.html";i:1566971888;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\loginfoot.html";i:1566971844;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\login\login.html";i:1576154390;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\loginhead.html";i:1566971888;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\loginfoot.html";i:1566971844;}*/ ?>
 
 <!DOCTYPE html>
 <html>
@@ -155,7 +155,7 @@
             };
            if(ret.code  == '200'){
                   layer.msg(ret.msg,{time:1500},function(){
-                     parent.location.href="<?php echo url('user/index'); ?>";
+                     parent.location.href="<?php echo url('@index/user/index'); ?>";
                   });
               };
           },

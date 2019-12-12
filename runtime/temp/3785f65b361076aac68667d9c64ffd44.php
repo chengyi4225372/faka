@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\mobile\trade.html";i:1571190412;s:103:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\mobilehead.html";i:1571186975;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\mobile\trade.html";i:1576155302;s:103:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\mobilehead.html";i:1576154465;}*/ ?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -63,26 +63,26 @@ $(document).ready(function(){
         <div class="shaixun_item">
             <a href="/" class="current"></a>
             <a href="/" class="current">商品主页</a>
-            <a href="/recharge" class="current">余额充值</a>
-            <a href="/myorder" class="current">我的订单</a>
-            <a href="/mychongzi" class="current">资金记录</a>
-            <a href="/editpwd" class="current">修改密码</a>
-			    	</div>
+            <a href="<?php echo url('user/recharge'); ?>" class="current">余额充值</a>
+            <a href="<?php echo url('user/myorder'); ?>" class="current">我的订单</a>
+            <a href="<?php echo url('user/mychongzi'); ?>" class="current">资金记录</a>
+            <a href="<?php echo url('user/editpwd'); ?>" class="current">修改密码</a>
+	 </div>
         <p><a href="#" class="shaixuan_colos">关闭</a></p>
     </div>
   </div>
   </div>
 
 
-    <?php if(empty(\think\Session::get('get.member')) || ((\think\Session::get('get.member') instanceof \think\Collection || \think\Session::get('get.member') instanceof \think\Paginator ) && \think\Session::get('get.member')->isEmpty())): ?>
-	<div class="m_user w">&nbsp;&nbsp;<a href="/search">游客订单查询</a>
-	&nbsp;&nbsp;&nbsp;&nbsp;【<a href="/login">登录</a>】&nbsp;&nbsp;【<a href="/reg">注册</a>】
+    <?php if(empty(\think\Session::get('info')) || ((\think\Session::get('info') instanceof \think\Collection || \think\Session::get('info') instanceof \think\Paginator ) && \think\Session::get('info')->isEmpty())): ?>
+	<div class="m_user w">&nbsp;&nbsp;<a href="<?php echo url('mobile/search'); ?>">游客订单查询</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;【<a href="<?php echo url('@index/login/login'); ?>">登录</a>】&nbsp;&nbsp;【<a href="<?php echo url('@index/login/reg'); ?>">注册</a>】
     </div>
    <?php else: ?>
      <div class="m_user w">
-         <a><b>你好,</b></a>
-         <a>余额:元</a>
-    <a href="/lout" onclick="return confirm('确定要退出吗？')">【安全退出】</a>
+         <a><b>你好,<?php echo \think\Session::get('info.account'); ?></b></a>
+         <a>余额:<?php echo (\think\Session::get('info.money') ?: '0'); ?>元</a>
+    <a href="<?php echo url('user/lout'); ?>" onclick="return confirm('确定要退出吗？')">【安全退出】</a>
      </div>
   <?php endif; ?>
 <style>
@@ -94,9 +94,9 @@ $(document).ready(function(){
     <div class="bl_view_img"><img src="<?php echo $info['images']; ?>"  alt="<?php echo $info['title']; ?>" /></div>
     <div class="bl_view_title"><?php echo $info['title']; ?> </div>
     <div class="bl_view_tag">
-        <div class="bl_view_price">零售价：<?php echo $info['money']; ?> 元</div>
+        <div class="bl_view_price">零售价：<?php echo floatval($info['money']); ?> 元</div>
 
-        <div class="bl_view_mall">批发价：<?php echo $info['pipay']; ?> 元 ( <?php echo $info['pinum']; ?> 个起按批发价)</div>
+        <div class="bl_view_mall">批发价：<?php echo floatval($info['pipay']); ?> 元 ( <?php echo $info['pinum']; ?> 个起按批发价)</div>
     </div>
     <div class="bl_view_tag">
         <div class="bl_view_user">商品类型：
@@ -109,40 +109,46 @@ $(document).ready(function(){
         <div class="bl_view_time">销量：<?php echo $info['paynum']; ?>个</div>
     </div>
 
+    <?php if($info['huo'] == 0): ?>
     <div class="bl_view_title">商品库存：
-
-        <font size="2" color="#FF7200"> 库存 个</font>
+        <font size="2" color="#FF7200"> 库存<?php echo $info['num']; ?> 个</font>
     </div>
+    <?php endif; ?>
 
-    <form action="/buy" id="p_form" method="post">
+    <form  method="post">
         <input type="hidden" name='gid' value=''>
-
+        <?php if($info['huo'] == 0): ?>
         <div class="bl_view_title">手机号码：
             <input class="search_input2" type="tel" name="mobile" placeholder="请输入联系方式" required>
         </div>
-
-        <div class="bl_view_title">
-
-            <input class="search_input2" type="tel" name="moban[]" placeholder="" required>
+        <?php else: ?>
+          <!-- 人工发货 -->
+        <?php if(is_array($info['moban']) || $info['moban'] instanceof \think\Collection || $info['moban'] instanceof \think\Paginator): $k = 0; $__LIST__ = $info['moban'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v1): $mod = ($k % 2 );++$k;?>
+        <div class="bl_view_title" id="title<?php echo $k; ?>"><?php echo $v1['0']; ?>：
+            <input class="search_input2" type="tel" id="moban<?php echo $k; ?>" placeholder="<?php echo $v1['1']; ?>" required>
         </div>
-
-
-
+        <?php endforeach; endif; else: echo "" ;endif; ?>
+        <div class="bl_view_title">手机号码：
+            <input class="search_input2" type="tel" name="mobile" placeholder="请输入联系方式" required>
+        </div>
+        <?php endif; ?>
 
         <div class="bl_view_title"> 购买数量：
-            <input class="search_input2" id="p_num" name="num" type="number" value="" min="" max="" placeholder="请输购买数量" required></div>
+            <input class="search_input2" id="p_num" name="num" type="number" value="" min="" max="" placeholder="请输购买数量" required>
+        </div>
     </form>
-    <input id="minnum" name="minnum" class="z" type="hidden" value="" >
-    <input id="maxnum" name="maxnum" class="z" type="hidden" value="" >
-    <input id="beishu" name="beishu" class="z" type="hidden" value="" >
+            <input id="minnum" name="minnum" class="z" type="hidden" value="" >
+            <input id="maxnum" name="maxnum" class="z" type="hidden" value="" >
+            <input id="beishu" name="beishu" class="z" type="hidden" value="" >
+            <input id="member_id"  class="z" type="hidden" value="<?php echo \think\Session::get('info.id'); ?>" >
 
 
         <div class="go_buy">
-            <input type="submit" name="Submit" value="自助购买"  onclick="buy( , )" />
+            <input type="button"  value="自助购买"  onclick="buy( , )" />
         </div>
 </div>
 <div class="m_userx w">
-    <a target="blank" href="http://wpa.qq.com/msgrd?v=3&uin=1111&site=qq&menu=yes">
+    <a target="blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=<?php echo $config['kefu']; ?>&amp;site=qq&amp;menu=yes">
         <img  style="CURSOR: pointer" border="0" SRC=/mobile/sink/img/pa alt="发送消息给我"></a>&nbsp;&nbsp;
     &nbsp;&nbsp;<a>客服QQ :<?php echo (isset($config['kefu']) && ($config['kefu'] !== '')?$config['kefu']:''); ?></a>
 </div>
@@ -153,15 +159,9 @@ $(document).ready(function(){
     </div>
 </div>
 
-
-
 <div class="m_user w"> 	
     <a href="#">返回顶部</a>
 </div>
-
-
-
-
 
 </div>
 
@@ -171,7 +171,7 @@ $(document).ready(function(){
 <script>
 
 
-     /*
+/*
      function buy(a,b) {
       var p_num = document.getElementById("p_num").value;
       var minnum = document.getElementById("minnum").value;
@@ -230,7 +230,7 @@ $(document).ready(function(){
                                     }
                                 }
       */
+</script>
 
-    </script>
 </body>
 </html> 

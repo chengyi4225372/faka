@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:109:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\recharge.html";i:1576139998;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userhead.html";i:1576140186;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userfoot.html";i:1576140011;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:109:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\recharge.html";i:1576152069;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userhead.html";i:1576140186;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userfoot.html";i:1576140011;}*/ ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -120,7 +120,7 @@
                 </ul>
                 <div class="layui-tab-content"></div>
             </div>  
-            <form id="changepwd-form" class="form-horizontal layui-form" role="form" data-toggle="validator" method="POST" action="<?php echo url('user/fukuan'); ?>" target="_blank">
+            <form  class="form-horizontal layui-form" method="POST">
                 <div class="layui-form-item">
                     <label class="layui-form-label">余额</label>
                     <div class="layui-input-block">
@@ -137,18 +137,16 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">方式</label>
                     <div class="layui-input-block">
-                        <input type="radio" name="payment" value="1" title="支付宝" checked="" />
-
-                        <input type="radio" name="payment" value="2" title="微信" />
-
-                        <input type="radio" name="payment" value="3" title="QQ钱包" />
-
+                        <input type="radio" name="payment" value="alipay" title="支付宝" checked="" />
+                        <input type="radio" name="payment" value="wxpay" title="微信" />
+                        <input type="radio" name="payment" value="qqpay" title="QQ钱包" />
                     </div>
                 </div>
 
+                <input type="hidden" id="mid" value="<?php echo \think\Session::get('info.id'); ?>" />
                 <div class="layui-form-item">
                     <div class="layui-input-block">
-                        <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                        <button class="layui-btn" lay-submit lay-filter="formDemo"  onclick="paymoney()">立即提交</button>
                     </div>
                 </div>
 
@@ -161,7 +159,22 @@
 
 
 </main>
+<script>
+    function paymoney(){
+        var urls    = "<?php echo url('@index/pay/addmoney'); ?>";
+        var types   = $('#account').val();
+        var paytype = $("input[name='payment']:checked").val();
+        var mid     = $('#mid').val();
 
+        if(money == '' || money == undefined || money == 'undefined'){
+            layer.msg('请输入充值金额');
+            return false;
+        }
+
+      //未完成
+
+    }
+</script>
 
 
 

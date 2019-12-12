@@ -61,11 +61,26 @@ class Mobile extends Controller
     public function trade(){
         if($this->request->isGet()){
             $id = input('get.id','','int');
+
             if(empty($id) || $id <=0){
                 return false;
             }
 
-            $info = Db::name('goods')->where('id',$id)->find();
+            $info  = Db::name('goods')->where('id',$id)->find();
+            //卡密
+            $num  = Db::name('card')->where(['gid'=>$id,'over'=>0])->count('kami');
+            $info['num'] = $num;
+            //模板
+            if($info['rengong'] == 0 || $info['rengong'] == ''){
+                $info['moban'] = 0;
+            }
+            if($info['rengong'] != '' || $info['rengong'] != 0){
+                $moban = Db::name('moban')->field('content')->where(['id'=>$info['rengong']])->find();
+                $info['moban'] = explode('**',$moban['content']);
+                foreach ($info['moban'] as $i =>$val){
+                    $info['moban'][$i] = explode('-',  $info['moban'][$i]);
+                }
+            }
             $this->assign('info',$info);
             return $this->fetch();
         }
@@ -79,27 +94,32 @@ class Mobile extends Controller
 
        }
 
+       if($this->request->isPost()){
+
+       }
+
+       return false;
     }
 
-    //搜索详情
+    //搜索
     public function search()
     {
         return $this->fetch();
     }
 
-
+    /**搜索详情**/
     public function orderinfo()
     {
         return $this->fetch();
     }
 
-
+    /***手动发货 ***/
     public function sdfahuo()
     {
         return $this->fetch();
     }
 
-
+   /*** 自动发货 ***/
     public function zdfahuo()
     {
         return $this->fetch();

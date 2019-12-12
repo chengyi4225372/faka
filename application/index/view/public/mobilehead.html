@@ -62,25 +62,25 @@ $(document).ready(function(){
         <div class="shaixun_item">
             <a href="/" class="current"></a>
             <a href="/" class="current">商品主页</a>
-            <a href="/recharge" class="current">余额充值</a>
-            <a href="/myorder" class="current">我的订单</a>
-            <a href="/mychongzi" class="current">资金记录</a>
-            <a href="/editpwd" class="current">修改密码</a>
-			    	</div>
+            <a href="{:url('user/recharge')}" class="current">余额充值</a>
+            <a href="{:url('user/myorder')}" class="current">我的订单</a>
+            <a href="{:url('user/mychongzi')}" class="current">资金记录</a>
+            <a href="{:url('user/editpwd')}" class="current">修改密码</a>
+	 </div>
         <p><a href="#" class="shaixuan_colos">关闭</a></p>
     </div>
   </div>
   </div>
 
 
-    {empty name="$Think.session.get.member"}
-	<div class="m_user w">&nbsp;&nbsp;<a href="/search">游客订单查询</a>
-	&nbsp;&nbsp;&nbsp;&nbsp;【<a href="/login">登录</a>】&nbsp;&nbsp;【<a href="/reg">注册</a>】
+    {empty name="$Think.session.info"}
+	<div class="m_user w">&nbsp;&nbsp;<a href="{:url('mobile/search')}">游客订单查询</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;【<a href="{:url('@index/login/login')}">登录</a>】&nbsp;&nbsp;【<a href="{:url('@index/login/reg')}">注册</a>】
     </div>
    {else /}
      <div class="m_user w">
-         <a><b>你好,</b></a>
-         <a>余额:元</a>
-    <a href="/lout" onclick="return confirm('确定要退出吗？')">【安全退出】</a>
+         <a><b>你好,{$Think.session.info.account}</b></a>
+         <a>余额:{$Think.session.info.money|default='0'}元</a>
+    <a href="{:url('user/lout')}" onclick="return confirm('确定要退出吗？')">【安全退出】</a>
      </div>
   {/empty}

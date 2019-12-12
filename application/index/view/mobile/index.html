@@ -49,14 +49,14 @@
                         <div class="bl_price">
                          <span class="bl_type" style="background-color:#0086EE;">
                          <span class="am-badge am-badge-primary" style="margin-left: 5px">库存({$vo.num})</span></span>&nbsp;
-                            <span class="bl_type" style="background-color:#B187C1;">销量({$vo.paynum})</span> ￥{$vo.money}&nbsp;&nbsp;&nbsp;
-                            <font color="#F8A059">批发价￥{$vo.pipay}</font></div>
+                            <span class="bl_type" style="background-color:#B187C1;">销量({$vo.paynum})</span> ￥{$vo.money|floatval}&nbsp;&nbsp;&nbsp;
+                            <font color="#F8A059">批发价￥{$vo.pipay|floatval}</font></div>
                         {else /}
                         <div class="bl_price">
                             <span class="bl_type" style="background-color:#0086EE;">
                               <span class="am-badge am-badge-success" style="margin-left: 5px">代充</span>
                               </span>&nbsp;
-                            <span class="bl_type" style="background-color:#B187C1;">销量({$vo.paynum})</span> ￥{$vo.money}&nbsp;&nbsp;&nbsp;
+                            <span class="bl_type" style="background-color:#B187C1;">销量({$vo.paynum|floatval})</span> ￥{$vo.money|floatval}&nbsp;&nbsp;&nbsp;
                             <font color="#F8A059">批发价￥{$vo.pipay}</font>
                         </div>
                         {/eq}
