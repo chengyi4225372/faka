@@ -68,20 +68,43 @@ class User extends Base
          return false;
     }
 
-    //充值中心
+    /***充值页面**/
     public function recharge()
     {
-        return $this->fetch();
+        if($this->request->isGet()){
+            return $this->fetch();
+        }
+        return false;
     }
 
-    //开通代理
+    /***充值提交**/
+    public function addmoney(){
+        if($this->request->isPost()){
+
+        }
+        return false;
+    }
+
+    /**开通页面**/
     public function vip()
     {
-        return $this->fetch();
+       if($this->request->isGet()){
+           return $this->fetch();
+       }
+       return false;
     }
 
 
-    //修改密码
+    /**成为会员 **/
+    public function setvip(){
+        if($this->request->isPost()){
+
+        }
+
+        return false;
+    }
+
+    /***修改密码***/
     public function editpwd()
     {
         if($this->request->isGet()){
