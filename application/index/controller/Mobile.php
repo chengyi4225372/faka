@@ -87,21 +87,56 @@ class Mobile extends Controller
         return false;
     }
 
-    //支付
+    /***购买***/
     public function buy()
     {
        if($this->request->isGet()){
+           $id = input('get.did');
+           $order_no = input('get.order_no');
+           if(empty($id) && empty($order_no)){
+               return false;
+           }
+           $goods = Db::name('goods')->order('id desc')->select();
+           $order = Db::name('order')->where(['id'=>$id,'order_no'=>$order_no])->find();
+           $goods = array_column($goods,'title','id');
 
+           $this->assign('order',$order);
+           $this->assign('goods',$goods);
+           return $this->fetch();
        }
 
        if($this->request->isPost()){
+           $this->param = $this->request->param();
 
+           //组装 订单页面信息
+           if(empty($this->param['gid']) || !isset($this->param['gid'])){
+               return false;
+           }
+
+           $array = [
+               'gid'  =>$this->param['gid'],
+               'huo'  =>$this->param['huo'],
+               'num'  =>$this->param['num'],
+               'content'   =>isset($this->param['content'])?$this->param['content']:'',
+               'danpay'    =>isset($this->param['danpay'])?$this->param['danpay']:'',
+               'countpay'  =>isset($this->param['countpay'])?$this->param['countpay']:'',
+               'order_no'  => create_order(),
+               'mobile'    => $this->param['mobile'],
+               'member_id' => $this->param['member_id'],
+           ];
+
+           $res = Db::name('order')->insertGetId($array);
+
+           if($res){
+               return json(['code'=>200,'msg'=>'订单生成成功，马上跳转....','order'=>$array['order_no'],'gid'=>$res]);
+           }else {
+               return json(['code'=>400,'msg'=>'订单生成失败']);
+           }
        }
-
        return false;
     }
 
-    //搜索
+    /**搜索**/
     public function search()
     {
         return $this->fetch();

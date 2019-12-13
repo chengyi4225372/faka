@@ -143,7 +143,7 @@ class Index extends Base
            $this->assign('goods',$goods);
            return $this->fetch();
       }
-
+       return false;
     }
 
     //自动发货

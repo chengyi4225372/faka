@@ -38,28 +38,36 @@
         {else /}
           <!-- 人工发货 -->
         {volist name='info.moban' id='v1' key='k'}
-        <div class="bl_view_title" id="title{$k}">{$v1['0']}：
+        <div class="bl_view_title mo" id="title{$k}" data-title="{$v1['0']}">{$v1['0']}：
             <input class="search_input2" type="tel" id="moban{$k}" placeholder="{$v1['1']}" required>
         </div>
         {/volist}
+
+
         <div class="bl_view_title">手机号码：
-            <input class="search_input2" type="tel" id="mobile_s" placeholder="请输入联系方式" required>
+            <input class="search_input2" type="tel" id="mobile_sh" placeholder="请输入联系方式" required>
         </div>
         {/if}
 
+
+        {if condition="$info['huo'] eq 0"}
         <div class="bl_view_title"> 购买数量：
             <input class="search_input2" id="p_num" name="num" type="number" value="" min="0" max="" placeholder="请输购买数量" required>
         </div>
-    </form>
+        {/if}
+
             <input id="minnum" name="minnum" class="z" type="hidden" value="{$info.mins}" />
             <input id="maxnum" name="maxnum" class="z" type="hidden" value="{$info.maxs}" />
             <input id="bei" name="beishu" class="z" type="hidden" value="{$info.bei}" />
             <input id="huo"  class="z" type="hidden" value="{$info.huo}" />
             <input id="gid"  class="z" type="hidden" value="{$info.id}" />
+            <input id="counts"  class="z" type="hidden" value="{$info.num}" />
+            <input id="danpay"  class="z" type="hidden" value="{$info.money}" />
             <input id="member_id"  class="z" type="hidden" value="{$Think.session.info.id}">
         <div class="go_buy">
             <input type="button"  value="自助购买" id="mobileadd" />
         </div>
+    </form>
 </div>
 <div class="m_userx w">
     <a target="blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin={$config.kefu}&amp;site=qq&amp;menu=yes">
@@ -89,20 +97,20 @@
          var gid = $('#gid').val();//商品id
          var member_id = $('#member_id').val(); //member
          var urls  = "{:url('mobile/buy')}";
-        //自动发货
-        if(huo == 0){
-          var mobile = $('#mobile_zi').val();
+         var hrefs ="{:url('mobile/buy')}";
+         //自动发货
+         if(huo == 0){
+             var mobile = $.trim($('#mobile_zi').val());
 
-            if(mobile == '' || mobile == undefined || mobile == 'undefined'){
+             if(mobile == '' || mobile == undefined || mobile == 'undefined'){
               layer.msg('请输入电话信息');
               return false;
-            }
-
+             }
             var num = $.trim($('#p_num').val()); //商品购买数量
             var bei = $('#bei').val();
             var min = $('#minnum').val();
             var max = $('#maxnum').val();
-
+            var counts = $('#counts').val();
             if(num < min || num =='' || num == undefined){
                 layer.msg('购买商品太少了，无法发货');
                 return false;
@@ -113,12 +121,19 @@
                 return false;
             }
 
-            num = num * bei;
+            if(num >counts){
+                 layer.msg('不好意思，商品购买大于商品库存总数！');
+                 return false;
+             }
 
-            $.post(urls,{'gid':gid,'member_id':member_id,'mobile':mobile,'num':num,'huo':0},function(ret){
+            num = num * bei;
+            var danpay   = $('#danpay').val();//单价
+            var countpay = parseInt((num * bei) * danpay); //总价
+
+            $.post(urls,{'gid':gid,'member_id':member_id,'mobile':mobile,'num':num,'huo':0,'danpay':danpay,'countpay':countpay},function(ret){
                       if(ret.code == 200){
                           layer.msg(ret.msg,function(){
-                              parent.location.href =''; //未完成 todo
+                              parent.location.href = hrefs+'?order_no='+ret.order+'&did='+ret.gid;
                           })
                       }
 
@@ -130,10 +145,44 @@
              },'json');
         }
 
-
          //手动发货
          if(huo == 1){
+            var mobile =$.trim($('#mobile_sh').val());//电话
 
+            if(mobile =='' || mobile == undefined || mobile =='undefined'){
+                layer.msg('请输入用户信息');
+                return false;
+            }
+
+            //模板数据
+             var content= [];
+
+             var len   = $('form .mo').length;
+             for(var i=1;i<=len;i++){
+                 content.push($("#title"+i).attr('data-title'));
+                 content.push($("#moban"+i).val());
+             }
+
+             console.log(content);
+
+             var danpay = $('#danpay').val();//单价
+
+             var num  = 1 ; //人工发货默认数量1
+
+             var countpay = danpay * num ;
+             $.post(urls,{'mobile':mobile,'gid':gid,'member_id':member_id,'huo':1,'danpay':danpay,'content':JSON.stringify(content),'num':num,'countpay':countpay},function(ret){
+                 if(ret.code == 200){
+                     layer.msg(ret.msg,function(){
+                         parent.location.href = hrefs+'?order_no='+ret.order+'&did='+ret.gid;
+                     })
+                 }
+
+                 if(ret.code == 400){
+                     layer.msg(ret.msg,function(){
+                         parent.location.reload();
+                     })
+                 }
+             },'json');
          }
 
 

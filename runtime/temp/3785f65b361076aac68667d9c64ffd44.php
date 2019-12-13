@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\mobile\trade.html";i:1576155302;s:103:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\mobilehead.html";i:1576154465;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\mobile\trade.html";i:1576220010;s:103:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\mobilehead.html";i:1576154465;}*/ ?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -119,33 +119,38 @@ $(document).ready(function(){
         <input type="hidden" name='gid' value=''>
         <?php if($info['huo'] == 0): ?>
         <div class="bl_view_title">手机号码：
-            <input class="search_input2" type="tel" name="mobile" placeholder="请输入联系方式" required>
+            <input class="search_input2"  id="mobile_zi" placeholder="请输入联系方式" required>
         </div>
         <?php else: ?>
           <!-- 人工发货 -->
         <?php if(is_array($info['moban']) || $info['moban'] instanceof \think\Collection || $info['moban'] instanceof \think\Paginator): $k = 0; $__LIST__ = $info['moban'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v1): $mod = ($k % 2 );++$k;?>
-        <div class="bl_view_title" id="title<?php echo $k; ?>"><?php echo $v1['0']; ?>：
+        <div class="bl_view_title mo" id="title<?php echo $k; ?>" data-title="<?php echo $v1['0']; ?>"><?php echo $v1['0']; ?>：
             <input class="search_input2" type="tel" id="moban<?php echo $k; ?>" placeholder="<?php echo $v1['1']; ?>" required>
         </div>
         <?php endforeach; endif; else: echo "" ;endif; ?>
+
+
         <div class="bl_view_title">手机号码：
-            <input class="search_input2" type="tel" name="mobile" placeholder="请输入联系方式" required>
+            <input class="search_input2" type="tel" id="mobile_sh" placeholder="请输入联系方式" required>
+        </div>
+        <?php endif; if($info['huo'] == 0): ?>
+        <div class="bl_view_title"> 购买数量：
+            <input class="search_input2" id="p_num" name="num" type="number" value="" min="0" max="" placeholder="请输购买数量" required>
         </div>
         <?php endif; ?>
 
-        <div class="bl_view_title"> 购买数量：
-            <input class="search_input2" id="p_num" name="num" type="number" value="" min="" max="" placeholder="请输购买数量" required>
+            <input id="minnum" name="minnum" class="z" type="hidden" value="<?php echo $info['mins']; ?>" />
+            <input id="maxnum" name="maxnum" class="z" type="hidden" value="<?php echo $info['maxs']; ?>" />
+            <input id="bei" name="beishu" class="z" type="hidden" value="<?php echo $info['bei']; ?>" />
+            <input id="huo"  class="z" type="hidden" value="<?php echo $info['huo']; ?>" />
+            <input id="gid"  class="z" type="hidden" value="<?php echo $info['id']; ?>" />
+            <input id="counts"  class="z" type="hidden" value="<?php echo $info['num']; ?>" />
+            <input id="danpay"  class="z" type="hidden" value="<?php echo $info['money']; ?>" />
+            <input id="member_id"  class="z" type="hidden" value="<?php echo \think\Session::get('info.id'); ?>">
+        <div class="go_buy">
+            <input type="button"  value="自助购买" id="mobileadd" />
         </div>
     </form>
-            <input id="minnum" name="minnum" class="z" type="hidden" value="" >
-            <input id="maxnum" name="maxnum" class="z" type="hidden" value="" >
-            <input id="beishu" name="beishu" class="z" type="hidden" value="" >
-            <input id="member_id"  class="z" type="hidden" value="<?php echo \think\Session::get('info.id'); ?>" >
-
-
-        <div class="go_buy">
-            <input type="button"  value="自助购买"  onclick="buy( , )" />
-        </div>
 </div>
 <div class="m_userx w">
     <a target="blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=<?php echo $config['kefu']; ?>&amp;site=qq&amp;menu=yes">
@@ -169,6 +174,102 @@ $(document).ready(function(){
 <script type="text/javascript" src="/index/sink/js/jquery-1.8.3.min.js"></script>
 <script src='/index/sink/js/layer/layer.js'></script>
 <script>
+    //手机端
+    $('#mobileadd').click(function(){
+         var huo = $('#huo').val(); //发货类型
+         var gid = $('#gid').val();//商品id
+         var member_id = $('#member_id').val(); //member
+         var urls  = "<?php echo url('mobile/buy'); ?>";
+         var hrefs ="<?php echo url('mobile/buy'); ?>";
+         //自动发货
+         if(huo == 0){
+             var mobile = $.trim($('#mobile_zi').val());
+
+             if(mobile == '' || mobile == undefined || mobile == 'undefined'){
+              layer.msg('请输入电话信息');
+              return false;
+             }
+            var num = $.trim($('#p_num').val()); //商品购买数量
+            var bei = $('#bei').val();
+            var min = $('#minnum').val();
+            var max = $('#maxnum').val();
+            var counts = $('#counts').val();
+            if(num < min || num =='' || num == undefined){
+                layer.msg('购买商品太少了，无法发货');
+                return false;
+            }
+
+            if(num > max){
+                layer.msg('商品购买数量太多了，我们无法发货');
+                return false;
+            }
+
+            if(num >counts){
+                 layer.msg('不好意思，商品购买大于商品库存总数！');
+                 return false;
+             }
+
+            num = num * bei;
+            var danpay   = $('#danpay').val();//单价
+            var countpay = parseInt((num * bei) * danpay); //总价
+
+            $.post(urls,{'gid':gid,'member_id':member_id,'mobile':mobile,'num':num,'huo':0,'danpay':danpay,'countpay':countpay},function(ret){
+                      if(ret.code == 200){
+                          layer.msg(ret.msg,function(){
+                              parent.location.href = hrefs+'?order_no='+ret.order+'&did='+ret.gid;
+                          })
+                      }
+
+                  if(ret.code == 400){
+                    layer.msg(ret.msg,function(){
+                        parent.location.reload();
+                    })
+                }
+             },'json');
+        }
+
+         //手动发货
+         if(huo == 1){
+            var mobile =$.trim($('#mobile_sh').val());//电话
+
+            if(mobile =='' || mobile == undefined || mobile =='undefined'){
+                layer.msg('请输入用户信息');
+                return false;
+            }
+
+            //模板数据
+             var content= [];
+
+             var len   = $('form .mo').length;
+             for(var i=1;i<=len;i++){
+                 content.push($("#title"+i).attr('data-title'));
+                 content.push($("#moban"+i).val());
+             }
+
+             console.log(content);
+
+             var danpay = $('#danpay').val();//单价
+
+             var num  = 1 ; //人工发货默认数量1
+
+             var countpay = danpay * num ;
+             $.post(urls,{'mobile':mobile,'gid':gid,'member_id':member_id,'huo':1,'danpay':danpay,'content':JSON.stringify(content),'num':num,'countpay':countpay},function(ret){
+                 if(ret.code == 200){
+                     layer.msg(ret.msg,function(){
+                         parent.location.href = hrefs+'?order_no='+ret.order+'&did='+ret.gid;
+                     })
+                 }
+
+                 if(ret.code == 400){
+                     layer.msg(ret.msg,function(){
+                         parent.location.reload();
+                     })
+                 }
+             },'json');
+         }
+
+
+    })
 
 
 /*

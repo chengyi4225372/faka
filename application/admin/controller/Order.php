@@ -90,7 +90,7 @@ class Order extends Base
         $goodes = Db::name('goods')->where('huo',1)->select();
         $goods  = array_column($goodes,'title','id');
         $member = Db::name('member')->field('id ,account')->select();
-        $info   = array_column($member,'title','id');
+        $info   = array_column($member,'account','id');
         $this->assign('goods',$goods);
         $this->assign('goodes',$goodes);
         $this->assign('list',$list);
@@ -106,6 +106,7 @@ class Order extends Base
                return false;
            }
            $info = Db::name('order')->where(['id'=>$id,'huo'=>1,'is_delete'=>0])->find();
+           $info['content'] = json_decode($info['content']);
            $goods= Db::name('goods')->field('id,title')->select();
            $goods= array_column($goods,'title','id');
            $this->assign('info',$info);
@@ -122,7 +123,7 @@ class Order extends Base
 
            $res = Db::name('order')->where(['id'=>$up['data']['id']])->update(
                [
-                'content' =>$up['data']['content'],
+                'content' =>json_encode($up['data']['content']),
                 'status'  =>$up['data']['status'],
                 'num'     =>$up['data']['num'],
                 'countpay'=>$up['data']['countpay'],
