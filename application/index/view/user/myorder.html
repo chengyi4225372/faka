@@ -65,15 +65,16 @@
                 </tr>
                 </tbody>
                 {/volist}
-                {/empty}
+
+                <center>
+                    <!-- 分页-->
+                    <div class="pager">
+                        {$list->render()}
+                    </div>
+                </center>
+
             </table>
-            <center>
-                <!-- 分页-->
-                <div class="pager">
-
-                </div>
-
-            </center>
+            {/empty}
         </div>
     </div>
 </div>

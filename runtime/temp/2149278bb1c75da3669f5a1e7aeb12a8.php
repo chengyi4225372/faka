@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html";i:1576226094;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userhead.html";i:1576140186;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userfoot.html";i:1576140011;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html";i:1576226780;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userhead.html";i:1576140186;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userfoot.html";i:1576140011;}*/ ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -165,15 +165,17 @@
                     <td><?php echo $lo['create_time']; ?></td>
                 </tr>
                 </tbody>
-                <?php endforeach; endif; else: echo "" ;endif; endif; ?>
+                <?php endforeach; endif; else: echo "" ;endif; ?>
+
+                <center>
+                    <!-- 分页-->
+                    <div class="pager">
+                        <?php echo $list->render(); ?>
+                    </div>
+                </center>
+
             </table>
-            <center>
-                <!-- 分页-->
-                <div class="pager">
-
-                </div>
-
-            </center>
+            <?php endif; ?>
         </div>
     </div>
 </div>

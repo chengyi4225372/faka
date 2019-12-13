@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:106:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\mobile\buy.html";i:1576222520;s:103:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\mobilehead.html";i:1576154465;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:106:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\mobile\buy.html";i:1576223035;s:103:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\mobilehead.html";i:1576225073;}*/ ?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -63,10 +63,10 @@ $(document).ready(function(){
         <div class="shaixun_item">
             <a href="/" class="current"></a>
             <a href="/" class="current">商品主页</a>
-            <a href="<?php echo url('user/recharge'); ?>" class="current">余额充值</a>
-            <a href="<?php echo url('user/myorder'); ?>" class="current">我的订单</a>
-            <a href="<?php echo url('user/mychongzi'); ?>" class="current">资金记录</a>
-            <a href="<?php echo url('user/editpwd'); ?>" class="current">修改密码</a>
+            <a href="<?php echo url('@index/user/recharge'); ?>" class="current">余额充值</a>
+            <a href="<?php echo url('@index/user/myorder'); ?>" class="current">我的订单</a>
+            <a href="<?php echo url('@index/user/mychongzi'); ?>" class="current">资金记录</a>
+            <a href="<?php echo url('@index/user/editpwd'); ?>" class="current">修改密码</a>
 	 </div>
         <p><a href="#" class="shaixuan_colos">关闭</a></p>
     </div>
@@ -82,7 +82,7 @@ $(document).ready(function(){
      <div class="m_user w">
          <a><b>你好,<?php echo \think\Session::get('info.account'); ?></b></a>
          <a>余额:<?php echo (\think\Session::get('info.money') ?: '0'); ?>元</a>
-    <a href="<?php echo url('user/lout'); ?>" onclick="return confirm('确定要退出吗？')">【安全退出】</a>
+    <a href="<?php echo url('login/lout'); ?>" onclick="return confirm('确定要退出吗？')">【安全退出】</a>
      </div>
   <?php endif; ?>
 <style>
@@ -231,7 +231,7 @@ em, i {
 <script>
   /** 支付 **/
 function mobilePay(){
-      var  types = '';//支付类型
+      var  types = $('ul li.curr').attr('data-paytype');//支付类型
       var  goodnames = $.trim($('.paynames').text());//商品名称
       var  order_no  = $.trim($('.order').text());//商户订单号
       var  paynum    = $('#payment').val(); //商品总价
@@ -240,6 +240,11 @@ function mobilePay(){
 
       if(types == '' || types == undefined){
           layer.msg('请选择支付类型');
+          return false;
+      }
+
+      if(types == 'yu'){
+          layer.msg('改功能正在开发中。。');
           return false;
       }
 

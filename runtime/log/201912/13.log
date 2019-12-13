@@ -25368,3 +25368,2659 @@
 [ sql ] [ SQL ] SELECT COUNT(kami) AS tp_count FROM `bear_card` WHERE  `gid` = 2  AND `over` = 0 LIMIT 1 [ RunTime:0.000000s ]
 [ sql ] [ SQL ] SHOW COLUMNS FROM `bear_moban` [ RunTime:0.000000s ]
 [ sql ] [ SQL ] SELECT `content` FROM `bear_moban` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:44:09+08:00 ] 127.0.0.1 GET /index/mobile/trade.html?id=2
+[ info ] local.lizi.com/index/mobile/trade.html?id=2 [运行时间：0.084005s][吞吐率：11.90req/s] [内存消耗：3,420.30kb] [文件加载：65]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'mobile',
+    2 => 'trade',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/mobile/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+  'id' => '2',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Mobile->trade[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\Mobile.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\mobile\trade.html [ array (
+  0 => 'config',
+  1 => 'shouye',
+  2 => 'info',
+) ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_content` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_content` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_goods` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_card` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT COUNT(kami) AS tp_count FROM `bear_card` WHERE  `gid` = 2  AND `over` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_moban` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `content` FROM `bear_moban` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:44:13+08:00 ] 127.0.0.1 GET /index/mobile/trade.html?id=2
+[ info ] local.lizi.com/index/mobile/trade.html?id=2 [运行时间：0.105006s][吞吐率：9.52req/s] [内存消耗：3,420.30kb] [文件加载：65]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'mobile',
+    2 => 'trade',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/mobile/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+  'id' => '2',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Mobile->trade[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\Mobile.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\mobile\trade.html [ array (
+  0 => 'config',
+  1 => 'shouye',
+  2 => 'info',
+) ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_content` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_content` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_goods` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_card` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT COUNT(kami) AS tp_count FROM `bear_card` WHERE  `gid` = 2  AND `over` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_moban` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `content` FROM `bear_moban` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:44:15+08:00 ] 127.0.0.1 GET /index/mobile/index.html
+[ info ] local.lizi.com/index/mobile/index.html [运行时间：0.086005s][吞吐率：11.63req/s] [内存消耗：3,423.74kb] [文件加载：65]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'mobile',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/mobile/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Mobile->index[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\Mobile.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\mobile\index.html [ array (
+  0 => 'config',
+  1 => 'shouye',
+  2 => 'list',
+  3 => 'categorys',
+  4 => 'indexs',
+) ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_content` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_content` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_goods` WHERE  `status` = 1 ORDER BY `sort` DESC [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_good_cates` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_good_cates` ORDER BY `id` DESC [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_content` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_card` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT gid,count(kami) as num FROM `bear_card` WHERE  `over` = 0 GROUP BY `gid` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:44:15+08:00 ] 127.0.0.1 GET /mobile/sink/sink/cssimg/iconfont-sousuo.png
+[ info ] local.lizi.com/mobile/sink/sink/cssimg/iconfont-sousuo.png [运行时间：0.055003s][吞吐率：18.18req/s] [内存消耗：2,011.51kb] [文件加载：53]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'mobile',
+    1 => 'sink',
+    2 => 'sink',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/mobile/sink/css/public.css',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+  'cssimg' => 'iconfont-sousuo.png',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-12-13T16:44:18+08:00 ] 127.0.0.1 GET /index/user/recharge.html
+[ info ] local.lizi.com/index/user/recharge.html [运行时间：0.090005s][吞吐率：11.11req/s] [内存消耗：3,372.99kb] [文件加载：64]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'recharge',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/mobile/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\recharge.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->recharge[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\recharge.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:44:18+08:00 ] 127.0.0.1 GET /mobile/sink/sink/cssimg/iconfont-sousuo.png
+[ info ] local.lizi.com/mobile/sink/sink/cssimg/iconfont-sousuo.png [运行时间：0.052003s][吞吐率：19.23req/s] [内存消耗：2,010.66kb] [文件加载：53]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'mobile',
+    1 => 'sink',
+    2 => 'sink',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+  'cssimg' => 'iconfont-sousuo.png',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-12-13T16:44:21+08:00 ] 127.0.0.1 GET /index/user/myorder.html
+[ info ] local.lizi.com/index/user/myorder.html [运行时间：0.092005s][吞吐率：10.87req/s] [内存消耗：3,570.42kb] [文件加载：68]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'myorder',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/recharge.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->myorder[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+  2 => 'list',
+  3 => 'goods',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.003000s ]
+[ sql ] [ SQL ] SELECT `id`,`title` FROM `bear_goods` WHERE  `status` = 1 [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_order` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 ORDER BY `create_time` DESC LIMIT 0,15 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:44:23+08:00 ] 127.0.0.1 GET /index/user/myorder.html
+[ info ] local.lizi.com/index/user/myorder.html [运行时间：0.098005s][吞吐率：10.20req/s] [内存消耗：3,570.38kb] [文件加载：68]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'myorder',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/recharge.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->myorder[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+  2 => 'list',
+  3 => 'goods',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `id`,`title` FROM `bear_goods` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_order` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 ORDER BY `create_time` DESC LIMIT 0,15 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:44:24+08:00 ] 127.0.0.1 GET /index/user/myorder.html
+[ info ] local.lizi.com/index/user/myorder.html [运行时间：0.094005s][吞吐率：10.64req/s] [内存消耗：3,570.38kb] [文件加载：68]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'myorder',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/recharge.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->myorder[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+  2 => 'list',
+  3 => 'goods',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `id`,`title` FROM `bear_goods` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_order` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 ORDER BY `create_time` DESC LIMIT 0,15 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:44:42+08:00 ] 127.0.0.1 GET /index/user/myorder.html
+[ info ] local.lizi.com/index/user/myorder.html [运行时间：0.080004s][吞吐率：12.50req/s] [内存消耗：3,570.38kb] [文件加载：68]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'myorder',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/recharge.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->myorder[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+  2 => 'list',
+  3 => 'goods',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `id`,`title` FROM `bear_goods` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_order` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 ORDER BY `create_time` DESC LIMIT 0,15 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:44:43+08:00 ] 127.0.0.1 GET /index/user/myorder.html
+[ info ] local.lizi.com/index/user/myorder.html [运行时间：0.097005s][吞吐率：10.31req/s] [内存消耗：3,570.38kb] [文件加载：68]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'myorder',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/recharge.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->myorder[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+  2 => 'list',
+  3 => 'goods',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `id`,`title` FROM `bear_goods` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_order` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 ORDER BY `create_time` DESC LIMIT 0,15 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:44:43+08:00 ] 127.0.0.1 GET /index/user/myorder.html
+[ info ] local.lizi.com/index/user/myorder.html [运行时间：0.077004s][吞吐率：12.99req/s] [内存消耗：3,570.38kb] [文件加载：68]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'myorder',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/recharge.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->myorder[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+  2 => 'list',
+  3 => 'goods',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `id`,`title` FROM `bear_goods` WHERE  `status` = 1 [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_order` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 ORDER BY `create_time` DESC LIMIT 0,15 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:44:43+08:00 ] 127.0.0.1 GET /index/user/myorder.html
+[ info ] local.lizi.com/index/user/myorder.html [运行时间：0.075004s][吞吐率：13.33req/s] [内存消耗：3,570.38kb] [文件加载：68]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'myorder',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/recharge.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->myorder[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+  2 => 'list',
+  3 => 'goods',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `id`,`title` FROM `bear_goods` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_order` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 ORDER BY `create_time` DESC LIMIT 0,15 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:44:43+08:00 ] 127.0.0.1 GET /index/user/myorder.html
+[ info ] local.lizi.com/index/user/myorder.html [运行时间：0.077005s][吞吐率：12.99req/s] [内存消耗：3,570.38kb] [文件加载：68]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'myorder',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/recharge.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->myorder[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+  2 => 'list',
+  3 => 'goods',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `id`,`title` FROM `bear_goods` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_order` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 ORDER BY `create_time` DESC LIMIT 0,15 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:44:44+08:00 ] 127.0.0.1 GET /index/user/myorder.html
+[ info ] local.lizi.com/index/user/myorder.html [运行时间：0.087005s][吞吐率：11.49req/s] [内存消耗：3,570.95kb] [文件加载：68]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'myorder',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/recharge.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->myorder[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+  2 => 'list',
+  3 => 'goods',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `id`,`title` FROM `bear_goods` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_order` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 ORDER BY `create_time` DESC LIMIT 0,15 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:44:44+08:00 ] 127.0.0.1 GET /index/user/myorder.html
+[ info ] local.lizi.com/index/user/myorder.html [运行时间：0.099005s][吞吐率：10.10req/s] [内存消耗：3,570.95kb] [文件加载：68]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'myorder',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/recharge.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->myorder[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+  2 => 'list',
+  3 => 'goods',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002001s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.003000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `id`,`title` FROM `bear_goods` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_order` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 ORDER BY `create_time` DESC LIMIT 0,15 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:44:44+08:00 ] 127.0.0.1 GET /index/user/myorder.html
+[ info ] local.lizi.com/index/user/myorder.html [运行时间：0.074004s][吞吐率：13.51req/s] [内存消耗：3,570.95kb] [文件加载：68]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'myorder',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/recharge.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->myorder[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+  2 => 'list',
+  3 => 'goods',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `id`,`title` FROM `bear_goods` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_order` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 ORDER BY `create_time` DESC LIMIT 0,15 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:44:44+08:00 ] 127.0.0.1 GET /index/user/myorder.html
+[ info ] local.lizi.com/index/user/myorder.html [运行时间：0.103006s][吞吐率：9.71req/s] [内存消耗：3,570.95kb] [文件加载：68]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'myorder',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/recharge.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->myorder[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+  2 => 'list',
+  3 => 'goods',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.004000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `id`,`title` FROM `bear_goods` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_order` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 ORDER BY `create_time` DESC LIMIT 0,15 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:44:45+08:00 ] 127.0.0.1 GET /index/user/myorder.html
+[ info ] local.lizi.com/index/user/myorder.html [运行时间：0.126007s][吞吐率：7.94req/s] [内存消耗：3,570.95kb] [文件加载：68]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'myorder',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/recharge.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->myorder[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+  2 => 'list',
+  3 => 'goods',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.002001s ]
+[ sql ] [ SQL ] SELECT `id`,`title` FROM `bear_goods` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_order` [ RunTime:0.003000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 ORDER BY `create_time` DESC LIMIT 0,15 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:44:57+08:00 ] 127.0.0.1 GET /index/user/myorder.html
+[ info ] local.lizi.com/index/user/myorder.html [运行时间：0.090005s][吞吐率：11.11req/s] [内存消耗：3,570.95kb] [文件加载：68]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'myorder',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/recharge.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->myorder[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+  2 => 'list',
+  3 => 'goods',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `id`,`title` FROM `bear_goods` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_order` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 ORDER BY `create_time` DESC LIMIT 0,15 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:44:57+08:00 ] 127.0.0.1 GET /index/user/myorder.html
+[ info ] local.lizi.com/index/user/myorder.html [运行时间：0.088005s][吞吐率：11.36req/s] [内存消耗：3,570.95kb] [文件加载：68]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'myorder',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/recharge.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->myorder[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+  2 => 'list',
+  3 => 'goods',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `id`,`title` FROM `bear_goods` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_order` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 ORDER BY `create_time` DESC LIMIT 0,15 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:44:57+08:00 ] 127.0.0.1 GET /index/user/myorder.html
+[ info ] local.lizi.com/index/user/myorder.html [运行时间：0.094005s][吞吐率：10.64req/s] [内存消耗：3,570.95kb] [文件加载：68]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'myorder',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/recharge.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->myorder[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+  2 => 'list',
+  3 => 'goods',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `id`,`title` FROM `bear_goods` WHERE  `status` = 1 [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_order` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 ORDER BY `create_time` DESC LIMIT 0,15 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:44:57+08:00 ] 127.0.0.1 GET /index/user/myorder.html
+[ info ] local.lizi.com/index/user/myorder.html [运行时间：0.099006s][吞吐率：10.10req/s] [内存消耗：3,570.95kb] [文件加载：68]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'myorder',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/recharge.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->myorder[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+  2 => 'list',
+  3 => 'goods',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.004000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `id`,`title` FROM `bear_goods` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_order` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 ORDER BY `create_time` DESC LIMIT 0,15 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:44:58+08:00 ] 127.0.0.1 GET /index/user/myorder.html
+[ info ] local.lizi.com/index/user/myorder.html [运行时间：0.108006s][吞吐率：9.26req/s] [内存消耗：3,570.95kb] [文件加载：68]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'myorder',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/recharge.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->myorder[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+  2 => 'list',
+  3 => 'goods',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `id`,`title` FROM `bear_goods` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_order` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 LIMIT 1 [ RunTime:0.003001s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 ORDER BY `create_time` DESC LIMIT 0,15 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:44:58+08:00 ] 127.0.0.1 GET /index/user/myorder.html
+[ info ] local.lizi.com/index/user/myorder.html [运行时间：0.103006s][吞吐率：9.71req/s] [内存消耗：3,570.95kb] [文件加载：68]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'myorder',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/recharge.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->myorder[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+  2 => 'list',
+  3 => 'goods',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.012001s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `id`,`title` FROM `bear_goods` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_order` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 ORDER BY `create_time` DESC LIMIT 0,15 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:44:58+08:00 ] 127.0.0.1 GET /index/user/myorder.html
+[ info ] local.lizi.com/index/user/myorder.html [运行时间：0.077005s][吞吐率：12.99req/s] [内存消耗：3,570.95kb] [文件加载：68]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'myorder',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/recharge.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->myorder[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+  2 => 'list',
+  3 => 'goods',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `id`,`title` FROM `bear_goods` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_order` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 ORDER BY `create_time` DESC LIMIT 0,15 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:44:58+08:00 ] 127.0.0.1 GET /index/user/myorder.html
+[ info ] local.lizi.com/index/user/myorder.html [运行时间：0.093005s][吞吐率：10.75req/s] [内存消耗：3,570.95kb] [文件加载：68]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'myorder',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/recharge.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->myorder[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+  2 => 'list',
+  3 => 'goods',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `id`,`title` FROM `bear_goods` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_order` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 ORDER BY `create_time` DESC LIMIT 0,15 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:44:58+08:00 ] 127.0.0.1 GET /index/user/myorder.html
+[ info ] local.lizi.com/index/user/myorder.html [运行时间：0.100006s][吞吐率：10.00req/s] [内存消耗：3,570.95kb] [文件加载：68]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'myorder',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/recharge.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->myorder[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+  2 => 'list',
+  3 => 'goods',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `id`,`title` FROM `bear_goods` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_order` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 ORDER BY `create_time` DESC LIMIT 0,15 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:44:58+08:00 ] 127.0.0.1 GET /index/user/myorder.html
+[ info ] local.lizi.com/index/user/myorder.html [运行时间：0.113007s][吞吐率：8.85req/s] [内存消耗：3,570.95kb] [文件加载：68]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'myorder',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/recharge.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->myorder[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+  2 => 'list',
+  3 => 'goods',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.006001s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `id`,`title` FROM `bear_goods` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_order` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 ORDER BY `create_time` DESC LIMIT 0,15 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:44:58+08:00 ] 127.0.0.1 GET /index/user/myorder.html
+[ info ] local.lizi.com/index/user/myorder.html [运行时间：0.088005s][吞吐率：11.36req/s] [内存消耗：3,570.95kb] [文件加载：68]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'myorder',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/recharge.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->myorder[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+  2 => 'list',
+  3 => 'goods',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `id`,`title` FROM `bear_goods` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_order` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 ORDER BY `create_time` DESC LIMIT 0,15 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:44:58+08:00 ] 127.0.0.1 GET /index/user/myorder.html
+[ info ] local.lizi.com/index/user/myorder.html [运行时间：0.108006s][吞吐率：9.26req/s] [内存消耗：3,570.95kb] [文件加载：68]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'myorder',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/recharge.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->myorder[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+  2 => 'list',
+  3 => 'goods',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.014001s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `id`,`title` FROM `bear_goods` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_order` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 ORDER BY `create_time` DESC LIMIT 0,15 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:44:59+08:00 ] 127.0.0.1 GET /index/user/myorder.html
+[ info ] local.lizi.com/index/user/myorder.html [运行时间：0.097005s][吞吐率：10.31req/s] [内存消耗：3,570.95kb] [文件加载：68]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'myorder',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/recharge.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->myorder[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+  2 => 'list',
+  3 => 'goods',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT `id`,`title` FROM `bear_goods` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_order` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 ORDER BY `create_time` DESC LIMIT 0,15 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:44:59+08:00 ] 127.0.0.1 GET /index/user/myorder.html
+[ info ] local.lizi.com/index/user/myorder.html [运行时间：0.110006s][吞吐率：9.09req/s] [内存消耗：3,570.38kb] [文件加载：68]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'myorder',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/recharge.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->myorder[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+  2 => 'list',
+  3 => 'goods',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.016000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.003000s ]
+[ sql ] [ SQL ] SELECT `id`,`title` FROM `bear_goods` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_order` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 ORDER BY `create_time` DESC LIMIT 0,15 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:45:02+08:00 ] 127.0.0.1 GET /index/user/recharge.html
+[ info ] local.lizi.com/index/user/recharge.html [运行时间：0.082005s][吞吐率：12.19req/s] [内存消耗：3,372.99kb] [文件加载：64]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'recharge',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/mobile/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\recharge.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->recharge[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\recharge.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:45:03+08:00 ] 127.0.0.1 GET /index/user/myorder.html
+[ info ] local.lizi.com/index/user/myorder.html [运行时间：0.108006s][吞吐率：9.26req/s] [内存消耗：3,570.42kb] [文件加载：68]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'myorder',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/recharge.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->myorder[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+  2 => 'list',
+  3 => 'goods',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `id`,`title` FROM `bear_goods` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_order` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 ORDER BY `create_time` DESC LIMIT 0,15 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:45:06+08:00 ] 127.0.0.1 GET /index/user/mychongzi.html
+[ info ] local.lizi.com/index/user/mychongzi.html [运行时间：0.092005s][吞吐率：10.87req/s] [内存消耗：3,602.63kb] [文件加载：70]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'mychongzi',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/myorder.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\mychongzi.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ error ] [8]未定义变量: paylist[C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\runtime\temp\b02f458c8299a8f778bf1fc6a2ad4104.php:158]
+---------------------------------------------------------------
+[ 2019-12-13T16:45:06+08:00 ] 127.0.0.1 GET /favicon.ico
+[ info ] local.lizi.com/favicon.ico [运行时间：0.050002s][吞吐率：20.00req/s] [内存消耗：2,010.44kb] [文件加载：53]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'favicon.ico',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/mychongzi.html',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-12-13T16:45:51+08:00 ] 127.0.0.1 GET /index/user/mychongzi.html
+[ info ] local.lizi.com/index/user/mychongzi.html [运行时间：0.082005s][吞吐率：12.19req/s] [内存消耗：3,723.38kb] [文件加载：70]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'mychongzi',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/myorder.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\mychongzi.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->mychongzi[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\mychongzi.html [ array (
+  0 => 'config',
+  1 => 'path',
+  2 => 'paylist',
+  3 => 'members',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_member_pay` [ RunTime:0.003000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `bear_member_pay` WHERE  `id` = 25  AND `del_time` IS NULL LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_member_pay` WHERE  `id` = 25  AND `del_time` IS NULL ORDER BY `create_time` DESC LIMIT 0,15 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_member` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `account`,`id` FROM `bear_member` WHERE  `id` = 25  AND `status` = 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:45:52+08:00 ] 127.0.0.1 GET /index/user/mychongzi.html
+[ info ] local.lizi.com/index/user/mychongzi.html [运行时间：0.098005s][吞吐率：10.20req/s] [内存消耗：3,537.49kb] [文件加载：68]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'mychongzi',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/myorder.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\mychongzi.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->mychongzi[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\mychongzi.html [ array (
+  0 => 'config',
+  1 => 'path',
+  2 => 'paylist',
+  3 => 'members',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_member_pay` [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `bear_member_pay` WHERE  `id` = 25  AND `del_time` IS NULL LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_member_pay` WHERE  `id` = 25  AND `del_time` IS NULL ORDER BY `create_time` DESC LIMIT 0,15 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_member` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `account`,`id` FROM `bear_member` WHERE  `id` = 25  AND `status` = 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:45:53+08:00 ] 127.0.0.1 GET /index/user/myorder.html
+[ info ] local.lizi.com/index/user/myorder.html [运行时间：0.087005s][吞吐率：11.49req/s] [内存消耗：3,570.34kb] [文件加载：68]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'myorder',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/mychongzi.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->myorder[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+  2 => 'list',
+  3 => 'goods',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `id`,`title` FROM `bear_goods` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_order` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 ORDER BY `create_time` DESC LIMIT 0,15 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:46:15+08:00 ] 127.0.0.1 GET /index/user/myorder.html
+[ info ] local.lizi.com/index/user/myorder.html [运行时间：0.101005s][吞吐率：9.90req/s] [内存消耗：3,796.21kb] [文件加载：74]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'myorder',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/mychongzi.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->myorder[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+  2 => 'list',
+  3 => 'goods',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `id`,`title` FROM `bear_goods` WHERE  `status` = 1 [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_order` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 ORDER BY `create_time` DESC LIMIT 0,15 [ RunTime:0.000000s ]
+[ error ] [8]未定义变量: paylist[C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\runtime\temp\2149278bb1c75da3669f5a1e7aeb12a8.php:173]
+---------------------------------------------------------------
+[ 2019-12-13T16:46:16+08:00 ] 127.0.0.1 GET /index/user/myorder.html
+[ info ] local.lizi.com/index/user/myorder.html [运行时间：0.091005s][吞吐率：10.99req/s] [内存消耗：3,608.09kb] [文件加载：72]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'myorder',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/mychongzi.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->myorder[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+  2 => 'list',
+  3 => 'goods',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `id`,`title` FROM `bear_goods` WHERE  `status` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_order` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 ORDER BY `create_time` DESC LIMIT 0,15 [ RunTime:0.000000s ]
+[ error ] [8]未定义变量: paylist[C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\runtime\temp\2149278bb1c75da3669f5a1e7aeb12a8.php:173]
+---------------------------------------------------------------
+[ 2019-12-13T16:46:21+08:00 ] 127.0.0.1 GET /index/user/myorder.html
+[ info ] local.lizi.com/index/user/myorder.html [运行时间：0.106006s][吞吐率：9.43req/s] [内存消耗：3,758.65kb] [文件加载：70]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'myorder',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/mychongzi.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->myorder[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+  2 => 'list',
+  3 => 'goods',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `id`,`title` FROM `bear_goods` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_order` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 ORDER BY `create_time` DESC LIMIT 0,15 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:58:34+08:00 ] 127.0.0.1 GET /index/user/mychongzi.html
+[ info ] local.lizi.com/index/user/mychongzi.html [运行时间：0.101005s][吞吐率：9.90req/s] [内存消耗：3,537.30kb] [文件加载：68]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'mychongzi',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/myorder.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\mychongzi.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->mychongzi[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\mychongzi.html [ array (
+  0 => 'config',
+  1 => 'path',
+  2 => 'paylist',
+  3 => 'members',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_member_pay` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `bear_member_pay` WHERE  `id` = 25  AND `del_time` IS NULL LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_member_pay` WHERE  `id` = 25  AND `del_time` IS NULL ORDER BY `create_time` DESC LIMIT 0,15 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_member` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `account`,`id` FROM `bear_member` WHERE  `id` = 25  AND `status` = 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:58:35+08:00 ] 127.0.0.1 GET /index/user/myorder.html
+[ info ] local.lizi.com/index/user/myorder.html [运行时间：0.103006s][吞吐率：9.71req/s] [内存消耗：3,570.67kb] [文件加载：68]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'myorder',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/user/recharge.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->myorder[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html [ array (
+  0 => 'config',
+  1 => 'path',
+  2 => 'list',
+  3 => 'goods',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `id`,`title` FROM `bear_goods` WHERE  `status` = 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_order` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_order` WHERE  `member_id` = 25  AND `is_delete` = 0 ORDER BY `create_time` DESC LIMIT 0,15 [ RunTime:0.001001s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:58:36+08:00 ] 127.0.0.1 GET /index/user/recharge.html
+[ info ] local.lizi.com/index/user/recharge.html [运行时间：0.099005s][吞吐率：10.10req/s] [内存消耗：3,372.99kb] [文件加载：64]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'user',
+    2 => 'recharge',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/mobile/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\recharge.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ RUN ] app\index\controller\User->recharge[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\User.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\recharge.html [ array (
+  0 => 'config',
+  1 => 'path',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.012001s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.002000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:58:37+08:00 ] 127.0.0.1 GET /index/mobile/index.html
+[ info ] local.lizi.com/index/mobile/index.html [运行时间：0.091006s][吞吐率：10.99req/s] [内存消耗：3,423.74kb] [文件加载：65]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'mobile',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/mobile/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Mobile->index[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\Mobile.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\mobile\index.html [ array (
+  0 => 'config',
+  1 => 'shouye',
+  2 => 'list',
+  3 => 'categorys',
+  4 => 'indexs',
+) ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_content` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_content` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_goods` WHERE  `status` = 1 ORDER BY `sort` DESC [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_good_cates` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_good_cates` ORDER BY `id` DESC [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_content` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_card` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT gid,count(kami) as num FROM `bear_card` WHERE  `over` = 0 GROUP BY `gid` [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:58:37+08:00 ] 127.0.0.1 GET /mobile/sink/sink/cssimg/iconfont-sousuo.png
+[ info ] local.lizi.com/mobile/sink/sink/cssimg/iconfont-sousuo.png [运行时间：0.079004s][吞吐率：12.66req/s] [内存消耗：2,011.51kb] [文件加载：53]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'mobile',
+    1 => 'sink',
+    2 => 'sink',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/mobile/sink/css/public.css',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+  'cssimg' => 'iconfont-sousuo.png',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-12-13T16:58:39+08:00 ] 127.0.0.1 GET /index/mobile/trade.html?id=2
+[ info ] local.lizi.com/index/mobile/trade.html?id=2 [运行时间：0.078004s][吞吐率：12.82req/s] [内存消耗：3,420.02kb] [文件加载：65]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'mobile',
+    2 => 'trade',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/mobile/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+  'id' => '2',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Mobile->trade[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\Mobile.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\mobile\trade.html [ array (
+  0 => 'config',
+  1 => 'shouye',
+  2 => 'info',
+) ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_content` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_content` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_goods` WHERE  `id` = 2 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_card` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT COUNT(kami) AS tp_count FROM `bear_card` WHERE  `gid` = 2  AND `over` = 0 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_moban` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `content` FROM `bear_moban` WHERE  `id` = 3 LIMIT 1 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:58:45+08:00 ] 127.0.0.1 POST /index/mobile/buy.html
+[ info ] local.lizi.com/index/mobile/buy.html [运行时间：0.078005s][吞吐率：12.82req/s] [内存消耗：3,268.36kb] [文件加载：61]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'mobile',
+    2 => 'buy',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/mobile/trade.html?id=2',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://local.lizi.com',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '162',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+  'mobile' => '6666',
+  'gid' => '2',
+  'member_id' => '25',
+  'huo' => '1',
+  'danpay' => '0.100',
+  'content' => '["QQ号","4444","手机号","5555"]',
+  'num' => '1',
+  'countpay' => '0.1',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Mobile->buy[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\Mobile.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_content` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_content` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_order` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] INSERT INTO `bear_order` (`gid` , `huo` , `num` , `content` , `danpay` , `countpay` , `order_no` , `mobile` , `member_id`) VALUES (2 , 1 , 1 , '[\"QQ号\",\"4444\",\"手机号\",\"5555\"]' , 0.1 , 0.1 , '2019121389227' , '6666' , 25) [ RunTime:0.010000s ]
+---------------------------------------------------------------
+[ 2019-12-13T16:58:48+08:00 ] 127.0.0.1 GET /index/mobile/buy.html?order_no=2019121389227&did=54
+[ info ] local.lizi.com/index/mobile/buy.html?order_no=2019121389227&did=54 [运行时间：0.090005s][吞吐率：11.11req/s] [内存消耗：3,613.56kb] [文件加载：66]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'mobile',
+    2 => 'buy',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; PHPSESSID=jvsrlssb4hoond3l0899cujpq4; thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576132203; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1576226158',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/mobile/trade.html?id=2',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+  'order_no' => '2019121389227',
+  'did' => '54',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Mobile->buy[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\Mobile.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\mobile\buy.html [ array (
+  0 => 'config',
+  1 => 'shouye',
+  2 => 'order',
+  3 => 'goods',
+) ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_content` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_content` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_goods` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_goods` ORDER BY `id` DESC [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_order` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_order` WHERE  `id` = 54  AND `order_no` = '2019121389227' LIMIT 1 [ RunTime:0.000000s ]
