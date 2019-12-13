@@ -46,10 +46,10 @@ class Base extends Controller
      */
     public function is_login()
     {
-       if(Session::get('info') == null|| !is_array(Session::get('info'))){
+       if(session('info') == null|| !is_array(session('info'))){
           $this->redirect('login/login');
        }
-
+       return false;
     }
 
 }

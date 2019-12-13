@@ -113,7 +113,7 @@ class Login extends Controller
     //注销
     public function lout()
     {
-        Session::delete('info');
+        session('info',null);
         return  $this->redirect('index/index');
     }
 

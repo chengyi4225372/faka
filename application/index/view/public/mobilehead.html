@@ -62,10 +62,10 @@ $(document).ready(function(){
         <div class="shaixun_item">
             <a href="/" class="current"></a>
             <a href="/" class="current">商品主页</a>
-            <a href="{:url('user/recharge')}" class="current">余额充值</a>
-            <a href="{:url('user/myorder')}" class="current">我的订单</a>
-            <a href="{:url('user/mychongzi')}" class="current">资金记录</a>
-            <a href="{:url('user/editpwd')}" class="current">修改密码</a>
+            <a href="{:url('@index/user/recharge')}" class="current">余额充值</a>
+            <a href="{:url('@index/user/myorder')}" class="current">我的订单</a>
+            <a href="{:url('@index/user/mychongzi')}" class="current">资金记录</a>
+            <a href="{:url('@index/user/editpwd')}" class="current">修改密码</a>
 	 </div>
         <p><a href="#" class="shaixuan_colos">关闭</a></p>
     </div>
@@ -81,6 +81,6 @@ $(document).ready(function(){
      <div class="m_user w">
          <a><b>你好,{$Think.session.info.account}</b></a>
          <a>余额:{$Think.session.info.money|default='0'}元</a>
-    <a href="{:url('user/lout')}" onclick="return confirm('确定要退出吗？')">【安全退出】</a>
+    <a href="{:url('login/lout')}" onclick="return confirm('确定要退出吗？')">【安全退出】</a>
      </div>
   {/empty}

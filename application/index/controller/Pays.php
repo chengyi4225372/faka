@@ -13,9 +13,7 @@ class Pays extends Controller
     //支付参数
     protected  $alipay_config=array();
 
-
     protected  $error= '支付数据为空';
-
 
     public function _initialize()
     {
@@ -203,6 +201,33 @@ class Pays extends Controller
 
     }
 
+    /*** 手机端支付**/
+    public function mobile_pay(){
+        $pay = Db::name($this->pay)->order('id desc')->find();
+        $out_trade_no = input('get.order_no','','trim');
+        $type = input('get.types','','trim');
+        $name = input('get.goodnames','','trim');
+        $money = input('get.paynum');
+        $sitename = input('get.sitename','','trim');
+
+        //构造要请求的参数数组，无需改动
+        $parameter = array(
+            "pid" =>$pay['pid'],
+            "type" => $type,
+            "notify_url"	=>"http://".$_SERVER['HTTP_HOST']."/index/pays/notify_url",
+            "return_url"	=>"http://".$_SERVER['HTTP_HOST']."/index/pays/return_url",
+            "out_trade_no"	=> $out_trade_no,
+            "name"	=> $name,
+            "money"	=> $money,
+            "sitename"	=> $sitename,
+        );
+
+        //建立请求
+        $alipaySubmit = new AlipaySubmit($this->alipay_config);
+        $html_text = $alipaySubmit->buildRequestForm($parameter);
+
+        echo $html_text;
+    }
 
     /**充值提交**/
     public function addmoney(){

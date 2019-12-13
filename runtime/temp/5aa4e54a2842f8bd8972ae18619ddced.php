@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:106:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\mobile\buy.html";i:1576203465;s:103:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\mobilehead.html";i:1576154465;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:106:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\mobile\buy.html";i:1576222520;s:103:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\mobilehead.html";i:1576154465;}*/ ?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -159,14 +159,20 @@ em, i {
 
  <div class="view w">
 	   
-<div class="bl_view_title"><div align="center"><strong>
-            <font color="#009f1e"  size="3">订单生成成功，请完成支付！</font></strong></div>
+<div class="bl_view_title">
+    <div align="center">
+         <strong><font color="#009f1e"  size="3">订单生成成功，请完成支付！</font></strong>
+     </div>
 </div>
-    <div class="bl_view_title">订单号码：<?php echo $order['order_no']; ?></div>
-	<div class="bl_view_title">商品名称：<?php echo $goods[$order['gid']]; ?><a href="/trade?id=" target="_blank"></a></div>
+    <div class="bl_view_title order">订单号码：<?php echo $order['order_no']; ?></div>
+	<div class="bl_view_title paynames">商品名称：<?php echo $goods[$order['gid']]; ?><a href="javascript:;"></a></div>
 	<div class="bl_view_title">商品单价：<?php echo $order['danpay']; ?>元</div>
 	<div class="bl_view_title">购买数量：<font color="#ff0036"><?php echo $order['num']; ?>个</font>
-        <?php if($order['huo'] == '0'): ?>自动发货 <?php else: ?> 人工发货<?php endif; ?>
+        <?php if($order['huo'] == '0'): ?>
+          自动发货
+        <?php else: ?>
+          人工发货
+        <?php endif; ?>
     </div>
 	<div class="bl_view_title">订单总价：<?php echo $order['countpay']; ?>元   &nbsp;&nbsp;
         <font color="#ee6500"  size="2">可用余额：<?php echo (\think\Session::get('info.money') ?: '***'); ?>元</font>
@@ -174,22 +180,21 @@ em, i {
 	
 <div class="bl_view_title"></div>
      <div class="bl_view_title">
-
          <div class="payment-list">
              <ul>
                  <?php if(!(empty(\think\Session::get('info')) || ((\think\Session::get('info') instanceof \think\Collection || \think\Session::get('info') instanceof \think\Paginator ) && \think\Session::get('info')->isEmpty()))): ?>
                  <li class="yu" data-paytype="yu" onclick="layer.msg('该功能正在开放中！！');"><i class="payment-icon-yu">余额支付</i></li>
                  <?php endif; ?>
 
-                 <li class="tenpay" data-paytype="tenpay" id="alipay">
+                 <li class="tenpay" data-paytype="alipay">
                      <i class="payment-icon-cft">支付宝支付</i>
                  </li>
 
-                 <li class="wx " data-paytype="wx" id="wxpay">
+                 <li class="wx " data-paytype="wxpay" >
                      <i class="payment-icon-wx">微信支付</i>
                  </li>
 
-                 <li class="qq" data-paytype="qq" id="qqpay">
+                 <li class="qq" data-paytype="qqpay" >
                      <i class="payment-icon-qq">QQ支付</i>
                  </li>
 
@@ -205,14 +210,13 @@ em, i {
 	
 </script>
  </div>
-
-     <form id="payform" method="post" action="/pay">
-         <input type="hidden" name="id" value="">
-         <input type="hidden" name="payment" id="payment">
-     </form>
+<!--     <form method="post">-->
+         <input type="hidden" name="id" value="<?php echo $order['id']; ?>">
+         <input type="hidden" name="payment" id="<?php echo $order['countpay']; ?>">
+<!--     </form>-->
 
      <div class="go_buy">
-         <input type="button" onclick="javascript:$('#payform').submit()"  value="立即付款"/>
+         <input type="button"  onclick="mobilePay()"  value="立即付款"/>
      </div>
 
      <font color="#FF0000" size="2"> 付款后请不要关闭窗口，等网页转跳会自动转跳到卡密页面。</font><br/>
@@ -222,10 +226,31 @@ em, i {
  </div>
 
 <div class="m_user w"><a href="#">返回顶部</a></div>
-
 </div>
 
 <script>
+  /** 支付 **/
+function mobilePay(){
+      var  types = '';//支付类型
+      var  goodnames = $.trim($('.paynames').text());//商品名称
+      var  order_no  = $.trim($('.order').text());//商户订单号
+      var  paynum    = $('#payment').val(); //商品总价
+      var  sitename  = '栗子发卡网';
+      var  url = "<?php echo url('pays/mobilepay'); ?>";
+
+      if(types == '' || types == undefined){
+          layer.msg('请选择支付类型');
+          return false;
+      }
+
+      if(paynum == '' || paynum == undefined || paynum == 'undefined'){
+          return false;
+      }
+
+      window.location.href=url+"?types="+types+"&goodnames="+goodnames+"&order_no="+order_no+"&paynum="+paynum+"&sitename="+sitename;
+
+  }
+/**注释
 function alertMsg(id,num){
 			if(num==0){
 				layer.msg('库存已经不足，请联系站长上货！', {time: 1000,offset: '160px'});
@@ -251,8 +276,7 @@ function alertMsg(id,num){
 							  			 
 			});
        }
-
-
+**/
 </script>
 
 </body>
