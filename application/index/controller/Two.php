@@ -95,35 +95,6 @@ class Two extends Base
     //生成订单
     public function buy()
     {
-        if($this->request->isPost()){
-            $this->param = $this->request->param();
-
-            //组装 订单页面信息
-            if(empty($this->param['data']['gid']) || !isset($this->param['data']['gid'])){
-                return false;
-            }
-
-            $array = [
-                'gid'  =>$this->param['data']['gid'],
-                'huo'  =>$this->param['data']['huo'],
-                'num'  =>$this->param['data']['num'],
-                'content'   =>$this->param['data']['content'],
-                'danpay'    =>$this->param['data']['danpay'],
-                'countpay'  =>$this->param['data']['countpay'],
-                'order_no'  => date("YmdHis").mt_rand(100,999),
-                'mobile'    => $this->param['data']['mobile'],
-                'member_id' => $this->param['data']['member_id'],
-            ];
-
-
-            $res = Db::name('order')->insertGetId($array);
-
-            if($res){
-                return json(['code'=>200,'msg'=>'订单生成成功，马上跳转....','order'=>$array['order_no'],'gid'=>$res]);
-            }else {
-                return json(['code'=>400,'msg'=>'订单生成失败']);
-            }
-        }
 
         if($this->request->isGet()){
             $id = input('get.did');
@@ -140,6 +111,35 @@ class Two extends Base
             return $this->fetch();
         }
 
+        if($this->request->isPost()){
+            $this->param = $this->request->param();
+
+            //组装 订单页面信息
+            if(empty($this->param['gid']) || !isset($this->param['gid'])){
+                return false;
+            }
+
+            $array = [
+                'gid'  =>$this->param['gid'],
+                'huo'  =>$this->param['huo'],
+                'num'  =>$this->param['num'],
+                'content'   =>isset($this->param['content'])?$this->param['content']:'',
+                'danpay'    =>isset($this->param['danpay'])?$this->param['danpay']:'',
+                'countpay'  =>isset($this->param['countpay'])?$this->param['countpay']:'',
+                'order_no'  => create_order(),
+                'mobile'    => $this->param['mobile'],
+                'member_id' => $this->param['member_id'],
+            ];
+
+            $res = Db::name('order')->insertGetId($array);
+
+            if($res){
+                return json(['code'=>200,'msg'=>'订单生成成功，马上跳转....','order'=>$array['order_no'],'gid'=>$res]);
+            }else {
+                return json(['code'=>400,'msg'=>'订单生成失败']);
+            }
+        }
+        return false;
     }
 
     //帮助
@@ -153,7 +153,84 @@ class Two extends Base
 
     //搜索
     public function search(){
+       if($this->request->isGet()){
+           return $this->fetch();
+       }
+        return false;
+    }
 
+
+    /*** 自动发货 ***/
+    public function zdfahuo()
+    {
+        if($this->request->isGet()){
+            $orders = input('get.orderno','','trim');
+            //根据订单 商品 id 查询卡密
+            $info = Db::name('order')->where(['order_no'=>$orders])->find();
+
+            $this->assign('info',$info);
+            return $this->fetch();
+        }
+        return false;
+    }
+
+    /***手动发货 ***/
+    public function sdfahuo()
+    {
+        if($this->request->isGet()){
+            $orders = input('get.orderno','','trim');
+            $info   = Db::name('order')->where(['order_no'=>$orders])->field('order_no,countpay,huo')->find();
+            $this->assign('info',$info);
+            return $this->fetch();
+        }
+        return false;
+    }
+
+
+    /**卡密详情**/
+    public function orderinfo()
+    {
+        //todo 没有全部完成
+        if($this->request->isGet()){
+            $orders = input('get.orderno','','trim');
+            $good   =  Db::name('goods')->select();
+            $info   = Db::name('order')->field('order_no,create_time,gid,id,huo')->where(['order_no'=>$orders])->find();
+            $goods  = array_column($good,'title','id');
+            $cardlist = Db::name('card')->where(['oid'=>$info['id'],'over'=>1])->select();
+            $this->assign('list',$cardlist);
+            $this->assign('goods',$goods);
+            $this->assign('info',$info);
+            return $this->fetch();
+        }
+        return false;
+    }
+
+    /*** 导出卡密 **/
+    public function daochu(){
+        if($this->request->isGet()){
+            $orders = input('get.orderno','','trim');
+
+            if(empty($orders)){
+                return false;
+            }
+
+            $orderId = Db::name('order')->where(['order_no'=>$orders])->field('id')->find();
+
+            $list    = Db::name('card')->where(['oid'=>$orderId['id']])->order('id asc')->select();
+
+            foreach($list as $k =>$value){
+                $content= $value['kami']."\r\n"; //下载内容
+            }
+            header("Content-type: application/octet-stream");
+            header("Accept-Ranges: bytes");
+            header("Content-Disposition: attachment; filename = 下载文档.txt"); //文件命名
+            header("Expires: 0");
+            header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+            header("Pragma: public");
+            echo $content;
+            exit();
+        }
+        return false;
     }
 
 }

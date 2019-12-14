@@ -136,13 +136,13 @@ class Mobile extends Controller
        return false;
     }
 
-    /**搜索**/
+    /**搜索 todo**/
     public function search()
     {
         return $this->fetch();
     }
 
-    /**搜索详情**/
+    /**卡密详情**/
     public function orderinfo()
     {
         //todo 没有全部完成

@@ -178,15 +178,14 @@ class Index extends Base
 
        $order = Db::name('order')->where(['order_no'=>$order_no])->find();
        //购买卡密量
-       $list  = Db::name('card')->where(['oid'=>$order['id'],'over'=>1])->order('id ssc')->limit(0,$order['num'])->select();
+       $list  = Db::name('card')->where(['oid'=>$order['id'],'over'=>1])->order('id asc')->limit(0,$order['num'])->select();
 
        $this->assign('list',$list);
        $this->assign('orders',$order);
-
        return $this->fetch();
    }
 
-   //导出方法  todo 未测试
+   //导出方法
    public function dao(){
 
         if($this->request->isGet()){

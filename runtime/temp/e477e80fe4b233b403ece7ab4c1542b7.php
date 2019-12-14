@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:83:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\two\trade.html";i:1575133842;s:80:"C:\Users\Administrator\Desktop\faka\application\index\view\public\twombhead.html";i:1571549535;s:80:"C:\Users\Administrator\Desktop\faka\application\index\view\public\twombfoot.html";i:1571549535;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:83:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\two\trade.html";i:1576344072;s:80:"C:\Users\Administrator\Desktop\faka\application\index\view\public\twombhead.html";i:1571549535;s:80:"C:\Users\Administrator\Desktop\faka\application\index\view\public\twombfoot.html";i:1571549535;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -100,7 +100,7 @@
                         <?php if($info['huo'] == '0'): ?>
                         <span style="color:#6C6C6C">库存：<?php echo $info['num']; ?>件</span>
                         <?php endif; ?>
-                        <a id="lookpf" style="margin-left:5px;font-size:10px" href="javascript:;" onclick="lookpf()">查看批发价</a>
+                        <a id="lookpf" style="margin-left:5px;font-size:10px" href="javascript:;" onclick="lookpf('<?php echo $info['pinum']; ?>','<?php echo $info['pipay']; ?>')">查看批发价</a>
                         <?php if($info['huo'] == '0'): ?>
                         <br><span style="color:#6c6c6c;">服务：自动发货 无忧售后</span>
                         <?php else: ?>
@@ -108,22 +108,18 @@
                         <?php endif; ?>
                     </p>
                     <script>
-                        function lookpf() {
-                            layer.tips('满10件0.10元/件', '#lookpf', {
+                        function lookpf(num,pay) {
+                            layer.tips('满'+num+'件'+pay+'元/件', '#lookpf', {
                                 tips: [3, '#78BA32']
                             });
                         }
 
                     </script>
                     <form  method="post" >
-                        <input type="hidden" name='sid' id="sid" value='<?php echo $info['id']; ?>'>
-
-                        <input type="hidden" name='hid' id="hid" value='<?php echo $info['huo']; ?>'>
-
                         <?php if($info['moban'] == 0): ?>
                         <div class="from">
                                     <span style="color:#6c6c6c;margin-left:10px">联系方式：
-                                        <input id="mobile" name="mobile" style="padding: 0.5em;font-size: 1rem;line-height: 1.2;color: #333;" placeholder="请输入联系方式" required="">
+                                        <input  id="mobile_zi" style="padding: 0.5em;font-size: 1rem;line-height: 1.2;color: #333;" placeholder="请输入联系方式" required="" value="" />
                                     </span>
                         </div>
                         <br>
@@ -139,16 +135,29 @@
                                     </span>
                         </div>
                         <br>
-                        <?php endforeach; endif; else: echo "" ;endif; endif; ?>
+                        <?php endforeach; endif; else: echo "" ;endif; ?>
+
+                        <div class="from">
+                                    <span style="color:#6c6c6c;margin-left:10px">联系方式：
+                                        <input id="mobile_sh"  style="padding: 0.5em;font-size: 1rem;line-height: 1.2;color: #333;" placeholder="请输入联系方式" value="" required="" />
+                                    </span>
+                        </div>
+                        <?php endif; ?>
 
                     </form>
-                    <input id="minnum" name="minnum" class="z" type="hidden" value="<?php echo $info['mins']; ?>" >
-                    <input id="maxnum" name="maxnum" class="z" type="hidden" value="<?php echo $info['maxs']; ?>" >
-                    <input id="beishu" name="beishu" class="z" type="hidden" value="<?php echo $info['bei']; ?>" >
-                    <input id="num" name="num" class="z" type="hidden" value="<?php echo $info['num']; ?>" >
-                    <input id="member_id" class="z" type="hidden" value="<?php echo \think\Session::get('info.id'); ?>" >
+                    <input id="minnum" name="minnum" class="z" type="hidden" value="<?php echo $info['mins']; ?>" />
+                    <input id="maxnum" name="maxnum" class="z" type="hidden" value="<?php echo $info['maxs']; ?>" />
+                    <input id="bei" name="beishu" class="z" type="hidden" value="<?php echo $info['bei']; ?>" />
+                    <input id="huo"  class="z" type="hidden" value="<?php echo $info['huo']; ?>" />
+                    <input id="gid"  class="z" type="hidden" value="<?php echo $info['id']; ?>" />
+                    <input id="counts"  class="z" type="hidden" value="<?php echo $info['num']; ?>" />
+                    <input id="danpay"  class="z" type="hidden" value="<?php echo $info['money']; ?>" />
+                    <input id="member_id"  class="z" type="hidden" value="<?php echo \think\Session::get('info.id'); ?>" />
+
                     <br>
-                    <button type="submit" onclick="buy(0,1)" class="am-btn am-btn-danger am-btn-xl am-square" id="paysubmit" style="margin-top:20px"><span class="am-icon-shopping-cart"></span>立即购买</button>
+                    <button type="button"  class="am-btn am-btn-danger am-btn-xl am-square" id="paysubmit" style="margin-top:20px">
+                        <span class="am-icon-shopping-cart"></span>立即购买
+                    </button>
 
                     <!-- 网格结束 -->
                 </div>
@@ -178,8 +187,7 @@
      
             </form>
 
-<script type="text/javascript" src="/static/index/sink/js/jquery-1.8.3.min.js"></script>
-<script src="/static/index/sink/js/layer/layer.js"></script>
+
 <script>
     //数量添加 修改
     function countoper(oper){
@@ -195,68 +203,165 @@
         $("#p_num").val(count);
     }
 
+    //生成订单 商城模板
+    $('#paysubmit').click(function(){
+        var huo = $('#huo').val(); //发货类型
+        var gid = $('#gid').val();//商品id
+        var member_id = $('#member_id').val(); //member
+        var urls  = "<?php echo url('two/buy'); ?>";
+        var hrefs ="<?php echo url('two/buy'); ?>";
+        //自动发货
+        if(huo == 0){
+            var mobile = $.trim($('#mobile_zi').val());
 
+            if(mobile == '' || mobile == undefined || mobile == 'undefined'){
+                layer.msg('请输入电话信息');
+                return false;
+            }
+            var num = $('#p_num').val(); //商品购买数量
+            var bei = $('#bei').val();
+            var min = $('#minnum').val();
+            var max = $('#maxnum').val();
+            var counts = $('#counts').val();
+            if(num < min || num =='' || num == undefined){
+                layer.msg('购买商品太少了，无法发货');
+                return false;
+            }
+
+            if(num > max){
+                layer.msg('商品购买数量太多了，我们无法发货');
+                return false;
+            }
+
+            if(num >counts){
+                layer.msg('不好意思，商品购买大于商品库存总数！');
+                return false;
+            }
+
+            num = num * bei;
+            var danpay   = $('#danpay').val();//单价
+            var countpay = (num * bei) * danpay; //总价
+
+            $.post(urls,{'gid':gid,'member_id':member_id,'mobile':mobile,'num':num,'huo':0,'danpay':danpay,'countpay':countpay},function(ret){
+                if(ret.code == 200){
+                    layer.msg(ret.msg,function(){
+                        parent.location.href = hrefs+'?order_no='+ret.order+'&did='+ret.gid;
+                    })
+                }
+
+                if(ret.code == 400){
+                    layer.msg(ret.msg,function(){
+                        parent.location.reload();
+                    })
+                }
+            },'json');
+        }
+
+        //手动发货
+        if(huo == 1){
+            var mobile =$.trim($('#mobile_sh').val());//电话
+
+            if(mobile =='' || mobile == undefined || mobile =='undefined'){
+                layer.msg('请输入用户信息');
+                return false;
+            }
+
+            //模板数据
+            var content= [];
+
+            var len   = $('form .mo').length;
+            for(var i=1;i<=len;i++){
+                content.push($("#title"+i).attr('data-title'));
+                content.push($("#moban"+i).val());
+            }
+
+            console.log(content);
+
+            var danpay = $('#danpay').val();//单价
+
+            var num  = 1 ; //人工发货默认数量1
+
+            var countpay = danpay * num ;
+            $.post(urls,{'mobile':mobile,'gid':gid,'member_id':member_id,'huo':1,'danpay':danpay,'content':JSON.stringify(content),'num':num,'countpay':countpay},function(ret){
+                if(ret.code == 200){
+                    layer.msg(ret.msg,function(){
+                        parent.location.href = hrefs+'?order_no='+ret.order+'&did='+ret.gid;
+                    })
+                }
+
+                if(ret.code == 400){
+                    layer.msg(ret.msg,function(){
+                        parent.location.reload();
+                    })
+                }
+            },'json');
+        }
+
+
+    })
+
+
+    /*
+     function buy(a,b) {
+     var p_num = document.getElementById("p_num").value;
+     var minnum = document.getElementById("minnum").value;
+     var maxnum = document.getElementById("maxnum").value;
+     var beishu = document.getElementById("beishu").value;
+     if (p_num < minnum){
+     layer.alert('最小购买数是'+minnum);
+     document.getElementById("p_num").value = minnum;
+     return false;
+     }
+     if (p_num > maxnum){
+     layer.alert('最大购买数是'+maxnum);
+     document.getElementById("p_num").value = maxnum;
+     return false;
+     }
+     if(b == 2){
+     $.ajax({
+     //几个参数需要注意一下
+     type: "POST", //方法类型
+     dataType: "json", //预期服务器返回的数据类型
+     url: "/ajaxbuy", //url
+     data: $('#p_form').serialize(),
+     success: function(result) {
+     if (result.status == 1) {
+     layer.msg(result.msg, function() {
+     window.location.href = "/buy?gid="+result.gid+"&order_no="+result.order_no;
+     });
+     } else {
+     layer.msg(result.msg);
+     }
+     ;
+     },
+     });
+     return false;
+     }
+     if (a >= (parseInt(p_num)*parseInt(beishu))) {
+     $.ajax({
+     //几个参数需要注意一下
+     type: "POST", //方法类型
+     dataType: "json", //预期服务器返回的数据类型
+     url: "/ajaxbuy", //url
+     data: $('#p_form').serialize(),
+     success: function(result) {
+     if (result.status == 1) {
+     layer.msg(result.msg, function() {
+     window.location.href = "/buy?gid="+result.gid+"&order_no="+result.order_no;
+     });
+     } else {
+     layer.msg(result.msg);
+     }
+     ;
+     },
+     });
+     } else {
+     layer.alert('库存不足！');
+     }
+     }
+     */
 </script>
 
-
-<script>
-  function buy(a,b) {
-            var p_num = document.getElementById("p_num").value;
-            var minnum = document.getElementById("minnum").value;
-            var maxnum = document.getElementById("maxnum").value;
-            var beishu = document.getElementById("beishu").value;
-            if (p_num < minnum){
-                layer.alert('最小购买数是'+minnum);
-                document.getElementById("p_num").value = minnum;
-                return false;
-            }
-            if (p_num > maxnum){
-                layer.alert('最大购买数是'+maxnum);
-                document.getElementById("p_num").value = maxnum;
-                return false;
-            }
-            if(b == 2){
-                $.ajax({
-                    //几个参数需要注意一下
-                    type: "POST", //方法类型
-                    dataType: "json", //预期服务器返回的数据类型
-                    url: "/ajaxbuy", //url
-                    data: $('#p_form').serialize(),
-                    success: function(result) {
-                        if (result.status == 1) {
-                            layer.msg(result.msg, function() {
-                                window.location.href = "/buy?gid="+result.gid+"&order_no="+result.order_no;
-                            });
-                        } else {
-                            layer.msg(result.msg);
-                        }
-                        ;
-                    },
-                });
-                return false;
-            }
-            if (a >= (parseInt(p_num)*parseInt(beishu))) {
-                $.ajax({
-                    //几个参数需要注意一下
-                    type: "POST", //方法类型
-                    dataType: "json", //预期服务器返回的数据类型
-                    url: "/ajaxbuy", //url
-                    data: $('#p_form').serialize(),
-                    success: function(result) {
-                        if (result.status == 1) {
-                            layer.msg(result.msg, function() {
-                                window.location.href = "/buy?gid="+result.gid+"&order_no="+result.order_no;
-                            });
-                        } else {
-                            layer.msg(result.msg);
-                        }
-                        ;
-                    },
-                });
-            } else {
-                layer.alert('库存不足！');
-            }
-        }
 </script>
 
 </div>
