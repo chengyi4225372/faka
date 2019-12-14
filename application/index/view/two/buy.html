@@ -15,7 +15,7 @@
             position: absolute;
             width: 17px;
             height: 17px;
-            background-image: url(sink/cssimg/zf.png);
+            background-image: url(/index/sink/cssimg/zf.png);
             bottom: 0;
             right: 0;
             background-position: 17px -119px;
@@ -42,20 +42,20 @@
             outline: 0;
         }
         .payment-icon-cft {
-            background-image: url(/static/index/sink/cssimg/alipaym.png);
+            background-image: url(/index/sink/cssimg/alipaym.png);
             background-position: 0px -76px;
         }
         .payment-icon-wx {
-            background-image: url(/static/index/sink/cssimg/wxpaym.png);
+            background-image: url(/index/sink/cssimg/wxpaym.png);
             background-position: 0px -75px;
         }
         .payment-icon-qq {
-            background-image: url(/static/index/sink/cssimg/qqpaym.png);
+            background-image: url(/index/sink/cssimg/qqpaym.png);
             background-position: 0px 69px;
         }
 
         .payment-icon-yu {
-            background-image: url(/static/index/sink/cssimg/yuem.png);
+            background-image: url(/index/sink/cssimg/yuem.png);
             background-position: 0px 70px;
         }
 
@@ -77,11 +77,19 @@
         <div class="am-panel-hd">确认订单信息</div>
         <div class="am-panel-bd">
             <ul class="am-list am-list-static">
-                <li class="am-text-truncate">商品名称：QQ超级会员丨点播官方超30天 显示到期时间丨需要临时密码丨1-72小时到账</li>
-                <li>商品单价：1.00元/件</li>
-                <li>购买数量：1件</li>
-                <li>
-                    QQ密码:18672536008,18672536008                            </li>
+                <li>订单编号：{$order.order_no}</li>
+                <li class="am-text-truncate">商品名称：{$goods[$order.gid]}</li>
+                <li>商品单价：{$order.danpay}元/件</li>
+                <li>购买数量：{$order.num}件</li>
+                <li >订单信息：{eq name='$order.huo' value='0'}联系电话：{$order.mobile} {else /}{$order.content}{/eq}</li>
+                <li>发货类型：
+                    {eq name='$order.huo' value='0'}
+                    自动发货
+                    {else /}
+                    人工发货
+                    {/eq}
+                </li>
+                <li>订单总价：{$order.countpay}元 </li>
             </ul>
             <span style="color:red">温馨提示：请将联系方式写复杂一点,以免有人偷卡</span>
         </div>
@@ -104,24 +112,28 @@
         <h3>选择支付方式</h3>
         <div class="am-container">
             <div class="am-g">
+
                 <div class="text-area-star" style="float:left">
                     <div class="am-u-sm-12 am-u-md-2 am-u-lg-2 am-u-end" style="padding:5px">
+
                         <label style="padding:5px">
-                            <a class="yu" data-paytype="yu" onclick="payment(1)"><i class="payment-icon-cft"></i></a>
+                            <a class="yu" data-paytype="alipay" ><i class="payment-icon-cft"></i></a>
                         </label>
                     </div>
                 </div>
+
                 <div class="text-area-star" style="float:left">
                     <div class="am-u-sm-12 am-u-md-2 am-u-lg-2 am-u-end" style="padding:5px">
                         <label style="padding:5px">
-                            <a class="yu" data-paytype="yu" onclick="payment(2)"><i class="payment-icon-wx"></i></a>
+                            <a class="yu" data-paytype="wxpay" ><i class="payment-icon-wx"></i></a>
                         </label>
                     </div>
                 </div>
+
                 <div class="text-area-star" style="float:left">
                     <div class="am-u-sm-12 am-u-md-2 am-u-lg-2 am-u-end" style="padding:5px">
                         <label style="padding:5px">
-                            <a class="yu" data-paytype="yu" onclick="payment(3)"><i class="payment-icon-qq"></i></a>
+                            <a class="yu" data-paytype="qqpay" ><i class="payment-icon-qq"></i></a>
                         </label>
                     </div>
                 </div>
@@ -131,15 +143,16 @@
     </div>
     <hr>
 
-    <form id="payform" method="post" action="/pay">
-        <input type="hidden" name="id" value="391">
-        <input type="hidden" name="payment" id="payment">
-    </form>
+    <!--<form id="payform" method="post" action="/pay">-->
+        <input type="hidden" name="id" value="{$order.id}">
+        <input type="hidden" id="payment" value="{$order.countpay}">
+    <!--</form>-->
 
     <div style=" text-align: right;">
-        <button type="submit" onclick="javascript:$('#payform').submit()" class="am-btn am-btn-danger am-btn-xl" style="width: 100%">立即付款</button>
+        <button type="submit" onclick="mobilePay()" class="am-btn am-btn-danger am-btn-xl" style="width: 100%">立即付款</button>
     </div>
     <script>
+        /*
         function payment(id){
             $("#payment").val(id);
             if(id == 1){
@@ -155,6 +168,36 @@
                 layer.msg('余额支付');
             }
         }
+        */
+
+
+        /** 支付 **/
+        function mobilePay(){
+            var  types = $('ul li.curr').attr('data-paytype');//支付类型
+            var  goodnames = $('.paynames').attr('data-title');//商品名称
+            var  order_no  = $('.order').attr('data-title');//商户订单号
+            var  paynum    = $('#payment').val(); //商品总价
+            var  sitename  = '栗子发卡网';
+            var  url = "{:url('pays/index')}";
+
+            if(types == '' || types == undefined){
+                layer.msg('请选择支付类型');
+                return false;
+            }
+
+            if(types == 'yu'){
+                layer.msg('改功能正在开发中。。');
+                return false;
+            }
+
+            if(paynum == '' || paynum == undefined || paynum == 'undefined'){
+                return false;
+            }
+
+            window.location.href=url+"?types="+types+"&goodnames="+goodnames+"&order_no="+order_no+"&paynum="+paynum+"&sitename="+sitename;
+
+        }
+
     </script>
 
  {include file="public:twombfoot" /}
