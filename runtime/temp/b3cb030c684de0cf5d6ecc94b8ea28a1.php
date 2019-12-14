@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:90:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\mobile\orderinfo.html";i:1576332076;}*/ ?>
 <html>
 <head lang="en">
   <meta charset="UTF-8">
@@ -25,25 +26,25 @@
 <body>
 <div class="header">
   <div class="am-g">
-    <h1>{$goods[$info.gid]}</h1>
-    <p><h3>购买时间为：{$info.create_time}</h3></p>
+    <h1><?php echo $goods[$info['gid']]; ?></h1>
+    <p><h3>购买时间为：<?php echo $info['create_time']; ?></h3></p>
   </div>
   <hr />
 </div>
 <div class="am-g">
   <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
     <h3>以下是卡密内容，请自行保存&nbsp;&nbsp;&nbsp;&nbsp;
-      <a href="javascript:void(0);" onclick="window.location.href='{:url('mobile/index')}'">[返回]</a>
+      <a href="javascript:void(0);" onclick="window.location.href='<?php echo url('mobile/index'); ?>'">[返回]</a>
     </h3>
     <hr>
     <div class="am-btn-group">
-               <!-- 手动 刚发货秘钥-->
-         11111
+      11111
+
     </div>
     <br>
     <br>
     <hr>
-    <p>{$config.info}</p>
+    <p><?php echo $config['info']; ?></p>
   </div>
 </div>
 </body>

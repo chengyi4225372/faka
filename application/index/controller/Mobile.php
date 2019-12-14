@@ -145,20 +145,45 @@ class Mobile extends Controller
     /**搜索详情**/
     public function orderinfo()
     {
-        return $this->fetch();
+        //todo 没有全部完成
+        if($this->request->isGet()){
+            $orders = input('get.orderno','','trim');
+            $good   =  Db::name('goods')->where('huo',1)->select();
+            $info   = Db::name('order')->field('order_no,create_time,gid')->where(['order_no'=>$orders])->find();
+            $goods  = array_column($good,'title','id');
+            $this->assign('goods',$goods);
+            $this->assign('info',$info);
+            return $this->fetch();
+        }
+       return false;
     }
 
 
     /***手动发货 ***/
     public function sdfahuo()
     {
-        return $this->fetch();
+        if($this->request->isGet()){
+            $orders = input('get.orderno','','trim');
+            $info   = Db::name('order')->where(['order_no'=>$orders])->field('order_no,countpay')->find();
+            $this->assign('info',$info);
+            return $this->fetch();
+        }
+        return false;
     }
 
    /*** 自动发货 ***/
     public function zdfahuo()
     {
-        return $this->fetch();
+        if($this->request->isGet()){
+            $orders = input('get.orderno','','trim');
+            //根据订单 商品 id 查询卡密
+            $order = Db::name('order')->where(['order_no'=>$orders])->find();
+            $cardlist = Db::name('card')->where(['oid'=>$order['id'],'over'=>1])->select();
+            $this->assign('list',$cardlist);
+            $this->assign('orders',$orders);
+            return $this->fetch();
+        }
+        return false;
     }
 
 

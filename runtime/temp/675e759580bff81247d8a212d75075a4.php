@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:84:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\user\index.html";i:1571549535;s:79:"C:\Users\Administrator\Desktop\faka\application\index\view\public\userhead.html";i:1571549535;s:79:"C:\Users\Administrator\Desktop\faka\application\index\view\public\userfoot.html";i:1571549535;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:84:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\user\index.html";i:1576310770;s:79:"C:\Users\Administrator\Desktop\faka\application\index\view\public\userhead.html";i:1576310770;s:79:"C:\Users\Administrator\Desktop\faka\application\index\view\public\userfoot.html";i:1576310770;}*/ ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,7 +14,7 @@
         <link href="/index/sink/css/user.css" rel="stylesheet">
         <script src="/index/sink/js/jquery-1.8.3.min.js" charset="utf-8"></script>
         <script src="/index/sink/js/layui/layui.js" charset="utf-8"></script>
-
+        <link rel="stylesheet" href="/index/sink/js/layui/css/layui.css" media="all">
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
         <!--[if lt IE 9]> -->
         <!--
@@ -55,7 +55,7 @@
                                 <li><a href="<?php echo url('user/index'); ?>"><i class="fa fa-user-circle fa-fw"></i>会员中心</a></li>
                                 <li><a href="<?php echo url('user/editpwd'); ?>"><i class="fa fa-key fa-fw"></i>修改密码</a></li>
                                 <li><a href="<?php echo url('login/lout'); ?>"><i class="fa fa-sign-out fa-fw"></i>注 销</a></li>
-
+                                </ul>
                             </ul>
                         </li>
                     </ul>
@@ -85,34 +85,19 @@
                         <ul class="list-group">
                             <li class="list-group-heading">会员中心</li>
 
-                            <li class="list-group-item active">
-
-                            <li class="list-group-item ">
-
+                            <li <?php if($path == url('user/index')): ?> class="list-group-item active" <?php else: ?> class="list-group-item" <?php endif; ?>>
                                 <a href="<?php echo url('user/index'); ?>"><i class="fa fa-user-circle fa-fw"></i> 会员中心</a>
                             </li>
 
-                            <li class="list-group-item active">
-
-                            <li class="list-group-item ">
-
+                            <li <?php if($path == url('user/myorder') or $path == url('user/mychongzi')): ?> class="list-group-item active" <?php else: ?> class="list-group-item" <?php endif; ?>>
                                 <a href="<?php echo url('user/myorder'); ?>"><i class="fa fa-shield fa-fw"></i> 订单管理</a>
                             </li>
 
-
-                            <li class="list-group-item active">
-
-                            <li class="list-group-item ">
-
+                            <li <?php if($path == url('user/recharge') or $path == url('user/vip')): ?> class="list-group-item active" <?php else: ?> class="list-group-item" <?php endif; ?>>
                                 <a href="<?php echo url('user/recharge'); ?>"><i class="fa fa-plane fa-fw"></i> 充值中心</a>
                             </li>
 
-
-
-                            <li class="list-group-item active">
-
                             <li class="list-group-item ">
-
                                 <a href="<?php echo url('login/lout'); ?>"><i class="fa fa-sign-out fa-fw"></i> 安全退出</a>
                             </li>
                         </ul>
@@ -137,7 +122,7 @@
                     <!-- Content -->
                     <div class="ui-content">
                         <!-- Heading -->
-                        <h4>欢迎您：</h4>
+                        <h4>欢迎您：<?php echo \think\Session::get('info.account'); ?></h4>
                         <!-- Paragraph -->
                         <br/>
                         <div class="basicinfo">
@@ -145,14 +130,20 @@
                                 <div class="col-xs-4 col-md-2">会员级别</div>
                                 <div class="col-xs-8 col-md-4">
                                     <span class="xred">
+                                      <?php if(\think\Session::get('info.level') == 1): ?>
                                          无
+                                      <?php elseif(\think\Session::get('info.level') == 2): ?>
                                         普通代理
+                                      <?php elseif(\think\Session::get('info.level') == 3): ?>
                                         高级代理
+                                      <?php else: ?>
+                                        无
+                                      <?php endif; ?>
                                     </span>
                                 </div>
                                 <div class="col-xs-4 col-md-2">账户余额</div>
                                 <div class="col-xs-8 col-md-4">
-                                    <a href="javascript:;" class="viewmoney"></a>
+                                    <a href="javascript:;" class="viewmoney"><?php echo (\think\Session::get('money') ?: '0.00'); ?></a>
                                 </div>
                             </div>
 <!--                            <div class="row">
@@ -163,7 +154,7 @@
                             </div>-->
                             <div class="row">
                                 <div class="col-xs-4 col-md-2">注册时间</div>
-                                <div class="col-xs-8 col-md-4">time</div>
+                                <div class="col-xs-8 col-md-4"><?php echo \think\Session::get('info.create_time'); ?></div>
                             </div>
                         </div>
                     </div>
@@ -176,6 +167,20 @@
 </div>
 </main>
 
+
+
+<script>
+    //Demo 事件
+    layui.use('form', function() {
+        var form = layui.form, layer = layui.layer,
+            $ = layui.jquery;
+        //监听提交
+        form.on('submit(formDemo)', function(data) {
+            //layer.msg(JSON.stringify(data.field));
+            return true;
+        });
+    });
+</script>
 
 
 <footer class="footer" style="clear:both">

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:88:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\user\mychongzi.html";i:1567323883;s:79:"C:\Users\Administrator\Desktop\faka\application\index\view\public\userhead.html";i:1571549535;s:79:"C:\Users\Administrator\Desktop\faka\application\index\view\public\userfoot.html";i:1571549535;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:88:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\user\mychongzi.html";i:1576310770;s:79:"C:\Users\Administrator\Desktop\faka\application\index\view\public\userhead.html";i:1576310770;s:79:"C:\Users\Administrator\Desktop\faka\application\index\view\public\userfoot.html";i:1576310770;}*/ ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,7 +14,7 @@
         <link href="/index/sink/css/user.css" rel="stylesheet">
         <script src="/index/sink/js/jquery-1.8.3.min.js" charset="utf-8"></script>
         <script src="/index/sink/js/layui/layui.js" charset="utf-8"></script>
-
+        <link rel="stylesheet" href="/index/sink/js/layui/css/layui.css" media="all">
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
         <!--[if lt IE 9]> -->
         <!--
@@ -55,7 +55,7 @@
                                 <li><a href="<?php echo url('user/index'); ?>"><i class="fa fa-user-circle fa-fw"></i>会员中心</a></li>
                                 <li><a href="<?php echo url('user/editpwd'); ?>"><i class="fa fa-key fa-fw"></i>修改密码</a></li>
                                 <li><a href="<?php echo url('login/lout'); ?>"><i class="fa fa-sign-out fa-fw"></i>注 销</a></li>
-
+                                </ul>
                             </ul>
                         </li>
                     </ul>
@@ -85,34 +85,19 @@
                         <ul class="list-group">
                             <li class="list-group-heading">会员中心</li>
 
-                            <li class="list-group-item active">
-
-                            <li class="list-group-item ">
-
+                            <li <?php if($path == url('user/index')): ?> class="list-group-item active" <?php else: ?> class="list-group-item" <?php endif; ?>>
                                 <a href="<?php echo url('user/index'); ?>"><i class="fa fa-user-circle fa-fw"></i> 会员中心</a>
                             </li>
 
-                            <li class="list-group-item active">
-
-                            <li class="list-group-item ">
-
+                            <li <?php if($path == url('user/myorder') or $path == url('user/mychongzi')): ?> class="list-group-item active" <?php else: ?> class="list-group-item" <?php endif; ?>>
                                 <a href="<?php echo url('user/myorder'); ?>"><i class="fa fa-shield fa-fw"></i> 订单管理</a>
                             </li>
 
-
-                            <li class="list-group-item active">
-
-                            <li class="list-group-item ">
-
+                            <li <?php if($path == url('user/recharge') or $path == url('user/vip')): ?> class="list-group-item active" <?php else: ?> class="list-group-item" <?php endif; ?>>
                                 <a href="<?php echo url('user/recharge'); ?>"><i class="fa fa-plane fa-fw"></i> 充值中心</a>
                             </li>
 
-
-
-                            <li class="list-group-item active">
-
                             <li class="list-group-item ">
-
                                 <a href="<?php echo url('login/lout'); ?>"><i class="fa fa-sign-out fa-fw"></i> 安全退出</a>
                             </li>
                         </ul>
@@ -133,7 +118,7 @@
                     <li  class="layui-this"><a href="<?php echo url('user/mychongzi'); ?>">充值记录</a></li>
                 </ul>
                 <div class="layui-tab-content"></div>
-            </div>  
+            </div>
             <table class="layui-table">
                 <colgroup>
                     <col width="150">
@@ -141,60 +126,70 @@
                     <col>
                 </colgroup>
                 <thead>
-                    <tr>
-                        <th>订单号</th>
-                        <th>价格</th>
-                        <th>状态</th>
-                        <th>时间</th>
-                    </tr> 
-                    
+                <tr>
+                    <th>订单号</th>
+                    <th>价格</th>
+                    <th>状态</th>
+                    <th>时间</th>
+                </tr>
+
                 </thead>
+
+                <?php if(empty($paylist) || (($paylist instanceof \think\Collection || $paylist instanceof \think\Paginator ) && $paylist->isEmpty())): else: if(is_array($paylist) || $paylist instanceof \think\Collection || $paylist instanceof \think\Paginator): $i = 0; $__LIST__ = $paylist;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$pay): $mod = ($i % 2 );++$i;?>
                 <tbody>
-
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td>未付款 ||  已付款</td>
-                        <td></td>
-                    </tr>
-
+                <tr>
+                    <td><?php echo $pay['member_no']; ?></td>
+                    <td><?php echo $pay['pay']; ?></td>
+                    <td>
+                        <?php if($pay['status'] == '2'): ?>
+                          未付款
+                         <?php else: ?>
+                          已付款
+                        <?php endif; ?>
+                    </td>
+                    <td><?php echo $pay['create_time']; ?></td>
+                </tr>
                 </tbody>
+                <?php endforeach; endif; else: echo "" ;endif; ?>
+
             </table>
             <center>
-
+                <!-- 分页-->
                 <div class="pager">
-                    <ul class="pagination">
-                      <!--   分页 -->
-                    </ul>
+                    <?php echo $paylist->render(); ?>
                 </div>
+            </center>
+            <?php endif; ?>
 
-          </center>
         </div>
     </div>
+
+</div>
+
 </div>
 </div>
-</div>
-<script src="/index/sink/js/layui.js" charset="utf-8"></script>
+
+</main>
+
+
+
 <script>
-//Demo
+    //Demo 事件
     layui.use('form', function() {
         var form = layui.form, layer = layui.layer,
-                $ = layui.jquery;
+            $ = layui.jquery;
         //监听提交
         form.on('submit(formDemo)', function(data) {
-            layer.msg(JSON.stringify(data.field));
-            return false;
+            //layer.msg(JSON.stringify(data.field));
+            return true;
         });
     });
 </script>
-</main>
-
 
 
 <footer class="footer" style="clear:both">
         <p class="copyright"><?php echo $config['info']; ?></p>
     </footer>
-
 
 
 

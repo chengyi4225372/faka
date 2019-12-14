@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:85:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\login\login.html";i:1567323883;s:80:"C:\Users\Administrator\Desktop\faka\application\index\view\public\loginhead.html";i:1567323883;s:80:"C:\Users\Administrator\Desktop\faka\application\index\view\public\loginfoot.html";i:1567323883;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:85:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\login\login.html";i:1576310770;s:80:"C:\Users\Administrator\Desktop\faka\application\index\view\public\loginhead.html";i:1567323883;s:80:"C:\Users\Administrator\Desktop\faka\application\index\view\public\loginfoot.html";i:1567323883;}*/ ?>
 
 <!DOCTYPE html>
 <html>
@@ -155,7 +155,7 @@
             };
            if(ret.code  == '200'){
                   layer.msg(ret.msg,{time:1500},function(){
-                     parent.location.href="<?php echo url('user/index'); ?>";
+                     parent.location.href="<?php echo url('@index/user/index'); ?>";
                   });
               };
           },

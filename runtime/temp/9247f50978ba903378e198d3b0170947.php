@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:85:"C:\Users\Administrator\Desktop\faka\public/../application/admin\view\order\pedit.html";i:1571549535;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:85:"C:\Users\Administrator\Desktop\faka\public/../application/admin\view\order\pedit.html";i:1576310770;}*/ ?>
 
 
 <link rel="stylesheet" href="/static/admin/css/app.min.css">
@@ -81,7 +81,10 @@
                         <label for="content" class="col-sm-2 control-label">购买信息</label>
                         <div class="col-sm-8">
                             <div class="input-group">
-                                <textarea id="content" name="content" class="form-control" style="height: 200px;width: 250px;" placeholder="商品卡密"><?php echo $info['content']; ?></textarea>
+                                <textarea id="content" name="content" class="form-control" style="height: 200px;width: 250px;" placeholder="商品卡密">
+                                <?php if(is_array($info['content']) || $info['content'] instanceof \think\Collection || $info['content'] instanceof \think\Paginator): $i = 0; $__LIST__ = $info['content'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                                   <?php echo $vo; endforeach; endif; else: echo "" ;endif; ?>
+                                </textarea>
                             </div>
                         </div>
                     </div>

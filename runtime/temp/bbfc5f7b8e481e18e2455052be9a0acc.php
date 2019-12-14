@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:87:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\user\recharge.html";i:1567323883;s:79:"C:\Users\Administrator\Desktop\faka\application\index\view\public\userhead.html";i:1571549535;s:79:"C:\Users\Administrator\Desktop\faka\application\index\view\public\userfoot.html";i:1571549535;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:87:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\user\recharge.html";i:1576310770;s:79:"C:\Users\Administrator\Desktop\faka\application\index\view\public\userhead.html";i:1576310770;s:79:"C:\Users\Administrator\Desktop\faka\application\index\view\public\userfoot.html";i:1576310770;}*/ ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,7 +14,7 @@
         <link href="/index/sink/css/user.css" rel="stylesheet">
         <script src="/index/sink/js/jquery-1.8.3.min.js" charset="utf-8"></script>
         <script src="/index/sink/js/layui/layui.js" charset="utf-8"></script>
-
+        <link rel="stylesheet" href="/index/sink/js/layui/css/layui.css" media="all">
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
         <!--[if lt IE 9]> -->
         <!--
@@ -55,7 +55,7 @@
                                 <li><a href="<?php echo url('user/index'); ?>"><i class="fa fa-user-circle fa-fw"></i>会员中心</a></li>
                                 <li><a href="<?php echo url('user/editpwd'); ?>"><i class="fa fa-key fa-fw"></i>修改密码</a></li>
                                 <li><a href="<?php echo url('login/lout'); ?>"><i class="fa fa-sign-out fa-fw"></i>注 销</a></li>
-
+                                </ul>
                             </ul>
                         </li>
                     </ul>
@@ -85,34 +85,19 @@
                         <ul class="list-group">
                             <li class="list-group-heading">会员中心</li>
 
-                            <li class="list-group-item active">
-
-                            <li class="list-group-item ">
-
+                            <li <?php if($path == url('user/index')): ?> class="list-group-item active" <?php else: ?> class="list-group-item" <?php endif; ?>>
                                 <a href="<?php echo url('user/index'); ?>"><i class="fa fa-user-circle fa-fw"></i> 会员中心</a>
                             </li>
 
-                            <li class="list-group-item active">
-
-                            <li class="list-group-item ">
-
+                            <li <?php if($path == url('user/myorder') or $path == url('user/mychongzi')): ?> class="list-group-item active" <?php else: ?> class="list-group-item" <?php endif; ?>>
                                 <a href="<?php echo url('user/myorder'); ?>"><i class="fa fa-shield fa-fw"></i> 订单管理</a>
                             </li>
 
-
-                            <li class="list-group-item active">
-
-                            <li class="list-group-item ">
-
+                            <li <?php if($path == url('user/recharge') or $path == url('user/vip')): ?> class="list-group-item active" <?php else: ?> class="list-group-item" <?php endif; ?>>
                                 <a href="<?php echo url('user/recharge'); ?>"><i class="fa fa-plane fa-fw"></i> 充值中心</a>
                             </li>
 
-
-
-                            <li class="list-group-item active">
-
                             <li class="list-group-item ">
-
                                 <a href="<?php echo url('login/lout'); ?>"><i class="fa fa-sign-out fa-fw"></i> 安全退出</a>
                             </li>
                         </ul>
@@ -135,15 +120,15 @@
                 </ul>
                 <div class="layui-tab-content"></div>
             </div>  
-            <form id="changepwd-form" class="form-horizontal layui-form" role="form" data-toggle="validator" method="POST" action="<?php echo url('user/fukuan'); ?>" target="_blank">
+            <form  class="form-horizontal layui-form" method="POST">
                 <div class="layui-form-item">
                     <label class="layui-form-label">余额</label>
                     <div class="layui-input-block">
-                        <div class="layui-form-mid layui-word-aux" style="color:red !important">  </div>
+                        <div class="layui-form-mid layui-word-aux" style="color:red !important"><?php echo (\think\Session::get('info.money')  ?: '0.00'); ?></div>
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label">充值</label>
+                    <label class="layui-form-label">充值金额：</label>
                     <div class="layui-input-block">
                         <input class="form-control input-lg" id="account" required type="text" name="price" data-rule="required" placeholder="充值金额" autocomplete="off">
                     </div>
@@ -152,21 +137,16 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">方式</label>
                     <div class="layui-input-block">
-
-                        <input type="radio" name="payment" value="1" title="支付宝">
-
-
-                        <input type="radio" name="payment" value="2" title="微信" >
-
-
-                         <input type="radio" name="payment" value="3" title="QQ钱包" >
-
+                        <input type="radio" name="payment" value="alipay" title="支付宝" checked="" />
+                        <input type="radio" name="payment" value="wxpay" title="微信" />
+                        <input type="radio" name="payment" value="qqpay" title="QQ钱包" />
                     </div>
                 </div>
 
+                <input type="hidden" id="mid" value="<?php echo \think\Session::get('info.id'); ?>" />
                 <div class="layui-form-item">
                     <div class="layui-input-block">
-                        <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                        <button class="layui-btn" lay-submit lay-filter="formDemo"  onclick="paymoney()">立即提交</button>
                     </div>
                 </div>
 
@@ -176,12 +156,35 @@
 </div>
 </div>
 </div>
-<script src="/index/sink/js/layui.js" charset="utf-8"></script>
+
+
+</main>
 <script>
-//Demo
+    function paymoney(){
+        var urls    = "<?php echo url('@index/pay/addmoney'); ?>";
+        var types   = $('#account').val();
+        var paytype = $("input[name='payment']:checked").val();
+        var mid     = $('#mid').val();
+
+        if(money == '' || money == undefined || money == 'undefined'){
+            layer.msg('请输入充值金额');
+            return false;
+        }
+
+      //未完成
+
+    }
+</script>
+
+
+
+
+
+<script>
+    //Demo 事件
     layui.use('form', function() {
         var form = layui.form, layer = layui.layer,
-                $ = layui.jquery;
+            $ = layui.jquery;
         //监听提交
         form.on('submit(formDemo)', function(data) {
             //layer.msg(JSON.stringify(data.field));
@@ -189,8 +192,6 @@
         });
     });
 </script>
-</main>
-
 
 
 <footer class="footer" style="clear:both">
@@ -199,7 +200,6 @@
 
 
 
-<script src="/index/sink/js/require.min.js" data-main="/assets/js/require-frontend.min.js?v=1.0.1"></script>
 
 </body>
 
