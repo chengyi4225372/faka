@@ -200,7 +200,7 @@ class Index extends Base
             $list    = Db::name('card')->where(['oid'=>$orderId['id']])->order('id asc')->select();
 
             foreach($list as $k =>$value){
-                $content .= $value."\r\n"; //下载内容
+                $content = $value['kami']."\r\n"; //下载内容
             }
             header("Content-type: application/octet-stream");
             header("Accept-Ranges: bytes");

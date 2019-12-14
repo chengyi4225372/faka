@@ -106,7 +106,7 @@
               layer.msg('请输入电话信息');
               return false;
              }
-            var num = $.trim($('#p_num').val()); //商品购买数量
+            var num = $('#p_num').val(); //商品购买数量
             var bei = $('#bei').val();
             var min = $('#minnum').val();
             var max = $('#maxnum').val();
@@ -128,7 +128,7 @@
 
             num = num * bei;
             var danpay   = $('#danpay').val();//单价
-            var countpay = parseInt((num * bei) * danpay); //总价
+            var countpay = (num * bei) * danpay; //总价
 
             $.post(urls,{'gid':gid,'member_id':member_id,'mobile':mobile,'num':num,'huo':0,'danpay':danpay,'countpay':countpay},function(ret){
                       if(ret.code == 200){

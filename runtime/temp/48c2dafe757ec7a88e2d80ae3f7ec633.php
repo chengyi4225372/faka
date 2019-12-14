@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\mobile\buy.html";i:1576326672;s:81:"C:\Users\Administrator\Desktop\faka\application\index\view\public\mobilehead.html";i:1576310770;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\mobile\buy.html";i:1576332977;s:81:"C:\Users\Administrator\Desktop\faka\application\index\view\public\mobilehead.html";i:1576310770;}*/ ?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -167,7 +167,7 @@ em, i {
     <div class="bl_view_title order" data-title="<?php echo $order['order_no']; ?>">订单号码：<?php echo $order['order_no']; ?></div>
 	<div class="bl_view_title paynames" data-title="<?php echo $goods[$order['gid']]; ?>">商品名称：<?php echo $goods[$order['gid']]; ?><a href="javascript:;"></a></div>
 	<div class="bl_view_title">商品单价：<?php echo $order['danpay']; ?>元</div>
-	<div class="bl_view_title">订单信息：<?php echo $order['content']; ?></div>
+	<div class="bl_view_title">订单信息：<?php if($order['huo'] == '0'): ?>联系电话：<?php echo $order['mobile']; else: ?><?php echo $order['content']; endif; ?></div>
 	<div class="bl_view_title">购买数量：<font color="#ff0036"><?php echo $order['num']; ?>个</font>
         <?php if($order['huo'] == '0'): ?>
           自动发货

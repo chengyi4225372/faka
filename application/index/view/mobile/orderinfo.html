@@ -33,12 +33,22 @@
 <div class="am-g">
   <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
     <h3>以下是卡密内容，请自行保存&nbsp;&nbsp;&nbsp;&nbsp;
+      {if condition='$info.huo eq 1'}
       <a href="javascript:void(0);" onclick="window.location.href='{:url('mobile/index')}'">[返回]</a>
+      {else /}
+      <a href="javascript:void(0);" onclick="history.go(-1)">[返回]</a>
+      {/if}
     </h3>
     <hr>
     <div class="am-btn-group">
                <!-- 手动 刚发货秘钥-->
-         11111
+               {if condition='$info.huo eq 1'}
+                  后台手动录入卡密
+               {else /}
+               {volist name='list' id='vo'}
+                {$vo.kami} <br/>
+                {/volist}
+             {/if}
     </div>
     <br>
     <br>

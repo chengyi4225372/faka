@@ -148,9 +148,11 @@ class Mobile extends Controller
         //todo 没有全部完成
         if($this->request->isGet()){
             $orders = input('get.orderno','','trim');
-            $good   =  Db::name('goods')->where('huo',1)->select();
-            $info   = Db::name('order')->field('order_no,create_time,gid')->where(['order_no'=>$orders])->find();
+            $good   =  Db::name('goods')->select();
+            $info   = Db::name('order')->field('order_no,create_time,gid,id,huo')->where(['order_no'=>$orders])->find();
             $goods  = array_column($good,'title','id');
+            $cardlist = Db::name('card')->where(['oid'=>$info['id'],'over'=>1])->select();
+            $this->assign('list',$cardlist);
             $this->assign('goods',$goods);
             $this->assign('info',$info);
             return $this->fetch();
@@ -164,7 +166,7 @@ class Mobile extends Controller
     {
         if($this->request->isGet()){
             $orders = input('get.orderno','','trim');
-            $info   = Db::name('order')->where(['order_no'=>$orders])->field('order_no,countpay')->find();
+            $info   = Db::name('order')->where(['order_no'=>$orders])->field('order_no,countpay,huo')->find();
             $this->assign('info',$info);
             return $this->fetch();
         }
@@ -177,11 +179,38 @@ class Mobile extends Controller
         if($this->request->isGet()){
             $orders = input('get.orderno','','trim');
             //根据订单 商品 id 查询卡密
-            $order = Db::name('order')->where(['order_no'=>$orders])->find();
-            $cardlist = Db::name('card')->where(['oid'=>$order['id'],'over'=>1])->select();
-            $this->assign('list',$cardlist);
-            $this->assign('orders',$orders);
+            $info = Db::name('order')->where(['order_no'=>$orders])->find();
+
+            $this->assign('info',$info);
             return $this->fetch();
+        }
+        return false;
+    }
+
+    /*** 导出卡密 **/
+    public function daochu(){
+        if($this->request->isGet()){
+            $orders = input('get.orderno','','trim');
+
+            if(empty($orders)){
+                return false;
+            }
+
+            $orderId = Db::name('order')->where(['order_no'=>$orders])->field('id')->find();
+
+            $list    = Db::name('card')->where(['oid'=>$orderId['id']])->order('id asc')->select();
+
+            foreach($list as $k =>$value){
+              $content= $value['kami']."\r\n"; //下载内容
+            }
+            header("Content-type: application/octet-stream");
+            header("Accept-Ranges: bytes");
+            header("Content-Disposition: attachment; filename = 下载文档.txt"); //文件命名
+            header("Expires: 0");
+            header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+            header("Pragma: public");
+            echo $content;
+            exit();
         }
         return false;
     }
