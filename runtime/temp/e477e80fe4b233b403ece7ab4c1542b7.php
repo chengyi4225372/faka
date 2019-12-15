@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:83:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\two\trade.html";i:1576344072;s:80:"C:\Users\Administrator\Desktop\faka\application\index\view\public\twombhead.html";i:1571549535;s:80:"C:\Users\Administrator\Desktop\faka\application\index\view\public\twombfoot.html";i:1571549535;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:83:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\two\trade.html";i:1576407316;s:80:"C:\Users\Administrator\Desktop\faka\application\index\view\public\twombhead.html";i:1571549535;s:80:"C:\Users\Administrator\Desktop\faka\application\index\view\public\twombfoot.html";i:1571549535;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -129,8 +129,8 @@
                           <input type="button" value="-" style="margin-left:-6px;" class="trade-input-count-button" onclick="countoper('jian')">
                        </span>
                         <?php else: if(is_array($info['moban']) || $info['moban'] instanceof \think\Collection || $info['moban'] instanceof \think\Paginator): $k = 0; $__LIST__ = $info['moban'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v1): $mod = ($k % 2 );++$k;?>
-                        <div class="from">
-                                    <span style="color:#6c6c6c;margin-left:10px"  id="title<?php echo $k; ?>"><?php echo $v1[0]; ?>：
+                        <div class="from mo">
+                                    <span style="color:#6c6c6c;margin-left:10px"  id="title<?php echo $k; ?>" data-title="<?php echo $v1[0]; ?>"><?php echo $v1[0]; ?>：
                                         <input  id="moban<?php echo $k; ?>" style="padding: 0.5em;font-size: 1rem;line-height: 1.2;color: #333;" placeholder="<?php echo $v1[1]; ?>" required>
                                     </span>
                         </div>

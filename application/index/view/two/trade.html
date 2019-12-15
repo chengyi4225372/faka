@@ -73,8 +73,8 @@
                         {else /}
 
                         {volist name='info.moban' id='v1' key='k'}
-                        <div class="from">
-                                    <span style="color:#6c6c6c;margin-left:10px"  id="title{$k}">{$v1[0]}：
+                        <div class="from mo">
+                                    <span style="color:#6c6c6c;margin-left:10px"  id="title{$k}" data-title="{$v1[0]}">{$v1[0]}：
                                         <input  id="moban{$k}" style="padding: 0.5em;font-size: 1rem;line-height: 1.2;color: #333;" placeholder="{$v1[1]}" required>
                                     </span>
                         </div>

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:85:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\index\trade.html";i:1575128976;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\head.html";i:1567323883;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\foot.html";i:1567323883;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:85:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\index\trade.html";i:1576310770;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\head.html";i:1567323883;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\foot.html";i:1567323883;}*/ ?>
 
 <!DOCTYPE html> 
 
@@ -328,9 +328,6 @@
               };
         },'json')
     }
-
-
-
 
   /*
     function buy(a,b) {

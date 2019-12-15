@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:81:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\two\buy.html";i:1576345063;s:80:"C:\Users\Administrator\Desktop\faka\application\index\view\public\twombhead.html";i:1571549535;s:80:"C:\Users\Administrator\Desktop\faka\application\index\view\public\twombfoot.html";i:1571549535;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:81:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\two\buy.html";i:1576345151;s:80:"C:\Users\Administrator\Desktop\faka\application\index\view\public\twombhead.html";i:1571549535;s:80:"C:\Users\Administrator\Desktop\faka\application\index\view\public\twombfoot.html";i:1571549535;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -201,15 +201,16 @@
     </div>
     <hr>
 
-    <form id="payform" method="post" action="/pay">
-        <input type="hidden" name="id" value="391">
-        <input type="hidden" name="payment" id="payment">
-    </form>
+    <!--<form id="payform" method="post" action="/pay">-->
+        <input type="hidden" name="id" value="<?php echo $order['id']; ?>">
+        <input type="hidden" id="payment" value="<?php echo $order['countpay']; ?>">
+    <!--</form>-->
 
     <div style=" text-align: right;">
-        <button type="submit" onclick="javascript:$('#payform').submit()" class="am-btn am-btn-danger am-btn-xl" style="width: 100%">立即付款</button>
+        <button type="submit" onclick="mobilePay()" class="am-btn am-btn-danger am-btn-xl" style="width: 100%">立即付款</button>
     </div>
     <script>
+        /*
         function payment(id){
             $("#payment").val(id);
             if(id == 1){
@@ -225,6 +226,36 @@
                 layer.msg('余额支付');
             }
         }
+        */
+
+
+        /** 支付 **/
+        function mobilePay(){
+            var  types = $('ul li.curr').attr('data-paytype');//支付类型
+            var  goodnames = $('.paynames').attr('data-title');//商品名称
+            var  order_no  = $('.order').attr('data-title');//商户订单号
+            var  paynum    = $('#payment').val(); //商品总价
+            var  sitename  = '栗子发卡网';
+            var  url = "<?php echo url('pays/index'); ?>";
+
+            if(types == '' || types == undefined){
+                layer.msg('请选择支付类型');
+                return false;
+            }
+
+            if(types == 'yu'){
+                layer.msg('改功能正在开发中。。');
+                return false;
+            }
+
+            if(paynum == '' || paynum == undefined || paynum == 'undefined'){
+                return false;
+            }
+
+            window.location.href=url+"?types="+types+"&goodnames="+goodnames+"&order_no="+order_no+"&paynum="+paynum+"&sitename="+sitename;
+
+        }
+
     </script>
 
              <div class="tongji"><?php echo (isset($config['info']) && ($config['info'] !== '')?$config['info']:''); ?></div>
