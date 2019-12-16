@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\trade.html";i:1576029537;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\trade.html";i:1576501090;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
 
 <!DOCTYPE html> 
 
@@ -247,6 +247,15 @@
 
 <script>
 
+    //手机验证
+    function checkPhone(phone) {
+        var tel_reg = /^1(3|4|5|6|7|8|9)\d{9}$/;
+        if (tel_reg.test(phone)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
    function buy(money){
 
@@ -262,9 +271,15 @@
 
 
             if(mobile == '' || mobile== undefined){
-            layer.msg('请输入联系方式');
-            return ;
-        }
+               layer.msg('请输入联系方式');
+               return ;
+            }
+
+            if(checkPhone(mobile) == false){
+                layer.msg('请输入正确的手机号码');
+                return ;
+            }
+
 
             if(paynum <= 0){
             layer.msg('最少购买数量为1');
@@ -328,7 +343,7 @@
               };
         },'json')
     }
-   
+
   /*
     function buy(a,b) {
         var p_num = document.getElementById("p_num").value;

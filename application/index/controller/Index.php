@@ -90,7 +90,6 @@ class Index extends Base
               }
           }
 
-         // halt($info);
           $this->assign('info',$info);
        }
         return $this->fetch();
@@ -101,10 +100,30 @@ class Index extends Base
     {
       if($this->request->isPost()){
           $this->param = $this->request->param();
-
           //组装 订单页面信息
           if(empty($this->param['data']['gid']) || !isset($this->param['data']['gid'])){
              return false;
+          }
+
+          //验证用户等级 再去根据等级 找到会员价格
+          $user = Db::name('member')->where(['id'=>$this->param['data']['member_id']])->find();
+
+          //商品会员价格
+          $goodpay = Db::name('goods')->where(['id'=>$this->param['data']['gid']])->find();
+
+          //得到打折的倍数
+          //正常用户
+          if($user['level'] == 1){
+              $countpay = $this->param['data']['countpay'];
+          }
+
+          //普通代理
+          if($user['level'] == 2){
+              $countpay = $this->param['data']['countpay'] * $goodpay['nomal'];
+          }
+          //高级
+          if($user['level'] == 3){
+              $countpay = $this->param['data']['countpay'] * $goodpay['high'];
           }
 
           $array = [
@@ -113,8 +132,8 @@ class Index extends Base
               'num'  =>$this->param['data']['num'],
               'content'   =>$this->param['data']['content'],
               'danpay'    =>$this->param['data']['danpay'],
-              'countpay'  =>$this->param['data']['countpay'],
-              'order_no'  => date("YmdHis").mt_rand(100,999),
+              'countpay'  =>$countpay,
+              'order_no'  => create_order(),
               'mobile'    => $this->param['data']['mobile'],
               'member_id' => $this->param['data']['member_id'],
           ];
@@ -163,10 +182,27 @@ class Index extends Base
     //手动发货
    public function sdfahuo(){
         if($this->request->isGet()){
-
-            $orders = input('get.order','','trim');
+            $orders = input('get.orderno','','trim');
             $info   = Db::name('order')->where(['order_no'=>$orders])->field('order_no,countpay')->find();
             $this->assign('info',$info);
+            return $this->fetch();
+        }
+        return false;
+   }
+
+   //搜索
+   public function search(){
+        if($this->request->isGet()){
+            $orders = input('get.orderno','','trim');
+            $w =[
+                'order_no'=>$orders,
+                'mobile|order_no'=>['like','%'.$orders.'%'],
+            ];
+            $info   = Db::name('order')->where($w)->paginate(15);
+            $good   = Db::name('goods')->order('id desc')->select();
+            $goods  = array_column($good,'title','id');
+            $this->assign('orders',$info);
+            $this->assign('goods',$goods);
             return $this->fetch();
         }
         return false;

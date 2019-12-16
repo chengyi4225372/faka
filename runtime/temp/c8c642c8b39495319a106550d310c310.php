@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:105:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\buy.html";i:1573116163;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:105:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\buy.html";i:1576221363;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
 
 <!DOCTYPE html> 
 
@@ -214,19 +214,16 @@
             <div class="from_wz_3"><font color="#363636"  size="3">支付方式：</font></div>
             <div class="">
                 <div class="payment-list">
-
                     <ul>
                         <?php if(!(empty(\think\Session::get('info')) || ((\think\Session::get('info') instanceof \think\Collection || \think\Session::get('info') instanceof \think\Paginator ) && \think\Session::get('info')->isEmpty()))): ?>
-                        <li class="yu" data-paytype="yu" ><i class="payment-icon-yu">余额支付</i></li>
+                        <li class="yu" data-paytype="yu" onclick="layer.msg('该功能正在开发中！！')"><i class="payment-icon-yu">余额支付</i></li>
                         <?php endif; ?>
 
                         <li class="tenpay" data-paytype="alipay" ><i class="payment-icon-cft">支付宝支付</i></li>
 
-
                         <li class="wx " data-paytype="wxpay" onclick="payment($(this).attr('data-paytype'))"><i class="payment-icon-wx">微信支付</i></li>
 
                         <li class="qq" data-paytype="qqpay" onclick="payment($(this).attr('data-paytype'))"><i class="payment-icon-qq">QQ支付</i></li>
-
                     </ul>
                 </div>
             </div>

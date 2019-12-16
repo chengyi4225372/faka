@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:111:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\orderinfo.html";i:1574134950;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:111:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\orderinfo.html";i:1574144405;}*/ ?>
 <html>
 <head lang="en">
   <meta charset="UTF-8">
@@ -11,6 +11,7 @@
   <link rel="shortcut icon" href="<?php echo $config['logo']; ?>" />
   <link rel="stylesheet" href="/index/sink/css/amazeui.min.css"/>
   <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+
   <script type="text/javascript" src="/index/sink/js/jquery-1.8.3.min.js"></script>
   <script type="text/javascript" src="/index/sink/js/layer/layer.js"></script>
 
@@ -27,11 +28,12 @@
       font-size: 14px;
     }
   </style>
+
 </head>
 <body>
 <div class="header">
   <div class="am-g">
-    <h1></h1>
+    <h1><?php echo (isset($config['title']) && ($config['title'] !== '')?$config['title']:''); ?></h1>
     <p><h3>购买时间为：<?php echo $orders['create_time']; ?></h3></p>
   </div>
   <hr />

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:109:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\sdfahuo.html";i:1573002049;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:109:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\sdfahuo.html";i:1576501836;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
 
 <!DOCTYPE html> 
 
@@ -99,10 +99,10 @@
       <div class="am-container" style="padding:2px">
       
 <div style="padding:100px 20px;text-align:center;background-color:#fff">
-  <img src="/static/index/images/fkcg.png" alt="付款成功" width="50px">
+  <img src="/index/images/fkcg.png" alt="付款成功" width="50px">
   <span style="height:60px;vertical-align:middle;font-size:24px;color:#333333">恭喜您！付款成功！</span>
-  <p style="color:#999999">订单编号：<?php echo $order['order_no']; ?><br>支付金额：<?php echo $order['price']; ?>元</p>
-  <a type="button" class="am-btn am-btn-success" href="/search">查看订单</a>
+  <p style="color:#999999">订单编号：<?php echo $info['order_no']; ?><br>支付金额：<?php echo floatval($info['countpay']); ?>元</p>
+  <a type="button" class="am-btn am-btn-success" href="<?php echo url('index/search'); ?>?orderno=<?php echo $info['order_no']; ?>">查看订单</a>
 </div>
 <div id="footer"><div>
     <a><?php echo $config['info']; ?></a>

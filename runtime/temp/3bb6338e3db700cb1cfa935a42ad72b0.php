@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:109:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\zdfahuo.html";i:1574134450;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:109:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\zdfahuo.html";i:1574144977;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
 
 <!DOCTYPE html> 
 
@@ -114,7 +114,7 @@
         <div class="from">
             <div align="center">
                 <a  class="button button-3d button-primary button-rounded button-small" data-url="<?php echo url('index/orderinfo',['order'=>$orders]); ?>" onclick="showKm(this)"  value="" />查看卡密</a>
-                <a  class="button button-3d button-highlight button-rounded button-small"  />下载文件</a>
+                <a  class="button button-3d button-highlight button-rounded button-small" data-url="<?php echo url('index/dao',['order'=>$orders]); ?>"  onclick="dao(this)" />下载文件</a>
             </div>
 
         </div>
@@ -180,4 +180,11 @@
             content: url //iframe的url
         });
     }
+
+    //导出
+    function dao(obj){
+        var  urls  = $(obj).attr('data-url');
+        window.location.href = urls;
+    }
+
 </script>

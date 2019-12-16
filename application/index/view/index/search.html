@@ -81,7 +81,8 @@
                 <div class="in_l"><input type="text" name="content" placeholder="请输入订单号，交易单号，联系方式查询"/></div>
                 <div class="in_r"><input type="submit" value="订单查询" /></div>
             </div>
-        </form><br/>
+        </form>
+        <br/>
 <!--        <div class="title2">注意：超过24小时的订单禁止查询，如果您想长期保留订单，请您注册成为我们的会员。</div>-->
         <br/><font size="4" color="#000000" title="这是您最近的购买记录">这是您的购买记录</font>
         <br/> <table width="100%" border="0" cellspacing="0" cellpadding="10">
@@ -96,14 +97,20 @@
                 <th scope="col">日期</th>
                 <th scope="col">操作</th>
             </tr>
-            {volist name='orders' id='order'}
+            {volist name='orders' id='vo'}
             <tr>
-                <td align="center"><font color="#FF0000">{if condition='$order.type eq 1'} 自动发货{else /}手动发货{/if}</font></td>
-                <td align="center">{$order.order_no}</td>
-                <td ><div align="left"><a target="_blank" href="/trade?id={$order.gid}">{$order.goodsname}</a></div></td>
-                <td align="center">{$order.count}个</td>
-                <td align="center">{$order.danjia}元</td>
-                <td align="center">{$order.price}元</td>
+                <td align="center">
+                    <font color="#FF0000">
+                        {if condition='$vo.huo eq 0'}
+                        自动发货{else /}
+                        手动发货
+                        {/if}</font>
+                </td>
+                <td align="center">{$vo.order_no}</td>
+                <td ><div align="left"><a target="_blank" href="{:url('index/trade')}?id={$order.gid}">{$goods[$vo.gid]}</a></div></td>
+                <td align="center">{$vo.num}个</td>
+                <td align="center">{$vo.danypay}元</td>
+                <td align="center">{$vo.countpay}元</td>
                 <td align="center">
                     {if condition='$order.status eq 1'}
                     <font style="cursor:pointer;" color="#ff4351">已付款</font>
@@ -111,7 +118,7 @@
                     <font style="cursor:pointer" color="#CCCCCC">未付款</font>
                     {/if}
                 </td>  
-                <td><a title="{$order.time}">{$order.time}</a></td>		
+                <td><a title="{$order.time}">{$vo.create_time}</a></td>
                 <td align="center">
                     {if condition='$order.status eq 1'}
                     {if condition='$order.type eq 1'}

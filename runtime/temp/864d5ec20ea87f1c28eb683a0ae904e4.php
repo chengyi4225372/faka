@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\index.html";i:1571211150;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\index.html";i:1576152318;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
 
 <!DOCTYPE html> 
 
@@ -95,7 +95,7 @@
 <style>
     #bar .bar_top {
         background-color: #00A2CA;
-        background: #00A2CA url(../sink/cssimg/dinggoubg.png) repeat-x;
+        background: #00A2CA url(/sink/cssimg/dinggoubg.png) repeat-x;
     }
     .indexlistlb {
         background-color: #AAEDFE;
@@ -157,7 +157,7 @@
                             <font color="#BBBBBB"  size="1" title="销量">销量:<?php echo $vo['paynum']; ?></font>
                         </td>
                         <td>
-                            <font color="#0281D2"  size="2" title="批发单价"><?php echo $vo['pipay']; ?>元<br/></font>
+                            <font color="#0281D2"  size="2" title="批发单价"><?php echo floatval($vo['pipay']); ?>元<br/></font>
      <font color="#BBBBBB"  size="1" title="普通用户购买数量<?php echo $vo['pinum']; ?>个起按照批发单价计算"><?php echo $vo['pinum']; ?>个起</font>
                         </td>
                         <td >
