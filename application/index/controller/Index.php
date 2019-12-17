@@ -199,6 +199,7 @@ class Index extends Base
                 'mobile|order_no'=>['like','%'.$orders.'%'],
             ];
             $info   = Db::name('order')->where($w)->paginate(15);
+            $count  = Db::name('order')->where($w)->count();
             $good   = Db::name('goods')->order('id desc')->select();
             $goods  = array_column($good,'title','id');
             $this->assign('orders',$info);

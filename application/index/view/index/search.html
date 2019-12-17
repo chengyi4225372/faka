@@ -112,35 +112,41 @@
                 <td align="center">{$vo.danypay}元</td>
                 <td align="center">{$vo.countpay}元</td>
                 <td align="center">
-                    {if condition='$order.status eq 1'}
+                    {if condition='$vo.status eq 1'}
                     <font style="cursor:pointer;" color="#ff4351">已付款</font>
-                    {else /}
+                    {/if}
+
+                    {if condition='$vo.status eq 0'}
                     <font style="cursor:pointer" color="#CCCCCC">未付款</font>
                     {/if}
                 </td>  
-                <td><a title="{$order.time}">{$vo.create_time}</a></td>
+                <td><a title="{$vo.create_time}">{$vo.create_time}</a></td>
+
                 <td align="center">
-                    {if condition='$order.status eq 1'}
-                    {if condition='$order.type eq 1'}
-                    <a href="/tika?id={$order.id}" title="点击查看卡密" target="_blank" class="button button-highlight button-rounded button-tiny">提卡</a>
-                    {else /}
-                    {if condition='$order.fahuo eq 2'}
+                     <!-- 已经支付 -->
+                    {if condition='$vo.status eq 1'}
+                    <a href="{:url('index/orderinfo')}?orderno={$vo.order_no}" title="点击查看卡密" target="_blank" class="button button-highlight button-rounded button-tiny">提卡</a>
+
                     <font style="cursor:pointer;" color="#ff4351">联系客服退款</font>
-                    {/if}
-                    {if condition='$order.fahuo eq 1'}
+
                     <font style="cursor:pointer;" color="#ff4351">已发货</font>
-                    {/if}
-                    {if condition='$order.fahuo eq 0'}
+
                     <font style="cursor:pointer" color="#CCCCCC">未发货</font>
-                    {/if}
-                    {/if}
-                    {else /}
+
+                     <!-- 未支付 -->
                     【<a href="/jxgoumai?id={$order.id}" target="_blank" >付款</a>】【<a  style="cursor:pointer" onclick="del({$order.id})" >删除</a>】
-                    {/if}
+
                 </td>
             </tr>	
             {/volist}
-        </table><br/> <div  class='text-right'><ul class='pagination'>       <li><span class="rows">共{$count}条</span> </li></ul></div></div>
+        </table>
+        <br/>
+        <div class='text-right'>
+            <ul class='pagination'>
+                <li><span class="rows">共{$count}条</span></li>
+            </ul>
+        </div>
+    </div>
 
 
 </div>
