@@ -113,13 +113,34 @@ class Mobile extends Controller
                return false;
            }
 
+           //验证用户等级 再去根据等级 找到会员价格
+           $user = Db::name('member')->where(['id'=>$this->param['data']['member_id']])->find();
+
+           //商品会员价格
+           $goodpay = Db::name('goods')->where(['id'=>$this->param['data']['gid']])->find();
+
+           //得到打折的倍数
+           //正常用户
+           if($user['level'] == 1){
+               $countpay = $this->param['data']['countpay'];
+           }else if($user['level'] == 2){
+               //普通代理
+               $countpay = $this->param['data']['countpay'] * $goodpay['nomal'];
+           } else if($user['level'] == 3){
+               //高级
+               $countpay = $this->param['data']['countpay'] * $goodpay['high'];
+           }else{
+               //正常
+               $countpay = $this->param['data']['countpay'];
+           }
+
            $array = [
                'gid'  =>$this->param['gid'],
                'huo'  =>$this->param['huo'],
                'num'  =>$this->param['num'],
                'content'   =>isset($this->param['content'])?$this->param['content']:'',
                'danpay'    =>isset($this->param['danpay'])?$this->param['danpay']:'',
-               'countpay'  =>isset($this->param['countpay'])?$this->param['countpay']:'',
+               'countpay'  =>$countpay,
                'order_no'  => create_order(),
                'mobile'    => $this->param['mobile'],
                'member_id' => $this->param['member_id'],
@@ -162,11 +183,10 @@ class Mobile extends Controller
     /**卡密详情**/
     public function orderinfo()
     {
-        //todo 没有全部完成
         if($this->request->isGet()){
             $orders = input('get.orderno','','trim');
             $good   =  Db::name('goods')->select();
-            $info   = Db::name('order')->field('order_no,create_time,gid,id,huo')->where(['order_no'=>$orders])->find();
+            $info   = Db::name('order')->field('order_no,create_time,gid,id,huo,content')->where(['order_no'=>$orders])->find();
             $goods  = array_column($good,'title','id');
             $cardlist = Db::name('card')->where(['oid'=>$info['id'],'over'=>1])->select();
             $this->assign('list',$cardlist);
@@ -176,7 +196,6 @@ class Mobile extends Controller
         }
        return false;
     }
-
 
     /***手动发货 ***/
     public function sdfahuo()

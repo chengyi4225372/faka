@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:106:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\mobile\buy.html";i:1576223035;s:103:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\mobilehead.html";i:1576225073;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:106:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\mobile\buy.html";i:1576499553;s:103:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\mobilehead.html";i:1576225073;}*/ ?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -164,9 +164,10 @@ em, i {
          <strong><font color="#009f1e"  size="3">订单生成成功，请完成支付！</font></strong>
      </div>
 </div>
-    <div class="bl_view_title order">订单号码：<?php echo $order['order_no']; ?></div>
-	<div class="bl_view_title paynames">商品名称：<?php echo $goods[$order['gid']]; ?><a href="javascript:;"></a></div>
+    <div class="bl_view_title order" data-title="<?php echo $order['order_no']; ?>">订单号码：<?php echo $order['order_no']; ?></div>
+	<div class="bl_view_title paynames" data-title="<?php echo $goods[$order['gid']]; ?>">商品名称：<?php echo $goods[$order['gid']]; ?><a href="javascript:;"></a></div>
 	<div class="bl_view_title">商品单价：<?php echo $order['danpay']; ?>元</div>
+	<div class="bl_view_title">订单信息：<?php if($order['huo'] == '0'): ?>联系电话：<?php echo $order['mobile']; else: ?><?php echo $order['content']; endif; ?></div>
 	<div class="bl_view_title">购买数量：<font color="#ff0036"><?php echo $order['num']; ?>个</font>
         <?php if($order['huo'] == '0'): ?>
           自动发货
@@ -212,7 +213,7 @@ em, i {
  </div>
 <!--     <form method="post">-->
          <input type="hidden" name="id" value="<?php echo $order['id']; ?>">
-         <input type="hidden" name="payment" id="<?php echo $order['countpay']; ?>">
+         <input type="hidden" id="payment" value="<?php echo $order['countpay']; ?>">
 <!--     </form>-->
 
      <div class="go_buy">
@@ -232,8 +233,8 @@ em, i {
   /** 支付 **/
 function mobilePay(){
       var  types = $('ul li.curr').attr('data-paytype');//支付类型
-      var  goodnames = $.trim($('.paynames').text());//商品名称
-      var  order_no  = $.trim($('.order').text());//商户订单号
+      var  goodnames = $('.paynames').attr('data-title');//商品名称
+      var  order_no  = $('.order').attr('data-title');//商户订单号
       var  paynum    = $('#payment').val(); //商品总价
       var  sitename  = '栗子发卡网';
       var  url = "<?php echo url('pays/mobilepay'); ?>";

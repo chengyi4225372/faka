@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:112:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\mobile\orderinfo.html";i:1577084226;}*/ ?>
 <html>
 <head lang="en">
   <meta charset="UTF-8">
@@ -25,35 +26,32 @@
 <body>
 <div class="header">
   <div class="am-g">
-    <h1>{$goods[$info.gid]}</h1>
-    <p><h3>购买时间为：{$info.create_time}</h3></p>
+    <h1><?php echo $goods[$info['gid']]; ?></h1>
+    <p><h3>购买时间为：<?php echo $info['create_time']; ?></h3></p>
   </div>
   <hr />
 </div>
 <div class="am-g">
   <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
     <h3>以下是卡密内容，请自行保存&nbsp;&nbsp;&nbsp;&nbsp;
-      {if condition='$info.huo eq 1'}
-      <a href="javascript:void(0);" onclick="window.location.href='{:url('mobile/index')}'">[返回]</a>
-      {else /}
+      <?php if($info['huo'] == 1): ?>
+      <a href="javascript:void(0);" onclick="window.location.href='<?php echo url('mobile/index'); ?>'">[返回]</a>
+      <?php else: ?>
       <a href="javascript:void(0);" onclick="history.go(-1)">[返回]</a>
-      {/if}
+      <?php endif; ?>
     </h3>
     <hr>
     <div class="am-btn-group">
                <!-- 手动 刚发货秘钥-->
-               {if condition='$info.huo eq 1'}
-                 {$info.content}
-               {else /}
-               {volist name='list' id='vo'}
-                {$vo.kami} <br/>
-                {/volist}
-             {/if}
+               <?php if($info['huo'] == 1): ?>
+                 <?php echo $info['content']; else: if(is_array($list) || $list instanceof \think\Collection || $list instanceof \think\Paginator): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                <?php echo $vo['kami']; ?> <br/>
+                <?php endforeach; endif; else: echo "" ;endif; endif; ?>
     </div>
     <br>
     <br>
     <hr>
-    <p>{$config.info}</p>
+    <p><?php echo $config['info']; ?></p>
   </div>
 </div>
 </body>
