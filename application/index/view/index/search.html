@@ -76,16 +76,20 @@
 <div id="kong">
     <div class="query">
         <div class="title">请输入订单号，交易单号，联系方式查询</div>
-        <form action="/search" method="post">
+        <form action="{:url('index/search')}" method="get">
             <div class="in">
-                <div class="in_l"><input type="text" name="content" placeholder="请输入订单号，交易单号，联系方式查询"/></div>
+                <div class="in_l"><input type="text" name="orderno" value="{$Think.get.orderno}" placeholder="请输入订单号，交易单号，联系方式查询"/></div>
                 <div class="in_r"><input type="submit" value="订单查询" /></div>
             </div>
         </form>
         <br/>
 <!--        <div class="title2">注意：超过24小时的订单禁止查询，如果您想长期保留订单，请您注册成为我们的会员。</div>-->
         <br/><font size="4" color="#000000" title="这是您最近的购买记录">这是您的购买记录</font>
-        <br/> <table width="100%" border="0" cellspacing="0" cellpadding="10">
+        <br/>
+        {notempty name='info'}
+        <br/><font size="4" style="color: #ff2222" title="抱歉，没有搜索到{$Think.get.order}的相关结果！">抱歉，没有搜索到{$Think.get.order}的相关结果！</font>
+        {else /}
+        <table width="100%" border="0" cellspacing="0" cellpadding="10">
             <tr>
                 <th scope="col">类型</th>
                 <th scope="col">订单号</th>
@@ -107,9 +111,9 @@
                         {/if}</font>
                 </td>
                 <td align="center">{$vo.order_no}</td>
-                <td ><div align="left"><a target="_blank" href="{:url('index/trade')}?id={$order.gid}">{$goods[$vo.gid]}</a></div></td>
+                <td ><div align="left"><a target="_blank" href="{:url('index/trade')}?id={$vo.gid}">{$goods[$vo.gid]}</a></div></td>
                 <td align="center">{$vo.num}个</td>
-                <td align="center">{$vo.danypay}元</td>
+                <td align="center">{$vo.danpay}元</td>
                 <td align="center">{$vo.countpay}元</td>
                 <td align="center">
                     {if condition='$vo.status eq 1'}
@@ -124,18 +128,21 @@
 
                 <td align="center">
                      <!-- 已经支付 -->
+                    {eq name='$vo.status' value='0'}
+                     <!-- 未支付 todo -->
+                    【<a href="/jxgoumai?id={$vo.id}" target="_blank" >付款</a>】【<a  style="cursor:pointer" onclick="del()" >删除</a>】
+                    {else /}
+                     <!-- 已经支付    -->
                     {if condition='$vo.status eq 1'}
                     <a href="{:url('index/orderinfo')}?orderno={$vo.order_no}" title="点击查看卡密" target="_blank" class="button button-highlight button-rounded button-tiny">提卡</a>
-
-                    <font style="cursor:pointer;" color="#ff4351">联系客服退款</font>
-
+                    {elseif condition='$vo.status eq 2' /}
                     <font style="cursor:pointer;" color="#ff4351">已发货</font>
-
+                    {elseif condition='$vo.status eq 3' /}
+                    <font style="cursor:pointer;" color="#ff4351">联系客服退款</font>
+                    {else /}
                     <font style="cursor:pointer" color="#CCCCCC">未发货</font>
-
-                     <!-- 未支付 -->
-                    【<a href="/jxgoumai?id={$order.id}" target="_blank" >付款</a>】【<a  style="cursor:pointer" onclick="del({$order.id})" >删除</a>】
-
+                    {/if}
+                    {/eq}
                 </td>
             </tr>	
             {/volist}
@@ -143,9 +150,11 @@
         <br/>
         <div class='text-right'>
             <ul class='pagination'>
+                {$orders->render()}
                 <li><span class="rows">共{$count}条</span></li>
             </ul>
         </div>
+        {/notempty}
     </div>
 
 

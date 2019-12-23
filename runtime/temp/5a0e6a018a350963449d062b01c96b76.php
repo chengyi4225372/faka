@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\search.html";i:1574145965;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\search.html";i:1576909711;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1576907381;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
 
 <!DOCTYPE html> 
 
@@ -77,7 +77,7 @@
     <!-- todo 点击的时候就有class  -->
                 <ul id="nav"> 
                     <li><a      href="/">商品首页</a></li>
-                    <li><a      href="<?php echo url('configcom/search'); ?>">游客订单查询</a></li>
+                    <li><a      href="<?php echo url('index/search'); ?>">游客订单查询</a></li>
                     <li><a      href="<?php echo url('configcom/address'); ?>">兑换地址</a></li>
                     <li><a      href="<?php echo url('configcom/about'); ?>">关于我们</a></li>
                     <li><a      href="<?php echo url('configcom/help'); ?>">帮助中心？</a></li>
@@ -85,9 +85,6 @@
 
             </div>
         </div>
-
-
-
         <br/>
 
 
@@ -168,15 +165,20 @@
 <div id="kong">
     <div class="query">
         <div class="title">请输入订单号，交易单号，联系方式查询</div>
-        <form action="/search" method="post">
+        <form action="<?php echo url('index/search'); ?>" method="get">
             <div class="in">
-                <div class="in_l"><input type="text" name="content" placeholder="请输入订单号，交易单号，联系方式查询"/></div>
+                <div class="in_l"><input type="text" name="orderno" value="<?php echo \think\Request::instance()->get('orderno'); ?>" placeholder="请输入订单号，交易单号，联系方式查询"/></div>
                 <div class="in_r"><input type="submit" value="订单查询" /></div>
             </div>
-        </form><br/>
+        </form>
+        <br/>
 <!--        <div class="title2">注意：超过24小时的订单禁止查询，如果您想长期保留订单，请您注册成为我们的会员。</div>-->
         <br/><font size="4" color="#000000" title="这是您最近的购买记录">这是您的购买记录</font>
-        <br/> <table width="100%" border="0" cellspacing="0" cellpadding="10">
+        <br/>
+        <?php if(!(empty($info) || (($info instanceof \think\Collection || $info instanceof \think\Paginator ) && $info->isEmpty()))): ?>
+        <br/><font size="4" style="color: #ff2222" title="抱歉，没有搜索到<?php echo \think\Request::instance()->get('order'); ?>的相关结果！">抱歉，没有搜索到<?php echo \think\Request::instance()->get('order'); ?>的相关结果！</font>
+        <?php else: ?>
+        <table width="100%" border="0" cellspacing="0" cellpadding="10">
             <tr>
                 <th scope="col">类型</th>
                 <th scope="col">订单号</th>
@@ -188,38 +190,58 @@
                 <th scope="col">日期</th>
                 <th scope="col">操作</th>
             </tr>
-            <?php if(is_array($orders) || $orders instanceof \think\Collection || $orders instanceof \think\Paginator): $i = 0; $__LIST__ = $orders;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$order): $mod = ($i % 2 );++$i;?>
+            <?php if(is_array($orders) || $orders instanceof \think\Collection || $orders instanceof \think\Paginator): $i = 0; $__LIST__ = $orders;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
             <tr>
-                <td align="center"><font color="#FF0000"><?php if($order['type'] == 1): ?> 自动发货<?php else: ?>手动发货<?php endif; ?></font></td>
-                <td align="center"><?php echo $order['order_no']; ?></td>
-                <td ><div align="left"><a target="_blank" href="/trade?id=<?php echo $order['gid']; ?>"><?php echo $order['goodsname']; ?></a></div></td>
-                <td align="center"><?php echo $order['count']; ?>个</td>
-                <td align="center"><?php echo $order['danjia']; ?>元</td>
-                <td align="center"><?php echo $order['price']; ?>元</td>
                 <td align="center">
-                    <?php if($order['status'] == 1): ?>
+                    <font color="#FF0000">
+                        <?php if($vo['huo'] == 0): ?>
+                        自动发货<?php else: ?>
+                        手动发货
+                        <?php endif; ?></font>
+                </td>
+                <td align="center"><?php echo $vo['order_no']; ?></td>
+                <td ><div align="left"><a target="_blank" href="<?php echo url('index/trade'); ?>?id=<?php echo $vo['gid']; ?>"><?php echo $goods[$vo['gid']]; ?></a></div></td>
+                <td align="center"><?php echo $vo['num']; ?>个</td>
+                <td align="center"><?php echo $vo['danpay']; ?>元</td>
+                <td align="center"><?php echo $vo['countpay']; ?>元</td>
+                <td align="center">
+                    <?php if($vo['status'] == 1): ?>
                     <font style="cursor:pointer;" color="#ff4351">已付款</font>
-                    <?php else: ?>
+                    <?php endif; if($vo['status'] == 0): ?>
                     <font style="cursor:pointer" color="#CCCCCC">未付款</font>
                     <?php endif; ?>
                 </td>  
-                <td><a title="<?php echo $order['time']; ?>"><?php echo $order['time']; ?></a></td>		
+                <td><a title="<?php echo $vo['create_time']; ?>"><?php echo $vo['create_time']; ?></a></td>
+
                 <td align="center">
-                    <?php if($order['status'] == 1): if($order['type'] == 1): ?>
-                    <a href="/tika?id=<?php echo $order['id']; ?>" title="点击查看卡密" target="_blank" class="button button-highlight button-rounded button-tiny">提卡</a>
-                    <?php else: if($order['fahuo'] == 2): ?>
-                    <font style="cursor:pointer;" color="#ff4351">联系客服退款</font>
-                    <?php endif; if($order['fahuo'] == 1): ?>
+                     <!-- 已经支付 -->
+                    <?php if($vo['status'] == '0'): ?>
+                     <!-- 未支付 todo -->
+                    【<a href="/jxgoumai?id=<?php echo $vo['id']; ?>" target="_blank" >付款</a>】【<a  style="cursor:pointer" onclick="del()" >删除</a>】
+                    <?php else: ?>
+                     <!-- 已经支付    -->
+                    <?php if($vo['status'] == 1): ?>
+                    <a href="<?php echo url('index/orderinfo'); ?>?orderno=<?php echo $vo['order_no']; ?>" title="点击查看卡密" target="_blank" class="button button-highlight button-rounded button-tiny">提卡</a>
+                    <?php elseif($vo['status'] == 2): ?>
                     <font style="cursor:pointer;" color="#ff4351">已发货</font>
-                    <?php endif; if($order['fahuo'] == 0): ?>
+                    <?php elseif($vo['status'] == 3): ?>
+                    <font style="cursor:pointer;" color="#ff4351">联系客服退款</font>
+                    <?php else: ?>
                     <font style="cursor:pointer" color="#CCCCCC">未发货</font>
-                    <?php endif; endif; else: ?>
-                    【<a href="/jxgoumai?id=<?php echo $order['id']; ?>" target="_blank" >付款</a>】【<a  style="cursor:pointer" onclick="del(<?php echo $order['id']; ?>)" >删除</a>】
-                    <?php endif; ?>
+                    <?php endif; endif; ?>
                 </td>
             </tr>	
             <?php endforeach; endif; else: echo "" ;endif; ?>
-        </table><br/> <div  class='text-right'><ul class='pagination'>       <li><span class="rows">共<?php echo $count; ?>条</span> </li></ul></div></div>
+        </table>
+        <br/>
+        <div class='text-right'>
+            <ul class='pagination'>
+                <?php echo $orders->render(); ?>
+                <li><span class="rows">共<?php echo $count; ?>条</span></li>
+            </ul>
+        </div>
+        <?php endif; ?>
+    </div>
 
 
 </div>

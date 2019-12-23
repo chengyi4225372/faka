@@ -204,6 +204,7 @@ class Index extends Base
             $goods  = array_column($good,'title','id');
             $this->assign('orders',$info);
             $this->assign('goods',$goods);
+            $this->assign('count',$count);
             return $this->fetch();
         }
         return false;

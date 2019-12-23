@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:113:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\configcom\address.html";i:1566973489;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1567136309;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:113:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\configcom\address.html";i:1566973489;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1576907381;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
 
 
 <!DOCTYPE html> 
@@ -78,7 +78,7 @@
     <!-- todo 点击的时候就有class  -->
                 <ul id="nav"> 
                     <li><a      href="/">商品首页</a></li>
-                    <li><a      href="<?php echo url('configcom/search'); ?>">游客订单查询</a></li>
+                    <li><a      href="<?php echo url('index/search'); ?>">游客订单查询</a></li>
                     <li><a      href="<?php echo url('configcom/address'); ?>">兑换地址</a></li>
                     <li><a      href="<?php echo url('configcom/about'); ?>">关于我们</a></li>
                     <li><a      href="<?php echo url('configcom/help'); ?>">帮助中心？</a></li>
@@ -86,9 +86,6 @@
 
             </div>
         </div>
-
-
-
         <br/>
 
 
