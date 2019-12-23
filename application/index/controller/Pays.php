@@ -113,7 +113,7 @@ class Pays extends Controller
 
                        //卡密没有获取到
                        if($list== false || empty($list)){
-                           echo "<script>alert('卡密不存在，请联系网站管理处理！');window.location.history(-1);</script>";
+                           echo "<script>alert('卡密不存在，请联系网站管理处理！');window.location.go(-1);</script>";
                        }
 
                        foreach ($list as $k =>$val){

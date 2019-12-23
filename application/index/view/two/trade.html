@@ -155,12 +155,12 @@
             var max = $('#maxnum').val();
             var counts = $('#counts').val();
             if(num < min || num =='' || num == undefined){
-                layer.msg('购买商品太少了，无法发货');
+                layer.msg('最少购买数量是'+min);
                 return false;
             }
 
             if(num > max){
-                layer.msg('商品购买数量太多了，我们无法发货');
+                layer.msg('商品购买数量最大是'+max);
                 return false;
             }
 

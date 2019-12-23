@@ -180,6 +180,12 @@
 
       var  url = "{:url('pays/index')}";
 
+      if(types == '' || types== undefined){
+          layer.msg('请选择支付类型');
+          return false;
+      }
+
+
       window.location.href=url+"?types="+types+"&goodnames="+goodnames+"&order_no="+order_no+"&paynum="+paynum+"&sitename="+sitename;
 
    })
