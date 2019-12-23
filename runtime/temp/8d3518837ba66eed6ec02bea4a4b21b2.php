@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:103:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\two\buy.html";i:1577087217;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombhead.html";i:1571190314;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombfoot.html";i:1571190465;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:103:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\two\buy.html";i:1577088868;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombhead.html";i:1571190314;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombfoot.html";i:1571190465;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -158,7 +158,9 @@
         <div class="am-g">
             <div class="payment-list">
                 <ul>
+                    <?php if(!(empty(\think\Session::get('info')) || ((\think\Session::get('info') instanceof \think\Collection || \think\Session::get('info') instanceof \think\Paginator ) && \think\Session::get('info')->isEmpty()))): ?>
                     <li class="yu" data-paytype="yu" ><i class="payment-icon-yu"></i></li>
+                    <?php endif; ?>
                     <li class="tenpay" data-paytype="alipay"><i class="payment-icon-cft">支付宝支付</i></li>
                     <li class="wx " data-paytype="wx" ><i class="payment-icon-wx">微信支付</i></li>
                     <li class="qq" data-paytype="qq" ><i class="payment-icon-qq">QQ支付</i></li>
@@ -255,8 +257,9 @@
             var  order_no  = $('#order').val();//商户订单号
             var  paynum    = $('#payment').val(); //商品总价
             var  sitename  = '栗子发卡网';
-            var  url = "<?php echo url('pays/index'); ?>";
-        ;
+            var  url = "<?php echo url('@index/pays/index'); ?>";
+
+
             if(types == '' || types == undefined || types =='undefined'){
                 layer.msg('请选择支付类型');
                 return false;
@@ -272,7 +275,6 @@
             }
 
             window.location.href=url+"?types="+types+"&goodnames="+goodnames+"&order_no="+order_no+"&paynum="+paynum+"&sitename="+sitename;
-
         }
 
     </script>

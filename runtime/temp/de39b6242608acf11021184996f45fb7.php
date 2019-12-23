@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:106:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\index.html";i:1576134962;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userhead.html";i:1576140186;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userfoot.html";i:1576140011;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:106:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\index.html";i:1577083565;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userhead.html";i:1577083497;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userfoot.html";i:1576140011;}*/ ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -37,7 +37,9 @@
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#header-navbar">
-                        <span class="sr-only">Toggle navigation</span>
+                        <span class="sr-only">
+                            <a href="/" target="_blank">首页</a>
+                        </span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -98,6 +100,10 @@
                             </li>
 
                             <li class="list-group-item ">
+                                <a href="/"><i class="glyphicon glyphicon-thumbs-up"></i> 回到首页</a>
+                            </li>
+
+                            <li class="list-group-item ">
                                 <a href="<?php echo url('login/lout'); ?>"><i class="fa fa-sign-out fa-fw"></i> 安全退出</a>
                             </li>
                         </ul>
@@ -112,9 +118,11 @@
         <div class="panel-body">
             <h2 class="page-header">
                 会员中心                        
-<!--                <a href="/index/user/profile.html" class="btn btn-success pull-right">
+<!--
+    <a href="/index/user/profile.html" class="btn btn-success pull-right">
                     <i class="fa fa-pencil"></i>
-                    个人资料</a>-->
+                    个人资料</a>
+  -->
             </h2>
             <div class="row user-baseinfo">
 

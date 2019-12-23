@@ -158,14 +158,6 @@ class Pays extends Controller
                    $this->redirect('index/sdfahuo',['orderno'=>$out_trade_no]);
                }
            }
-               //手机端
-               if($order['huo'] ==0){
-                   $this->redirect('@index/mobile/zdfahuo',['orderno'=>$out_trade_no]);
-               }
-               if($order['huo'] ==1){
-                   $this->redirect('@index/mobile/sdfahuo',['orderno'=>$out_trade_no]);
-               }
-
 
         } else {
             echo "验证失败";

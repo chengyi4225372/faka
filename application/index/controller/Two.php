@@ -200,8 +200,8 @@ class Two extends Base
         if($this->request->isGet()){
             $orders = input('get.orderno','','trim');
             //根据订单 商品 id 查询卡密
-            $info = Db::name('order')->where(['order_no'=>$orders])->find();
-
+            $info = Db::name('order')->where(['order_no'=>$orders])->find(); //订单详情
+            $cardlist = Db::name('card')->where(['oid'=>$info['id'],'over'=>1])->select();
             $this->assign('info',$info);
             return $this->fetch();
         }
