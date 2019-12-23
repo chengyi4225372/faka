@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\mobile\index.html";i:1577072471;s:103:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\mobilehead.html";i:1576225073;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\mobile\index.html";i:1577083599;s:103:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\mobilehead.html";i:1576225073;}*/ ?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -94,7 +94,7 @@ $(document).ready(function(){
 
 
 <div class="m_userx w">
-    <a target="blank" href="http://wpa.qq.com/msgrd?v=3&uin=1111&site=qq&menu=yes">
+    <a target="blank" href="http://wpa.qq.com/msgrd?v=3&uin=<?php echo $config['kefu']; ?>&site=qq&menu=yes">
         <img  style="CURSOR: pointer" border="0" SRC=/mobile/sink/img/pa alt="发送消息给我"></a>&nbsp;&nbsp;
     &nbsp;&nbsp;客服<?php echo (isset($config['kefu']) && ($config['kefu'] !== '')?$config['kefu']:''); ?> </div>
 <div class="search w">
@@ -143,7 +143,7 @@ $(document).ready(function(){
                               <span class="am-badge am-badge-success" style="margin-left: 5px">代充</span>
                               </span>&nbsp;
                             <span class="bl_type" style="background-color:#B187C1;">销量(<?php echo floatval($vo['paynum']); ?>)</span> ￥<?php echo floatval($vo['money']); ?>&nbsp;&nbsp;&nbsp;
-                            <font color="#F8A059">批发价￥<?php echo $vo['pipay']; ?></font>
+                            <font color="#F8A059">批发价￥<?php echo floatval($vo['pipay']); ?></font>
                         </div>
                         <?php endif; ?>
                        </div>
