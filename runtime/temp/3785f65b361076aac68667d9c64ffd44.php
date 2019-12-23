@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\mobile\trade.html";i:1576220010;s:103:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\mobilehead.html";i:1576225073;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\mobile\trade.html";i:1576499553;s:103:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\mobilehead.html";i:1576225073;}*/ ?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -189,7 +189,7 @@ $(document).ready(function(){
               layer.msg('请输入电话信息');
               return false;
              }
-            var num = $.trim($('#p_num').val()); //商品购买数量
+            var num = $('#p_num').val(); //商品购买数量
             var bei = $('#bei').val();
             var min = $('#minnum').val();
             var max = $('#maxnum').val();
@@ -211,7 +211,7 @@ $(document).ready(function(){
 
             num = num * bei;
             var danpay   = $('#danpay').val();//单价
-            var countpay = parseInt((num * bei) * danpay); //总价
+            var countpay = (num * bei) * danpay; //总价
 
             $.post(urls,{'gid':gid,'member_id':member_id,'mobile':mobile,'num':num,'huo':0,'danpay':danpay,'countpay':countpay},function(ret){
                       if(ret.code == 200){

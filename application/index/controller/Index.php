@@ -115,15 +115,15 @@ class Index extends Base
           //正常用户
           if($user['level'] == 1){
               $countpay = $this->param['data']['countpay'];
-          }
-
-          //普通代理
-          if($user['level'] == 2){
+          }else if($user['level'] == 2){
+              //普通代理
               $countpay = $this->param['data']['countpay'] * $goodpay['nomal'];
-          }
-          //高级
-          if($user['level'] == 3){
+          } else if($user['level'] == 3){
+              //高级
               $countpay = $this->param['data']['countpay'] * $goodpay['high'];
+          }else{
+              //正常
+              $countpay = $this->param['data']['countpay'];
           }
 
           $array = [
@@ -183,7 +183,7 @@ class Index extends Base
    public function sdfahuo(){
         if($this->request->isGet()){
             $orders = input('get.orderno','','trim');
-            $info   = Db::name('order')->where(['order_no'=>$orders])->field('order_no,countpay')->find();
+            $info   = Db::name('order')->where(['order_no'=>$orders])->field('order_no,countpay,content')->find();
             $this->assign('info',$info);
             return $this->fetch();
         }
@@ -194,10 +194,13 @@ class Index extends Base
    public function search(){
         if($this->request->isGet()){
             $orders = input('get.orderno','','trim');
-            $w =[
-                'order_no'=>$orders,
-                'mobile|order_no'=>['like','%'.$orders.'%'],
-            ];
+
+            if(!empty($orders) ||!is_null($orders) || isset($orders)){
+                $w =[
+                    'order_no|mobile'=>$orders,
+                    'is_delete'=>0,
+                ];
+            }
             $info   = Db::name('order')->where($w)->paginate(15);
             $count  = Db::name('order')->where($w)->count();
             $good   = Db::name('goods')->order('id desc')->select();

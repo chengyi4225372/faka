@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\mobile\index.html";i:1576152311;s:103:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\mobilehead.html";i:1576225073;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\mobile\index.html";i:1577072471;s:103:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\mobilehead.html";i:1576225073;}*/ ?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -98,9 +98,9 @@ $(document).ready(function(){
         <img  style="CURSOR: pointer" border="0" SRC=/mobile/sink/img/pa alt="发送消息给我"></a>&nbsp;&nbsp;
     &nbsp;&nbsp;客服<?php echo (isset($config['kefu']) && ($config['kefu'] !== '')?$config['kefu']:''); ?> </div>
 <div class="search w">
-    <form action="/search" method="post">
-        <input name="content" type="text" class="search_input" placeholder="请输入订单号查询">
-        <input name="submit" type="submit" class="search_submit" value="查询">
+    <form action="<?php echo url('mobile/search'); ?>" method="get">
+        <input name="orderno" type="text" class="search_input" value="<?php echo \think\Request::instance()->get('orderno'); ?>" placeholder="请输入订单号查询">
+        <input  type="submit" class="search_submit" value="查询">
     </form>
 </div>
 <div class="baoliao w">

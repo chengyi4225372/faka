@@ -199,12 +199,10 @@
                 moban.push($("#title"+i).text());
                 moban.push($("#moban"+i).val());;
             }
-            console.log(moban);
         }else{
             data.num  = 1; //手动默认购买一个
             moban ='';
         }
-        console.log(moban);
         data.content  = JSON.stringify(moban);
         data.danpay   = money;
         data.countpay = money * data.num;

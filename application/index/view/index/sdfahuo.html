@@ -10,6 +10,7 @@
   <img src="/index/images/fkcg.png" alt="付款成功" width="50px">
   <span style="height:60px;vertical-align:middle;font-size:24px;color:#333333">恭喜您！付款成功！</span>
   <p style="color:#999999">订单编号：{$info.order_no}<br>支付金额：{$info.countpay|floatval}元</p>
+  <p style="color:#999999">订单信息：{$info.content}</p>
   <a type="button" class="am-btn am-btn-success" href="{:url('index/search')}?orderno={$info.order_no}">查看订单</a>
 </div>
 {include file='public:foot'/}

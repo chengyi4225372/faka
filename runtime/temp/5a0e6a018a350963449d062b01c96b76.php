@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\search.html";i:1576909711;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1576907381;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\search.html";i:1577065442;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1576907381;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
 
 <!DOCTYPE html> 
 
@@ -175,7 +175,7 @@
 <!--        <div class="title2">注意：超过24小时的订单禁止查询，如果您想长期保留订单，请您注册成为我们的会员。</div>-->
         <br/><font size="4" color="#000000" title="这是您最近的购买记录">这是您的购买记录</font>
         <br/>
-        <?php if(!(empty($info) || (($info instanceof \think\Collection || $info instanceof \think\Paginator ) && $info->isEmpty()))): ?>
+        <?php if(empty($orders) || (($orders instanceof \think\Collection || $orders instanceof \think\Paginator ) && $orders->isEmpty())): ?>
         <br/><font size="4" style="color: #ff2222" title="抱歉，没有搜索到<?php echo \think\Request::instance()->get('order'); ?>的相关结果！">抱歉，没有搜索到<?php echo \think\Request::instance()->get('order'); ?>的相关结果！</font>
         <?php else: ?>
         <table width="100%" border="0" cellspacing="0" cellpadding="10">

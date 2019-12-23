@@ -86,7 +86,7 @@
 <!--        <div class="title2">注意：超过24小时的订单禁止查询，如果您想长期保留订单，请您注册成为我们的会员。</div>-->
         <br/><font size="4" color="#000000" title="这是您最近的购买记录">这是您的购买记录</font>
         <br/>
-        {notempty name='info'}
+        {empty name='orders'}
         <br/><font size="4" style="color: #ff2222" title="抱歉，没有搜索到{$Think.get.order}的相关结果！">抱歉，没有搜索到{$Think.get.order}的相关结果！</font>
         {else /}
         <table width="100%" border="0" cellspacing="0" cellpadding="10">
@@ -154,7 +154,7 @@
                 <li><span class="rows">共{$count}条</span></li>
             </ul>
         </div>
-        {/notempty}
+        {/empty}
     </div>
 
 

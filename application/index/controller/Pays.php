@@ -108,13 +108,12 @@ class Pays extends Controller
                 }
 
                if($order['huo'] ==0){
-
-                       $list = Db::name('card')->where(['gid'=>$order['gid']])->order('id asc')->limit(0,$order['num'])->select();
+                       //获取没有使用的卡密
+                       $list = Db::name('card')->where(['gid'=>$order['gid'],'over'=>0,'oid'=>null])->order('id asc')->limit(0,$order['num'])->select();
 
                        //卡密没有获取到
                        if($list== false || empty($list)){
-                           echo "<script>alert('卡密不存在，请联系网站管理处理！')</script>";
-                           exit();
+                           echo "<script>alert('卡密不存在，请联系网站管理处理！');window.location.history(-1);</script>";
                        }
 
                        foreach ($list as $k =>$val){
@@ -281,7 +280,7 @@ class Pays extends Controller
 
                 if($order['huo'] ==0){
 
-                    $list = Db::name('card')->where(['gid'=>$order['gid']])->order('id asc')->limit(0,$order['num'])->select();
+                    $list = Db::name('card')->where(['gid'=>$order['gid'],'over'=>0,'oid'=>null])->order('id asc')->limit(0,$order['num'])->select();
 
                     //卡密没有获取到
                     if($list== false || empty($list)){

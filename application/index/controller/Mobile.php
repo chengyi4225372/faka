@@ -136,10 +136,27 @@ class Mobile extends Controller
        return false;
     }
 
-    /**搜索 todo**/
+    /**搜索 手机号 订单号**/
     public function search()
     {
-        return $this->fetch();
+       if($this->request->isGet()){
+           $orders = input('get.orderno','','trim');
+
+           if(!empty($orders) || !is_null($orders)|| isset($orders)){
+               $w = [
+                  'order_no|mobile'=>$orders,
+                  'is_delete'=>0,
+               ];
+           }
+
+           $info = Db::name('order')->where($w)->order('create_time desc')->paginate(15);
+           $good =  Db::name('goods')->order('id desc')->select();
+           $goods = array_column($good,'title','id');
+           $this->assign('goods',$goods);
+           $this->assign('info',$info);
+           return $this->fetch();
+       }
+        return false;
     }
 
     /**卡密详情**/
@@ -166,7 +183,7 @@ class Mobile extends Controller
     {
         if($this->request->isGet()){
             $orders = input('get.orderno','','trim');
-            $info   = Db::name('order')->where(['order_no'=>$orders])->field('order_no,countpay,huo')->find();
+            $info   = Db::name('order')->where(['order_no'=>$orders])->field('order_no,countpay,huo,content')->find();
             $this->assign('info',$info);
             return $this->fetch();
         }
