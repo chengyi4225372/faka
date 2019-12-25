@@ -183,8 +183,9 @@ class Two extends Base
                    'is_delete'=>0,
                ];
            }
-           $info = Db::name('order')->where($w)->order('create_time desc')->paginate(15);
-           $good =  Db::name('goods')->order('id desc')->select();
+           
+           $info = Db::name('order')->where($w)->order('create_time desc')->paginate(15); //订单
+           $good = Db::name('goods')->order('id desc')->select(); //商品列表
            $goods = array_column($good,'title','id');
            $this->assign('goods',$goods);
            $this->assign('info',$info);

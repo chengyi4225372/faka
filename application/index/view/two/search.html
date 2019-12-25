@@ -8,7 +8,7 @@
                 </header>
                 <div class="am-panel-bd">
                     <ul class="am-list am-list-static" >
-                        <li class="am-text-truncate">订单编号：{$orders.order_no}</li>
+                        <li class="am-text-truncate">订单编号：{$orders['order_no']}</li>
                         <li class="am-text-truncate">商品名称：{$goods[$orders.gid]}</li>
                         <li>下单时间：{$orders.create_time}</li>
                         <li>支付价格：￥{$orders.countpay}</li>
@@ -36,7 +36,7 @@
                 </div>
             </section>
             <script src="/static/twomb/js/clipboard.min.js"></script>
-            {if condition='$order.huo eq 0'}
+            {if condition='$orders.huo eq 0'}
             <section class="am-panel" style="margin-top:5px;margin-bottom: 5px;border: #ccc 1px solid;">
                 <header class="am-topbar-inverse" style="padding:15px;color:#3c3c3c">
                     <h3 class="am-panel-title" style="text-align:center;color: #fff">
@@ -50,7 +50,7 @@
                     {/volist}
                     <br>
                 </div>
-                <div style="text-align:right;padding: 10px"><a class="am-btn am-topbar-inverse" style="color:#fff" href="/daochu?order_no={$order.order_no}" target="_blank">导出</a>
+                <div style="text-align:right;padding: 10px"><a class="am-btn am-topbar-inverse" style="color:#fff" href="{:url('two/daochu')}?order_no={$orders.order_no}" target="_blank">导出</a>
                     <button class="am-btn am-topbar-inverse" data-clipboard-action="copy" data-clipboard-target="#target" id="copy_btn">
                         复制
                     </button>
@@ -82,7 +82,7 @@
                     });
                 }
             </script> 
-       <center>{include file='public:foot'/}</center>
+       <center>{include file='public:twombfoot'/}</center>
         </div>
 
     </body>

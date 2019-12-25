@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:106:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\two\search.html";i:1577089848;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombhead.html";i:1571190314;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:106:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\two\search.html";i:1577256062;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombhead.html";i:1571190314;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -66,7 +66,7 @@
                 </header>
                 <div class="am-panel-bd">
                     <ul class="am-list am-list-static" >
-                        <li class="am-text-truncate">订单编号：<?php echo $orders['order_no']; ?></li>
+                        <li class="am-text-truncate">订单编号：1111</li>
                         <li class="am-text-truncate">商品名称：<?php echo $goods[$orders['gid']]; ?></li>
                         <li>下单时间：<?php echo $orders['create_time']; ?></li>
                         <li>支付价格：￥<?php echo $orders['countpay']; ?></li>
@@ -92,7 +92,7 @@
                 </div>
             </section>
             <script src="/static/twomb/js/clipboard.min.js"></script>
-            <?php if($order['huo'] == 0): ?>
+            <?php if($orders['huo'] == 0): ?>
             <section class="am-panel" style="margin-top:5px;margin-bottom: 5px;border: #ccc 1px solid;">
                 <header class="am-topbar-inverse" style="padding:15px;color:#3c3c3c">
                     <h3 class="am-panel-title" style="text-align:center;color: #fff">
@@ -106,7 +106,7 @@
                     <?php endforeach; endif; else: echo "" ;endif; ?>
                     <br>
                 </div>
-                <div style="text-align:right;padding: 10px"><a class="am-btn am-topbar-inverse" style="color:#fff" href="/daochu?order_no=<?php echo $order['order_no']; ?>" target="_blank">导出</a>
+                <div style="text-align:right;padding: 10px"><a class="am-btn am-topbar-inverse" style="color:#fff" href="<?php echo url('two/daochu'); ?>?order_no=<?php echo $orders['order_no']; ?>" target="_blank">导出</a>
                     <button class="am-btn am-topbar-inverse" data-clipboard-action="copy" data-clipboard-target="#target" id="copy_btn">
                         复制
                     </button>
