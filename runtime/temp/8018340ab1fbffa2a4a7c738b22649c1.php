@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:106:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\two\search.html";i:1577089838;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombhead.html";i:1571190314;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:106:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\two\search.html";i:1577089848;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombhead.html";i:1571190314;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -59,7 +59,7 @@
         </header>
         <div class="am-container" style="padding:2px">
 
-            {volist name='info' id='orders'}
+            <?php if(is_array($info) || $info instanceof \think\Collection || $info instanceof \think\Paginator): $i = 0; $__LIST__ = $info;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$orders): $mod = ($i % 2 );++$i;?>
             <section class="am-panel" style="margin-top:5px;margin-bottom: 5px;border: #ccc 1px solid">
                 <header class="am-topbar-inverse" style="padding:15px;color:#">
                     <h3 class="am-panel-title" style="text-align:center">订单信息</h3>
@@ -92,7 +92,27 @@
                 </div>
             </section>
             <script src="/static/twomb/js/clipboard.min.js"></script>
-        
+            <?php if($order['huo'] == 0): ?>
+            <section class="am-panel" style="margin-top:5px;margin-bottom: 5px;border: #ccc 1px solid;">
+                <header class="am-topbar-inverse" style="padding:15px;color:#3c3c3c">
+                    <h3 class="am-panel-title" style="text-align:center;color: #fff">
+                        卡密信息
+                    </h3>
+                </header>
+
+                <div class="am-panel-bd" style="font-weight:bold;" id="target">
+                    <?php if(is_array($cardlist) || $cardlist instanceof \think\Collection || $cardlist instanceof \think\Paginator): $i = 0; $__LIST__ = $cardlist;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$card): $mod = ($i % 2 );++$i;?>
+                    <?php echo $card['kami']; ?><br>
+                    <?php endforeach; endif; else: echo "" ;endif; ?>
+                    <br>
+                </div>
+                <div style="text-align:right;padding: 10px"><a class="am-btn am-topbar-inverse" style="color:#fff" href="/daochu?order_no=<?php echo $order['order_no']; ?>" target="_blank">导出</a>
+                    <button class="am-btn am-topbar-inverse" data-clipboard-action="copy" data-clipboard-target="#target" id="copy_btn">
+                        复制
+                    </button>
+                </div>
+            </section>
+             <?php endif; endforeach; endif; else: echo "" ;endif; ?>
             <script>
                 $(document).ready(function() {
                     var clipboard = new Clipboard('#copy_btn');

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:105:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\two\trade.html";i:1577085301;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombhead.html";i:1571190314;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombfoot.html";i:1571190465;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:105:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\two\trade.html";i:1577243298;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombhead.html";i:1571190314;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombfoot.html";i:1571190465;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -202,6 +202,17 @@
         }
         $("#p_num").val(count);
     }
+   
+    //手机验证
+    function checkPhone(phone) {
+        var tel_reg = /^1(3|4|5|6|7|8|9)\d{9}$/;
+        if (tel_reg.test(phone)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     //生成订单 商城模板
     $('#paysubmit').click(function(){
@@ -216,6 +227,11 @@
 
             if(mobile == '' || mobile == undefined || mobile == 'undefined'){
                 layer.msg('请输入电话信息');
+                return false;
+            }
+
+            if(checkPhone(mobile) == false){
+                layer.msg('电话号码不合法');
                 return false;
             }
             var num = $('#p_num').val(); //商品购买数量
@@ -263,6 +279,11 @@
 
             if(mobile =='' || mobile == undefined || mobile =='undefined'){
                 layer.msg('请输入用户信息');
+                return false;
+            }
+
+            if(checkPhone(mobile) == false){
+                layer.msg('电话号码不合法');
                 return false;
             }
 
