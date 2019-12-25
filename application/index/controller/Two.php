@@ -183,7 +183,7 @@ class Two extends Base
                    'is_delete'=>0,
                ];
            }
-           
+
            $info = Db::name('order')->where($w)->order('create_time desc')->paginate(15); //订单
            $good = Db::name('goods')->order('id desc')->select(); //商品列表
            $goods = array_column($good,'title','id');
@@ -227,7 +227,7 @@ class Two extends Base
     {
         if($this->request->isGet()){
             $orders = input('get.orderno','','trim');
-            $good   =  Db::name('goods')->select();
+            $good   = Db::name('goods')->select();
             $info   = Db::name('order')->field('order_no,create_time,gid,id,huo,content')->where(['order_no'=>$orders])->find();
             $goods  = array_column($good,'title','id');
             $cardlist = Db::name('card')->where(['oid'=>$info['id'],'over'=>1])->select();

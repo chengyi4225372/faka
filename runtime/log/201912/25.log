@@ -1628,3 +1628,146 @@
 [ sql ] [ SQL ] SELECT * FROM `bear_content` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.000000s ]
 [ sql ] [ SQL ] SHOW COLUMNS FROM `bear_card` [ RunTime:0.000000s ]
 [ sql ] [ SQL ] SELECT gid,count(kami) as num FROM `bear_card` WHERE  `over` = 0 GROUP BY `gid` [ RunTime:0.001001s ]
+---------------------------------------------------------------
+[ 2019-12-25T16:41:11+08:00 ] 127.0.0.1 GET /index/two/help.html
+[ info ] local.lizi.com/index/two/help.html [运行时间：0.086005s][吞吐率：11.63req/s] [内存消耗：3,418.29kb] [文件加载：65]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'two',
+    2 => 'help',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'thinkphp_show_page_trace=0|0; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576905939,1577067900; PHPSESSID=mvlrrhrqp0tp359ve4vadf7h90',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/two/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Two->help[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\Two.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\two\help.html [ array (
+  0 => 'config',
+  1 => 'shouye',
+  2 => 'content',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.004001s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.003000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_content` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_content` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_content` WHERE  `id` = 5 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_content` WHERE  `id` = 21 LIMIT 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2019-12-25T16:41:15+08:00 ] 127.0.0.1 GET /index/login/login.html
+[ info ] local.lizi.com/index/login/login.html [运行时间：0.084005s][吞吐率：11.90req/s] [内存消耗：3,364.21kb] [文件加载：64]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'login',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576905939,1577067900; PHPSESSID=mvlrrhrqp0tp359ve4vadf7h90',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/two/help.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Login->login[ C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\controller\Login.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'bearadmin_',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\login\login.html [ array (
+  0 => 'config',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=localhost;port=3306;dbname=lizi;charset=utf8mb4
+[ sql ] [ SQL ] SHOW COLUMNS FROM `bear_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `bear_config` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001001s ]
+---------------------------------------------------------------
+[ 2019-12-25T16:41:15+08:00 ] 127.0.0.1 GET /static/index/sink/img/logo.png
+[ info ] local.lizi.com/static/index/sink/img/logo.png [运行时间：0.053003s][吞吐率：18.87req/s] [内存消耗：2,011.18kb] [文件加载：53]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'static',
+    1 => 'index',
+    2 => 'sink',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576905939,1577067900; PHPSESSID=mvlrrhrqp0tp359ve4vadf7h90',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/login/login.html',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+  'img' => 'logo.png',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-12-25T16:41:21+08:00 ] 127.0.0.1 POST /search
+[ info ] local.lizi.com/search [运行时间：0.063003s][吞吐率：15.87req/s] [内存消耗：2,012.45kb] [文件加载：53]
+[ info ] [ LANG ] C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'search',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=mvlrrhrqp0tp359ve4vadf7h90; Hm_lvt_a251280bf86f57cd4043cbbb98c55f57=1576905939,1577067900,1577263276; Hm_lpvt_a251280bf86f57cd4043cbbb98c55f57=1577263276',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://local.lizi.com/index/two/help.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'upgrade-insecure-requests' => '1',
+  'origin' => 'http://local.lizi.com',
+  'cache-control' => 'max-age=0',
+  'content-length' => '21',
+  'connection' => 'close',
+  'host' => 'local.lizi.com',
+)
+[ info ] [ PARAM ] array (
+  'content' => '2019121634340',
+)
+[ info ] [ LOG ] INIT File
