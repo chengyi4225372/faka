@@ -154,7 +154,30 @@ class Order extends Base
        }
 
     }
+   
 
+    /**
+     * 补单
+     * 未支付修改为支付
+     */
+     public function budan(){
+         if($this->request->isGet()){
+             $id = input('get.id','','int');
+             if(empty($id) || is_null($id) || !isset($id) || $id<=0){
+                 return false;
+             }
+             
+             $res = Db::name('order')->where(['id'=>$id,'is_delete'=>0])->data(['status'=>1])->update();
+             
+             if($res !== false){
+                return  json(['code'=>200,'msg'=>'补单成功']);
+             }else{
+                return  json(['code'=>400,'msg'=>'补单失败']);
+             }
+
+         }
+         return false;
+     }
 
 
     //代充订单
@@ -173,6 +196,6 @@ class Order extends Base
     //补单
     public function overorder()
     {
-        return  111;
+        
     }
 }

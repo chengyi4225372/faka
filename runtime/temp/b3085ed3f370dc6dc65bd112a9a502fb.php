@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\order\zedit.html";i:1574133703;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\order\zedit.html";i:1577327364;}*/ ?>
 
 
 <link rel="stylesheet" href="/static/admin/css/app.min.css">
@@ -19,11 +19,8 @@
                                     <input  id="order_no" name="order_no" value="<?php echo $info['order_no']; ?>" class="form-control" placeholder="">
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-
-                    <div class="fields-group">
+                        </div> 
+                       
                         <div class="form-group">
                             <label for="title" class="col-sm-2 control-label">支付类型</label>
                             <div class="col-sm-10 col-md-4">
@@ -40,7 +37,9 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
+
 
 
                     <div class="fields-group">

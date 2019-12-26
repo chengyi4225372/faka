@@ -118,9 +118,11 @@
                         </td>
                         <td>{$vo.create_time}</td>
                         <td class="td-do">
-                            <a href="edit.html" class="btn btn-success btn-xs" title="修改">
+                            {eq name='$vo.status' value='0'}
+                            <a onclick='budan(this)' data-id='{$vo.id}' data-href="{:url('order/budan')}" class="btn btn-success btn-xs" title="修改">
                                 <i class="fa fa-pencil">补单</i>
                             </a>
+                            {/eq}
                             <a data-href="{:url('order/zedit',array('id'=>$vo.id))}" class="btn btn-primary btn-xs edit" title="修改">
                                 <i class="fa fa-pencil">查看订单</i>
                             </a>
@@ -189,4 +191,27 @@
                 location.href= url+"?gid="+gid+"&paytype="+paytype;
             })
 
+           
+            /** 补单 **/ 
+            function budan(obj){
+                var urls = $(obj).attr('data-href');
+                var id   = $(obj).attr('data-id'); 
+                if(urls  == '' || urls  == undefined){
+                    return false;
+                }
+
+                $.get(urls,{'id':id},function(ret){
+                      if(ret.code == 200){
+                          layer.msg(ret.msg,{icon:6},function(){
+                              parent.location.reload();
+                          })
+                      }
+
+                      if(ret.code == 400){
+                          layer.msg(ret.msg,{icon:5},function(){
+                              parent.location.reload();
+                          })
+                      }
+                },'json')
+            }
         </script>

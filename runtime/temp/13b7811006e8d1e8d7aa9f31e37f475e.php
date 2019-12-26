@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\order\person.html";i:1576026674;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\view\template\layout.html";i:1567134813;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\order\person.html";i:1577329229;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\view\template\layout.html";i:1567134813;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -247,9 +247,11 @@
                         <td><?php echo $vo['mobile']; ?></td>
                         <td><?php echo $vo['create_time']; ?></td>
                         <td class="td-do">
-                            <a href="edit.html" class="btn btn-success btn-xs" title="修改">
+                            <?php if($vo['status'] == '0'): ?>
+                            <a onclick='budan(this)' data-id='<?php echo $vo['id']; ?>' data-href="<?php echo url('order/budan'); ?>" class="btn btn-success btn-xs" title="修改">
                                 <i class="fa fa-pencil">补单</i>
                             </a>
+                            <?php endif; ?>
                             <a  data-href="<?php echo url('order/pedit',array('id'=>$vo['id'])); ?>" class="btn btn-primary btn-xs pedit" title="修改">
                                 <i class="fa fa-pencil">编辑订单</i>
                             </a>
@@ -322,6 +324,29 @@
                 location.href= url+"?gid="+gid+"&paytype="+paytype;
 
             })
+
+            /** 补单 */
+            function budan(obj){
+                var urls = $(obj).attr('data-href');
+                var id   = $(obj).attr('data-id');
+                if(urls  == '' || urls  == undefined){
+                    return false;
+                }
+
+                $.get(urls,{'id':id},function(ret){
+                      if(ret.code == 200){
+                          layer.msg(ret.msg,{icon:6},function(){
+                              parent.location.reload();
+                          })
+                      }
+
+                      if(ret.code == 400){
+                          layer.msg(ret.msg,{icon:5},function(){
+                              parent.location.reload();
+                          })
+                      }
+                },'json')
+            }
         </script>
         </section>
     </div>
