@@ -106,11 +106,11 @@
                         </td>
                         <td>{$vo.create_time}</td>
                         <td class="td-do">
-                            {eq name='$vo.status' value='0'}
+                         
                             <a onclick='budan(this)' data-id='{$vo.id}' data-href="{:url('order/budan')}" class="btn btn-success btn-xs" title="修改">
                                 <i class="fa fa-pencil">补单</i>
                             </a>
-                            {/eq}
+                        
                             <a data-href="{:url('order/zedit',array('id'=>$vo.id))}" class="btn btn-primary btn-xs edit" title="修改">
                                 <i class="fa fa-pencil">查看订单</i>
                             </a>

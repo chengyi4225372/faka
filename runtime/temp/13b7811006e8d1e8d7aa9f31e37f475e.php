@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\order\person.html";i:1577343720;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\view\template\layout.html";i:1567134813;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\order\person.html";i:1577349655;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\view\template\layout.html";i:1567134813;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -239,11 +239,11 @@
                         <td><?php echo $vo['mobile']; ?></td>
                         <td><?php echo $vo['create_time']; ?></td>
                         <td class="td-do">
-                            <?php if($vo['status'] == '0'): ?>
+            
                             <a onclick='budan(this)' data-id='<?php echo $vo['id']; ?>' data-href="<?php echo url('order/budan'); ?>" class="btn btn-success btn-xs" title="修改">
                                 <i class="fa fa-pencil">补单</i>
                             </a>
-                            <?php endif; ?>
+                        
                             <a  data-href="<?php echo url('order/pedit',array('id'=>$vo['id'])); ?>" class="btn btn-primary btn-xs pedit" title="修改">
                                 <i class="fa fa-pencil">编辑订单</i>
                             </a>
