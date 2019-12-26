@@ -191,22 +191,10 @@ class Order extends Base
      }
 
 
-    //代充订单
-    public function dorder()
-    {
-        return $this->fetch();
-    }
+
+/**
+ * 去掉代充订单
+ */
 
 
-    //充值记录
-    public function chong()
-    {
-        return $this->fetch();
-    }
-
-    //补单
-    public function overorder()
-    {
-        
-    }
 }
