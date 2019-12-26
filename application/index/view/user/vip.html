@@ -22,8 +22,8 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">充值</label>
                     <div class="layui-input-block" id='daili'>
-                        <input type="radio" name="daili" checked="" value="1" title="普通代理(1000元)" >
-                        <input type="radio" name="daili" value="2" title="高级代理(100元)" >
+                        <input type="radio" name="daili" checked="" value="1" title="普通代理({$config.nomal|floatval}元)" data-money='{$config.nomal|floatval}' />
+                        <input type="radio" name="daili" value="2" title="高级代理({$config.high|floatval}元)" data-money='{$config.high|floatval}'>
                     </div>
                 </div>
 

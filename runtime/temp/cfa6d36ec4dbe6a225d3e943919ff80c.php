@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:104:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\vip.html";i:1576142143;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userhead.html";i:1577083038;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userfoot.html";i:1576140011;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:104:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\vip.html";i:1577326596;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userhead.html";i:1577083497;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userfoot.html";i:1576140011;}*/ ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -100,6 +100,10 @@
                             </li>
 
                             <li class="list-group-item ">
+                                <a href="/"><i class="glyphicon glyphicon-thumbs-up"></i> 回到首页</a>
+                            </li>
+
+                            <li class="list-group-item ">
                                 <a href="<?php echo url('login/lout'); ?>"><i class="fa fa-sign-out fa-fw"></i> 安全退出</a>
                             </li>
                         </ul>
@@ -132,8 +136,8 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">充值</label>
                     <div class="layui-input-block" id='daili'>
-                        <input type="radio" name="daili" checked="" value="1" title="普通代理(1000元)" >
-                        <input type="radio" name="daili" value="2" title="高级代理(100元)" >
+                        <input type="radio" name="daili" checked="" value="1" title="普通代理(<?php echo floatval($config['nomal']); ?>元)" data-money='<?php echo floatval($config['nomal']); ?>' />
+                        <input type="radio" name="daili" value="2" title="高级代理(<?php echo floatval($config['high']); ?>元)" data-money='<?php echo floatval($config['high']); ?>'>
                     </div>
                 </div>
 

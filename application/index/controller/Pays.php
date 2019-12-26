@@ -329,8 +329,8 @@ class Pays extends Controller
         $parameter = array(
             "pid" =>$pay['pid'],
             "type" => $type,
-            "notify_url"	=>"http://".$_SERVER['HTTP_HOST']."/index/pays/notify_url",
-            "return_url"	=>"http://".$_SERVER['HTTP_HOST']."/index/user/recharge",
+            "notify_url"	=>"http://".$_SERVER['HTTP_HOST']."/index/pays/add_notify_url",
+            "return_url"	=>"http://".$_SERVER['HTTP_HOST']."/index/pays/add_return_url",
             "out_trade_no"	=> $out_trade_no,
             "name"	=> $name,
             "money"	=> $money,
@@ -344,7 +344,95 @@ class Pays extends Controller
 
         echo $html_text;
     }
+    
+    /**
+     * 充值支付
+     * 异步
+     */
+    public function add_notify_url(){
 
+    }
+
+    /**
+     * 充值支付
+     * 同步
+     */
+     public function add_return_url(){
+        $alipayNotify = new AlipayNotify($this->alipay_config);
+        $verify_result = $alipayNotify->verifyReturn();
+
+        if($verify_result) {//验证成功
+            //商户订单号
+            $out_trade_no = $_GET['out_trade_no'];
+            //支付宝交易号
+            $trade_no = $_GET['trade_no'];
+            //交易状态
+            $trade_status = $_GET['trade_status'];
+            //支付方式
+            $type = $_GET['type'];
+
+            if($trade_status == 'TRADE_SUCCESS') {
+                //判断该笔订单是否在商户网站中已经做过处理
+                //如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
+                //如果有做过处理，不执行商户的业务程序
+
+                //查询订单类型
+                $order  = Db::name('member')->where(['member_no'=>$out_trade_no])->find(); //根据订单号查询
+
+                if($order['status'] == 1){
+                    echo "<script>alert('该订单已经支付')</script>";
+                    exit();
+                }
+
+                //已支付 自动发货 更新卡密与关联订单id
+                $pays =  Db::name('order')->where(['order_no'=>$out_trade_no])->update(array(
+                    'types'=>$type,
+                    'status'=>1,
+                    'trade_no'=>$trade_no,
+                 ));
+
+                //订单支付失败
+                if($pays === false){
+                    echo  "<script>alert('订单支付失败，请重新下单')</script>";
+                }
+
+               if($order['huo'] ==0){
+                       //获取没有使用的卡密
+                       $list = Db::name('card')->where(['gid'=>$order['gid'],'over'=>0,'oid'=>null])->order('id asc')->limit(0,$order['num'])->select();
+
+                       //卡密没有获取到
+                       if($list== false || empty($list)){
+                           echo "<script>alert('卡密不存在，请联系网站管理处理！');window.location.go(-1);</script>";
+                       }
+
+                       foreach ($list as $k =>$val){
+                           $ids[] = $list[$k]['id'];
+                       }
+
+
+                   Db::startTrans();
+                   try {
+                        Db::name('card')->where(['id'=>['in',$ids]])->update(['over'=>1,'oid'=>$order['id']]);
+                       // 提交事务
+                       Db::commit();
+                   } catch (\Exception $e) {
+                       // 回滚事务
+                       Db::rollback();
+                   }
+
+               }
+
+            } else {
+                //echo "trade_status=".$_GET['trade_status'];
+                echo "支付失败！";
+            }
+            //模板信息
+           $this->redirect('user/rechange'); //回到充值页面
+        
+        } else {
+            echo "验证失败";
+        }
+     }
 
 
 

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:110:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\mychongzi.html";i:1576226750;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userhead.html";i:1576140186;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userfoot.html";i:1576140011;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:110:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\mychongzi.html";i:1577325132;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userhead.html";i:1577083497;}*/ ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -37,7 +37,9 @@
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#header-navbar">
-                        <span class="sr-only">Toggle navigation</span>
+                        <span class="sr-only">
+                            <a href="/" target="_blank">首页</a>
+                        </span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -95,6 +97,10 @@
 
                             <li <?php if($path == url('user/recharge') or $path == url('user/vip')): ?> class="list-group-item active" <?php else: ?> class="list-group-item" <?php endif; ?>>
                                 <a href="<?php echo url('user/recharge'); ?>"><i class="fa fa-plane fa-fw"></i> 充值中心</a>
+                            </li>
+
+                            <li class="list-group-item ">
+                                <a href="/"><i class="glyphicon glyphicon-thumbs-up"></i> 回到首页</a>
                             </li>
 
                             <li class="list-group-item ">
@@ -170,28 +176,5 @@
 </div>
 
 </main>
-
-
-
-<script>
-    //Demo 事件
-    layui.use('form', function() {
-        var form = layui.form, layer = layui.layer,
-            $ = layui.jquery;
-        //监听提交
-        form.on('submit(formDemo)', function(data) {
-            //layer.msg(JSON.stringify(data.field));
-            return true;
-        });
-    });
-</script>
-
-
-<footer class="footer" style="clear:both">
-        <p class="copyright"><?php echo $config['info']; ?></p>
-    </footer>
-
-
-
 </body>
 </html>

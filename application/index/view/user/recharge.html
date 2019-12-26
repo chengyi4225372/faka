@@ -36,6 +36,7 @@
                 </div>
 
                 <input type="hidden" id="mid" value="{$Think.session.info.id}" />
+
                 <div class="layui-form-item">
                     <div class="layui-input-block">
                         <button class="layui-btn" lay-submit lay-filter="formDemo"  onclick="paymoney()">立即提交</button>
@@ -54,7 +55,7 @@
 <script>
     function paymoney(){
         var urls    = "{:url('@index/pay/addmoney')}";
-        var types   = $('#account').val();
+        var types   = $.trim($('#account').val());
         var paytype = $("input[name='payment']:checked").val();
         var mid     = $('#mid').val();
 
@@ -64,6 +65,7 @@
         }
 
       //未完成
+
 
     }
 </script>

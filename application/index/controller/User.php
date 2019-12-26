@@ -79,7 +79,8 @@ class User extends Controller
     /***充值页面**/
     public function recharge()
     {
-        if($this->request->isGet()){
+        if($this->request->isGet()){ 
+
             return $this->fetch();
         }
         return false;
