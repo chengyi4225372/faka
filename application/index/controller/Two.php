@@ -184,7 +184,16 @@ class Two extends Base
                ];
            }
 
-           $info = Db::name('order')->where($w)->order('create_time desc')->paginate(15); //订单
+           $info = Db::name('order')->where($w)->order('create_time desc')->select(); //订单
+           //如果是自动发货
+           foreach($info as $k =>$val){
+               if($info[$k]['huo'] ==0){
+                   $info[$k]['cardlist'] = Db::name('card')->where(['oid'=>$info[$k]['id'],'over'=>1])->select();
+               }else {
+                   $info[$k]['cardlist'] = null;
+               }
+           }
+
            $good = Db::name('goods')->order('id desc')->select(); //商品列表
            $goods = array_column($good,'title','id');
            $this->assign('goods',$goods);

@@ -45,17 +45,19 @@
                 </header>
 
                 <div class="am-panel-bd" style="font-weight:bold;" id="target">
-                    {volist name='cardlist' id='card'}
+                    {volist name='$orders.cardlist' id='card'}
                     {$card.kami}<br>
                     {/volist}
                     <br>
                 </div>
-                <div style="text-align:right;padding: 10px"><a class="am-btn am-topbar-inverse" style="color:#fff" href="{:url('two/daochu')}?order_no={$orders.order_no}" target="_blank">导出</a>
+                <div style="text-align:right;padding: 10px"><a class="am-btn am-topbar-inverse" style="color:#fff" href="{:url('two/daochu')}?orderno={$orders.order_no}" target="_blank">导出</a>
                     <button class="am-btn am-topbar-inverse" data-clipboard-action="copy" data-clipboard-target="#target" id="copy_btn">
                         复制
                     </button>
                 </div>
             </section>
+            {else /}
+
              {/if}
             {/volist}
             <script>

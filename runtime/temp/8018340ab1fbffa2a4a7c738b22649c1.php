@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:106:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\two\search.html";i:1577256062;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombhead.html";i:1571190314;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:106:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\two\search.html";i:1577324725;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombhead.html";i:1571190314;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombfoot.html";i:1577263336;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -66,7 +66,7 @@
                 </header>
                 <div class="am-panel-bd">
                     <ul class="am-list am-list-static" >
-                        <li class="am-text-truncate">订单编号：1111</li>
+                        <li class="am-text-truncate">订单编号：<?php echo $orders['order_no']; ?></li>
                         <li class="am-text-truncate">商品名称：<?php echo $goods[$orders['gid']]; ?></li>
                         <li>下单时间：<?php echo $orders['create_time']; ?></li>
                         <li>支付价格：￥<?php echo $orders['countpay']; ?></li>
@@ -101,18 +101,18 @@
                 </header>
 
                 <div class="am-panel-bd" style="font-weight:bold;" id="target">
-                    <?php if(is_array($cardlist) || $cardlist instanceof \think\Collection || $cardlist instanceof \think\Paginator): $i = 0; $__LIST__ = $cardlist;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$card): $mod = ($i % 2 );++$i;?>
+                    <?php if(is_array($orders['cardlist']) || $orders['cardlist'] instanceof \think\Collection || $orders['cardlist'] instanceof \think\Paginator): $i = 0; $__LIST__ = $orders['cardlist'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$card): $mod = ($i % 2 );++$i;?>
                     <?php echo $card['kami']; ?><br>
                     <?php endforeach; endif; else: echo "" ;endif; ?>
                     <br>
                 </div>
-                <div style="text-align:right;padding: 10px"><a class="am-btn am-topbar-inverse" style="color:#fff" href="<?php echo url('two/daochu'); ?>?order_no=<?php echo $orders['order_no']; ?>" target="_blank">导出</a>
+                <div style="text-align:right;padding: 10px"><a class="am-btn am-topbar-inverse" style="color:#fff" href="<?php echo url('two/daochu'); ?>?orderno=<?php echo $orders['order_no']; ?>" target="_blank">导出</a>
                     <button class="am-btn am-topbar-inverse" data-clipboard-action="copy" data-clipboard-target="#target" id="copy_btn">
                         复制
                     </button>
                 </div>
             </section>
-             <?php endif; endforeach; endif; else: echo "" ;endif; ?>
+            <?php else: endif; endforeach; endif; else: echo "" ;endif; ?>
             <script>
                 $(document).ready(function() {
                     var clipboard = new Clipboard('#copy_btn');
@@ -137,35 +137,20 @@
                     });
                 }
             </script> 
-       <center><div id="footer"><div>
-    <a><?php echo $config['info']; ?></a>
-</div></p><br/>
-</div>
-
-<script type="text/javascript">
-    function htmlmsg(a, b) {
-        layer.open({
-            title: a,
-            type: 1,
-            skin: 'layui-layer-rim', //加上边框
-            area: ['410px', '170px'], //宽高
-            content: '<div style="font-size: 12px;color: #f17100;margin:5px;border:5px;padding:5px;"> ' + b + ' </div>'
-        });
-    }
-
-    function htmlmsg2(a, b) {
-        layer.open({
-            title: a,
-            type: 1,
-            skin: 'layui-layer-rim', //加上边框
-            area: ['390px', '180px'], //宽高
-            content: '<div align=center><br/>点击下方的按钮进行查阅<br/><br/><a class="button button-3d button-primary button-rounded button-small" href="/Home/User/down/lb/2/id/' + b + '" target="_blank">查看卡密</a> <a class="button button-3d button-highlight button-rounded button-small" href="/Home/User/down/lb/1/id/' + b + '">下载保存</a> </div>'
-        });
-    }
-</script>
-</body> 
-
-</html> </center>
+       <center>            <div class="tongji"><?php echo (isset($config['info']) && ($config['info'] !== '')?$config['info']:''); ?></div>
+            <form action="<?php echo url('two/search'); ?>" method="get" class="am-modal am-modal-alert" tabindex="-1" id="my-alerts">
+                <div class="am-modal-dialog">
+                  <div class="am-modal-hd">订单查询</div>
+                  <div class="am-modal-bd">
+                    请输入订单号或联系方式
+                      <input type="text" class="am-modal-prompt-input" name="orderno" required>
+                  </div>
+                  <div class="am-modal-footer">
+                    <button type="submit" class="am-btn am-btn-primary" >确定</button>
+                  </div>
+                </div>
+     
+            </form></center>
         </div>
 
     </body>
