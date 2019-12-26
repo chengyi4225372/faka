@@ -13,14 +13,7 @@
                     </div>
 
                     <div class="form-group">
-                        <select name="paytype" id="paytype" class="form-control">
-                            <option value="">请选择...</option>
-
-                            <option value="1" {if condition="$Think.get.paytype eq 1" } selected="" {/if}>支付宝</option>
-                            <option value="2" {if condition="$Think.get.paytype eq 2" } selected="" {/if}>微信</option>
-                            <option value="3" {if condition="$Think.get.paytype eq 3" } selected="" {/if}>qq支付</option>
-
-                        </select>
+                        <input type='text'  id="types" value="{$Think.get.paytype}" class="form-control" placeholder="请输入手机号或者订单号进行查询...">
                     </div>
 
                     <div class="form-group">
@@ -84,14 +77,9 @@
                         </td>
                         <td>{$vo.countpay}</td>
                         <td>
-                            {switch name="vo.paytype"}
-                            {case value="1"}支付宝支付{/case}
-                            {case value="2"}微信支付{/case}
-                            {case value="3"}QQ支付{/case}
-                            {case value="4"}余额支付{/case}
-                            {default /}
-                             <span class="btn btn-danger btn-xs">未支付</span>
-                            {/switch}
+                            {if isset($vo.types)}
+                            {$vo.types}
+                            {/if}
                         </td>
                         <td>
                             {switch name="vo.status"}
@@ -147,7 +135,7 @@
                         title: '编辑订单',
                         shadeClose: true,
                         shade: false,
-                        area: ['60%', '70%'],
+                        area: ['75%', '70%'],
                         content: url,
                     })
             });
@@ -180,7 +168,7 @@
             $('.search').click(function(){
                 var url     = $(this).attr('data-href');
                 var gid     = $('#gid option:selected').val();
-                var paytype = $('#paytype option:selected').val();
+                var paytype = $('#types').val();
 
                 if(gid ==  '' || gid==undefined){
                     layer.msg('请选择商品');
@@ -188,7 +176,7 @@
                 }
 
                 if(paytype ==  '' || paytype==undefined){
-                    layer.msg('请选择支付类型');
+                    layer.msg('请输入订单号或者手机号查询');
                     return ;
                 }
 

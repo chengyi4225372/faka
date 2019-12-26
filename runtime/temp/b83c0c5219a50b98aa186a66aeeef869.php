@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\order\index.html";i:1577329222;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\view\template\layout.html";i:1567134813;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\order\index.html";i:1577341962;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\view\template\layout.html";i:1567134813;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -152,14 +152,7 @@
                     </div>
 
                     <div class="form-group">
-                        <select name="paytype" id="paytype" class="form-control">
-                            <option value="">请选择...</option>
-
-                            <option value="1" <?php if(\think\Request::instance()->get('paytype') == 1): ?> selected="" <?php endif; ?>>支付宝</option>
-                            <option value="2" <?php if(\think\Request::instance()->get('paytype') == 2): ?> selected="" <?php endif; ?>>微信</option>
-                            <option value="3" <?php if(\think\Request::instance()->get('paytype') == 3): ?> selected="" <?php endif; ?>>qq支付</option>
-
-                        </select>
+                        <input type='text'  id="types" value="<?php echo \think\Request::instance()->get('paytype'); ?>" class="form-control" placeholder="请输入手机号或者订单号进行查询...">
                     </div>
 
                     <div class="form-group">
@@ -222,9 +215,8 @@
                         </td>
                         <td><?php echo $vo['countpay']; ?></td>
                         <td>
-                            <?php switch($vo['paytype']): case "1": ?>支付宝支付<?php break; case "2": ?>微信支付<?php break; case "3": ?>QQ支付<?php break; case "4": ?>余额支付<?php break; default: ?>
-                            <span class="btn btn-danger btn-xs">未支付</span>
-                            <?php endswitch; ?>
+                            <?php if(isset($vo['types'])): ?>
+                            <?php echo $vo['types']; endif; ?>
                         </td>
                         <td>
                             <?php switch($vo['status']): case "1": ?>
@@ -275,7 +267,7 @@
                     title: '查看订单',
                     shadeClose: true,
                     shade: false,
-                    area: ['60%', '60%'],
+                    area: ['75%', '70%'],
                     content: url,
                 })
             });
@@ -306,7 +298,7 @@
             $('.search').click(function(){
                 var url = $(this).attr('data-href');
                 var gid = $('#gid option:selected').val();
-                var paytype =$('#paytype option:selected').val();
+                var paytype =$('#types').val();
 
                 if(gid ==  '' || gid==undefined){
                     layer.msg('请选择商品');
@@ -314,7 +306,7 @@
                 }
 
                 if(paytype ==  '' || paytype==undefined){
-                    layer.msg('请选择支付类型');
+                    layer.msg('请输入需要搜索的订单号或者手机号');
                     return ;
                 }
                 location.href= url+"?gid="+gid+"&paytype="+paytype;

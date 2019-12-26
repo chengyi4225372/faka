@@ -20,16 +20,24 @@ class Order extends Base
     public function index()
     {
         $gid     = input('get.gid','','int');
-        $paytype = input('get.paytype','','int');
-
-        if(empty($gid) && empty($paytype)){
-            $w = ['huo'=>0, 'is_delete'=>0];
+        $paytype = input('get.paytype','','trim');
+        if(empty($gid) || empty($paytype)){
+            $w= [
+                'huo'=>0,
+                 'is_delete'=>0,
+            ];
         }
 
         if(!empty($gid) && !empty($paytype)){
-            $w = ['huo'=>0,'is_delete'=>0,'gid'=>$gid,'paytype'=>$paytype];
+            $w = [
+                  'huo'=>0,
+                  'is_delete'=>0,
+                  'gid'=>$gid,
+                  'order_no|mobile'=>$paytype,
+            ];
         }
-
+        
+      
         $list   = Db::name('order')->where($w)->paginate(15);
         $goodes = Db::name('goods')->where('huo',0)->select();
         $member = Db::name('member')->field('id,account')->select();
@@ -75,14 +83,14 @@ class Order extends Base
     public function person()
     {
         $gid     = input('get.gid','','int');
-        $paytype = input('get.paytype','','int');
+        $paytype = input('get.paytype','','trim');
 
         if(empty($gid) && empty($paytype)){
             $w = ['huo'=>1, 'is_delete'=>0];
         }
 
         if(!empty($gid) && !empty($paytype)){
-            $w = ['huo'=>1,'is_delete'=>0,'gid'=>$gid,'paytype'=>$paytype];
+            $w = ['huo'=>1,'is_delete'=>0,'gid'=>$gid,'order_no|mobile'=>$paytype];
         }
 
 
@@ -109,14 +117,17 @@ class Order extends Base
            $info['content'] = json_decode($info['content']);
            $goods= Db::name('goods')->field('id,title')->select();
            $goods= array_column($goods,'title','id');
+           $member = Db::name('member')->field('id ,account')->select();
+           $members= array_column($member,'account','id');
            $this->assign('info',$info);
            $this->assign('goods',$goods);
+           $this->assign('members',$members);
            return $this->fetch();
        }
 
        if($this->request->isAjax()){
            $up = $this->request->param();
-
+          
            if(empty($up['data']['id']) || $up['data']['id']<=0 ){
                return false;
            }

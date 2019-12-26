@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\order\person.html";i:1577343720;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\view\template\layout.html";i:1567134813;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:106:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\goods\addk.html";i:1567049693;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\view\template\layout.html";i:1567134813;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -139,207 +139,124 @@
         <section class="content">
             <div class="row">
     <div class="col-md-12">
-        <div class="box">
-            <div class="box-body">
-                <form class="form-inline" name="searchForm"  method="GET">
-                    <div class="form-group">
-                        <select name="gid" id="gid" class="form-control">
-                            <option value="">请选择...</option>
-                            <?php if(is_array($goodes) || $goodes instanceof \think\Collection || $goodes instanceof \think\Paginator): $i = 0; $__LIST__ = $goodes;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vv): $mod = ($i % 2 );++$i;?>
-                            <option value="<?php echo $vv['id']; ?>" <?php if(\think\Request::instance()->get('gid') == $vv['id']): ?>selected="" <?php endif; ?> ><?php echo $vv['title']; ?></option>
-                            <?php endforeach; endif; else: echo "" ;endif; ?>
-                        </select>
-                    </div>
+        <div class="box box-primary">
+            <form class="form-horizontal dataForm"  method="post" enctype="multipart/form-data">
+                <div class="box-body">
+                    <div class="fields-group">
+                        <input type="hidden" id="vid" value="<?php echo $info['id']; ?>">
 
-                    <div class="form-group">
-                        <input type='text'  id="types" value="<?php echo \think\Request::instance()->get('paytype'); ?>" class="form-control" placeholder="请输入手机号或者订单号进行查询...">
-                    </div>
+                        <div class="form-group">
+                            <label for="goods" class="col-sm-2 control-label">所属类型商品</label>
+                            <div class="col-sm-10 col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-list"></i></span>
+                                    <select name="gid" id="gid" class="form-control">
+                                        <option value="">请选择...</option>
+                                        <?php if(is_array($goods) || $goods instanceof \think\Collection || $goods instanceof \think\Paginator): $i = 0; $__LIST__ = $goods;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;if(isset($info['gid'])): ?>
+                                        <option value="<?php echo $vo['id']; ?>" <?php if($info['gid'] == $vo['id']): ?> selected=""<?php endif; ?>><?php echo $vo['title']; ?></option>
+                                          <?php else: ?>
+                                        <option value="<?php echo $vo['id']; ?>"><?php echo $vo['title']; ?></option>
+                                        <?php endif; endforeach; endif; else: echo "" ;endif; ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
 
-                    <div class="form-group">
-                        <button data-href="<?php echo url('order/person'); ?>"  class="btn btn-sm btn-primary search" type="button">
-                            <i class="fa fa-search"></i> 查询
-                        </button>
-                    </div>
 
-                    <div class="form-group">
-                        <button onclick="clear_form()" class="btn btn-sm btn-" type="button"><i
-                                class="fa  fa-eraser"></i> 清空查询
-                        </button>
-                    </div>
-                </form>
+                        <div class="form-group">
+                            <label for="status" class="col-sm-2 control-label">是否过滤</label>
+                            <div class="col-sm-10 col-md-4">
+                                <div class="input-group iconpicker-container">
+                                    <input <?php if(($info['status']==1)): ?>checked<?php endif; ?> value="<?php echo (isset($info['status']) && ($info['status'] !== '')?$info['status']:'1'); ?>"
+                                           class="form-input-switch" type="checkbox" placeholder="status-switch" data-input="status">
+                                    <input id="status" name="status" value="<?php echo (isset($info['status']) && ($info['status'] !== '')?$info['status']:'0'); ?>" type="hidden"/>
+                                </div>
+                            </div>
+                        </div>
 
-            </div>
+                        <div class="form-group">
+                            <label for="subj" class="col-sm-2 control-label">商品卡密</label>
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    <textarea id="content" name="content" class="form-control" style="height: 300px;width: 350px;" placeholder="商品卡密"><?php echo $info['kami']; ?></textarea>
+                                </div>
+                                <span style="color:#ff2222;">一行显示一个卡密，换一行加一个（多卡上传）</span>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="box-footer">
+                    <div class="col-sm-2">
+                    </div>
+                    <div class="col-sm-10 col-md-4">
+                        <div class="btn-group">
+                            <button type="button" class="btn flat btn-info dataform-submit kami">保存</button>
+                        </div>
+                        <div class="btn-group">
+                            <button type="reset" class="btn flat btn-default dataform-reset">重置</button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
         </div>
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="box">
+<script>
+    function show(){
 
-            <div class="box-body table-responsive">
+        var id  =$('#cid').val();
 
-                <div class="form-group">
-                    <button onclick="clear_form()" class="btn btn-info pull-right" type="button"><i
-                            class="fa  fa-eraser"></i> 删除未完成订单
-                    </button>
-                </div>
+        var url = "<?php echo url('goods/twoselect'); ?>";
 
-                <table class="table table-hover table-bordered datatable" width="100%">
-                    <thead>
-                    <tr>
-                        <th>订单号</th>
-                        <th>商品名称</th>
-                        <th>数量</th>
-                        <th>账号</th>
-                        <th>价格</th>
-                        <th>支付方式</th>
-                        <th>状态</th>
-                        <th>发货方式</th>
-                        <th>联系方式</th>
-                        <th>创建时间</th>
-                        <th>操作</th>
-                    </tr>
-                    </thead>
-                    <?php if(is_array($list) || $list instanceof \think\Collection || $list instanceof \think\Paginator): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-                    <tbody>
-                    <tr>
-                        <td><?php echo $vo['order_no']; ?></td>
-                        <td><?php echo $goods[$vo['gid']]; ?></td>
-                        <td><?php echo $vo['num']; ?></td>
-                        <td>
-                            <?php if(empty($vo['member_id']) || (($vo['member_id'] instanceof \think\Collection || $vo['member_id'] instanceof \think\Paginator ) && $vo['member_id']->isEmpty())): ?>
-                                 游客
-                            <?php else: ?>
-                            <?php echo $info[$vo['member_id']]; endif; ?>
-                        </td>
-                        <td><?php echo $vo['countpay']; ?></td>
-                        <td>
-                            <?php if(isset($vo['types'])): ?>
-                            <?php echo $vo['types']; endif; ?>
-                        </td>
-                        <td>
-                            <?php switch($vo['status']): case "1": ?>
-                            <a class="btn btn-block btn-success btn-xs">已支付</a>
-                            <?php break; case "2": ?>
-                            <a class="btn btn-block btn-linkedin btn-xs">已发货</a>
-                            <?php break; case "3": ?>
-                            <a class="btn btn-block btn-foursquare btn-xs">联系客服退款</a>
-                            <?php break; default: ?>
-                            <a class="btn btn-block btn-primary btn-xs">未支付</a>
-                            <?php endswitch; ?>
-                        </td>
-                        <td>
-                            <?php if($vo['huo'] == '0'): ?>
-                            <a class="btn btn-block btn-flickr btn-xs">自动发货</a>
-                            <?php else: ?>
-                            <a class="btn btn-block btn-github btn-xs">手动发货</a>
-                            <?php endif; ?>
-                        </td>
-                        <td><?php echo $vo['mobile']; ?></td>
-                        <td><?php echo $vo['create_time']; ?></td>
-                        <td class="td-do">
-                            <?php if($vo['status'] == '0'): ?>
-                            <a onclick='budan(this)' data-id='<?php echo $vo['id']; ?>' data-href="<?php echo url('order/budan'); ?>" class="btn btn-success btn-xs" title="修改">
-                                <i class="fa fa-pencil">补单</i>
-                            </a>
-                            <?php endif; ?>
-                            <a  data-href="<?php echo url('order/pedit',array('id'=>$vo['id'])); ?>" class="btn btn-primary btn-xs pedit" title="修改">
-                                <i class="fa fa-pencil">编辑订单</i>
-                            </a>
-                            <a class="btn btn-danger btn-xs del" title="删除" data-id="" data-href="<?php echo url('order/pdel',array('id'=>$vo['id'])); ?>">
-                                <i class="fa fa-trash">删除</i>
-                            </a>
-                        </td>
-                    </tr>
-                    </tbody>
-                    <?php endforeach; endif; else: echo "" ;endif; ?>
+        $.get(url,{id:id},function(ret){
+           $('#gid').find("option").remove();
+           $(ret).each(function(index,item){
+               $("#gid").append("<option value ="+item.id+">"+item.title+"</option>");
+           })
+        },'json')
+    }
 
-                </table>
-            </div>
-        </div>
-        <?php echo $list->render();; ?>
+    $('.kami').click(function(){
+        var dats = {};
+        dats.gid     = $('#gid').val();
+        dats.status  = $('#status').val();
+        dats.content = $('#content').val();
+        dats.id      = $('#vid').val();
 
-        <script>
-            $('.pedit').click(function(){
-                var url = $(this).attr('data-href');
-                layer.open({
-                        type: 2,
-                        title: '编辑订单',
-                        shadeClose: true,
-                        shade: false,
-                        area: ['75%', '70%'],
-                        content: url,
-                    })
-            });
 
-            //删除
-            $('.del').click(function(){
-               var url = $(this).attr('data-href');
-               layer.confirm('您确定删除？',
-                   {btn:['确定','取消']},
-                    function(){
-                       $.get(url,function(ret){
-                           if(ret.code ==200){
-                             layer.msg(ret.msg,function(){
-                                 parent.location.reload();
-                             })
-                           }
-                           if(ret.code == 400){
-                             layer.msg(ret.msg,function(){
-                                 parent.location.reload();
-                             })
-                           }
-                       })
-                    },
-                   function(){
-                    parent.layer.close();
-                   }
-               )
-            });
+        if(dats.gid =='' || dats.gid==undefined){
+            layer.msg('请选择商品',{time:2000});
+            return false;
+        }
 
-            $('.search').click(function(){
-                var url     = $(this).attr('data-href');
-                var gid     = $('#gid option:selected').val();
-                var paytype = $('#types').val();
+        if(dats.content =='' || dats.content==undefined){
+            layer.msg('卡密不能为空',{time:2000});
+            return false;
+        }
+        var url = "<?php echo url('goods/addk'); ?>";
 
-                if(gid ==  '' || gid==undefined){
-                    layer.msg('请选择商品');
-                    return ;
-                }
+        $.post(url,{dats:dats},function(ret){
+             if(ret.code == '200'){
+               layer.msg(ret.msg,{time:2000},function(){
+                   parent.location.href="<?php echo url('goods/klist'); ?>";
+               });
+             };
 
-                if(paytype ==  '' || paytype==undefined){
-                    layer.msg('请输入订单号或者手机号查询');
-                    return ;
-                }
+             if(ret.code == '400'){
+                 layer.msg(ret.msg,{time:2000},function(){
+                     parent.location.reload();
+                 });
+             };
+        },'json')
+    })
 
-                location.href= url+"?gid="+gid+"&paytype="+paytype;
+</script>
 
-            })
-
-            /** 补单 */
-            function budan(obj){
-                var urls = $(obj).attr('data-href');
-                var id   = $(obj).attr('data-id');
-                if(urls  == '' || urls  == undefined){
-                    return false;
-                }
-
-                $.get(urls,{'id':id},function(ret){
-                      if(ret.code == 200){
-                          layer.msg(ret.msg,{icon:6},function(){
-                              parent.location.reload();
-                          })
-                      }
-
-                      if(ret.code == 400){
-                          layer.msg(ret.msg,{icon:5},function(){
-                              parent.location.reload();
-                          })
-                      }
-                },'json')
-            }
-        </script>
         </section>
     </div>
 
