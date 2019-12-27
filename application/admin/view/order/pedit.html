@@ -13,6 +13,111 @@
             <form  class="form-horizontal dataForm" enctype="multipart/form-data">
                 <input type="hidden" id="id" value="{$info.id}">
 
+
+                <div class="box-body">
+                    <table class="table table-bordered">
+                      <tbody>
+                      <tr>
+                        <td>订单号</td>
+                        <td><div>{$info.order_no}</div></td>
+                        <td>支付类型</td>
+                        <td><div>
+                            {if condition = "$info.types eq null"}
+                            null
+                           {elseif condition="$info.types eq 'alipay'" /}
+                           <img src="/index/images/ali.png" style="height: 40px;width: 40px;">
+                           {elseif condition="$info.types eq 'wxpay'" /}
+                           <img src="/index/images/wechat.png" style="height: 40px;width: 40px;">
+                           {elseif condition="$info.types eq 'qqpay'" /}
+                           <img src="/index/images/qq.png" style="height: 40px;width: 40px;">
+                           {else /}
+
+                           {/if}
+                        </div></td>
+                      </tr>
+                      <tr>
+                
+                      </tr>
+
+                      <tr>
+                        <td>商品名称</td>
+                        <td><div>{$goods[$info.gid]}</div></td>
+                        <td>商品数量</td>
+                        <td><div>{$info.num}</div></td>
+                      </tr>
+
+                      <tr>
+                        <td>联系方式</td>
+                        <td><div>{$info.mobile}</div></td>
+                        <td>商品总价</td>
+                        <td><div>{$info.countpay|floatval}</div></td>
+                      </tr>
+
+                      <tr>
+                        <td>支付状态：</td>
+                        <td><div>  
+                            {eq name='$info.status' value='1'}
+                                  已支付
+                                {else /}
+                                  未支付
+                                {/eq}
+                            </div></td>
+                            <td>支付ip：</td>
+                            <td><div>{$info.ip}</div></td>
+                      </tr>
+
+                      <tr>
+                        <td>创建时间：</td>
+                        <td><div>{$info.create_time}</div></td>
+                        <td>订单类型</td>
+                        <td><div>
+                             {eq name='$info.huo' value='0'}
+                              自动发货
+                             {else /}
+                             手动发货
+                             {/eq}
+                        </div></td>
+                      </tr>
+                     
+                      
+                      <tr>
+                        <td>会员账号：</td>
+                        <td><div>
+                         {empty name='$info.member_id'}
+                            非会员订单
+                          {else /}
+                          {$members[$info.member_id]}
+                          {/empty}
+                        </div></td>
+                        <td>发货模板信息</td>
+                        <td><div>
+                         {if condition='$info.content eq null or $info.content eq 0'}
+                          自动发货订单
+                          {else /}
+                          {$info.content}
+                          {/if}
+                        </div></td>
+                      </tr>
+
+                            
+                      <tr>
+                        <td>订单操作：</td>
+                        <td><div>
+                         {if condition='$info.dan eq 1'}
+                         <a class="btn btn-block btn-success btn-xs">正常下单</a>
+                         {else /}
+                         <a class="btn btn-block btn-success btn-xs">补单</a>
+                         {/if}
+                        </div></td>
+                      </tr>
+
+                     
+                      
+                    </tbody>
+                </table>
+                  </div>
+
+                <!--
                 <div class="box-body">
 
                     <div class="fields-group">
@@ -132,7 +237,7 @@
                         </div>
                     </div>
 
-
+   -->
                     <div class="box-footer">
                         <div class="col-sm-2">
                         </div>

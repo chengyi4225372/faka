@@ -7,7 +7,7 @@
                 <ul class="layui-tab-title">
                     <li class="layui-this">在线充值</li>
                     <li><a href="{:url('user/vip')}">开通代理</a></li>
-<!--                    <li><a href="/index/recharge/list.html">充值记录</a></li>-->
+               <!--<li><a href="/index/recharge/list.html">充值记录</a></li>-->
                 </ul>
                 <div class="layui-tab-content"></div>
             </div>  
@@ -16,7 +16,7 @@
                     <label class="layui-form-label">余额</label>
                     <div class="layui-input-block">
                         <div class="layui-form-mid layui-word-aux" style="color:red !important">
-                        
+                           {$Think.session.info.money|floatval|default='null'}
                         </div>
                     </div>
                 </div>

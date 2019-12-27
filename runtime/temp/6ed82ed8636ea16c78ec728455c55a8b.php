@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:109:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\recharge.html";i:1577426712;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userhead.html";i:1577083497;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userfoot.html";i:1576140011;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:109:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\recharge.html";i:1577431528;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userhead.html";i:1577083497;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userfoot.html";i:1576140011;}*/ ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -121,7 +121,7 @@
                 <ul class="layui-tab-title">
                     <li class="layui-this">在线充值</li>
                     <li><a href="<?php echo url('user/vip'); ?>">开通代理</a></li>
-<!--                    <li><a href="/index/recharge/list.html">充值记录</a></li>-->
+               <!--<li><a href="/index/recharge/list.html">充值记录</a></li>-->
                 </ul>
                 <div class="layui-tab-content"></div>
             </div>  
@@ -130,7 +130,7 @@
                     <label class="layui-form-label">余额</label>
                     <div class="layui-input-block">
                         <div class="layui-form-mid layui-word-aux" style="color:red !important">
-                        
+                           <?php echo (floatval(\think\Session::get('info.money')) ?: 'null'); ?>
                         </div>
                     </div>
                 </div>

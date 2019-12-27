@@ -34,7 +34,6 @@ class Login extends Controller
 
           $name = Db::name($this->table)->where(['account'=>$account])->whereOr(['email'=>$account])->find();
 
-
           if(!$name || empty($name)){
               $this->result('','403','用户名不存在','json');
           }

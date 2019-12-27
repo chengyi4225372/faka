@@ -61,6 +61,9 @@ class Order extends Base
         $goods= array_column($goods,'title','id');
         $this->assign('info',$info);
         $this->assign('goods',$goods);
+        $member = Db::name('member')->field('id,account')->order('create_time desc')->select();
+        $members = array_column($member,'account','id');
+        $this->assign('members',$members);
         return $this->fetch();
     }
 

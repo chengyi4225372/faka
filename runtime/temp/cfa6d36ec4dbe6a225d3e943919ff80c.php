@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:104:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\vip.html";i:1577326596;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userhead.html";i:1577083497;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userfoot.html";i:1576140011;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:104:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\vip.html";i:1577434283;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userhead.html";i:1577083497;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userfoot.html";i:1576140011;}*/ ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -126,7 +126,7 @@
                 </ul>
                 <div class="layui-tab-content"></div>
             </div>  
-            <form id="changepwd-form" class="form-horizontal layui-form" role="form" data-toggle="validator"  target="_blank" onclick='return false'>
+            <form id="changepwd-form" class="form-horizontal layui-form" onclick='return false'>
                 <div class="layui-form-item">
                     <label class="layui-form-label">余额</label>
                     <div class="layui-input-block">
@@ -136,27 +136,29 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">充值</label>
                     <div class="layui-input-block" id='daili'>
-                        <input type="radio" name="daili" checked="" value="1" title="普通代理(<?php echo floatval($config['nomal']); ?>元)" data-money='<?php echo floatval($config['nomal']); ?>' />
-                        <input type="radio" name="daili" value="2" title="高级代理(<?php echo floatval($config['high']); ?>元)" data-money='<?php echo floatval($config['high']); ?>'>
+                        <input type="radio" name="daili" <?php if(\think\Session::get('info.level') == '2'): ?> checked="true" <?php endif; ?> value="普通代理" title="普通代理(<?php echo floatval($config['nomal']); ?>元)" data-money='<?php echo floatval($config['nomal']); ?>' />
+                        <input type="radio" name="daili" <?php if(\think\Session::get('info.level') == '3'): ?> checked='true' <?php endif; ?> value="高级代理"  title="高级代理(<?php echo floatval($config['high']); ?>元)" data-money='<?php echo floatval($config['high']); ?>'>
                     </div>
                 </div>
 
                 <div class="layui-form-item">
                     <label class="layui-form-label">方式</label>
                     <div class="layui-input-block">
-                         <input type="radio" name="payment" value="1" title="支付宝">
+                         <input type="radio" name="payment" value="alipay" title="支付宝">
 
-                         <input type="radio" name="payment" value="2" title="微信" >
+                         <input type="radio" name="payment" value="wxpay" title="微信" >
 
-                         <input type="radio" name="payment" value="3" title="QQ钱包" >
+                         <input type="radio" name="payment" value="qqpay" title="QQ钱包" >
 
-                         <input type="radio" name="payment" value="3" checked title="余额支付" >
+                         <input type="radio" name="payment" value="yupay" checked title="余额支付" >
                     </div>
                 </div>
 
+                <input type="hidden" id='mid' value='<?php echo \think\Session::get('info.id'); ?>'  /> 
+
                 <div class="layui-form-item">
                     <div class="layui-input-block">
-                        <button class="layui-btn" lay-submit lay-filter="formDemo" onclick="buyvip()">立即提交</button>
+                        <button class="layui-btn" lay-filter="formDemo" onclick="buyvip()">立即提交</button>
                     </div>
                 </div>
 
@@ -171,6 +173,34 @@
 
 <script>
     //升级 vip
+    function buyvip(){
+       var mid   = $('#mid').val(); //user id
+       var descs = $("input[name='daili']:checked").val(); //升级类型
+       var types = $("input[name='payment']:checked").val(); //选择pay类型 
+
+       if($descs == '' || descs == undefined || descs == 'undefined'){
+           layer.msg('请选择充值类型');
+           return false;
+       }
+
+       if(types == '' || types == undefined){
+           layer.msg('请选择支付类型');
+           return false;
+       }
+
+       if(types == 'yupay'){
+          //yu pay
+          
+       }else {
+         //three pay  
+
+       }
+
+    }
+
+
+
+    /*
         function buyvip() {
             var daili = $('#daili input[name="daili"]:checked ').val();
             $.ajax({
@@ -191,6 +221,7 @@
                 },
             });
         }
+        */
     </script>
 </main>
 

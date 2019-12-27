@@ -80,15 +80,15 @@ class User extends Controller
     public function recharge()
     {
         if($this->request->isGet()){ 
-            $id    = session('info.id');
-            if(!empty($id) || isset($id)){
-                $infos = Db::name('member')->where(['id'=>$id])->find();
-            }else {
-                $infos = '' ;
-            }
-    
-            $this->assign('infos',$infos);
-            return $this->fetch();
+           //需要更新session字段
+           $id   = session('info.id');
+           if(empty($id) || !isset($id)){
+               echo "<script>alert('请退出后再重新登录！');</script>";
+               exit();
+           }
+           $info = Db::name('member')->where(['id'=>$id])->find();
+           session('info',$info);
+           return $this->fetch();
         }
 
         return false;
