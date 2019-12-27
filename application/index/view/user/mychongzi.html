@@ -41,7 +41,7 @@
                           已付款
                         {/eq}
                     </td>
-                    <td>{$pay.create_time}</td>
+                    <td>{$pay.create_time|date='Y-m-d,H:i',###}</td>
                 </tr>
                 </tbody>
                 {/volist}

@@ -4,12 +4,12 @@
             <div class="box-body">
                 <form class="form-inline" name="searchForm" id="searchForm" action="" method="GET">
                     <div class="form-group">
-                        <input value="{$keywords ? $keywords : '' ;}"
-                               name="keywords" id="keywords" class="form-control input-sm" placeholder="帐号/昵称/手机号/邮箱">
+                        <input value="{$Think.get.keywords ? $Think.get.keywords : '' ;}"
+                               name="keywords" id="keywords" class="form-control input-sm" placeholder="根据订单号查询">
                     </div>
 
                     <div class="form-group">
-                        <button class="btn btn-sm btn-primary" type="submit"><i class="fa fa-search"></i> 查询
+                        <button class="btn btn-sm btn-primary searchs" type="button"><i class="fa fa-search"></i> 查询
                         </button>
                     </div>
 
@@ -31,49 +31,128 @@
 
             <div class="box-body table-responsive">
 
-                <div class="form-group">
-                    <button onclick="clear_form()" class="btn btn-info pull-right" type="button"><i
-                            class="fa  fa-eraser"></i> 删除未完成订单
-                    </button>
-                </div>
-
                 <table class="table table-hover table-bordered datatable" width="100%">
                     <thead>
                     <tr>
                         <th>订单号</th>
-                        <th>商品名称</th>
-                        <th>数量</th>
                         <th>账号</th>
-                        <th>价格</th>
-                        <th>支付方式</th>
+                        <th>充值金额</th>
+                        <th>充值方式</th>
                         <th>状态</th>
-                        <th>联系方式</th>
                         <th>创建时间</th>
                         <th>操作</th>
                     </tr>
                     </thead>
+                    {volist name='list' id='vo'}
                     <tbody>
                     <tr>
-                        <td>000</td>
-                        <td>000</td>
-                        <td>000</td>
-                        <td>hhh</td>
-                        <td>不知道</td>
-                        <td>谁说的</td>
-                        <td>二次</td>
-                        <td>二次</td>
-                        <td>二次</td>
+                        <td>{$vo.member_no}</td>
+                        <td>{$members[$vo.mid]}</td>
+                        <td>{$vo.pay|floatval}</td>
+                        <td>{$vo.paytype}</td>
+                        <td>
+                            {eq name='$vo.status' value='1'}
+                            已支付
+                            {else /}
+                            未支付
+                            {/eq}
+                        </td>
+                        <td>{$vo.create_time|date='Y-m-d,H:i:s',###}</td>
                         <td class="td-do">
-                            <a href="edit.html"
+
+                            <a onclick='cedit(this)' data-href="{:url('order/cedit')}" data-id='{$vo.id}'
                                class="btn btn-primary btn-xs" title="修改">
-                                <i class="fa fa-pencil"></i>
+                                <i class="fa fa-pencil">查看详情</i>
                             </a>
-                            <a class="btn btn-danger btn-xs AjaxButton" title="删除" data-id="" data-url="del.html">
-                                <i class="fa fa-trash"></i>
+
+                            <a  onclick='cdels(this)' data-href="{:url('order/cdels')}" data-id='{$vo.id}'
+                             class="btn btn-danger btn-xs AjaxButton" title="删除" data-id="" data-url="del.html">
+                                <i class="fa fa-trash">删除</i>
                             </a>
+                        
                         </td>
                     </tr>
                     </tbody>
+                    {/volist}
                 </table>
             </div>
         </div>
+
+        <script>
+       /** 搜索 **/
+       $('.searchs').click(function(){
+           var urls = "{:url('order/chong')}";
+           var keys = $.trim($('#keywords').val());
+
+           if(keys =='' || keys ==undefined){
+               layer.msg('请输入订单号查询...');
+               return false;
+           }
+
+           window.location.href = urls+"?keywords="+keys;
+       })
+
+
+        
+        /** 编辑 */
+        function cedit(obj){
+             var urls = $(obj).attr('data-href');
+             var id   = $(obj).attr('data-id');
+
+             if(urls == '' ||urls == undefined){
+                 return false;
+             }
+
+             if(id  == '' || id  == undefined || id== 'undefined'){
+                 return false;
+             }
+
+             layer.open({
+                type: 2,
+                title: '查看',
+                shadeClose: true,
+                shade: false,
+                area: ['40%', '58%'],
+                content: urls+"?id="+id,
+                });
+          
+           };
+
+           /** 删除 **/
+           function cdels(obj){
+               var urls = $(obj).attr('data-href');
+               var id   = $(obj).attr('data-id');
+
+             if(urls == '' ||urls == undefined){
+                 return false;
+             }
+
+             if(id  == '' || id  == undefined || id== 'undefined'){
+                 return false;
+             }
+
+             layer.confirm('您确定删除？',
+                   {btn:['确定','取消']},
+                    function(){
+                       $.get(urls,{id:id},function(ret){
+                           if(ret.code ==200){
+                             layer.msg(ret.msg,{icon:6},function(){
+                                 parent.location.reload();
+                             })
+                           }
+                           if(ret.code == 400){
+                             layer.msg(ret.msg,{icon:5},function(){
+                                 parent.location.reload();
+                             })
+                           }
+                       })
+                    },
+                   function(){
+                    parent.layer.close();
+                   }
+               )
+             
+           }
+        
+        
+        </script>

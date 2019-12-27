@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\order\chong.html";i:1565840846;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\view\template\layout.html";i:1567134813;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\order\chong.html";i:1577430155;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\view\template\layout.html";i:1567134813;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -143,12 +143,12 @@
             <div class="box-body">
                 <form class="form-inline" name="searchForm" id="searchForm" action="" method="GET">
                     <div class="form-group">
-                        <input value="<?php echo !empty($keywords)?$keywords : '' ;; ?>"
-                               name="keywords" id="keywords" class="form-control input-sm" placeholder="帐号/昵称/手机号/邮箱">
+                        <input value="<?php echo \think\Request::instance()->get('keywords')?\think\Request::instance()->get('keywords') : '' ;; ?>"
+                               name="keywords" id="keywords" class="form-control input-sm" placeholder="根据订单号查询">
                     </div>
 
                     <div class="form-group">
-                        <button class="btn btn-sm btn-primary" type="submit"><i class="fa fa-search"></i> 查询
+                        <button class="btn btn-sm btn-primary searchs" type="button"><i class="fa fa-search"></i> 查询
                         </button>
                     </div>
 
@@ -170,52 +170,131 @@
 
             <div class="box-body table-responsive">
 
-                <div class="form-group">
-                    <button onclick="clear_form()" class="btn btn-info pull-right" type="button"><i
-                            class="fa  fa-eraser"></i> 删除未完成订单
-                    </button>
-                </div>
-
                 <table class="table table-hover table-bordered datatable" width="100%">
                     <thead>
                     <tr>
                         <th>订单号</th>
-                        <th>商品名称</th>
-                        <th>数量</th>
                         <th>账号</th>
-                        <th>价格</th>
-                        <th>支付方式</th>
+                        <th>充值金额</th>
+                        <th>充值方式</th>
                         <th>状态</th>
-                        <th>联系方式</th>
                         <th>创建时间</th>
                         <th>操作</th>
                     </tr>
                     </thead>
+                    <?php if(is_array($list) || $list instanceof \think\Collection || $list instanceof \think\Paginator): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
                     <tbody>
                     <tr>
-                        <td>000</td>
-                        <td>000</td>
-                        <td>000</td>
-                        <td>hhh</td>
-                        <td>不知道</td>
-                        <td>谁说的</td>
-                        <td>二次</td>
-                        <td>二次</td>
-                        <td>二次</td>
+                        <td><?php echo $vo['member_no']; ?></td>
+                        <td><?php echo $members[$vo['mid']]; ?></td>
+                        <td><?php echo floatval($vo['pay']); ?></td>
+                        <td><?php echo $vo['paytype']; ?></td>
+                        <td>
+                            <?php if($vo['status'] == '1'): ?>
+                            已支付
+                            <?php else: ?>
+                            未支付
+                            <?php endif; ?>
+                        </td>
+                        <td><?php echo date('Y-m-d,H:i:s',$vo['create_time']); ?></td>
                         <td class="td-do">
-                            <a href="edit.html"
+
+                            <a onclick='cedit(this)' data-href="<?php echo url('order/cedit'); ?>" data-id='<?php echo $vo['id']; ?>'
                                class="btn btn-primary btn-xs" title="修改">
-                                <i class="fa fa-pencil"></i>
+                                <i class="fa fa-pencil">查看详情</i>
                             </a>
-                            <a class="btn btn-danger btn-xs AjaxButton" title="删除" data-id="" data-url="del.html">
-                                <i class="fa fa-trash"></i>
+
+                            <a  onclick='cdels(this)' data-href="<?php echo url('order/cdels'); ?>" data-id='<?php echo $vo['id']; ?>'
+                             class="btn btn-danger btn-xs AjaxButton" title="删除" data-id="" data-url="del.html">
+                                <i class="fa fa-trash">删除</i>
                             </a>
+                        
                         </td>
                     </tr>
                     </tbody>
+                    <?php endforeach; endif; else: echo "" ;endif; ?>
                 </table>
             </div>
         </div>
+
+        <script>
+       /** 搜索 **/
+       $('.searchs').click(function(){
+           var urls = "<?php echo url('order/chong'); ?>";
+           var keys = $.trim($('#keywords').val());
+
+           if(keys =='' || keys ==undefined){
+               layer.msg('请输入订单号查询...');
+               return false;
+           }
+
+           window.location.href = urls+"?keywords="+keys;
+       })
+
+
+        
+        /** 编辑 */
+        function cedit(obj){
+             var urls = $(obj).attr('data-href');
+             var id   = $(obj).attr('data-id');
+
+             if(urls == '' ||urls == undefined){
+                 return false;
+             }
+
+             if(id  == '' || id  == undefined || id== 'undefined'){
+                 return false;
+             }
+
+             layer.open({
+                type: 2,
+                title: '查看',
+                shadeClose: true,
+                shade: false,
+                area: ['40%', '58%'],
+                content: urls+"?id="+id,
+                });
+          
+           };
+
+           /** 删除 **/
+           function cdels(obj){
+               var urls = $(obj).attr('data-href');
+               var id   = $(obj).attr('data-id');
+
+             if(urls == '' ||urls == undefined){
+                 return false;
+             }
+
+             if(id  == '' || id  == undefined || id== 'undefined'){
+                 return false;
+             }
+
+             layer.confirm('您确定删除？',
+                   {btn:['确定','取消']},
+                    function(){
+                       $.get(urls,{id:id},function(ret){
+                           if(ret.code ==200){
+                             layer.msg(ret.msg,{icon:6},function(){
+                                 parent.location.reload();
+                             })
+                           }
+                           if(ret.code == 400){
+                             layer.msg(ret.msg,{icon:5},function(){
+                                 parent.location.reload();
+                             })
+                           }
+                       })
+                    },
+                   function(){
+                    parent.layer.close();
+                   }
+               )
+             
+           }
+        
+        
+        </script>
 
         </section>
     </div>

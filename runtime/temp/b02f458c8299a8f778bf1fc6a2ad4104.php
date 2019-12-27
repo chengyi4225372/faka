@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:110:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\mychongzi.html";i:1577325132;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userhead.html";i:1577083497;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:110:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\mychongzi.html";i:1577416443;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userhead.html";i:1577083497;}*/ ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -153,7 +153,7 @@
                           已付款
                         <?php endif; ?>
                     </td>
-                    <td><?php echo $pay['create_time']; ?></td>
+                    <td><?php echo date('Y-m-d,H:i',$pay['create_time']); ?></td>
                 </tr>
                 </tbody>
                 <?php endforeach; endif; else: echo "" ;endif; ?>

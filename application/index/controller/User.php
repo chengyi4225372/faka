@@ -66,7 +66,7 @@ class User extends Controller
             if(checkEmptyid($id)){
                 return false;
             }
-            $paylist = Db::name('member_pay')->where(['id'=>$id,'del_time'=>null])->order('create_time desc')->paginate(15);
+            $paylist = Db::name('member_pay')->where(['mid'=>$id,'del_time'=>null])->order('create_time desc')->paginate(15);
             $member  = Db::name('member')->field('account,id')->where(['id'=>$id,'status'=>1])->select();
             $members = array_column($member,'account','id');
             $this->assign('paylist',$paylist);
@@ -80,9 +80,17 @@ class User extends Controller
     public function recharge()
     {
         if($this->request->isGet()){ 
-
+            $id    = session('info.id');
+            if(!empty($id) || isset($id)){
+                $infos = Db::name('member')->where(['id'=>$id])->find();
+            }else {
+                $infos = '' ;
+            }
+    
+            $this->assign('infos',$infos);
             return $this->fetch();
         }
+
         return false;
     }
 
@@ -96,15 +104,6 @@ class User extends Controller
        return false;
     }
 
-
-    /**成为会员 **/
-    public function setvip(){
-        if($this->request->isPost()){
-
-        }
-
-        return false;
-    }
 
     /***修改密码***/
     public function editpwd()
@@ -137,7 +136,5 @@ class User extends Controller
         }
 
     }
-
-
 
 }

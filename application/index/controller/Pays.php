@@ -320,10 +320,11 @@ class Pays extends Controller
     /**充值提交**/
     public function addmoney(){
         $pay = Db::name($this->pay)->order('id desc')->find(); //支付信息
-        $out_trade_no = create_order();
-        $type = input('get.types','','trim');
-        $name = '充值余额';
-        $money = input('get.paynum');
+        $out_trade_no = create_order(); //订单号
+        $type = input('get.types','','trim'); //充值类型
+        $name = '充值余额'; //充值名称
+        $money = input('get.paynum','','trim');
+        $mid   = input('get.mid','','int'); //member id
 
         //构造要请求的参数数组，无需改动
         $parameter = array(
@@ -336,28 +337,88 @@ class Pays extends Controller
             "money"	=> $money,
             "sitename"	=> '发卡会员充值',
         );
+        
+        //充值记录
+        $succ = [
+             'member_no'=>$out_trade_no,
+             'mid'     =>$mid,
+             'pay'  =>$money,
+             'paytype'=>$type,
+             'create_time' =>time()
+         ];
+       
+        $res  = Db::name('member_pay')->insert($succ);
 
-
-        //建立请求
-        $alipaySubmit = new AlipaySubmit($this->alipay_config);
-        $html_text = $alipaySubmit->buildRequestForm($parameter);
-
-        echo $html_text;
+        if($res !== false){
+          //建立请求
+          $alipaySubmit = new AlipaySubmit($this->alipay_config);
+          $html_text = $alipaySubmit->buildRequestForm($parameter);
+ 
+          echo $html_text;
+        }  
+        return false;      
     }
     
     /**
      * 充值支付
      * 异步
      */
-    public function add_notify_url(){
+    public function add_return_url(){
+        $alipayNotify = new AlipayNotify($this->alipay_config);
+        $verify_result = $alipayNotify->verifyNotify();
 
+        if($verify_result) {//验证成功
+            $out_trade_no = $_GET['out_trade_no'];
+            $trade_no = $_GET['trade_no'];
+            $trade_status = $_GET['trade_status'];
+            $type = $_GET['type'];
+            //充值金额
+            $paynum = $_GET['money'];
+
+            if ($trade_status == 'TRADE_SUCCESS') {
+             /* 订单支付结果处理  */
+
+               //查询改订单是否已经支付
+               $order = Db::name('member_pay')->where(['member_no'=>$out_trade_no])->find();
+
+               if($order['status'] ==1){
+                   echo "<script>alert('该订单已经支付');window.location.go(-1);</script>";
+                   exit();
+               }
+                /* 订单支付结果处理  */
+                
+
+                 //充值成功 更新用户余额   
+                //更新充值 和 用户余额
+                     $newmoney = session('info.money')+$paynum; //原本金额加上充值金额
+                     Db::startTrans();
+                     try {
+                         Db::name('member')->where(['id'=>session('info.id')])->data(['money'=>$newmoney])->update(); //更新用户余额   
+                         Db::name('member_pay')->where(['member_no'=>$out_trade_no])->data(['trade_no'=>$trade_no,'status'=>1])->update(); //更新支付回执单号
+                         // 提交事务
+                         Db::commit();
+                     } catch (\Exception $e) {
+                         // 回滚事务
+                         Db::rollback();
+                     }
+
+                    
+
+            }
+            echo "success";		//请不要修改或删除
+          //模板信息
+           $this->redirect('@index/user/recharge'); //回到充值页面
+        } else {
+            //验证失败
+            echo "fail";
+        }
     }
 
     /**
      * 充值支付
      * 同步
      */
-     public function add_return_url(){
+     public function add_notify_url(){
         $alipayNotify = new AlipayNotify($this->alipay_config);
         $verify_result = $alipayNotify->verifyReturn();
 
@@ -370,6 +431,7 @@ class Pays extends Controller
             $trade_status = $_GET['trade_status'];
             //支付方式
             $type = $_GET['type'];
+       
 
             if($trade_status == 'TRADE_SUCCESS') {
                 //判断该笔订单是否在商户网站中已经做过处理
@@ -377,57 +439,21 @@ class Pays extends Controller
                 //如果有做过处理，不执行商户的业务程序
 
                 //查询订单类型
-                $order  = Db::name('member')->where(['member_no'=>$out_trade_no])->find(); //根据订单号查询
+                $order  = Db::name('member_pay')->where(['member_no'=>$out_trade_no])->find(); //根据订单号查询
 
                 if($order['status'] == 1){
-                    echo "<script>alert('该订单已经支付')</script>";
+                    echo "<script>alert('该订单已经支付');window.location.go(-1);</script>";
                     exit();
                 }
-
-                //已支付 自动发货 更新卡密与关联订单id
-                $pays =  Db::name('order')->where(['order_no'=>$out_trade_no])->update(array(
-                    'types'=>$type,
-                    'status'=>1,
-                    'trade_no'=>$trade_no,
-                 ));
-
-                //订单支付失败
-                if($pays === false){
-                    echo  "<script>alert('订单支付失败，请重新下单')</script>";
-                }
-
-               if($order['huo'] ==0){
-                       //获取没有使用的卡密
-                       $list = Db::name('card')->where(['gid'=>$order['gid'],'over'=>0,'oid'=>null])->order('id asc')->limit(0,$order['num'])->select();
-
-                       //卡密没有获取到
-                       if($list== false || empty($list)){
-                           echo "<script>alert('卡密不存在，请联系网站管理处理！');window.location.go(-1);</script>";
-                       }
-
-                       foreach ($list as $k =>$val){
-                           $ids[] = $list[$k]['id'];
-                       }
-
-
-                   Db::startTrans();
-                   try {
-                        Db::name('card')->where(['id'=>['in',$ids]])->update(['over'=>1,'oid'=>$order['id']]);
-                       // 提交事务
-                       Db::commit();
-                   } catch (\Exception $e) {
-                       // 回滚事务
-                       Db::rollback();
-                   }
-
-               }
+           
+               
 
             } else {
                 //echo "trade_status=".$_GET['trade_status'];
                 echo "支付失败！";
             }
             //模板信息
-           $this->redirect('user/rechange'); //回到充值页面
+           $this->redirect('@index/user/recharge'); //回到充值页面
         
         } else {
             echo "验证失败";

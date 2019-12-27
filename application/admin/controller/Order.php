@@ -178,7 +178,7 @@ class Order extends Base
                  return false;
              }
              
-             $res = Db::name('order')->where(['id'=>$id,'is_delete'=>0])->data(['status'=>1])->update();
+             $res = Db::name('order')->where(['id'=>$id,'is_delete'=>0])->data(['status'=>1,'dan'=>0])->update();
              
              if($res !== false){
                 return  json(['code'=>200,'msg'=>'补单成功']);
@@ -190,6 +190,70 @@ class Order extends Base
          return false;
      }
 
+   
+     /**
+      * 充值记录
+      */
+      public function chong(){
+          $order = input('get.keywords','','trim');
+          if(empty($order) || !isset($order)){
+              $w = [
+               'del_time'=>null,
+              ];
+
+          }else {
+            $w = [
+              'member_no'=>$order,
+              'del_time'=>null,
+            ];
+          }
+
+          $list = Db::name('member_pay')->where($w)->order('create_time desc')->paginate(15);
+          $member = Db::name('member')->field('id,account')->order('create_time desc')->select();
+          $members = array_column($member,'account','id');
+          $this->assign('members',$members);
+          $this->assign('list',$list);
+          return $this->fetch();
+        }
+
+        public function cedit(){
+            if($this->request->isGet()){
+               $id = input('get.id','','int');
+
+               if(empty($id) || !isset($id) || $id <=0){
+                 return false;
+                }
+                $member = Db::name('member')->field('id,account')->order('create_time desc')->select();
+                $members = array_column($member,'account','id');
+                $this->assign('members',$members);
+                
+                $info = Db::name('member_pay')->where(['id'=>$id,'del_time'=>null])->find();
+                $this->assign('info',$info);
+                return $this->fetch();
+            }
+            return false;
+        }
+
+      
+      public function cdels(){
+          if($this->request->isGet()){
+              $id = input('get,id','','int');
+              
+              if(empty($id) || !isset($id) || $id <=0){
+                  return false;
+              }
+             
+             $res = Db::name('member_pay')->where(['id'=>$id])->data(['del_time'=>time()])->update(); 
+
+             if($res !== false){
+                 return json(['code'=>200,'msg'=>'删除成功']);
+             }else{
+                 return json(['code'=>400,'msg'=>'删除失败']);
+             }
+          }
+
+          return  false;
+      }  
 
 
 /**
