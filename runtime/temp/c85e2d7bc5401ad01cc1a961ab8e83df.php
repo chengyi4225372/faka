@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:85:"C:\Users\Administrator\Desktop\faka\public/../application/admin\view\goods\cates.html";i:1577542709;s:79:"C:\Users\Administrator\Desktop\faka\application\admin\view\template\layout.html";i:1577542709;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:89:"C:\Users\Administrator\Desktop\faka\public/../application/admin\view\leveluser\index.html";i:1577618447;s:79:"C:\Users\Administrator\Desktop\faka\application\admin\view\template\layout.html";i:1577542709;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -141,14 +141,15 @@
     <div class="col-md-12">
         <div class="box">
             <div class="box-body">
-                <form class="form-inline" name="searchForm" action="<?php echo url('goods/cates'); ?>" method="GET">
+                <form class="form-inline" name="searchForm"  method="GET">
+
                     <div class="form-group">
-                        <input value="<?php echo \think\Request::instance()->get('keywords')?\think\Request::instance()->get('keywords') : '' ;; ?>"
-                               name="keywords" id="keywords" class="form-control input-sm" placeholder="">
+                        <input type='text'  id="types" value="<?php echo \think\Request::instance()->get('keywords'); ?>" class="form-control" placeholder="请输入订单号进行查询...">
                     </div>
 
                     <div class="form-group">
-                        <button class="btn btn-sm btn-primary" type="submit"><i class="fa fa-search"></i> 查询
+                        <button data-href="<?php echo url('leveluser/index'); ?>"  class="btn btn-sm btn-primary search" type="button">
+                            <i class="fa fa-search"></i> 查询
                         </button>
                     </div>
 
@@ -158,6 +159,7 @@
                         </button>
                     </div>
                 </form>
+
             </div>
         </div>
     </div>
@@ -166,15 +168,18 @@
 <div class="row">
     <div class="col-md-12">
         <div class="box">
+
             <div class="box-body table-responsive">
-                <div class="form-group">
-                    <a title="添加" class="btn btn-primary btn-sm" href="addc.html">添加类型</a>
-                </div>
+
                 <table class="table table-hover table-bordered datatable" width="100%">
                     <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>分类名称</th>
+                        <th>订单号</th>
+                        <th>升级用户</th>
+                        <th>支付类型</th>
+                        <th>支付金额</th>
+                        <th>描述</th>
+                        <th>支付状态</th>
                         <th>创建时间</th>
                         <th>操作</th>
                     </tr>
@@ -182,17 +187,25 @@
                     <?php if(is_array($list) || $list instanceof \think\Collection || $list instanceof \think\Paginator): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
                     <tbody>
                     <tr>
-                        <td><?php echo $vo['id']; ?></td>
-                        <td><?php echo $vo['title']; ?></td>
-                        <td><?php echo $vo['create_time']; ?></td>
+                        <td><?php echo $vo['order']; ?></td>
+                        <td><?php echo $members[$vo['mid']]; ?></td>
+                        <td><?php echo $vo['types']; ?></td>
+                        <td><?php echo floatval($vo['paymoney']); ?></td>
+                        <td><?php echo $vo['descs']; ?></td>
+                        <td>
+                           <?php if($vo['status'] == '1'): ?>
+                            已支付
+                            <?php else: ?>
+                            未支付
+                            <?php endif; ?>
+                        </td>
+                        <td><?php echo date('Y-m-d,H:i:s',$vo['create_time']); ?></td>
                         <td class="td-do">
-                            <a data-href="<?php echo url('goods/nodes',array('id'=>$vo['id'])); ?>" class="btn btn-success btn-xs nodes" title="">
-                                <i class="fa fa-pencil">分类下产品</i>
+
+                            <a data-href="<?php echo url('leveluser/edit',array('id'=>$vo['id'])); ?>" class="btn btn-primary btn-xs edit" title="修改">
+                                <i class="fa fa-pencil">查看详情</i>
                             </a>
-                            <a href="<?php echo url('goods/addc',array('id'=>$vo['id'])); ?>" class="btn btn-primary btn-xs" title="修改">
-                                <i class="fa fa-pencil">编辑</i>
-                            </a>
-                            <a class="btn btn-danger btn-xs" title="删除" href="<?php echo url('goods/delc',array('id'=>$vo['id'])); ?>" >
+                            <a class="btn btn-danger btn-xs del" title="删除"  data-href="<?php echo url('leveluser/del'); ?>" data-id="<?php echo $vo['id']; ?>">
                                 <i class="fa fa-trash">删除</i>
                             </a>
                         </td>
@@ -202,20 +215,55 @@
                 </table>
             </div>
         </div>
-        <?php echo $list->render(); ?>
+        <?php echo $list->render();; ?>
 
         <script>
-            $('.nodes').click(function(){
-
+            //编辑
+            $('.edit').click(function(){
                 var url = $(this).attr('data-href');
                 layer.open({
                     type: 2,
-                    title: '所属分类商品',
+                    title: '查看订单',
                     shadeClose: true,
-                    shade: 0.8,
-                    area: ['70%', '70%'],
-                    content: url //iframe的url
+                    shade: false,
+                    area: ['50%', '60%'],
+                    content: url,
                 })
+            });
+           //删除
+            $('.del').click(function(){
+                var url = $(this).attr('data-href');
+                var id  = $(this).attr('data-id');
+                layer.confirm('是否确定删除？', {
+                    btn: ['确定','取消'] //按钮
+                }, function(){
+                    $.get(url,{'id':id},function(ret){
+                        if(ret.code == 200){
+                            layer.msg(ret.msg,{icon:6},function(){
+                                parent.location.reload();
+                            });
+                        };
+
+                        if(ret.code == 400){
+                            layer.msg(ret.msg,{icon:5},function(){
+                                parent.location.reload();
+                            });
+                        }
+                    },'json')
+                }, function(){
+                    parent.layer.close();
+                });
+            });
+            //搜索
+            $('.search').click(function(){
+                var url = $(this).attr('data-href');
+                var paytype =$('#types').val();
+
+                if(paytype ==  '' || paytype==undefined){
+                    layer.msg('请输入需要搜索的订单号进行查询');
+                    return ;
+                }
+                location.href= url+"?keywords="+paytype;
             })
         </script>
 

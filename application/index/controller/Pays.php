@@ -402,8 +402,6 @@ class Pays extends Controller
                          Db::rollback();
                      }
 
-                    
-
             }
             echo "success";		//请不要修改或删除
           //模板信息
@@ -461,8 +459,147 @@ class Pays extends Controller
      }
 
 
+     //会员升级支付
+    public function levelpay(){
+          $pay = Db::name($this->pay)->order('id desc')->find(); //支付信息
+          $out_trade_no = create_order(); //订单号
+          $type = input('get.types','','trim'); //充值类型
+          $name = input('get.descs','','trim'); //升级类型描述
+          $money = input('get.paymoney','','trim');
+          $mid   = input('get.mid','','int'); //member id
+          $member_level   = input('get.level','','trim'); //member level
+
+          if(session('info.level') == $member_level){
+              echo "<script>alert('您已经是该会员等级了，请勿重复支付升级了！');window.location.go(-1);</script>";
+              exit();
+          }
+
+          //构造要请求的参数数组，无需改动
+          $parameter = array(
+              "pid" =>$pay['pid'],
+              "type" => $type,
+              "notify_url"	=>"http://".$_SERVER['HTTP_HOST']."/index/pays/level_notify_url",
+              "return_url"	=>"http://".$_SERVER['HTTP_HOST']."/index/pays/level_return_url",
+              "out_trade_no"	=> $out_trade_no,
+              "name"	=> $name,
+              "money"	=> $money,
+              "sitename"	=> '发卡会员升级',
+          );
+
+          //充值记录
+          $succ = [
+              'order'=>$out_trade_no,
+              'mid'     =>$mid,
+              'paymoney'  =>$money,
+              'types'=>$type,
+              'descs'=>$name,
+              'member_level'=>$member_level,
+              'create_time' =>time()
+          ];
+
+          $res  = Db::name('level_pay')->insert($succ);
+
+          if($res !== false){
+              //建立请求
+              $alipaySubmit = new AlipaySubmit($this->alipay_config);
+              $html_text = $alipaySubmit->buildRequestForm($parameter);
+
+              echo $html_text;
+          }
+          return false;
+      }
+
+    //升级同步
+    public function level_return_url(){
+        $alipayNotify = new AlipayNotify($this->alipay_config);
+        $verify_result = $alipayNotify->verifyNotify();
+
+        if($verify_result) {//验证成功
+            $out_trade_no = $_GET['out_trade_no'];
+            $trade_no = $_GET['trade_no'];
+            $trade_status = $_GET['trade_status'];
+
+            if ($trade_status == 'TRADE_SUCCESS') {
+                /* 订单支付结果处理  */
+
+                //查询改订单是否已经支付
+                $order = Db::name('level_pay')->where(['order'=>$out_trade_no])->find();
+
+                if($order['status'] ==1){
+                    echo "<script>alert('该订单已经支付');window.location.go(-1);</script>";
+                    exit();
+                }
+
+                if($order['is_del'] == 0){
+                    echo "<script>alert('该订单已经取消');window.location.go(-1);</script>";
+                    exit();
+                }
+                /* 订单支付结果处理  */
+                Db::startTrans();
+                try {
+                    Db::name('level_pay')->where(['order'=>$out_trade_no])->data(['trade_no'=>$trade_no,'status'=>1])->update(); //更新支付回执单号
+                    Db::name('member')->where(['id'=>session('info.id')])->data(['level'=>$order['member_level']])->update(); //更新用户等级
+                    // 提交事务
+                    Db::commit();
+                } catch (\Exception $e) {
+                    // 回滚事务
+                    Db::rollback();
+                }
+            }
+            echo "success";		//请不要修改或删除
+            //模板信息
+            $this->redirect('@index/user/vip'); //回到充值页面
+        } else {
+            //验证失败
+            echo "fail";
+        }
+    }
+
+   //升级异步
+    public function level_notify_url(){
+        $alipayNotify = new AlipayNotify($this->alipay_config);
+        $verify_result = $alipayNotify->verifyReturn();
+
+        if($verify_result) {//验证成功
+            //商户订单号
+            $out_trade_no = $_GET['out_trade_no'];
+            //支付宝交易号
+            $trade_no = $_GET['trade_no'];
+            //交易状态
+            $trade_status = $_GET['trade_status'];
+            //支付方式
+            $type = $_GET['type'];
+
+
+            if($trade_status == 'TRADE_SUCCESS') {
+                //判断该笔订单是否在商户网站中已经做过处理
+                //如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
+                //如果有做过处理，不执行商户的业务程序
+
+                //查询订单类型
+                $order  = Db::name('level_pay')->where(['order'=>$out_trade_no])->find(); //根据订单号查询
+
+                if($order['status'] == 1){
+                    echo "<script>alert('该订单已经支付');window.location.go(-1);</script>";
+                    exit();
+                }
+
+                if($order['is_del'] == 0){
+                    echo "<script>alert('该订单已经取消');window.location.go(-1);</script>";
+                    exit();
+                }
 
 
 
+            } else {
+                //echo "trade_status=".$_GET['trade_status'];
+                echo "支付失败！";
+            }
+            //模板信息
+            $this->redirect('@index/user/vip'); //回到充值页面
 
+        } else {
+            echo "验证失败";
+        }
+    }
 }

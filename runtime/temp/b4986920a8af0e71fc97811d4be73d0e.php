@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:82:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\user\vip.html";i:1577612858;s:79:"C:\Users\Administrator\Desktop\faka\application\index\view\public\userhead.html";i:1577610618;s:79:"C:\Users\Administrator\Desktop\faka\application\index\view\public\userfoot.html";i:1577542709;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:82:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\user\vip.html";i:1577617850;s:79:"C:\Users\Administrator\Desktop\faka\application\index\view\public\userhead.html";i:1577610618;s:79:"C:\Users\Administrator\Desktop\faka\application\index\view\public\userfoot.html";i:1577542709;}*/ ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -130,14 +130,14 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">余额</label>
                     <div class="layui-input-block">
-                        <div class="layui-form-mid layui-word-aux" style="color:red !important"><?php echo (\think\Session::get('info.money') ?: '0.00'); ?></div>
+                        <div class="layui-form-mid layui-word-aux" style="color:red !important"><?php echo (floatval(\think\Session::get('info.money')) ?: '0.00'); ?></div>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">充值</label>
                     <div class="layui-input-block" id='daili'>
-                        <input type="radio" name="daili" <?php if(\think\Session::get('info.level') == '2'): ?> checked="true" <?php endif; ?> value="普通代理" title="普通代理(<?php echo floatval($config['nomal']); ?>元)" data-money='<?php echo floatval($config['nomal']); ?>' />
-                        <input type="radio" name="daili" <?php if(\think\Session::get('info.level') == '3'): ?> checked='true' <?php endif; ?> value="高级代理"  title="高级代理(<?php echo floatval($config['high']); ?>元)" data-money='<?php echo floatval($config['high']); ?>'>
+                        <input type="radio" name="daili" <?php if(\think\Session::get('info.level') == '2'): ?> checked="true" <?php endif; ?> value="普通代理" title="普通代理(<?php echo floatval($config['nomal']); ?>元)" data-level='2' data-money='<?php echo floatval($config['nomal']); ?>' />
+                        <input type="radio" name="daili" <?php if(\think\Session::get('info.level') == '3'): ?> checked='true' <?php endif; ?> value="高级代理"  title="高级代理(<?php echo floatval($config['high']); ?>元)" data-level='3'data-money='<?php echo floatval($config['high']); ?>'>
                     </div>
                 </div>
 
@@ -178,6 +178,7 @@
        var descs = $("input[name='daili']:checked").val(); //升级类型
        var paymoney = $("input[name='daili']:checked").attr('data-money'); //升级金额
        var types = $("input[name='payment']:checked").val(); //选择pay类型
+       var level = $("input[name='daili']:checked").attr('data-level'); //升级标识
 
        if(descs == '' || descs == undefined || descs == 'undefined'){
            layer.msg('请选择充值类型');
@@ -193,7 +194,7 @@
           //yu pay
            var yupay = "<?php echo url('user/vippay'); ?>";
 
-           $.post(yupay,{'mid':mid,'descs':descs,'types':types,'paymoney':paymoney},function(ret){
+           $.post(yupay,{'mid':mid,'descs':descs,'types':types,'paymoney':paymoney,'level':level},function(ret){
                     if(ret.code == 200 ){
                         layer.msg(ret.msg,{icon:6},function(){
                             parent.location.reload();
@@ -211,10 +212,25 @@
                        parent.location.reload();
                      })
                    }
+
+                  if(ret.code == 405){
+                   layer.msg(ret.msg,{icon:5},function(){
+                       parent.location.reload();
+                   })
+               }
            },'json')
           
        }else {
-         //three pay  
+         //three pay
+           var threepay = "<?php echo url('pays/levelpay'); ?>";
+
+           if(threepay == '' || threepay == undefined || threepay == 'undefined'){
+               layer.msg('数据验证不和合法'); //支付连接错误
+               return false;
+           }
+
+           window.location.href= threepay+'?mid='+mid+"&descs="+descs+"&paymoney="+paymoney+"&types="+types+"&level="+level;
+
 
        }
 

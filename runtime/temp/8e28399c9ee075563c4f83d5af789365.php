@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:85:"C:\Users\Administrator\Desktop\faka\public/../application/admin\view\goods\cates.html";i:1577542709;s:79:"C:\Users\Administrator\Desktop\faka\application\admin\view\template\layout.html";i:1577542709;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:88:"C:\Users\Administrator\Desktop\faka\public/../application/admin\view\admin_menu\add.html";i:1577542709;s:79:"C:\Users\Administrator\Desktop\faka\application\admin\view\template\layout.html";i:1577542709;s:84:"C:\Users\Administrator\Desktop\faka\application\admin\view\template\form_header.html";i:1577542709;s:84:"C:\Users\Administrator\Desktop\faka\application\admin\view\template\form_footer.html";i:1577542709;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -137,88 +137,134 @@
             </ol>
         </section>
         <section class="content">
-            <div class="row">
+            <link rel="stylesheet" href="/static/admin/plugins/iconpicker/css/iconpicker.min.css">
+<script src="/static/admin/plugins/iconpicker/js/iconpicker.min.js"></script>
+<div class="row">
     <div class="col-md-12">
-        <div class="box">
-            <div class="box-body">
-                <form class="form-inline" name="searchForm" action="<?php echo url('goods/cates'); ?>" method="GET">
-                    <div class="form-group">
-                        <input value="<?php echo \think\Request::instance()->get('keywords')?\think\Request::instance()->get('keywords') : '' ;; ?>"
-                               name="keywords" id="keywords" class="form-control input-sm" placeholder="">
-                    </div>
+        <div class="box box-primary">
+            <?php if($showFormHeader): ?>
+<div class="box-header with-border">
+    <?php if($showFormHeaderBackButton): ?>
+    <div class="btn-group">
+        <a class="btn flat btn-sm btn-default form-history-back">
+            <i class="fa fa-arrow-left"></i>
+            返回
+        </a>
+    </div>
+    <?php endif; ?>
+</div>
+<?php endif; ?>
+            <form id="dataForm" class="dataForm form-horizontal" action="" method="post" enctype="multipart/form-data">
+                <div class="box-body">
+                    <div class="fields-group">
+                        <?php if(isset($info)): ?>
+                        <input id="id" name="id" value="<?php echo $info['id']; ?>" hidden placeholder="请勿修改">
+                        <?php endif; ?>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">上级菜单</label>
+                            <div class="col-sm-10 col-md-4">
+                                <div class="input-group">
+                                    <select name="parent_id" id="parent_id" class="form-control">
+                                        <option value="0">/</option>
+                                        <?php echo $selects; ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="title" class="col-sm-2 control-label">名称</label>
+                            <div class="col-sm-10 col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                    <input maxlength="50" id="title" name="title" value="<?php echo (isset($info['title']) && ($info['title'] !== '')?$info['title']:''); ?>" class="form-control" placeholder="请输入菜单名称">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="url" class="col-sm-2 control-label">url</label>
+                            <div class="col-sm-10 col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-internet-explorer"></i></span>
+                                    <input maxlength="100" id="url" name="url" value="<?php echo (isset($info['url']) && ($info['url'] !== '')?$info['url']:''); ?>" class="form-control" placeholder="菜单url">
+                                </div>
+                            </div>
+                        </div>
 
-                    <div class="form-group">
-                        <button class="btn btn-sm btn-primary" type="submit"><i class="fa fa-search"></i> 查询
-                        </button>
+                        <div class="form-group">
+                            <label for="icon" class="col-sm-2 control-label">图标</label>
+                            <div class="col-sm-10 col-md-4">
+                                <div class="input-group iconpicker-container">
+                                    <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                    <input maxlength="30" id="icon" name="icon" value="<?php echo (isset($info['icon']) && ($info['icon'] !== '')?$info['icon']:'fa-list'); ?>" class="form-control  iconpicker-element iconpicker-input" placeholder="请输入图标class">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="sort_id" class="col-sm-2 control-label">排序</label>
+                            <div class="col-sm-10 col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-sort-amount-asc"></i></span>
+                                    <input max="9999" min="1" type="number" id="sort_id" name="sort_id" value="<?php echo (isset($info['sort_id']) && ($info['sort_id'] !== '')?$info['sort_id']:'1000'); ?>" class="form-control" placeholder="默认1000">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="is_show" class="col-sm-2 control-label">是否显示</label>
+                            <div class="col-sm-10 col-md-4">
+                                <div class="input-group iconpicker-container">
+                                    <input <?php if((isset($info) && $info['is_show']==1) || !isset($info)): ?>checked<?php endif; ?>
+                                    value="<?php echo (isset($info['is_show']) && ($info['is_show'] !== '')?$info['is_show']:'1'); ?>"
+                                    class="form-input-switch" type="checkbox" data-input="is_show">
+                                    <input id="is_show" name="is_show" value="<?php echo (isset($info['is_show']) && ($info['is_show'] !== '')?$info['is_show']:'1'); ?>" type="hidden" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="log_type" class="col-sm-2 control-label">日志请求方式</label>
+                            <div class="col-sm-10 col-md-4">
+                                <div class="input-group">
+                                    <select name="log_type" id="log_type" class="form-control">
+                                        <?php if(is_array($logtype) || $logtype instanceof \think\Collection || $logtype instanceof \think\Paginator): if( count($logtype)==0 ) : echo "" ;else: foreach($logtype as $key=>$item): ?>
+                                        <option value="<?php echo $key; ?>" <?php if(isset($info) && $info['log_type']==$key): ?>selected<?php endif; ?>><?php echo $item; ?></option>
+                                        <?php endforeach; endif; else: echo "" ;endif; ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="form-group">
-                        <button onclick="clear_form()" class="btn btn-sm btn-" type="button"><i
-                                class="fa  fa-eraser"></i> 清空查询
-                        </button>
-                    </div>
-                </form>
-            </div>
+                </div>
+                <?php if($showFormFooter): ?>
+<div class="box-footer">
+    <?php echo token(); ?>
+    <div class="col-sm-2">
+    </div>
+    <div class="col-sm-10 col-md-4">
+        <?php if($showFormFooterSubmitButton): ?>
+        <div class="btn-group">
+            <button type="submit" class="btn flat btn-info dataform-submit">
+                <?php echo (isset($sub_title) && ($sub_title !== '')?$sub_title:'保存'); ?>
+            </button>
+        </div>
+        <?php endif; if($showFormFooterResetButton): ?>
+        <div class="btn-group">
+            <button type="reset" class="btn flat btn-default dataform-reset">
+                重置
+            </button>
+        </div>
+        <?php endif; ?>
+    </div>
+</div>
+<?php endif; ?>
+            </form>
         </div>
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="box">
-            <div class="box-body table-responsive">
-                <div class="form-group">
-                    <a title="添加" class="btn btn-primary btn-sm" href="addc.html">添加类型</a>
-                </div>
-                <table class="table table-hover table-bordered datatable" width="100%">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>分类名称</th>
-                        <th>创建时间</th>
-                        <th>操作</th>
-                    </tr>
-                    </thead>
-                    <?php if(is_array($list) || $list instanceof \think\Collection || $list instanceof \think\Paginator): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-                    <tbody>
-                    <tr>
-                        <td><?php echo $vo['id']; ?></td>
-                        <td><?php echo $vo['title']; ?></td>
-                        <td><?php echo $vo['create_time']; ?></td>
-                        <td class="td-do">
-                            <a data-href="<?php echo url('goods/nodes',array('id'=>$vo['id'])); ?>" class="btn btn-success btn-xs nodes" title="">
-                                <i class="fa fa-pencil">分类下产品</i>
-                            </a>
-                            <a href="<?php echo url('goods/addc',array('id'=>$vo['id'])); ?>" class="btn btn-primary btn-xs" title="修改">
-                                <i class="fa fa-pencil">编辑</i>
-                            </a>
-                            <a class="btn btn-danger btn-xs" title="删除" href="<?php echo url('goods/delc',array('id'=>$vo['id'])); ?>" >
-                                <i class="fa fa-trash">删除</i>
-                            </a>
-                        </td>
-                    </tr>
-                    </tbody>
-                    <?php endforeach; endif; else: echo "" ;endif; ?>
-                </table>
-            </div>
-        </div>
-        <?php echo $list->render(); ?>
-
-        <script>
-            $('.nodes').click(function(){
-
-                var url = $(this).attr('data-href');
-                layer.open({
-                    type: 2,
-                    title: '所属分类商品',
-                    shadeClose: true,
-                    shade: 0.8,
-                    area: ['70%', '70%'],
-                    content: url //iframe的url
-                })
-            })
-        </script>
-
+<script>
+    $(function(){
+        $('#icon').iconpicker({placement: 'bottomLeft'});
+    });
+</script>
         </section>
     </div>
 

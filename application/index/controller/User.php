@@ -102,6 +102,14 @@ class User extends Controller
     public function vip()
     {
        if($this->request->isGet()){
+           $id   = session('info.id');
+           if(empty($id) || !isset($id)){
+               echo "<script>alert('请退出后再重新登录！');</script>";
+               exit();
+           }
+           $info = Db::name('member')->where(['id'=>$id])->find();
+           session('info',$info);
+           return $this->fetch();
            return $this->fetch();
        }
        return false;
@@ -116,14 +124,18 @@ class User extends Controller
             $data['order'] = create_order();
             $data['create_time'] = time();
             $data['paymoney'] = input('post.paymoney','','trim');
+            $data['member_level'] = input('post.level','','trim');
 
             if($data['mid'] =='' || !isset($data['mid'])  || $data['mid'] <=0 ){
                 return false;
             }
 
-            $levelpay = Db::name('level_pay')->insertGetId($data); //获取新增id
+             $levelpay = Db::name('level_pay')->insertGetId($data); //获取新增id
+             $yumoney = Db::name('member')->where(['id'=>$data['mid']])->find(); //查询用户
             if($levelpay !== false){
-                $yumoney = Db::name('member')->where(['id'=>$data['mid']])->find();
+                if($yumoney['level'] == $data['member_level']){
+                    return json(['code'=>405,'msg'=>'您已经是改等级了，请不要重复支付了']);
+                }
                 //获取现有金额
                 $nowmoney = $yumoney['money']- $data['paymoney'];
 
@@ -134,7 +146,7 @@ class User extends Controller
                 //更新余额 和 支付状态
                 Db::startTrans();
                 try {
-                    $info = Db::name('member')->where(['id'=>$data['mid']])->update(['money'=>$nowmoney]);
+                    $info = Db::name('member')->where(['id'=>$data['mid']])->update(['money'=>$nowmoney,'level'=> $data['member_level']]);
                     Db::name('lavel_pay')->where(['id'=>$levelpay])->update(['status'=>1]);
                     // 提交事务
                     Db::commit();
@@ -142,7 +154,7 @@ class User extends Controller
                     // 回滚事务
                     Db::rollback();
                 }
-                session('member',$info);
+                session('info',$info);
                 return json(['code'=>200,'msg'=>'支付成功']);
             }else {
                 return json(['code'=>400,'msg'=>'支付失败']);
@@ -150,8 +162,7 @@ class User extends Controller
          }
          return false;
      }
-
-
+    
     /***修改密码***/
     public function editpwd()
     {

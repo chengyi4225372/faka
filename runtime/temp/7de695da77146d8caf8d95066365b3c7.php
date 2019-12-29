@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:85:"C:\Users\Administrator\Desktop\faka\public/../application/admin\view\goods\cates.html";i:1577542709;s:79:"C:\Users\Administrator\Desktop\faka\application\admin\view\template\layout.html";i:1577542709;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:90:"C:\Users\Administrator\Desktop\faka\public/../application/admin\view\admin_menu\index.html";i:1577542709;s:79:"C:\Users\Administrator\Desktop\faka\application\admin\view\template\layout.html";i:1577542709;s:84:"C:\Users\Administrator\Desktop\faka\application\admin\view\template\data_header.html";i:1577542709;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -140,85 +140,45 @@
             <div class="row">
     <div class="col-md-12">
         <div class="box">
-            <div class="box-body">
-                <form class="form-inline" name="searchForm" action="<?php echo url('goods/cates'); ?>" method="GET">
-                    <div class="form-group">
-                        <input value="<?php echo \think\Request::instance()->get('keywords')?\think\Request::instance()->get('keywords') : '' ;; ?>"
-                               name="keywords" id="keywords" class="form-control input-sm" placeholder="">
-                    </div>
-
-                    <div class="form-group">
-                        <button class="btn btn-sm btn-primary" type="submit"><i class="fa fa-search"></i> 查询
-                        </button>
-                    </div>
-
-                    <div class="form-group">
-                        <button onclick="clear_form()" class="btn btn-sm btn-" type="button"><i
-                                class="fa  fa-eraser"></i> 清空查询
-                        </button>
-                    </div>
-                </form>
+            <?php if($showDataHeader): ?>
+<div class="box-header">
+    <div>
+        <?php if($showDataHeaderAddButton): ?>
+        <a title="新增" class="btn btn-primary btn-sm" href="add.html">
+            新增
+        </a>
+        <?php endif; if($showDataHeaderDeleteButton): ?>
+        <a class="btn btn-danger btn-sm AjaxButton" title="批量删除，谨慎使用" data-id="checked" data-url="del.html">删除</a>
+        <?php endif; ?>
+    </div>
+</div>
+<?php endif; ?>
+            <div class="box-body table-responsive">
+                <table class="table table-hover table-bordered datatable" width="100%">
+                    <thead>
+                    <tr>
+                        <th>
+                            <input id="data-checkall" type="checkbox" onclick="check_all(this)" class="checkbox" placeholder="全选/取消">
+                        </th>
+                        <th>ID</th>
+                        <th>菜单名称</th>
+                        <th>url</th>
+                        <th>父级ID</th>
+                        <th>图标</th>
+                        <th>排序</th>
+                        <th>状态</th>
+                        <th>日志记录方式</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php echo $menu_list; ?>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 </div>
-
-<div class="row">
-    <div class="col-md-12">
-        <div class="box">
-            <div class="box-body table-responsive">
-                <div class="form-group">
-                    <a title="添加" class="btn btn-primary btn-sm" href="addc.html">添加类型</a>
-                </div>
-                <table class="table table-hover table-bordered datatable" width="100%">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>分类名称</th>
-                        <th>创建时间</th>
-                        <th>操作</th>
-                    </tr>
-                    </thead>
-                    <?php if(is_array($list) || $list instanceof \think\Collection || $list instanceof \think\Paginator): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-                    <tbody>
-                    <tr>
-                        <td><?php echo $vo['id']; ?></td>
-                        <td><?php echo $vo['title']; ?></td>
-                        <td><?php echo $vo['create_time']; ?></td>
-                        <td class="td-do">
-                            <a data-href="<?php echo url('goods/nodes',array('id'=>$vo['id'])); ?>" class="btn btn-success btn-xs nodes" title="">
-                                <i class="fa fa-pencil">分类下产品</i>
-                            </a>
-                            <a href="<?php echo url('goods/addc',array('id'=>$vo['id'])); ?>" class="btn btn-primary btn-xs" title="修改">
-                                <i class="fa fa-pencil">编辑</i>
-                            </a>
-                            <a class="btn btn-danger btn-xs" title="删除" href="<?php echo url('goods/delc',array('id'=>$vo['id'])); ?>" >
-                                <i class="fa fa-trash">删除</i>
-                            </a>
-                        </td>
-                    </tr>
-                    </tbody>
-                    <?php endforeach; endif; else: echo "" ;endif; ?>
-                </table>
-            </div>
-        </div>
-        <?php echo $list->render(); ?>
-
-        <script>
-            $('.nodes').click(function(){
-
-                var url = $(this).attr('data-href');
-                layer.open({
-                    type: 2,
-                    title: '所属分类商品',
-                    shadeClose: true,
-                    shade: 0.8,
-                    area: ['70%', '70%'],
-                    content: url //iframe的url
-                })
-            })
-        </script>
-
         </section>
     </div>
 

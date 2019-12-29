@@ -16,14 +16,14 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">余额</label>
                     <div class="layui-input-block">
-                        <div class="layui-form-mid layui-word-aux" style="color:red !important">{$Think.session.info.money|default='0.00'}</div>
+                        <div class="layui-form-mid layui-word-aux" style="color:red !important">{$Think.session.info.money|floatval|default='0.00'}</div>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">充值</label>
                     <div class="layui-input-block" id='daili'>
-                        <input type="radio" name="daili" {eq name='$Think.session.info.level' value='2'} checked="true" {/eq} value="普通代理" title="普通代理({$config.nomal|floatval}元)" data-money='{$config.nomal|floatval}' />
-                        <input type="radio" name="daili" {eq name='$Think.session.info.level' value='3'} checked='true' {/eq} value="高级代理"  title="高级代理({$config.high|floatval}元)" data-money='{$config.high|floatval}'>
+                        <input type="radio" name="daili" {eq name='$Think.session.info.level' value='2'} checked="true" {/eq} value="普通代理" title="普通代理({$config.nomal|floatval}元)" data-level='2' data-money='{$config.nomal|floatval}' />
+                        <input type="radio" name="daili" {eq name='$Think.session.info.level' value='3'} checked='true' {/eq} value="高级代理"  title="高级代理({$config.high|floatval}元)" data-level='3'data-money='{$config.high|floatval}'>
                     </div>
                 </div>
 
@@ -64,6 +64,7 @@
        var descs = $("input[name='daili']:checked").val(); //升级类型
        var paymoney = $("input[name='daili']:checked").attr('data-money'); //升级金额
        var types = $("input[name='payment']:checked").val(); //选择pay类型
+       var level = $("input[name='daili']:checked").attr('data-level'); //升级标识
 
        if(descs == '' || descs == undefined || descs == 'undefined'){
            layer.msg('请选择充值类型');
@@ -79,7 +80,7 @@
           //yu pay
            var yupay = "{:url('user/vippay')}";
 
-           $.post(yupay,{'mid':mid,'descs':descs,'types':types,'paymoney':paymoney},function(ret){
+           $.post(yupay,{'mid':mid,'descs':descs,'types':types,'paymoney':paymoney,'level':level},function(ret){
                     if(ret.code == 200 ){
                         layer.msg(ret.msg,{icon:6},function(){
                             parent.location.reload();
@@ -97,10 +98,25 @@
                        parent.location.reload();
                      })
                    }
+
+                  if(ret.code == 405){
+                   layer.msg(ret.msg,{icon:5},function(){
+                       parent.location.reload();
+                   })
+               }
            },'json')
           
        }else {
-         //three pay  
+         //three pay
+           var threepay = "{:url('pays/levelpay')}";
+
+           if(threepay == '' || threepay == undefined || threepay == 'undefined'){
+               layer.msg('数据验证不和合法'); //支付连接错误
+               return false;
+           }
+
+           window.location.href= threepay+'?mid='+mid+"&descs="+descs+"&paymoney="+paymoney+"&types="+types+"&level="+level;
+
 
        }
 

@@ -1,0 +1,61 @@
+{__NOLAYOUT__}
+
+<link rel="stylesheet" href="__STATIC__/css/app.min.css">
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-primary">
+            <form  class="form-horizontal dataForm" enctype="multipart/form-data">
+                <input type="hidden" id="id" value="{$info.id}">
+                <div class="box-body">
+                    <table class="table table-bordered">
+                        <tbody>
+                        <tr>
+                            <td>订单号</td>
+                            <td><div>{$info.order}</div></td>
+                            <td>支付类型</td>
+                            <td><div>
+                                {$info.types}
+                            </div></td>
+                        </tr>
+                        <tr>
+
+                        </tr>
+
+                        <tr>
+                            <td>支付金额</td>
+                            <td><div>{$info.paymoney}</div></td>
+                            <td>描述</td>
+                            <td><div>{$info.descs}</div></td>
+                        </tr>
+
+                        <tr>
+                            <td>支付回执单号</td>
+                            <td><div>{$info.trade_no}</div></td>
+                            <td>创建时间：</td>
+                            <td><div>{$info.create_time}</div></td>
+                        </tr>
+
+                        <tr>
+                            <td>支付状态：</td>
+                            <td><div>
+                                {eq name='$info.status' value='1'}
+                                已支付
+                                {else /}
+                                未支付
+                                {/eq}
+                            </div></td>
+                            <td>升级用户：</td>
+                            <td><div>{$members[$info.mid]}</div></td>
+                        </tr>
+
+                        <tr>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
