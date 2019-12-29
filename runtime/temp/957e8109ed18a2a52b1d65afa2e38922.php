@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:85:"C:\Users\Administrator\Desktop\faka\public/../application/admin\view\order\index.html";i:1577542709;s:79:"C:\Users\Administrator\Desktop\faka\application\admin\view\template\layout.html";i:1577542709;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:85:"C:\Users\Administrator\Desktop\faka\public/../application/admin\view\order\index.html";i:1577626552;s:79:"C:\Users\Administrator\Desktop\faka\application\admin\view\template\layout.html";i:1577542709;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -179,11 +179,11 @@
 
             <div class="box-body table-responsive">
 
-                <div class="form-group">
-                    <button onclick="clear_form()" class="btn btn-info pull-right" type="button"><i
-                            class="fa  fa-eraser"></i> 删除未完成订单
-                    </button>
-                </div>
+                <!--<div class="form-group">-->
+                    <!--<button onclick="clear_form()" class="btn btn-info pull-right" type="button"><i-->
+                            <!--class="fa  fa-eraser"></i> 删除未完成订单-->
+                    <!--</button>-->
+                <!--</div>-->
 
                 <table class="table table-hover table-bordered datatable" width="100%">
                     <thead>

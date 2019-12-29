@@ -98,14 +98,6 @@
                       </tr>
 
                       <tr>
-                          <td>人工发货状态：</td>
-                          <td><div>
-                              <select id="status" class="form-control">
-                                  <option value="100">请选择...</option>
-                                  <option value="2" {if condition="$info.status eq 2"}selected="" {/if} >已发货</option>
-                                  <option value="3" {if condition="$info.status eq 3"}selected="" {/if} >联系客服退款</option>
-                              </select>
-                          </div></td>
 
                           <td>订单回执操作：</td>
                           <td>
@@ -113,18 +105,17 @@
                                   <input type='text'  id="callback" value="{$info.orderback|default=''}" class="form-control" />
                               </div>
                           </td>
+
+                          <td>订单操作：</td>
+                          <td><div>
+                              {if condition='$info.dan eq 1'}
+                              <a class="btn btn-block btn-success btn-xs">正常下单</a>
+                              {else /}
+                              <a class="btn btn-block btn-success btn-xs">补单</a>
+                              {/if}
+                          </div></td>
                       </tr>
-                            
-                      <tr>
-                        <td>订单操作：</td>
-                        <td><div>
-                         {if condition='$info.dan eq 1'}
-                         <a class="btn btn-block btn-success btn-xs">正常下单</a>
-                         {else /}
-                         <a class="btn btn-block btn-success btn-xs">补单</a>
-                         {/if}
-                        </div></td>
-                      </tr>
+
                     </tbody>
                 </table>
                   </div>
@@ -154,7 +145,6 @@
 
         var data = {};
         data.id  = $('#id').val();
-        data.status  = $('#status option:selected').val();
         data.callback  = $('#callback').val();
 
         if(data.status == '100'){

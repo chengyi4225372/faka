@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:85:"C:\Users\Administrator\Desktop\faka\public/../application/admin\view\order\pedit.html";i:1577620222;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:85:"C:\Users\Administrator\Desktop\faka\public/../application/admin\view\order\pedit.html";i:1577633998;}*/ ?>
 
 
 <link rel="stylesheet" href="/static/admin/css/app.min.css">
@@ -95,14 +95,6 @@
                       </tr>
 
                       <tr>
-                          <td>人工发货状态：</td>
-                          <td><div>
-                              <select id="status" class="form-control">
-                                  <option value="100">请选择...</option>
-                                  <option value="2" <?php if($info['status'] == 2): ?>selected="" <?php endif; ?> >已发货</option>
-                                  <option value="3" <?php if($info['status'] == 3): ?>selected="" <?php endif; ?> >联系客服退款</option>
-                              </select>
-                          </div></td>
 
                           <td>订单回执操作：</td>
                           <td>
@@ -110,18 +102,17 @@
                                   <input type='text'  id="callback" value="<?php echo (isset($info['orderback']) && ($info['orderback'] !== '')?$info['orderback']:''); ?>" class="form-control" />
                               </div>
                           </td>
+
+                          <td>订单操作：</td>
+                          <td><div>
+                              <?php if($info['dan'] == 1): ?>
+                              <a class="btn btn-block btn-success btn-xs">正常下单</a>
+                              <?php else: ?>
+                              <a class="btn btn-block btn-success btn-xs">补单</a>
+                              <?php endif; ?>
+                          </div></td>
                       </tr>
-                            
-                      <tr>
-                        <td>订单操作：</td>
-                        <td><div>
-                         <?php if($info['dan'] == 1): ?>
-                         <a class="btn btn-block btn-success btn-xs">正常下单</a>
-                         <?php else: ?>
-                         <a class="btn btn-block btn-success btn-xs">补单</a>
-                         <?php endif; ?>
-                        </div></td>
-                      </tr>
+
                     </tbody>
                 </table>
                   </div>
@@ -151,7 +142,6 @@
 
         var data = {};
         data.id  = $('#id').val();
-        data.status  = $('#status option:selected').val();
         data.callback  = $('#callback').val();
 
         if(data.status == '100'){

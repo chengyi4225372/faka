@@ -137,7 +137,6 @@ class Order extends Base
 
            $res = Db::name('order')->where(['id'=>$up['data']['id']])->update(
                [
-                'status'  =>$up['data']['status'],
                 'orderback'=>$up['data']['callback'],
                ]
            );
