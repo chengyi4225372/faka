@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:83:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\two\trade.html";i:1577542709;s:80:"C:\Users\Administrator\Desktop\faka\application\index\view\public\twombhead.html";i:1577542709;s:80:"C:\Users\Administrator\Desktop\faka\application\index\view\public\twombfoot.html";i:1577542709;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:83:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\two\trade.html";i:1577624812;s:80:"C:\Users\Administrator\Desktop\faka\application\index\view\public\twombhead.html";i:1577542709;s:80:"C:\Users\Administrator\Desktop\faka\application\index\view\public\twombfoot.html";i:1577542709;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -234,10 +234,10 @@
                 layer.msg('电话号码不合法');
                 return false;
             }
-            var num = $('#p_num').val(); //商品购买数量
-            var bei = $('#bei').val();
-            var min = $('#minnum').val();
-            var max = $('#maxnum').val();
+            var num = parseInt($('#p_num').val()); //商品购买数量
+            var bei = parseInt($('#bei').val());
+            var min = parseInt($('#minnum').val());
+            var max = parseInt($('#maxnum').val());
             var counts = $('#counts').val();
             if(num < min || num =='' || num == undefined){
                 layer.msg('最少购买数量是'+min);

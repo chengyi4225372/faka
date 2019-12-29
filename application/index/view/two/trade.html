@@ -151,7 +151,7 @@
         var gid = $('#gid').val();//商品id
         var member_id = $('#member_id').val(); //member
         var urls  = "{:url('two/buy')}";
-        var hrefs ="{:url('two/buy')}";
+        var hrefs = "{:url('two/buy')}";
         //自动发货
         if(huo == 0){
             var mobile = $.trim($('#mobile_zi').val());
@@ -165,10 +165,10 @@
                 layer.msg('电话号码不合法');
                 return false;
             }
-            var num = $('#p_num').val(); //商品购买数量
-            var bei = $('#bei').val();
-            var min = $('#minnum').val();
-            var max = $('#maxnum').val();
+            var num = parseInt($('#p_num').val()); //商品购买数量
+            var bei = parseInt($('#bei').val());
+            var min = parseInt($('#minnum').val());
+            var max = parseInt($('#maxnum').val());
             var counts = $('#counts').val();
             if(num < min || num =='' || num == undefined){
                 layer.msg('最少购买数量是'+min);
