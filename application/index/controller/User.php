@@ -34,7 +34,10 @@ class User extends Controller
     //会员中心
     public function index()
     {
-        return $this->fetch();
+        if($this->request->isGet()){
+            return $this->fetch();
+        }
+        return false;
     }
 
     //我的订单
@@ -103,6 +106,50 @@ class User extends Controller
        }
        return false;
     }
+
+    //余额支付升级用户等级
+     public function vippay(){
+         if($this->request->isPost() || $this->request->isAjax()){
+            $data['mid'] = input('post.mid','','int');
+            $data['descs'] = input('post.descs','','trim');
+            $data['types'] = input('post.types','','trim');
+            $data['order'] = create_order();
+            $data['create_time'] = time();
+            $data['paymoney'] = input('post.paymoney','','trim');
+
+            if($data['mid'] =='' || !isset($data['mid'])  || $data['mid'] <=0 ){
+                return false;
+            }
+
+            $levelpay = Db::name('level_pay')->insertGetId($data); //获取新增id
+            if($levelpay !== false){
+                $yumoney = Db::name('member')->where(['id'=>$data['mid']])->find();
+                //获取现有金额
+                $nowmoney = $yumoney['money']- $data['paymoney'];
+
+                if($nowmoney < 0){
+                    return json(['code'=>403,'msg'=>'余额不足，请充值！']);
+                }
+
+                //更新余额 和 支付状态
+                Db::startTrans();
+                try {
+                    $info = Db::name('member')->where(['id'=>$data['mid']])->update(['money'=>$nowmoney]);
+                    Db::name('lavel_pay')->where(['id'=>$levelpay])->update(['status'=>1]);
+                    // 提交事务
+                    Db::commit();
+                } catch (\Exception $e) {
+                    // 回滚事务
+                    Db::rollback();
+                }
+                session('member',$info);
+                return json(['code'=>200,'msg'=>'支付成功']);
+            }else {
+                return json(['code'=>400,'msg'=>'支付失败']);
+            }
+         }
+         return false;
+     }
 
 
     /***修改密码***/

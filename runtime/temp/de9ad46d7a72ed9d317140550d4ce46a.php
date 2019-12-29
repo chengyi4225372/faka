@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:88:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\user\mychongzi.html";i:1576310770;s:79:"C:\Users\Administrator\Desktop\faka\application\index\view\public\userhead.html";i:1576310770;s:79:"C:\Users\Administrator\Desktop\faka\application\index\view\public\userfoot.html";i:1576310770;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:88:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\user\mychongzi.html";i:1577542709;s:79:"C:\Users\Administrator\Desktop\faka\application\index\view\public\userhead.html";i:1577610618;}*/ ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -37,7 +37,9 @@
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#header-navbar">
-                        <span class="sr-only">Toggle navigation</span>
+                        <span class="sr-only">
+                            <a href="/" target="_blank">首页</a>
+                        </span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -98,6 +100,10 @@
                             </li>
 
                             <li class="list-group-item ">
+                                <a href="/"><i class="glyphicon glyphicon-thumbs-up"></i>&nbsp;&nbsp;回到首页</a>
+                            </li>
+
+                            <li class="list-group-item ">
                                 <a href="<?php echo url('login/lout'); ?>"><i class="fa fa-sign-out fa-fw"></i> 安全退出</a>
                             </li>
                         </ul>
@@ -147,7 +153,7 @@
                           已付款
                         <?php endif; ?>
                     </td>
-                    <td><?php echo $pay['create_time']; ?></td>
+                    <td><?php echo date('Y-m-d,H:i',$pay['create_time']); ?></td>
                 </tr>
                 </tbody>
                 <?php endforeach; endif; else: echo "" ;endif; ?>
@@ -170,28 +176,5 @@
 </div>
 
 </main>
-
-
-
-<script>
-    //Demo 事件
-    layui.use('form', function() {
-        var form = layui.form, layer = layui.layer,
-            $ = layui.jquery;
-        //监听提交
-        form.on('submit(formDemo)', function(data) {
-            //layer.msg(JSON.stringify(data.field));
-            return true;
-        });
-    });
-</script>
-
-
-<footer class="footer" style="clear:both">
-        <p class="copyright"><?php echo $config['info']; ?></p>
-    </footer>
-
-
-
 </body>
 </html>

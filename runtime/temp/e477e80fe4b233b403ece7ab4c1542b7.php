@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:83:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\two\trade.html";i:1576407316;s:80:"C:\Users\Administrator\Desktop\faka\application\index\view\public\twombhead.html";i:1571549535;s:80:"C:\Users\Administrator\Desktop\faka\application\index\view\public\twombfoot.html";i:1571549535;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:83:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\two\trade.html";i:1577542709;s:80:"C:\Users\Administrator\Desktop\faka\application\index\view\public\twombhead.html";i:1577542709;s:80:"C:\Users\Administrator\Desktop\faka\application\index\view\public\twombfoot.html";i:1577542709;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -173,12 +173,12 @@
     </div>
 
             <div class="tongji"><?php echo (isset($config['info']) && ($config['info'] !== '')?$config['info']:''); ?></div>
-            <form action="/search" method="post" class="am-modal am-modal-alert" tabindex="-1" id="my-alerts">
+            <form action="<?php echo url('two/search'); ?>" method="get" class="am-modal am-modal-alert" tabindex="-1" id="my-alerts">
                 <div class="am-modal-dialog">
                   <div class="am-modal-hd">订单查询</div>
                   <div class="am-modal-bd">
                     请输入订单号或联系方式
-                      <input type="text" class="am-modal-prompt-input" name="content" required>
+                      <input type="text" class="am-modal-prompt-input" name="orderno" required>
                   </div>
                   <div class="am-modal-footer">
                     <button type="submit" class="am-btn am-btn-primary" >确定</button>
@@ -202,6 +202,17 @@
         }
         $("#p_num").val(count);
     }
+   
+    //手机验证
+    function checkPhone(phone) {
+        var tel_reg = /^1(3|4|5|6|7|8|9)\d{9}$/;
+        if (tel_reg.test(phone)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     //生成订单 商城模板
     $('#paysubmit').click(function(){
@@ -218,18 +229,23 @@
                 layer.msg('请输入电话信息');
                 return false;
             }
+
+            if(checkPhone(mobile) == false){
+                layer.msg('电话号码不合法');
+                return false;
+            }
             var num = $('#p_num').val(); //商品购买数量
             var bei = $('#bei').val();
             var min = $('#minnum').val();
             var max = $('#maxnum').val();
             var counts = $('#counts').val();
             if(num < min || num =='' || num == undefined){
-                layer.msg('购买商品太少了，无法发货');
+                layer.msg('最少购买数量是'+min);
                 return false;
             }
 
             if(num > max){
-                layer.msg('商品购买数量太多了，我们无法发货');
+                layer.msg('商品购买数量最大是'+max);
                 return false;
             }
 
@@ -263,6 +279,11 @@
 
             if(mobile =='' || mobile == undefined || mobile =='undefined'){
                 layer.msg('请输入用户信息');
+                return false;
+            }
+
+            if(checkPhone(mobile) == false){
+                layer.msg('电话号码不合法');
                 return false;
             }
 

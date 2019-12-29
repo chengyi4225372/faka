@@ -44,7 +44,7 @@
 
                 <div class="layui-form-item">
                     <div class="layui-input-block">
-                        <button class="layui-btn" lay-filter="formDemo" onclick="buyvip()">立即提交</button>
+                        <button class="layui-btn"  onclick="buyvip()">立即提交</button>
                     </div>
                 </div>
 
@@ -62,9 +62,10 @@
     function buyvip(){
        var mid   = $('#mid').val(); //user id
        var descs = $("input[name='daili']:checked").val(); //升级类型
-       var types = $("input[name='payment']:checked").val(); //选择pay类型 
+       var paymoney = $("input[name='daili']:checked").attr('data-money'); //升级金额
+       var types = $("input[name='payment']:checked").val(); //选择pay类型
 
-       if($descs == '' || descs == undefined || descs == 'undefined'){
+       if(descs == '' || descs == undefined || descs == 'undefined'){
            layer.msg('请选择充值类型');
            return false;
        }
@@ -76,6 +77,27 @@
 
        if(types == 'yupay'){
           //yu pay
+           var yupay = "{:url('user/vippay')}";
+
+           $.post(yupay,{'mid':mid,'descs':descs,'types':types,'paymoney':paymoney},function(ret){
+                    if(ret.code == 200 ){
+                        layer.msg(ret.msg,{icon:6},function(){
+                            parent.location.reload();
+                        })
+                    }
+
+                   if(ret.code == 400 ) {
+                       layer.msg(ret.msg, {icon: 5}, function () {
+                           parent.location.reload();
+                       })
+                   }
+
+                   if(ret.code == 403){
+                     layer.msg(ret.msg,{icon:5},function(){
+                       parent.location.reload();
+                     })
+                   }
+           },'json')
           
        }else {
          //three pay  

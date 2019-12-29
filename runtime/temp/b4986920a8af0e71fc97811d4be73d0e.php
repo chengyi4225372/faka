@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:86:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\user\myorder.html";i:1577542709;s:79:"C:\Users\Administrator\Desktop\faka\application\index\view\public\userhead.html";i:1577610618;s:79:"C:\Users\Administrator\Desktop\faka\application\index\view\public\userfoot.html";i:1577542709;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:82:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\user\vip.html";i:1577612858;s:79:"C:\Users\Administrator\Desktop\faka\application\index\view\public\userhead.html";i:1577610618;s:79:"C:\Users\Administrator\Desktop\faka\application\index\view\public\userfoot.html";i:1577542709;}*/ ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -114,81 +114,137 @@
 
 
 <div class="col-md-9">
+
     <div class="panel panel-default">
         <div class="panel-body">
             <h2 class="page-header">充值中心</h2>
             <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" >
                 <ul class="layui-tab-title">
-                    <li  class="layui-this"><a href="<?php echo url('user/myorder'); ?>">我的订单</a></li>
-                    <li><a href="<?php echo url('user/mychongzi'); ?>">充值记录</a></li>
+                    <li><a href="<?php echo url('user/recharge'); ?>">在线充值</a></li>
+                    <li class="layui-this">开通代理</li>
+<!--                    <li><a href="/index/recharge/list.html">充值记录</a></li>-->
                 </ul>
                 <div class="layui-tab-content"></div>
-            </div>
-            <table class="layui-table">
-                <colgroup>
-                    <col width="150">
-                    <col width="150">
-                    <col width="150">
-                    <col width="150">
-                    <col width="150">
-                    <col width="150">
-                    <col width="180">
-                    <col width="150">
-
-                </colgroup>
-                <thead>
-                <tr>
-                    <th>订单号</th>
-                    <th>商品名</th>
-                    <th>数量</th>
-                    <th>单价</th>
-                    <th>总价</th>
-                    <th>状态</th>
-                    <th>商品类型</th>
-                    <th>时间</th>
-                </tr>
-
-                </thead>
-                <?php if(empty($list) || (($list instanceof \think\Collection || $list instanceof \think\Paginator ) && $list->isEmpty())): else: if(is_array($list) || $list instanceof \think\Collection || $list instanceof \think\Paginator): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$lo): $mod = ($i % 2 );++$i;?>
-                <tbody>
-                <tr>
-                    <td><?php echo $lo['order_no']; ?></td>
-                    <td><?php echo $goods[$lo['gid']]; ?></td>
-                    <td><?php echo $lo['num']; ?></td>
-                    <td><?php echo $lo['danpay']; ?></td>
-                    <td><?php echo $lo['countpay']; ?></td>
-                    <td>
-                        <?php switch($lo['status']): case "0": ?> 未付款 <?php break; case "1": ?>已付款<?php break; case "3": ?>已发货<?php break; case "4": ?>》联系客服退款<?php break; default: ?> 未付款
-                        <?php endswitch; ?>
-                    </td>
-                    <td>
-                        <?php if($lo['huo'] == '1'): ?>
-                        自动发货
-                        <?php else: ?>
-                        手动发货
-                        <?php endif; ?>
-                    </td>
-                    <td><?php echo $lo['create_time']; ?></td>
-                </tr>
-                </tbody>
-                <?php endforeach; endif; else: echo "" ;endif; ?>
-
-                <center>
-                    <!-- 分页-->
-                    <div class="pager">
-                        <?php echo $list->render(); ?>
+            </div>  
+            <form id="changepwd-form" class="form-horizontal layui-form" onclick='return false'>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">余额</label>
+                    <div class="layui-input-block">
+                        <div class="layui-form-mid layui-word-aux" style="color:red !important"><?php echo (\think\Session::get('info.money') ?: '0.00'); ?></div>
                     </div>
-                </center>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">充值</label>
+                    <div class="layui-input-block" id='daili'>
+                        <input type="radio" name="daili" <?php if(\think\Session::get('info.level') == '2'): ?> checked="true" <?php endif; ?> value="普通代理" title="普通代理(<?php echo floatval($config['nomal']); ?>元)" data-money='<?php echo floatval($config['nomal']); ?>' />
+                        <input type="radio" name="daili" <?php if(\think\Session::get('info.level') == '3'): ?> checked='true' <?php endif; ?> value="高级代理"  title="高级代理(<?php echo floatval($config['high']); ?>元)" data-money='<?php echo floatval($config['high']); ?>'>
+                    </div>
+                </div>
 
-            </table>
-            <?php endif; ?>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">方式</label>
+                    <div class="layui-input-block">
+                         <input type="radio" name="payment" value="alipay" title="支付宝">
+
+                         <input type="radio" name="payment" value="wxpay" title="微信" >
+
+                         <input type="radio" name="payment" value="qqpay" title="QQ钱包" >
+
+                         <input type="radio" name="payment" value="yupay" checked title="余额支付" >
+                    </div>
+                </div>
+
+                <input type="hidden" id='mid' value='<?php echo \think\Session::get('info.id'); ?>'  /> 
+
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn"  onclick="buyvip()">立即提交</button>
+                    </div>
+                </div>
+
+            </form>
         </div>
     </div>
 </div>
-
 </div>
 </div>
 
+
+
+<script>
+    //升级 vip
+    function buyvip(){
+       var mid   = $('#mid').val(); //user id
+       var descs = $("input[name='daili']:checked").val(); //升级类型
+       var paymoney = $("input[name='daili']:checked").attr('data-money'); //升级金额
+       var types = $("input[name='payment']:checked").val(); //选择pay类型
+
+       if(descs == '' || descs == undefined || descs == 'undefined'){
+           layer.msg('请选择充值类型');
+           return false;
+       }
+
+       if(types == '' || types == undefined){
+           layer.msg('请选择支付类型');
+           return false;
+       }
+
+       if(types == 'yupay'){
+          //yu pay
+           var yupay = "<?php echo url('user/vippay'); ?>";
+
+           $.post(yupay,{'mid':mid,'descs':descs,'types':types,'paymoney':paymoney},function(ret){
+                    if(ret.code == 200 ){
+                        layer.msg(ret.msg,{icon:6},function(){
+                            parent.location.reload();
+                        })
+                    }
+
+                   if(ret.code == 400 ) {
+                       layer.msg(ret.msg, {icon: 5}, function () {
+                           parent.location.reload();
+                       })
+                   }
+
+                   if(ret.code == 403){
+                     layer.msg(ret.msg,{icon:5},function(){
+                       parent.location.reload();
+                     })
+                   }
+           },'json')
+          
+       }else {
+         //three pay  
+
+       }
+
+    }
+
+
+
+    /*
+        function buyvip() {
+            var daili = $('#daili input[name="daili"]:checked ').val();
+            $.ajax({
+                //几个参数需要注意一下
+                type: "POST", //方法类型
+                dataType: "json", //预期服务器返回的数据类型
+                url: "<?php echo url('user/ajaxbuyvip'); ?>", //url
+                data: {daili: daili},
+                success: function (result) {
+                    if (result.status == 1) {
+                        layer.msg(result.msg, function () {
+                            window.location.href = "/user";
+                        });
+                    } else {
+                        layer.msg(result.msg);
+                    }
+                    ;
+                },
+            });
+        }
+        */
+    </script>
 </main>
 
 
@@ -213,6 +269,7 @@
 
 
 
+<script src="/index/sink/js/require.min.js" data-main="/assets/js/require-frontend.min.js?v=1.0.1"></script>
 
 </body>
 </html>

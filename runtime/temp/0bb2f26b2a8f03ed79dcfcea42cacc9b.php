@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:85:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\login\login.html";i:1576310770;s:80:"C:\Users\Administrator\Desktop\faka\application\index\view\public\loginhead.html";i:1567323883;s:80:"C:\Users\Administrator\Desktop\faka\application\index\view\public\loginfoot.html";i:1567323883;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:85:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\login\login.html";i:1577542709;s:80:"C:\Users\Administrator\Desktop\faka\application\index\view\public\loginhead.html";i:1577542709;s:80:"C:\Users\Administrator\Desktop\faka\application\index\view\public\loginfoot.html";i:1577542709;}*/ ?>
 
 <!DOCTYPE html>
 <html>

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:86:"C:\Users\Administrator\Desktop\faka\public/../application/admin\view\order\person.html";i:1575129464;s:79:"C:\Users\Administrator\Desktop\faka\application\admin\view\template\layout.html";i:1567323883;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:86:"C:\Users\Administrator\Desktop\faka\public/../application/admin\view\order\person.html";i:1577542709;s:79:"C:\Users\Administrator\Desktop\faka\application\admin\view\template\layout.html";i:1577542709;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -152,14 +152,7 @@
                     </div>
 
                     <div class="form-group">
-                        <select name="paytype" id="paytype" class="form-control">
-                            <option value="">请选择...</option>
-
-                            <option value="1" <?php if(\think\Request::instance()->get('paytype') == 1): ?> selected="" <?php endif; ?>>支付宝</option>
-                            <option value="2" <?php if(\think\Request::instance()->get('paytype') == 2): ?> selected="" <?php endif; ?>>微信</option>
-                            <option value="3" <?php if(\think\Request::instance()->get('paytype') == 3): ?> selected="" <?php endif; ?>>qq支付</option>
-
-                        </select>
+                        <input type='text'  id="types" value="<?php echo \think\Request::instance()->get('paytype'); ?>" class="form-control" placeholder="请输入手机号或者订单号进行查询...">
                     </div>
 
                     <div class="form-group">
@@ -222,9 +215,8 @@
                         </td>
                         <td><?php echo $vo['countpay']; ?></td>
                         <td>
-                            <?php switch($vo['paytype']): case "1": ?>支付宝支付<?php break; case "2": ?>微信支付<?php break; case "3": ?>QQ支付<?php break; case "4": ?>余额支付<?php break; default: ?>
-                             <span class="btn btn-danger btn-xs">未支付</span>
-                            <?php endswitch; ?>
+                            <?php if(isset($vo['types'])): ?>
+                            <?php echo $vo['types']; endif; ?>
                         </td>
                         <td>
                             <?php switch($vo['status']): case "1": ?>
@@ -247,9 +239,11 @@
                         <td><?php echo $vo['mobile']; ?></td>
                         <td><?php echo $vo['create_time']; ?></td>
                         <td class="td-do">
-                            <a href="edit.html" class="btn btn-success btn-xs" title="修改">
+            
+                            <a onclick='budan(this)' data-id='<?php echo $vo['id']; ?>' data-href="<?php echo url('order/budan'); ?>" class="btn btn-success btn-xs" title="修改">
                                 <i class="fa fa-pencil">补单</i>
                             </a>
+                        
                             <a  data-href="<?php echo url('order/pedit',array('id'=>$vo['id'])); ?>" class="btn btn-primary btn-xs pedit" title="修改">
                                 <i class="fa fa-pencil">编辑订单</i>
                             </a>
@@ -274,7 +268,7 @@
                         title: '编辑订单',
                         shadeClose: true,
                         shade: false,
-                        area: ['60%', '70%'],
+                        area: ['50%', '65%'],
                         content: url,
                     })
             });
@@ -307,7 +301,7 @@
             $('.search').click(function(){
                 var url     = $(this).attr('data-href');
                 var gid     = $('#gid option:selected').val();
-                var paytype = $('#paytype option:selected').val();
+                var paytype = $('#types').val();
 
                 if(gid ==  '' || gid==undefined){
                     layer.msg('请选择商品');
@@ -315,13 +309,36 @@
                 }
 
                 if(paytype ==  '' || paytype==undefined){
-                    layer.msg('请选择支付类型');
+                    layer.msg('请输入订单号或者手机号查询');
                     return ;
                 }
 
                 location.href= url+"?gid="+gid+"&paytype="+paytype;
 
             })
+
+            /** 补单 */
+            function budan(obj){
+                var urls = $(obj).attr('data-href');
+                var id   = $(obj).attr('data-id');
+                if(urls  == '' || urls  == undefined){
+                    return false;
+                }
+
+                $.get(urls,{'id':id},function(ret){
+                      if(ret.code == 200){
+                          layer.msg(ret.msg,{icon:6},function(){
+                              parent.location.reload();
+                          })
+                      }
+
+                      if(ret.code == 400){
+                          layer.msg(ret.msg,{icon:5},function(){
+                              parent.location.reload();
+                          })
+                      }
+                },'json')
+            }
         </script>
         </section>
     </div>

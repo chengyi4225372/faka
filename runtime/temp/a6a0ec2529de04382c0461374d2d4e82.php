@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:86:"C:\Users\Administrator\Desktop\faka\public/../application/admin\view\member\index.html";i:1577542709;s:79:"C:\Users\Administrator\Desktop\faka\application\admin\view\template\layout.html";i:1577542709;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:85:"C:\Users\Administrator\Desktop\faka\public/../application/admin\view\member\edit.html";i:1577542709;s:79:"C:\Users\Administrator\Desktop\faka\application\admin\view\template\layout.html";i:1577542709;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -139,80 +139,125 @@
         <section class="content">
             <div class="row">
     <div class="col-md-12">
-        <div class="box">
-            <div class="box-body">
-                <form class="form-inline" name="searchForm" id="searchForm" action="<?php echo url('member/index'); ?>" method="GET">
-                    <div class="form-group">
-                        <input value="<?php echo \think\Request::instance()->get('keywords')?\think\Request::instance()->get('keywords') : '' ;; ?>"
-                               name="keywords" id="keywords" class="form-control input-sm" placeholder="帐号/昵称/手机号/邮箱">
+        <div class="box box-primary">
+            <form  class="form-horizontal dataForm"  enctype="multipart/form-data">
+                <div class="box-body">
+                    <div class="fields-group">
+                        <input type="hidden" id="id" value="<?php echo $info['id']; ?>">
+                        <div class="form-group">
+                            <label for="account" class="col-sm-2 control-label">账号</label>
+                            <div class="col-sm-10 col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input maxlength="20" id="account" name="account" value="<?php echo $info['account']; ?>" class="form-control" >
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="col-sm-2 control-label">email邮箱</label>
+                            <div class="col-sm-10 col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input maxlength="20" id="email" name="email" value="<?php echo (isset($info['email']) && ($info['email'] !== '')?$info['email']:''); ?>" class="form-control" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                        <label for="qq" class="col-sm-2 control-label">qq账号</label>
+                        <div class="col-sm-10 col-md-4">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                <input maxlength="20" id="qq" name="qq" value="<?php echo (isset($info['qq']) && ($info['qq'] !== '')?$info['qq']:''); ?>" class="form-control" placeholder="">
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <button class="btn btn-sm btn-primary" type="submit"><i class="fa fa-search"></i> 查询
-                        </button>
-                    </div>
+                        <div class="form-group">
+                            <label for="money" class="col-sm-2 control-label">用户金额</label>
+                            <div class="col-sm-10 col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input maxlength="20" id="money" name="money" value="<?php echo (isset($info['money']) && ($info['money'] !== '')?$info['money']:'0.00'); ?>" class="form-control" >
+                                </div>
+                            </div>
+                        </div>
 
-                    <div class="form-group">
-                        <button onclick="clear_form()" class="btn btn-sm btn-" type="button"><i
-                                class="fa  fa-eraser"></i> 清空查询
-                        </button>
+                        <div class="form-group">
+                            <label for="level" class="col-sm-2 control-label">用户等级</label>
+                            <div class="col-sm-10 col-md-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-list"></i></span>
+                                    <select name="level" id="level" class="form-control">
+                                        <?php if($info['level'] == ''): ?>
+                                        <option value=""  aria-checked="">请选择等级</option>
+                                        <?php else: ?>
+                                        <option value="1" aria-checked="" >会员</option>
+                                        <?php endif; ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="status" class="col-sm-2 control-label">账号状态</label>
+                            <div class="col-sm-10 col-md-4">
+                                <div class="input-group iconpicker-container">
+                                    <input <?php if(($info['status']==1) || !isset($info)): ?>checked<?php endif; ?>
+                                     value="<?php echo (isset($info['status']) && ($info['status'] !== '')?$info['status']:'1'); ?>" class="form-input-switch" type="checkbox" placeholder="status-switch" data-input="status">
+                                    <input id="status" name="status" value="<?php echo (isset($info['status']) && ($info['status'] !== '')?$info['status']:'1'); ?>" type="hidden"/>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                </form>
-            </div>
+                </div>
+
+                <div class="box-footer">
+                    <div class="col-sm-2">
+                    </div>
+                    <div class="col-sm-10 col-md-4">
+                        <div class="btn-group">
+                            <button type="button" class="btn flat btn-info dataform-submit member">保存</button>
+                        </div>
+                        <div class="btn-group">
+                            <button type="reset" class="btn flat btn-default dataform-reset">重置</button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
         </div>
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="box">
-            <div class="box-body table-responsive">
-                <table class="table table-hover table-bordered datatable" width="100%">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>账号</th>
-                        <th>余额</th>
-                        <th>qq账号</th>
-                        <th>邮箱</th>
-                        <th>注册时间</th>
-                        <th>状态</th>
-                        <th>操作</th>
-                    </tr>
-                    </thead>
-                    <?php if(is_array($list) || $list instanceof \think\Collection || $list instanceof \think\Paginator): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-                    <tbody>
-                    <tr>
-                        <td><?php echo $vo['id']; ?></td>
-                        <td><?php echo $vo['account']; ?></td>
-                        <td><?php echo (isset($vo['money']) && ($vo['money'] !== '')?$vo['money']:'0.00'); ?></td>
-                        <td><?php echo (isset($vo['qq']) && ($vo['qq'] !== '')?$vo['qq']:''); ?></td>
-                        <td><?php echo (isset($vo['email']) && ($vo['email'] !== '')?$vo['email']:''); ?></td>
-                        <td><?php echo $vo['create_time']; ?></td>
-                        <td>
-                            <?php if($vo['status'] == '1'): ?>
-                              有效客户
-                             <?php else: ?>
-                              无效客户
-                            <?php endif; ?>
-                        </td>
-                        <td class="td-do">
-                            <a href="<?php echo url('member/edit',array('id'=>$vo['id'])); ?>"
-                               class="btn btn-primary btn-xs" title="修改">
-                                <i class="fa fa-pencil">编辑</i>
-                            </a>
-                            <a class="btn btn-danger btn-xs" title="删除"  href="<?php echo url('member/del',array('id'=>$vo['id'])); ?>">
-                                <i class="fa fa-trash">删除</i>
-                            </a>
-                        </td>
+<script>
+    $('.member').click(function(){
+        var data     = {};
+        data . account = $('#account').val();
+        data . email   = $('#email').val();
+        data . money   = $('#money').val();
+        data.  qq      = $('#qq').val();
+        data.  level   = $('#level option:selected').val();
+        data.  status  = $('#status').val();
+        data.  id      = $('#id').val();
+        var  url       = "<?php echo url('member/edit'); ?>";
 
-                    </tr>
-                    </tbody>
-                    <?php endforeach; endif; else: echo "" ;endif; ?>
-                </table>
-            </div>
-        </div>
-        <?php echo $list->render(); ?>
+        $.post(url,{data:data},function(ret){
+            if(ret.code == '200'){
+              layer.msg(ret.msg,{time:2000},function(){
+                  parent.location.href="<?php echo url('member/index'); ?>";
+              })
+            }
+            if(ret.code == '404'){
+                layer.msg(ret.msg,{time:2000},function(){
+                    parent.location.href="<?php echo url('member/index'); ?>";
+                })
+            }
+        },'json')
+    })
+</script>
 
         </section>
     </div>

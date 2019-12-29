@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:84:"C:\Users\Administrator\Desktop\faka\public/../application/admin\view\auth\login.html";i:1567323882;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:84:"C:\Users\Administrator\Desktop\faka\public/../application/admin\view\auth\login.html";i:1577542709;}*/ ?>
 <!---->
 <!DOCTYPE html>
 <html>
