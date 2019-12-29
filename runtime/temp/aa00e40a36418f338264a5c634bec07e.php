@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:86:"C:\Users\Administrator\Desktop\faka\public/../application/admin\view\order\person.html";i:1577542709;s:79:"C:\Users\Administrator\Desktop\faka\application\admin\view\template\layout.html";i:1577542709;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:86:"C:\Users\Administrator\Desktop\faka\public/../application/admin\view\order\person.html";i:1577619765;s:79:"C:\Users\Administrator\Desktop\faka\application\admin\view\template\layout.html";i:1577542709;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -268,7 +268,7 @@
                         title: '编辑订单',
                         shadeClose: true,
                         shade: false,
-                        area: ['50%', '65%'],
+                        area: ['50%', '80%'],
                         content: url,
                     })
             });

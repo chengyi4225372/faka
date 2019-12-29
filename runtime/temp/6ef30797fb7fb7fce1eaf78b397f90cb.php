@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:85:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\index\trade.html";i:1576310770;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\head.html";i:1567323883;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\foot.html";i:1567323883;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:85:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\index\trade.html";i:1577542709;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\head.html";i:1577542709;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\foot.html";i:1577542709;}*/ ?>
 
 <!DOCTYPE html> 
 
@@ -77,7 +77,7 @@
     <!-- todo 点击的时候就有class  -->
                 <ul id="nav"> 
                     <li><a      href="/">商品首页</a></li>
-                    <li><a      href="<?php echo url('configcom/search'); ?>">游客订单查询</a></li>
+                    <li><a      href="<?php echo url('index/search'); ?>">游客订单查询</a></li>
                     <li><a      href="<?php echo url('configcom/address'); ?>">兑换地址</a></li>
                     <li><a      href="<?php echo url('configcom/about'); ?>">关于我们</a></li>
                     <li><a      href="<?php echo url('configcom/help'); ?>">帮助中心？</a></li>
@@ -85,9 +85,6 @@
 
             </div>
         </div>
-
-
-
         <br/>
 
 
@@ -247,6 +244,15 @@
 
 <script>
 
+    //手机验证
+    function checkPhone(phone) {
+        var tel_reg = /^1(3|4|5|6|7|8|9)\d{9}$/;
+        if (tel_reg.test(phone)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
    function buy(money){
 
@@ -262,9 +268,15 @@
 
 
             if(mobile == '' || mobile== undefined){
-            layer.msg('请输入联系方式');
-            return ;
-        }
+               layer.msg('请输入联系方式');
+               return ;
+            }
+
+            if(checkPhone(mobile) == false){
+                layer.msg('请输入正确的手机号码');
+                return ;
+            }
+
 
             if(paynum <= 0){
             layer.msg('最少购买数量为1');
@@ -302,12 +314,10 @@
                 moban.push($("#title"+i).text());
                 moban.push($("#moban"+i).val());;
             }
-            console.log(moban);
         }else{
             data.num  = 1; //手动默认购买一个
             moban ='';
         }
-        console.log(moban);
         data.content  = JSON.stringify(moban);
         data.danpay   = money;
         data.countpay = money * data.num;

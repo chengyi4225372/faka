@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:85:"C:\Users\Administrator\Desktop\faka\public/../application/admin\view\order\zedit.html";i:1577542709;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:85:"C:\Users\Administrator\Desktop\faka\public/../application/admin\view\order\zedit.html";i:1577619280;}*/ ?>
 
 
 <link rel="stylesheet" href="/static/admin/css/app.min.css">
@@ -86,10 +86,7 @@
                         </div></td>
                         <td>发货模板信息</td>
                         <td><div>
-                         <?php if($info['content'] == null or $info['content'] == 0): ?>
                           自动发货订单
-                          <?php else: ?>
-                          <?php echo $info['content']; endif; ?>
                         </div></td>
                       </tr>
 

@@ -151,6 +151,7 @@ class Two extends Base
                 'order_no'  => create_order(),
                 'mobile'    => $this->param['mobile'],
                 'member_id' => $this->param['member_id'],
+                'ip' => getip(),
             ];
 
             $res = Db::name('order')->insertGetId($array);

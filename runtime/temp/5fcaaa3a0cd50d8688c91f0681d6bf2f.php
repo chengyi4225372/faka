@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:88:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\configcom\help.html";i:1571549535;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\head.html";i:1567323883;s:80:"C:\Users\Administrator\Desktop\faka\application\index\view\public\twombfoot.html";i:1571549535;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:88:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\configcom\help.html";i:1577542709;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\head.html";i:1577542709;s:80:"C:\Users\Administrator\Desktop\faka\application\index\view\public\twombfoot.html";i:1577542709;}*/ ?>
 
 
 <!DOCTYPE html> 
@@ -78,7 +78,7 @@
     <!-- todo 点击的时候就有class  -->
                 <ul id="nav"> 
                     <li><a      href="/">商品首页</a></li>
-                    <li><a      href="<?php echo url('configcom/search'); ?>">游客订单查询</a></li>
+                    <li><a      href="<?php echo url('index/search'); ?>">游客订单查询</a></li>
                     <li><a      href="<?php echo url('configcom/address'); ?>">兑换地址</a></li>
                     <li><a      href="<?php echo url('configcom/about'); ?>">关于我们</a></li>
                     <li><a      href="<?php echo url('configcom/help'); ?>">帮助中心？</a></li>
@@ -86,9 +86,6 @@
 
             </div>
         </div>
-
-
-
         <br/>
 
 
@@ -119,12 +116,12 @@
 </div>
 </div>
             <div class="tongji"><?php echo (isset($config['info']) && ($config['info'] !== '')?$config['info']:''); ?></div>
-            <form action="/search" method="post" class="am-modal am-modal-alert" tabindex="-1" id="my-alerts">
+            <form action="<?php echo url('two/search'); ?>" method="get" class="am-modal am-modal-alert" tabindex="-1" id="my-alerts">
                 <div class="am-modal-dialog">
                   <div class="am-modal-hd">订单查询</div>
                   <div class="am-modal-bd">
                     请输入订单号或联系方式
-                      <input type="text" class="am-modal-prompt-input" name="content" required>
+                      <input type="text" class="am-modal-prompt-input" name="orderno" required>
                   </div>
                   <div class="am-modal-footer">
                     <button type="submit" class="am-btn am-btn-primary" >确定</button>

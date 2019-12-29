@@ -137,10 +137,8 @@ class Order extends Base
 
            $res = Db::name('order')->where(['id'=>$up['data']['id']])->update(
                [
-                'content' =>json_encode($up['data']['content']),
                 'status'  =>$up['data']['status'],
-                'num'     =>$up['data']['num'],
-                'countpay'=>$up['data']['countpay'],
+                'orderback'=>$up['data']['callback'],
                ]
            );
 
@@ -181,7 +179,7 @@ class Order extends Base
                  return false;
              }
              
-             $res = Db::name('order')->where(['id'=>$id,'is_delete'=>0])->data(['status'=>1,'dan'=>0])->update();
+             $res = Db::name('order')->where(['id'=>$id,'is_delete'=>0])->data(['dan'=>0])->update();
              
              if($res !== false){
                 return  json(['code'=>200,'msg'=>'补单成功']);

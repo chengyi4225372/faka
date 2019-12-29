@@ -91,14 +91,29 @@
                         </div></td>
                         <td>发货模板信息</td>
                         <td><div>
-                         {if condition='$info.content eq null or $info.content eq 0'}
-                          自动发货订单
-                          {else /}
+                         {notempty name='$info.content'}
                           {$info.content}
-                          {/if}
+                          {/notempty}
                         </div></td>
                       </tr>
 
+                      <tr>
+                          <td>人工发货状态：</td>
+                          <td><div>
+                              <select id="status" class="form-control">
+                                  <option value="100">请选择...</option>
+                                  <option value="2" {if condition="$info.status eq 2"}selected="" {/if} >已发货</option>
+                                  <option value="3" {if condition="$info.status eq 3"}selected="" {/if} >联系客服退款</option>
+                              </select>
+                          </div></td>
+
+                          <td>订单回执操作：</td>
+                          <td>
+                              <div>
+                                  <input type='text'  id="callback" value="{$info.orderback|default=''}" class="form-control" />
+                              </div>
+                          </td>
+                      </tr>
                             
                       <tr>
                         <td>订单操作：</td>
@@ -110,134 +125,10 @@
                          {/if}
                         </div></td>
                       </tr>
-
-                     
-                      
                     </tbody>
                 </table>
                   </div>
 
-                <!--
-                <div class="box-body">
-
-                    <div class="fields-group">
-                        <div class="form-group">
-                            <label for="title" class="col-sm-2 control-label">订单号</label>
-                            <div class="col-sm-10 col-md-3">
-                                <div class="input-group">
-                                  <input type="text" value='{$info.order_no}' class="form-control" />
-                                </div>
-                            </div>
-
-                            <label for="title" class="col-sm-2 control-label">商品名称</label>
-                            <div class="col-sm-10 col-md-3">
-                                <div class="input-group">
-                                <input type="text" value='{$goods[$info.gid]}' class="form-control" /> 
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-
-                    <div class="fields-group">
-                        <div class="form-group">
-                            <label for="num" class="col-sm-2 control-label">商品数量</label>
-                            <div class="col-sm-10 col-md-3">
-                                <div class="input-group">
-                                    <input  id="num" name="num" value="{$info.num}" class="form-control" placeholder="">
-                                </div>
-                            </div>
-
-                            <label for="mobile" class="col-sm-2 control-label">商品总价</label>
-                            <div class="col-sm-10 col-md-3">
-                                <div class="input-group">
-                                    <input  id="countpay" name="countpay" value="{$info.countpay}" class="form-control" placeholder="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="fields-group">
-                        <div class="form-group">
-                            <label for="mobile" class="col-sm-2 control-label">支付方式</label>
-                            <div class="col-sm-10 col-md-3">
-                                <div class="input-group">
-                                    <input  value="{$info.types}" class="form-control" />
-                                </div>
-                            </div> 
-
-                            <label for="mobile" class="col-sm-2 control-label">联系电话</label>
-                            <div class="col-sm-10 col-md-3">
-                                <div class="input-group">
-                                    <input  value="{$info.mobile}" class="form-control" />
-                                </div>
-                            </div> 
-                        </div>
-                    </div> 
-
-
-                    <div class="fields-group">
-                        <div class="form-group">
-                            <label for="mobile" class="col-sm-2 control-label">购买用户</label>
-                            <div class="col-sm-10 col-md-3">
-                                <div class="input-group">
-                                    {if condition="$info.member_id neq 0 or $info.member_id neq null"}
-                                    <input  value="{$members[$info['member_id']]}" class="form-control" />
-                                    {else /}
-                                    <input  value="游客" class="form-control" />
-                                    {/if}
-                                </div>
-                            </div> 
-
-                            <label for="mobile" class="col-sm-2 control-label">支付状态</label>
-                            <div class="col-sm-10 col-md-3">
-                                <div class="input-group">
-                                    {switch name="info.status"}
-                                    {case value="1"}
-                                    <a class="btn btn-block btn-success btn-xs">已支付</a>
-                                    {/case}
-                                    {case value="2"}
-                                    <a class="btn btn-block btn-linkedin btn-xs">已发货</a>
-                                    {/case}
-                                    {case value="3"}
-                                    <a class="btn btn-block btn-foursquare btn-xs">联系客服退款</a>
-                                    {/case}
-                                    {default /}
-                                    <a class="btn btn-block btn-primary btn-xs">未支付</a>
-                                    {/switch}
-                                </div>
-                            </div> 
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="status" class="col-sm-2 control-label">人工发货商品状态</label>
-                        <div class="col-sm-10 col-md-4">
-                            <div class="input-group">
-                                <select name="status" id="status" class="form-control">
-                                    <option value="100">请选择....</option>
-                                    <option value="2" {eq name="$info.status" value="2"} selected='true' {/eq}>商品发货</option>
-                                    <option value="3" {eq name="$info.status" value="3"} selected="true" {/eq} >联系客服退款</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="content" class="col-sm-2 control-label">购买信息</label>
-                        <div class="col-sm-8">
-                            <div class="input-group">
-                                <textarea id="content" name="content" class="form-control" style="height: 99px; width: 679px; margin: 0px;" placeholder="商品卡密">
-                                {volist name="$info.content" id="vo"}
-                                   {$vo}
-                                {/volist}
-                                </textarea>
-                            </div>
-                        </div>
-                    </div>
-
-   -->
                     <div class="box-footer">
                         <div class="col-sm-2">
                         </div>
@@ -262,11 +153,9 @@
     $('.pedit').click(function(){
 
         var data = {};
-        data.num = $('#num').val();
-        data.countpay = $('#countpay').val();
         data.id  = $('#id').val();
         data.status  = $('#status option:selected').val();
-        data.content  = $('#content').val();
+        data.callback  = $('#callback').val();
 
         if(data.status == '100'){
             layer.msg('请选择人工发货状态');

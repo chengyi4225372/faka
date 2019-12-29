@@ -25,13 +25,17 @@
                         </li>
 <!--                        <li>支付方式：微信支付</li>-->
                         <li>订单状态：
-                        {if condition='$orders.status eq 1'}
+                        {if condition='$orders.status lt 1'}
                         <font style="cursor:pointer;" color="#ff4351">已付款</font>
-                        {/if}
-
-                        {if condition='$orders.status eq 0'}
+                        {else /}
                         <font style="cursor:pointer" color="#CCCCCC">未付款</font>
-                        {/if}</li>
+                        {/if}
+                        </li>
+                        {if condition='$orders.huo eq 1'}
+                        <li>订单回执信息：
+                            {$orders.orderback}
+                        </li>
+                        {/if}
                     </ul>
                 </div>
             </section>

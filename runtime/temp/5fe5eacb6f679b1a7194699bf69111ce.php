@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:91:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\configcom\address.html";i:1567323883;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\head.html";i:1567323883;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\foot.html";i:1567323883;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:91:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\configcom\address.html";i:1577542709;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\head.html";i:1577542709;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\foot.html";i:1577542709;}*/ ?>
 
 
 <!DOCTYPE html> 
@@ -78,7 +78,7 @@
     <!-- todo 点击的时候就有class  -->
                 <ul id="nav"> 
                     <li><a      href="/">商品首页</a></li>
-                    <li><a      href="<?php echo url('configcom/search'); ?>">游客订单查询</a></li>
+                    <li><a      href="<?php echo url('index/search'); ?>">游客订单查询</a></li>
                     <li><a      href="<?php echo url('configcom/address'); ?>">兑换地址</a></li>
                     <li><a      href="<?php echo url('configcom/about'); ?>">关于我们</a></li>
                     <li><a      href="<?php echo url('configcom/help'); ?>">帮助中心？</a></li>
@@ -86,9 +86,6 @@
 
             </div>
         </div>
-
-
-
         <br/>
 
 

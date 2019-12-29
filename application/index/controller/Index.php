@@ -136,6 +136,7 @@ class Index extends Base
               'order_no'  => create_order(),
               'mobile'    => $this->param['data']['mobile'],
               'member_id' => $this->param['data']['member_id'],
+              'ip' => getip(),
           ];
 
 
@@ -252,6 +253,25 @@ class Index extends Base
             exit();
         }
         return false;
+   }
+
+   //del order
+   public function delorder(){
+       if($this->request->isPost() || $this->request->isAjax()){
+             $id = input('post.id','','int');
+            if(empty($id) || !isset($id) || is_null($id) || $id <=0 ){
+                return false;
+            }
+
+           $res = Db::name('order')->where(['id'=>$id])->data(['is_delete'=>1])->update();
+
+           if($res !== false){
+               return json(['code'=>200,'msg'=>'删除成功']);
+           }else {
+               return json(['code'=>400,'msg'=>'删除失败']);
+           }
+       }
+       return false;
    }
 
 }

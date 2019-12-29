@@ -87,7 +87,7 @@
         <br/><font size="4" color="#000000" title="这是您最近的购买记录">这是您的购买记录</font>
         <br/>
         {empty name='orders'}
-        <br/><font size="4" style="color: #ff2222" title="抱歉，没有搜索到{$Think.get.order}的相关结果！">抱歉，没有搜索到{$Think.get.order}的相关结果！</font>
+        <br/><font size="4" style="color: #ff2222" title="抱歉，没有搜索到{$Think.get.orderno}的相关结果！">抱歉，没有搜索到{$Think.get.orderno}的相关结果！</font>
         {else /}
         <table width="100%" border="0" cellspacing="0" cellpadding="10">
             <tr>
@@ -99,6 +99,7 @@
                 <th scope="col">总价</th>
                 <th scope="col">状态</th>
                 <th scope="col">日期</th>
+                <th scope="col">订单回执信息</th>
                 <th scope="col">操作</th>
             </tr>
             {volist name='orders' id='vo'}
@@ -116,21 +117,27 @@
                 <td align="center">{$vo.danpay}元</td>
                 <td align="center">{$vo.countpay}元</td>
                 <td align="center">
-                    {if condition='$vo.status eq 1'}
+                    {if condition='$vo.status gt 1'}
                     <font style="cursor:pointer;" color="#ff4351">已付款</font>
-                    {/if}
-
-                    {if condition='$vo.status eq 0'}
+                    {else /}
                     <font style="cursor:pointer" color="#CCCCCC">未付款</font>
                     {/if}
                 </td>  
-                <td><a title="{$vo.create_time}">{$vo.create_time}</a></td>
+                <td>{$vo.create_time}</td>
+
+                <td>
+                    {if condition="$vo.huo eq 0"}
+                     自动发货
+                    {else /}
+                    {$vo.orderback}
+                    {/if}
+                </td>
 
                 <td align="center">
                      <!-- 已经支付 -->
                     {eq name='$vo.status' value='0'}
                      <!-- 未支付 todo -->
-                    【<a href="/jxgoumai?id={$vo.id}" target="_blank" >付款</a>】【<a  style="cursor:pointer" onclick="del()" >删除</a>】
+                    【<a onclick="alert('开发中..');" target="_blank" >付款</a>】【<a  style="cursor:pointer" onclick="del(this)" data-id="{$vo.id}" >删除</a>】
                     {else /}
                      <!-- 已经支付    -->
                     {if condition='$vo.status eq 1'}
@@ -161,11 +168,8 @@
 </div>
 <script src='/static/index/sink/js/layer/layer.js'></script>
 <script type="text/javascript">
-    function del(a) {
-        if (a == "") {
-            layer.msg('条件丢失');
-            return;
-        }
+    function del(obj) {
+        var id  = $(obj).attr('data-id');
         layer.confirm('确定要删除订单吗？', {
             title: '确认信息',
             btn: ['确定', '取消'] //按钮
@@ -175,17 +179,24 @@
                 type: "POST",//方法类型
                 dataType: "json",//预期服务器返回的数据类型
                 url: "{:url('index/delorder')}" ,//url
-                data: {order:a},
-                success: function (result) {
-                    if (result.status == 1) {
-                      layer.msg('删除成功！');
-                        parent.location.reload();
-                    }else{
-                        layer.msg(result.msg);
-                    };
+                data: {'id':id},
+                success: function (ret) {
+                    if(ret.code == 200){
+                        layer.msg(ret.msg,function(){
+                            parent.location.reload();
+                        })
+                    }
+                    if(ret.code == 400){
+                        layer.msg(ret.msg,function(){
+                            parent.location.reload();
+                        })
+                    }
                 },
             });
-        });
+        }),
+        function(){
+            parent.layer.closeAll();
+        };
     }
 
     function cuidan(a) {
