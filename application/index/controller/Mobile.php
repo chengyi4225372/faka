@@ -114,24 +114,24 @@ class Mobile extends Controller
            }
 
            //验证用户等级 再去根据等级 找到会员价格
-           $user = Db::name('member')->where(['id'=>$this->param['data']['member_id']])->find();
+           $user = Db::name('member')->where(['id'=>$this->param['member_id']])->find();
 
            //商品会员价格
-           $goodpay = Db::name('goods')->where(['id'=>$this->param['data']['gid']])->find();
+           $goodpay = Db::name('goods')->where(['id'=>$this->param['gid']])->find();
 
            //得到打折的倍数
            //正常用户
            if($user['level'] == 1){
-               $countpay = $this->param['data']['countpay'];
+               $countpay = $this->param['countpay'];
            }else if($user['level'] == 2){
                //普通代理
-               $countpay = $this->param['data']['countpay'] * $goodpay['nomal'];
+               $countpay = $this->param['countpay'] * $goodpay['nomal'];
            } else if($user['level'] == 3){
                //高级
-               $countpay = $this->param['data']['countpay'] * $goodpay['high'];
+               $countpay = $this->param['countpay'] * $goodpay['high'];
            }else{
                //正常
-               $countpay = $this->param['data']['countpay'];
+               $countpay = $this->param['countpay'];
            }
 
            $array = [
@@ -144,6 +144,7 @@ class Mobile extends Controller
                'order_no'  => create_order(),
                'mobile'    => $this->param['mobile'],
                'member_id' => $this->param['member_id'],
+               'ip' => getip(),
            ];
 
            $res = Db::name('order')->insertGetId($array);
@@ -251,5 +252,24 @@ class Mobile extends Controller
         return false;
     }
 
+
+    //del 订单
+    public function delorder(){
+        if($this->request->isPost() || $this->request->isAjax()){
+            $id = input('post.id','','int');
+            if(empty($id) || !isset($id) || is_null($id) || $id <=0 ){
+                return false;
+            }
+
+            $res = Db::name('order')->where(['id'=>$id])->data(['is_delete'=>1])->update();
+
+            if($res !== false){
+                return json(['code'=>200,'msg'=>'删除成功']);
+            }else {
+                return json(['code'=>400,'msg'=>'删除失败']);
+            }
+        }
+        return false;
+    }
 
 }

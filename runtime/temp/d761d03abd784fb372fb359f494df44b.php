@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:86:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\mobile\index.html";i:1576310770;s:81:"C:\Users\Administrator\Desktop\faka\application\index\view\public\mobilehead.html";i:1576310770;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:86:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\mobile\index.html";i:1577542709;s:81:"C:\Users\Administrator\Desktop\faka\application\index\view\public\mobilehead.html";i:1577542709;}*/ ?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -94,13 +94,13 @@ $(document).ready(function(){
 
 
 <div class="m_userx w">
-    <a target="blank" href="http://wpa.qq.com/msgrd?v=3&uin=1111&site=qq&menu=yes">
+    <a target="blank" href="http://wpa.qq.com/msgrd?v=3&uin=<?php echo $config['kefu']; ?>&site=qq&menu=yes">
         <img  style="CURSOR: pointer" border="0" SRC=/mobile/sink/img/pa alt="发送消息给我"></a>&nbsp;&nbsp;
     &nbsp;&nbsp;客服<?php echo (isset($config['kefu']) && ($config['kefu'] !== '')?$config['kefu']:''); ?> </div>
 <div class="search w">
-    <form action="/search" method="post">
-        <input name="content" type="text" class="search_input" placeholder="请输入订单号查询">
-        <input name="submit" type="submit" class="search_submit" value="查询">
+    <form action="<?php echo url('mobile/search'); ?>" method="get">
+        <input name="orderno" type="text" class="search_input" value="<?php echo \think\Request::instance()->get('orderno'); ?>" placeholder="请输入订单号查询">
+        <input  type="submit" class="search_submit" value="查询">
     </form>
 </div>
 <div class="baoliao w">
@@ -143,7 +143,7 @@ $(document).ready(function(){
                               <span class="am-badge am-badge-success" style="margin-left: 5px">代充</span>
                               </span>&nbsp;
                             <span class="bl_type" style="background-color:#B187C1;">销量(<?php echo floatval($vo['paynum']); ?>)</span> ￥<?php echo floatval($vo['money']); ?>&nbsp;&nbsp;&nbsp;
-                            <font color="#F8A059">批发价￥<?php echo $vo['pipay']; ?></font>
+                            <font color="#F8A059">批发价￥<?php echo floatval($vo['pipay']); ?></font>
                         </div>
                         <?php endif; ?>
                        </div>

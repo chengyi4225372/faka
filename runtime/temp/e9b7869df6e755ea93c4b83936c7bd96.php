@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:86:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\mobile\trade.html";i:1576333230;s:81:"C:\Users\Administrator\Desktop\faka\application\index\view\public\mobilehead.html";i:1576310770;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:86:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\mobile\trade.html";i:1577624392;s:81:"C:\Users\Administrator\Desktop\faka\application\index\view\public\mobilehead.html";i:1577542709;}*/ ?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -135,7 +135,7 @@ $(document).ready(function(){
         </div>
         <?php endif; if($info['huo'] == 0): ?>
         <div class="bl_view_title"> 购买数量：
-            <input class="search_input2" id="p_num" name="num" type="number" value="" min="0" max="" placeholder="请输购买数量" required>
+            <input class="search_input2" id="p_num"  type="number" value="" min="0"  placeholder="请输购买数量" required>
         </div>
         <?php endif; ?>
 
@@ -189,18 +189,17 @@ $(document).ready(function(){
               layer.msg('请输入电话信息');
               return false;
              }
-            var num = $('#p_num').val(); //商品购买数量
+            var num = parseInt($('#p_num').val()); //商品购买数量
             var bei = $('#bei').val();
-            var min = $('#minnum').val();
-            var max = $('#maxnum').val();
+            var mins = parseInt($('#minnum').val());
+            var maxs =parseInt($('#maxnum').val());
             var counts = $('#counts').val();
-            if(num < min || num =='' || num == undefined){
-                layer.msg('购买商品太少了，无法发货');
+            if(num < mins || num =='' || num == undefined){
+                layer.msg('购买商品最少数量是'+mins);
                 return false;
             }
-
-            if(num > max){
-                layer.msg('商品购买数量太多了，我们无法发货');
+            if(maxs < num){
+                layer.msg('商品购买数量最多为'+maxs);
                 return false;
             }
 
