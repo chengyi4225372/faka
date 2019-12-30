@@ -306,13 +306,36 @@ class Index extends Base
             return json(['code'=>4004,'msg'=>'余额不足，请充值...']);
           }
           
-        //1.先支付
-
+        //1.先支付 
+         $nowpay = Db::name('member')->where(['id'=>session('info.id'),'status'=>1])->data(['money'=>$nowmoney])->update(); 
+         if($nowpay === false){
+             return json(['code'=>4005,'msg'=>'余额支付失败']);
+             //更新失败 应该回到原来的数据
+         }
 
         //2.更新卡密
-          
-        //返回成功
+        $cardlist = Db::name('card')->where(['over'=>0,'oid'=>null])->order('id asc')->limit(0,$member_order['num'])->update([
+            'oid'=>$member_order['id']]
+        ); 
 
+        if($cardlist === false){
+          return json(['code'=>4006,'msg'=>'获取卡密失败，请联系客服']);
+        }  
+        //返回成功
+        
+         Db::startTrans();
+         try {
+            Db::name('card')->where(['oid'=>$member_order['id']])->data(['over'=>1])->update(); //更新卡密
+            Db::name('order')->where(['order_no'=>$order_no])->data(['status'=>1])->update(); //更新订单状态
+             // 提交事务
+            Db::commit();
+         } catch (\Exception $e) {
+            // 回滚事务
+            Db::rollback();
+         }
+
+         return json(['code'=>2000,'msg'=>'支付成功','order'=>$order_no,'huo'=>$member_order['huo']]);
+         
         }
 
         return false;

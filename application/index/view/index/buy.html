@@ -188,11 +188,60 @@
        if(types == 'yupay'){
            //余额支付
           var urls = "{:url('index/yupay')}"; 
-           $.post(urls,{'order':order_no},function(ret){
-                   if(ret.code== 200){
+          $.post(urls,{'order':order_no},function(ret){
+                   if(ret.code== 2000){
 
+                       if(ret.huo ==0){
+                         layer.msg(ret.msg,{icon:6},function(){
+                         parent.location.href="{:url('index/zdfahuo)'}?orderno"+ret.order;
+                          });
+                       }else {
+                          layer.msg(ret.msg,{icon:6},function(){
+                         parent.location.href="{:url('index/sdfahuo)'}?orderno"+ret.order;
+                         }); 
+                       }
+   
                    }
 
+                   if(ret.code== 4001){
+                     layer.msg(ret.msg,{icon:5},function(){
+                        parent.location.reload();
+                     })
+                   }
+                   
+                   if(ret.code== 4002){
+                     layer.msg(ret.msg,{icon:5},function(){
+                        parent.location.reload();
+                     })
+                   }
+
+                   
+                   if(ret.code== 4003){
+                     layer.msg(ret.msg,{icon:5},function(){
+                        parent.location.reload();
+                     })
+                   }
+
+                   
+                   if(ret.code== 4004){
+                     layer.msg(ret.msg,{icon:5},function(){
+                        parent.location.reload();
+                     })
+                   }
+
+                   
+                   if(ret.code== 4005){
+                     layer.msg(ret.msg,{icon:5},function(){
+                        parent.location.reload();
+                     })
+                   }
+
+                   
+                   if(ret.code== 4005){
+                     layer.msg(ret.msg,{icon:5},function(){
+                        parent.location.reload();
+                     })
+                   }
                 
            },'json')
        }
