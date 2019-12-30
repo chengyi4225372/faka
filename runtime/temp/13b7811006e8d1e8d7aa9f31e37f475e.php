@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\order\person.html";i:1577437124;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\view\template\layout.html";i:1567134813;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\order\person.html";i:1577666982;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\view\template\layout.html";i:1567134813;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -179,11 +179,11 @@
 
             <div class="box-body table-responsive">
 
-                <div class="form-group">
-                    <button onclick="clear_form()" class="btn btn-info pull-right" type="button"><i
-                            class="fa  fa-eraser"></i> 删除未完成订单
-                    </button>
-                </div>
+                <!--<div class="form-group">-->
+                    <!--<button onclick="clear_form()" class="btn btn-info pull-right" type="button"><i-->
+                            <!--class="fa  fa-eraser"></i> 删除未完成订单-->
+                    <!--</button>-->
+                <!--</div>-->
 
                 <table class="table table-hover table-bordered datatable" width="100%">
                     <thead>
@@ -268,7 +268,7 @@
                         title: '编辑订单',
                         shadeClose: true,
                         shade: false,
-                        area: ['50%', '65%'],
+                        area: ['50%', '80%'],
                         content: url,
                     })
             });

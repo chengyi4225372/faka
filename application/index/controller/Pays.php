@@ -95,6 +95,11 @@ class Pays extends Controller
                     exit();
                 }
 
+                if($order['is_delete'] == 1){
+                    echo "<script>alert('该订单已经删除')</script>";
+                    exit();
+                }
+
                 //已支付 自动发货 更新卡密与关联订单id
                 $pays =  Db::name('order')->where(['order_no'=>$out_trade_no])->update(array(
                     'types'=>$type,

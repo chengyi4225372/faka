@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\search.html";i:1577065442;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1576907381;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\search.html";i:1577666982;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1576907381;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
 
 <!DOCTYPE html> 
 
@@ -176,7 +176,7 @@
         <br/><font size="4" color="#000000" title="这是您最近的购买记录">这是您的购买记录</font>
         <br/>
         <?php if(empty($orders) || (($orders instanceof \think\Collection || $orders instanceof \think\Paginator ) && $orders->isEmpty())): ?>
-        <br/><font size="4" style="color: #ff2222" title="抱歉，没有搜索到<?php echo \think\Request::instance()->get('order'); ?>的相关结果！">抱歉，没有搜索到<?php echo \think\Request::instance()->get('order'); ?>的相关结果！</font>
+        <br/><font size="4" style="color: #ff2222" title="抱歉，没有搜索到<?php echo \think\Request::instance()->get('orderno'); ?>的相关结果！">抱歉，没有搜索到<?php echo \think\Request::instance()->get('orderno'); ?>的相关结果！</font>
         <?php else: ?>
         <table width="100%" border="0" cellspacing="0" cellpadding="10">
             <tr>
@@ -188,6 +188,7 @@
                 <th scope="col">总价</th>
                 <th scope="col">状态</th>
                 <th scope="col">日期</th>
+                <th scope="col">订单回执信息</th>
                 <th scope="col">操作</th>
             </tr>
             <?php if(is_array($orders) || $orders instanceof \think\Collection || $orders instanceof \think\Paginator): $i = 0; $__LIST__ = $orders;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
@@ -205,19 +206,26 @@
                 <td align="center"><?php echo $vo['danpay']; ?>元</td>
                 <td align="center"><?php echo $vo['countpay']; ?>元</td>
                 <td align="center">
-                    <?php if($vo['status'] == 1): ?>
+                    <?php if($vo['status'] > 1): ?>
                     <font style="cursor:pointer;" color="#ff4351">已付款</font>
-                    <?php endif; if($vo['status'] == 0): ?>
+                    <?php else: ?>
                     <font style="cursor:pointer" color="#CCCCCC">未付款</font>
                     <?php endif; ?>
                 </td>  
-                <td><a title="<?php echo $vo['create_time']; ?>"><?php echo $vo['create_time']; ?></a></td>
+                <td><?php echo $vo['create_time']; ?></td>
+
+                <td>
+                    <?php if($vo['huo'] == 0): ?>
+                     自动发货
+                    <?php else: ?>
+                    <?php echo $vo['orderback']; endif; ?>
+                </td>
 
                 <td align="center">
                      <!-- 已经支付 -->
                     <?php if($vo['status'] == '0'): ?>
                      <!-- 未支付 todo -->
-                    【<a href="/jxgoumai?id=<?php echo $vo['id']; ?>" target="_blank" >付款</a>】【<a  style="cursor:pointer" onclick="del()" >删除</a>】
+                    【<a onclick="alert('开发中..');" target="_blank" >付款</a>】【<a  style="cursor:pointer" onclick="del(this)" data-id="<?php echo $vo['id']; ?>" >删除</a>】
                     <?php else: ?>
                      <!-- 已经支付    -->
                     <?php if($vo['status'] == 1): ?>
@@ -247,11 +255,8 @@
 </div>
 <script src='/static/index/sink/js/layer/layer.js'></script>
 <script type="text/javascript">
-    function del(a) {
-        if (a == "") {
-            layer.msg('条件丢失');
-            return;
-        }
+    function del(obj) {
+        var id  = $(obj).attr('data-id');
         layer.confirm('确定要删除订单吗？', {
             title: '确认信息',
             btn: ['确定', '取消'] //按钮
@@ -261,17 +266,24 @@
                 type: "POST",//方法类型
                 dataType: "json",//预期服务器返回的数据类型
                 url: "<?php echo url('index/delorder'); ?>" ,//url
-                data: {order:a},
-                success: function (result) {
-                    if (result.status == 1) {
-                      layer.msg('删除成功！');
-                        parent.location.reload();
-                    }else{
-                        layer.msg(result.msg);
-                    };
+                data: {'id':id},
+                success: function (ret) {
+                    if(ret.code == 200){
+                        layer.msg(ret.msg,function(){
+                            parent.location.reload();
+                        })
+                    }
+                    if(ret.code == 400){
+                        layer.msg(ret.msg,function(){
+                            parent.location.reload();
+                        })
+                    }
                 },
             });
-        });
+        }),
+        function(){
+            parent.layer.closeAll();
+        };
     }
 
     function cuidan(a) {

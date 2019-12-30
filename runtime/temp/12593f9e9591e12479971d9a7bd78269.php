@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\order\index.html";i:1577666982;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\view\template\layout.html";i:1567134813;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:111:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\leveluser\index.html";i:1577666982;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\view\template\layout.html";i:1567134813;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -142,21 +142,13 @@
         <div class="box">
             <div class="box-body">
                 <form class="form-inline" name="searchForm"  method="GET">
+
                     <div class="form-group">
-                        <select name="gid" id="gid" class="form-control">
-                            <option value="">请选择...</option>
-                            <?php if(is_array($goodes) || $goodes instanceof \think\Collection || $goodes instanceof \think\Paginator): $i = 0; $__LIST__ = $goodes;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vv): $mod = ($i % 2 );++$i;?>
-                            <option value="<?php echo $vv['id']; ?>" <?php if(\think\Request::instance()->get('gid') == $vv['id']): ?>selected="" <?php endif; ?> ><?php echo $vv['title']; ?></option>
-                            <?php endforeach; endif; else: echo "" ;endif; ?>
-                        </select>
+                        <input type='text'  id="types" value="<?php echo \think\Request::instance()->get('keywords'); ?>" class="form-control" placeholder="请输入订单号进行查询...">
                     </div>
 
                     <div class="form-group">
-                        <input type='text'  id="types" value="<?php echo \think\Request::instance()->get('paytype'); ?>" class="form-control" placeholder="请输入手机号或者订单号进行查询...">
-                    </div>
-
-                    <div class="form-group">
-                        <button data-href="<?php echo url('order/index'); ?>"  class="btn btn-sm btn-primary search" type="button">
+                        <button data-href="<?php echo url('leveluser/index'); ?>"  class="btn btn-sm btn-primary search" type="button">
                             <i class="fa fa-search"></i> 查询
                         </button>
                     </div>
@@ -179,24 +171,15 @@
 
             <div class="box-body table-responsive">
 
-                <!--<div class="form-group">-->
-                    <!--<button onclick="clear_form()" class="btn btn-info pull-right" type="button"><i-->
-                            <!--class="fa  fa-eraser"></i> 删除未完成订单-->
-                    <!--</button>-->
-                <!--</div>-->
-
                 <table class="table table-hover table-bordered datatable" width="100%">
                     <thead>
                     <tr>
                         <th>订单号</th>
-                        <th>商品名称</th>
-                        <th>数量</th>
-                        <th>账号</th>
-                        <th>价格</th>
-                        <th>支付方式</th>
-                        <th>状态</th>
-                        <th>联系方式</th>
-                        <th>发货方式</th>
+                        <th>升级用户</th>
+                        <th>支付类型</th>
+                        <th>支付金额</th>
+                        <th>描述</th>
+                        <th>支付状态</th>
                         <th>创建时间</th>
                         <th>操作</th>
                     </tr>
@@ -204,50 +187,25 @@
                     <?php if(is_array($list) || $list instanceof \think\Collection || $list instanceof \think\Paginator): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
                     <tbody>
                     <tr>
-                        <td><?php echo $vo['order_no']; ?></td>
-                        <td><?php echo $goods[$vo['gid']]; ?></td>
-                        <td><?php echo $vo['num']; ?></td>
+                        <td><?php echo $vo['order']; ?></td>
+                        <td><?php echo $members[$vo['mid']]; ?></td>
+                        <td><?php echo $vo['types']; ?></td>
+                        <td><?php echo floatval($vo['paymoney']); ?></td>
+                        <td><?php echo $vo['descs']; ?></td>
                         <td>
-                            <?php if(empty($vo['member_id']) || (($vo['member_id'] instanceof \think\Collection || $vo['member_id'] instanceof \think\Paginator ) && $vo['member_id']->isEmpty())): ?>
-                              游客
+                           <?php if($vo['status'] == '1'): ?>
+                            已支付
                             <?php else: ?>
-                            <?php echo $info[$vo['member_id']]; endif; ?>
-                        </td>
-                        <td><?php echo $vo['countpay']; ?></td>
-                        <td>
-                            <?php if(isset($vo['types'])): ?>
-                            <?php echo $vo['types']; endif; ?>
-                        </td>
-                        <td>
-                            <?php switch($vo['status']): case "1": ?>
-                            <a class="btn btn-block btn-success btn-xs">已支付</a>
-                            <?php break; case "2": ?>
-                            <a class="btn btn-block btn-linkedin btn-xs">已发货</a>
-                            <?php break; case "3": ?>
-                            <a class="btn btn-block btn-foursquare btn-xs">联系客服退款</a>
-                            <?php break; default: ?>
-                            <a class="btn btn-block btn-primary btn-xs">未支付</a>
-                            <?php endswitch; ?>
-                        </td>
-                        <td><?php echo $vo['mobile']; ?></td>
-                        <td>
-                            <?php if($vo['huo'] == '0'): ?>
-                            <a class="btn btn-block btn-github btn-xs">自动发货</a>
-                             <?php else: ?>
-                            <a class="btn btn-block btn-github btn-xs">手动发货</a>
+                            未支付
                             <?php endif; ?>
                         </td>
-                        <td><?php echo $vo['create_time']; ?></td>
+                        <td><?php echo date('Y-m-d,H:i:s',$vo['create_time']); ?></td>
                         <td class="td-do">
-                         
-                            <a onclick='budan(this)' data-id='<?php echo $vo['id']; ?>' data-href="<?php echo url('order/budan'); ?>" class="btn btn-success btn-xs" title="修改">
-                                <i class="fa fa-pencil">补单</i>
+
+                            <a data-href="<?php echo url('leveluser/edit',array('id'=>$vo['id'])); ?>" class="btn btn-primary btn-xs edit" title="修改">
+                                <i class="fa fa-pencil">查看详情</i>
                             </a>
-                        
-                            <a data-href="<?php echo url('order/zedit',array('id'=>$vo['id'])); ?>" class="btn btn-primary btn-xs edit" title="修改">
-                                <i class="fa fa-pencil">查看订单</i>
-                            </a>
-                            <a class="btn btn-danger btn-xs del" title="删除"  data-href="<?php echo url('order/zdel',array('id'=>$vo['id'])); ?>">
+                            <a class="btn btn-danger btn-xs del" title="删除"  data-href="<?php echo url('leveluser/del'); ?>" data-id="<?php echo $vo['id']; ?>">
                                 <i class="fa fa-trash">删除</i>
                             </a>
                         </td>
@@ -260,6 +218,7 @@
         <?php echo $list->render();; ?>
 
         <script>
+            //编辑
             $('.edit').click(function(){
                 var url = $(this).attr('data-href');
                 layer.open({
@@ -271,70 +230,41 @@
                     content: url,
                 })
             });
-
+           //删除
             $('.del').click(function(){
                 var url = $(this).attr('data-href');
+                var id  = $(this).attr('data-id');
                 layer.confirm('是否确定删除？', {
                     btn: ['确定','取消'] //按钮
                 }, function(){
-                   $.get(url,function(ret){
-                       if(ret.code == 200){
-                           layer.msg(ret.msg,function(){
-                               parent.location.reload();
-                           });
-                       };
-                       if(ret.code == 400){
-                           layer.msg(ret.msg,function(){
-                               parent.location.reload();
-                           });
-                       }
-                   },'json')
+                    $.get(url,{'id':id},function(ret){
+                        if(ret.code == 200){
+                            layer.msg(ret.msg,{icon:6},function(){
+                                parent.location.reload();
+                            });
+                        };
+
+                        if(ret.code == 400){
+                            layer.msg(ret.msg,{icon:5},function(){
+                                parent.location.reload();
+                            });
+                        }
+                    },'json')
                 }, function(){
                     parent.layer.close();
                 });
             });
-
             //搜索
             $('.search').click(function(){
                 var url = $(this).attr('data-href');
-                var gid = $('#gid option:selected').val();
                 var paytype =$('#types').val();
 
-                if(gid ==  '' || gid==undefined){
-                    layer.msg('请选择商品');
-                    return ;
-                }
-
                 if(paytype ==  '' || paytype==undefined){
-                    layer.msg('请输入需要搜索的订单号或者手机号');
+                    layer.msg('请输入需要搜索的订单号进行查询');
                     return ;
                 }
-                location.href= url+"?gid="+gid+"&paytype="+paytype;
+                location.href= url+"?keywords="+paytype;
             })
-
-           
-            /** 补单 **/ 
-            function budan(obj){
-                var urls = $(obj).attr('data-href');
-                var id   = $(obj).attr('data-id'); 
-                if(urls  == '' || urls  == undefined){
-                    return false;
-                }
-
-                $.get(urls,{'id':id},function(ret){
-                      if(ret.code == 200){
-                          layer.msg(ret.msg,{icon:6},function(){
-                              parent.location.reload();
-                          })
-                      }
-
-                      if(ret.code == 400){
-                          layer.msg(ret.msg,{icon:5},function(){
-                              parent.location.reload();
-                          })
-                      }
-                },'json')
-            }
         </script>
 
         </section>

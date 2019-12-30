@@ -273,5 +273,50 @@ class Index extends Base
        }
        return false;
    }
+ 
+
+   //余额支付
+   public function yupay(){
+       if($this->request->isPost()){
+          $order_no = input('post.order','','trim'); //根据订单号查询订单信息
+
+          if(empty($order_no) || !isset($order_no)){
+              return false;
+          }
+
+          $member_order = Db::name('order')->where(['order_no'=>$order_no])->find();
+
+          if(empty($member_order) || $member_order['is_delete'] ==1){
+              return json(['code'=>4003,'msg'=>'订单删除或丢失，请重新下单']);
+          }
+
+          if($member_order['status'] ==1){
+              return json(['code'=>4002,'msg'=>'该订单已经支付，请勿重复支付！']);
+          }
+
+          $member = Db::name('member')->where(['id'=>session('info.id'),'status'=>1])->find();
+          
+          if(empty($member) || !isset($member)){
+              return  json(['code'=>4001,'msg'=>'订单数据异常，请重新下单...']);
+          }
+
+          $nowmoney = $member['money'] - $member_order['countpay'];
+          
+          if($nowmoney < 0){
+            return json(['code'=>4004,'msg'=>'余额不足，请充值...']);
+          }
+          
+        //1.先支付
+
+
+        //2.更新卡密
+          
+        //返回成功
+
+        }
+
+        return false;
+   }
+
 
 }

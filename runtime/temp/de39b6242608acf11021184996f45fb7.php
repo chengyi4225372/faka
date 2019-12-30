@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:106:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\index.html";i:1577083565;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userhead.html";i:1577083497;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userfoot.html";i:1576140011;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:106:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\index.html";i:1577685745;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userhead.html";i:1577666982;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userfoot.html";i:1576140011;}*/ ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -100,7 +100,7 @@
                             </li>
 
                             <li class="list-group-item ">
-                                <a href="/"><i class="glyphicon glyphicon-thumbs-up"></i> 回到首页</a>
+                                <a href="/"><i class="glyphicon glyphicon-thumbs-up"></i>&nbsp;&nbsp;回到首页</a>
                             </li>
 
                             <li class="list-group-item ">
@@ -151,7 +151,7 @@
                                 </div>
                                 <div class="col-xs-4 col-md-2">账户余额</div>
                                 <div class="col-xs-8 col-md-4">
-                                    <a href="javascript:;" class="viewmoney"><?php echo (\think\Session::get('money') ?: '0.00'); ?></a>
+                                    <a href="javascript:;" class="viewmoney"><?php echo (floatval(\think\Session::get('info.money')) ?: '0.00'); ?></a>
                                 </div>
                             </div>
 <!--                            <div class="row">

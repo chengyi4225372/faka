@@ -194,15 +194,15 @@
         data.huo  = hid;
         if(hid ==0){
             data.num  = parseInt(paynum) * parseInt(bei);
+        }else{
+            data.num  = parseInt(paynum) * parseInt(bei); //手动
             var len   = $('form .mo').length;
             for(var i=1;i<=len;i++){
                 moban.push($("#title"+i).text());
                 moban.push($("#moban"+i).val());;
             }
-        }else{
-            data.num  = 1; //手动默认购买一个
-            moban ='';
         }
+
         data.content  = JSON.stringify(moban);
         data.danpay   = money;
         data.countpay = money * data.num;

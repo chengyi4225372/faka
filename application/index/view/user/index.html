@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="col-xs-4 col-md-2">账户余额</div>
                                 <div class="col-xs-8 col-md-4">
-                                    <a href="javascript:;" class="viewmoney">{$Think.session.money|default='0.00'}</a>
+                                    <a href="javascript:;" class="viewmoney">{$Think.session.info.money|floatval|default='0.00'}</a>
                                 </div>
                             </div>
 <!--                            <div class="row">
