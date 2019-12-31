@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:110:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\mychongzi.html";i:1577416443;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userhead.html";i:1577083497;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:110:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\mychongzi.html";i:1577416443;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userhead.html";i:1577666982;}*/ ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -100,7 +100,7 @@
                             </li>
 
                             <li class="list-group-item ">
-                                <a href="/"><i class="glyphicon glyphicon-thumbs-up"></i> 回到首页</a>
+                                <a href="/"><i class="glyphicon glyphicon-thumbs-up"></i>&nbsp;&nbsp;回到首页</a>
                             </li>
 
                             <li class="list-group-item ">

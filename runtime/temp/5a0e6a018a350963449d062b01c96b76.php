@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\search.html";i:1577666982;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1576907381;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\search.html";i:1577755765;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1576907381;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
 
 <!DOCTYPE html> 
 
@@ -225,7 +225,7 @@
                      <!-- 已经支付 -->
                     <?php if($vo['status'] == '0'): ?>
                      <!-- 未支付 todo -->
-                    【<a onclick="alert('开发中..');" target="_blank" >付款</a>】【<a  style="cursor:pointer" onclick="del(this)" data-id="<?php echo $vo['id']; ?>" >删除</a>】
+                    【<a onclick="setpay(this)" data-href="<?php echo url('index/buy'); ?>?order_no=<?php echo $vo['order_no']; ?>&did=<?php echo $vo['id']; ?>" >付款</a>】【<a  style="cursor:pointer" onclick="del(this)" data-id="<?php echo $vo['id']; ?>" >删除</a>】
                     <?php else: ?>
                      <!-- 已经支付    -->
                     <?php if($vo['status'] == 1): ?>
@@ -307,6 +307,16 @@
                 }
             });
         });
+    }
+    
+    //跳转支付页面
+    function setpay(obj){
+        var urls = $(obj).attr('data-href');
+
+        if(urls == '' || urls == undefined || urls == 'undefined'){
+            return false;
+        }
+        window.location.href = urls;
     }
 </script>
 <div id="footer"><div>

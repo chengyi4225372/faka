@@ -150,14 +150,14 @@ class Index extends Base
       }
 
       if($this->request->isGet()){
-           $id = input('get.did');
-           $order_no = input('get.order_no');
-           if(empty($id) && empty($order_no)){
+           $id = input('get.did','','int');
+           $order_no = input('get.order_no','','trim');
+           if(empty($order_no) || !isset($order_no)){
                return false;
            }
-           $goods = Db::name('goods')->order('id desc')->select();
+           $good = Db::name('goods')->order('id desc')->select();
            $order = Db::name('order')->where(['id'=>$id,'order_no'=>$order_no])->find();
-           $goods = array_column($goods,'title','id');
+           $goods = array_column($good,'title','id');
 
            $this->assign('order',$order);
            $this->assign('goods',$goods);
@@ -316,13 +316,13 @@ class Index extends Base
         //2.更新卡密
         $cardlist = Db::name('card')->where(['over'=>0,'oid'=>null])->order('id asc')->limit(0,$member_order['num'])->update([
             'oid'=>$member_order['id']]
-        ); 
+        );
+          //卡密失败 应该回调原来 
 
         if($cardlist === false){
           return json(['code'=>4006,'msg'=>'获取卡密失败，请联系客服']);
         }  
         //返回成功
-        
          Db::startTrans();
          try {
             Db::name('card')->where(['oid'=>$member_order['id']])->data(['over'=>1])->update(); //更新卡密

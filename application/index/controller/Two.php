@@ -97,8 +97,8 @@ class Two extends Base
     {
 
         if($this->request->isGet()){
-            $id = input('get.did');
-            $order_no = input('get.order_no');
+            $id = input('get.did','','int');
+            $order_no = input('get.order_no','','trim');
             if(empty($id) && empty($order_no)){
                 return false;
             }

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\order\chong.html";i:1577430155;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\view\template\layout.html";i:1567134813;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\order\chong.html";i:1577759887;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\view\template\layout.html";i:1567134813;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -204,8 +204,8 @@
                                 <i class="fa fa-pencil">查看详情</i>
                             </a>
 
-                            <a  onclick='cdels(this)' data-href="<?php echo url('order/cdels'); ?>" data-id='<?php echo $vo['id']; ?>'
-                             class="btn btn-danger btn-xs AjaxButton" title="删除" data-id="" data-url="del.html">
+                            <a  onclick='cdels(this)' data-href="<?php echo url('order/cdels'); ?>" data-id="<?php echo $vo['id']; ?>""
+                             class="btn btn-danger btn-xs " title="删除" >
                                 <i class="fa fa-trash">删除</i>
                             </a>
                         
@@ -237,7 +237,7 @@
         function cedit(obj){
              var urls = $(obj).attr('data-href');
              var id   = $(obj).attr('data-id');
-
+            
              if(urls == '' ||urls == undefined){
                  return false;
              }
@@ -273,7 +273,7 @@
              layer.confirm('您确定删除？',
                    {btn:['确定','取消']},
                     function(){
-                       $.get(urls,{id:id},function(ret){
+                       $.get(urls,{'id':id},function(ret){
                            if(ret.code ==200){
                              layer.msg(ret.msg,{icon:6},function(){
                                  parent.location.reload();

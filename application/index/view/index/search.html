@@ -137,7 +137,7 @@
                      <!-- 已经支付 -->
                     {eq name='$vo.status' value='0'}
                      <!-- 未支付 todo -->
-                    【<a onclick="alert('开发中..');" target="_blank" >付款</a>】【<a  style="cursor:pointer" onclick="del(this)" data-id="{$vo.id}" >删除</a>】
+                    【<a onclick="setpay(this)" data-href="{:url('index/buy')}?order_no={$vo.order_no}&did={$vo.id}" >付款</a>】【<a  style="cursor:pointer" onclick="del(this)" data-id="{$vo.id}" >删除</a>】
                     {else /}
                      <!-- 已经支付    -->
                     {if condition='$vo.status eq 1'}
@@ -220,6 +220,16 @@
                 }
             });
         });
+    }
+    
+    //跳转支付页面
+    function setpay(obj){
+        var urls = $(obj).attr('data-href');
+
+        if(urls == '' || urls == undefined || urls == 'undefined'){
+            return false;
+        }
+        window.location.href = urls;
     }
 </script>
 {include file='public:foot'/}

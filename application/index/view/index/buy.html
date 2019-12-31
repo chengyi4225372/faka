@@ -126,7 +126,7 @@
                 <div class="payment-list">
                     <ul>
                         {notempty name="$Think.session.info" }
-                        <li class="yu" data-paytype="yupay" onclick=""><i class="payment-icon-yu">余额支付</i></li>
+                        <li class="yu" data-paytype="yupay" ><i class="payment-icon-yu">余额支付</i></li>
                         {/notempty}
 
                         <li class="tenpay" data-paytype="alipay" ><i class="payment-icon-cft">支付宝支付</i></li>
@@ -180,7 +180,7 @@
 
       var  url = "{:url('pays/index')}";
 
-      if(types == '' || types== undefined){
+      if(types == '' || types== undefined || types == 'undefined'){
           layer.msg('请选择支付类型');
           return false;
       }
@@ -193,11 +193,11 @@
 
                        if(ret.huo ==0){
                          layer.msg(ret.msg,{icon:6},function(){
-                         parent.location.href="{:url('index/zdfahuo)'}?orderno"+ret.order;
+                         parent.location.href="{:url('index/zdfahuo')}?orderno"+ret.order;
                           });
                        }else {
                           layer.msg(ret.msg,{icon:6},function(){
-                         parent.location.href="{:url('index/sdfahuo)'}?orderno"+ret.order;
+                         parent.location.href="{:url('index/sdfahuo')}?orderno"+ret.order;
                          }); 
                        }
    
@@ -237,18 +237,18 @@
                    }
 
                    
-                   if(ret.code== 4005){
+                   if(ret.code== 4006){
                      layer.msg(ret.msg,{icon:5},function(){
                         parent.location.reload();
                      })
                    }
                 
            },'json')
+       }else {
+       
+        window.location.href=url+"?types="+types+"&goodnames="+goodnames+"&order_no="+order_no+"&paynum="+paynum+"&sitename="+sitename;
+
        }
-
-
-      window.location.href=url+"?types="+types+"&goodnames="+goodnames+"&order_no="+order_no+"&paynum="+paynum+"&sitename="+sitename;
-
    })
 
 </script>

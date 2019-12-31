@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\trade.html";i:1577063966;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1576907381;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\trade.html";i:1577686869;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1576907381;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
 
 <!DOCTYPE html> 
 
@@ -170,7 +170,7 @@
                 <div class="from">
                     <div class="from_wz_3">购买数量：</div>
                     <div class="from_in_2">
-                        <input min="0" id="p_num" name="p_num" class="z" type="number" value="<?php echo $info['mins']; ?>" placeholder="请输入购买数量" />
+                        <input min="0" id="p_num" name="p_num" class="z" type="number"  placeholder="请输入购买数量" />
                     </div>
 
                     <div class="from_in_2 yanzheng" style="width:200px"> <font size="2" color="#FF7200"><?php echo $info['num']; ?> 库存个</span> </div>
@@ -259,9 +259,9 @@
         var sid    = $('#sid').val();//id
         var hid    = $('#hid').val(); //0 自动 1 手动
         var mobile = $('#mobile').val();
-        var paynum = $('#p_num').val(); //购买数量
-        var min    = $('#minnum').val();
-        var max    = $('#maxnum').val();
+        var paynum = parseInt($('#p_num').val()); //购买数量
+        var min    = parseInt($('#minnum').val());
+        var max    = parseInt($('#maxnum').val());
         var bei    = $('#beishu').val();
         var num    = $('#num').val();
         var moban  = [];
@@ -279,9 +279,9 @@
 
 
             if(paynum <= 0){
-            layer.msg('最少购买数量为1');
+            layer.msg('最少购买数量为'+min);
             return ;
-        }
+            }
 
           //自动发货
            if(hid ==0){
@@ -292,12 +292,12 @@
            }
 
            if(paynum < min){
-               layer.msg('商品购买数量，小于最少购买数量');
+               layer.msg('商品购买数量最少为'+min);
                return;
            }
 
            if(paynum > max){
-               layer.msg('商品购买数量，大于最多购买数量');
+               layer.msg('商品购买数量最多为'+max);
                return;
            }
         }
@@ -307,17 +307,17 @@
 
         data.gid  = sid;
         data.huo  = hid;
-        if(hid ==1){
+        if(hid ==0){
             data.num  = parseInt(paynum) * parseInt(bei);
+        }else{
+            data.num  = parseInt(paynum) * parseInt(bei); //手动
             var len   = $('form .mo').length;
             for(var i=1;i<=len;i++){
                 moban.push($("#title"+i).text());
                 moban.push($("#moban"+i).val());;
             }
-        }else{
-            data.num  = 1; //手动默认购买一个
-            moban ='';
         }
+
         data.content  = JSON.stringify(moban);
         data.danpay   = money;
         data.countpay = money * data.num;

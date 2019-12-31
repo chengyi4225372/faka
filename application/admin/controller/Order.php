@@ -237,7 +237,7 @@ class Order extends Base
       
       public function cdels(){
           if($this->request->isGet()){
-              $id = input('get,id','','int');
+              $id = input('get.id','','int');
               
               if(empty($id) || !isset($id) || $id <=0){
                   return false;

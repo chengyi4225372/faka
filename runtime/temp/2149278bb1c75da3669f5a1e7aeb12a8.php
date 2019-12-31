@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html";i:1576226780;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userhead.html";i:1577083497;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userfoot.html";i:1576140011;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\myorder.html";i:1577758186;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userhead.html";i:1577666982;}*/ ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -100,7 +100,7 @@
                             </li>
 
                             <li class="list-group-item ">
-                                <a href="/"><i class="glyphicon glyphicon-thumbs-up"></i> 回到首页</a>
+                                <a href="/"><i class="glyphicon glyphicon-thumbs-up"></i>&nbsp;&nbsp;回到首页</a>
                             </li>
 
                             <li class="list-group-item ">
@@ -190,29 +190,5 @@
 </div>
 
 </main>
-
-
-
-<script>
-    //Demo 事件
-    layui.use('form', function() {
-        var form = layui.form, layer = layui.layer,
-            $ = layui.jquery;
-        //监听提交
-        form.on('submit(formDemo)', function(data) {
-            //layer.msg(JSON.stringify(data.field));
-            return true;
-        });
-    });
-</script>
-
-
-<footer class="footer" style="clear:both">
-        <p class="copyright"><?php echo $config['info']; ?></p>
-    </footer>
-
-
-
-
 </body>
 </html>

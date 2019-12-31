@@ -65,8 +65,8 @@
                                 <i class="fa fa-pencil">查看详情</i>
                             </a>
 
-                            <a  onclick='cdels(this)' data-href="{:url('order/cdels')}" data-id='{$vo.id}'
-                             class="btn btn-danger btn-xs AjaxButton" title="删除" data-id="" data-url="del.html">
+                            <a  onclick='cdels(this)' data-href="{:url('order/cdels')}" data-id="{$vo.id}""
+                             class="btn btn-danger btn-xs " title="删除" >
                                 <i class="fa fa-trash">删除</i>
                             </a>
                         
@@ -98,7 +98,7 @@
         function cedit(obj){
              var urls = $(obj).attr('data-href');
              var id   = $(obj).attr('data-id');
-
+            
              if(urls == '' ||urls == undefined){
                  return false;
              }
@@ -134,7 +134,7 @@
              layer.confirm('您确定删除？',
                    {btn:['确定','取消']},
                     function(){
-                       $.get(urls,{id:id},function(ret){
+                       $.get(urls,{'id':id},function(ret){
                            if(ret.code ==200){
                              layer.msg(ret.msg,{icon:6},function(){
                                  parent.location.reload();

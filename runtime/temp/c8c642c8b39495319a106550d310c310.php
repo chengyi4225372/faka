@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:105:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\buy.html";i:1576221363;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1576907381;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:105:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\buy.html";i:1577757984;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1576907381;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
 
 <!DOCTYPE html> 
 
@@ -213,7 +213,7 @@
                 <div class="payment-list">
                     <ul>
                         <?php if(!(empty(\think\Session::get('info')) || ((\think\Session::get('info') instanceof \think\Collection || \think\Session::get('info') instanceof \think\Paginator ) && \think\Session::get('info')->isEmpty()))): ?>
-                        <li class="yu" data-paytype="yu" onclick="layer.msg('该功能正在开发中！！')"><i class="payment-icon-yu">余额支付</i></li>
+                        <li class="yu" data-paytype="yupay" ><i class="payment-icon-yu">余额支付</i></li>
                         <?php endif; ?>
 
                         <li class="tenpay" data-paytype="alipay" ><i class="payment-icon-cft">支付宝支付</i></li>
@@ -267,8 +267,75 @@
 
       var  url = "<?php echo url('pays/index'); ?>";
 
-      window.location.href=url+"?types="+types+"&goodnames="+goodnames+"&order_no="+order_no+"&paynum="+paynum+"&sitename="+sitename;
+      if(types == '' || types== undefined || types == 'undefined'){
+          layer.msg('请选择支付类型');
+          return false;
+      }
 
+       if(types == 'yupay'){
+           //余额支付
+          var urls = "<?php echo url('index/yupay'); ?>"; 
+          $.post(urls,{'order':order_no},function(ret){
+                   if(ret.code== 2000){
+
+                       if(ret.huo ==0){
+                         layer.msg(ret.msg,{icon:6},function(){
+                         parent.location.href="<?php echo url('index/zdfahuo'); ?>?orderno"+ret.order;
+                          });
+                       }else {
+                          layer.msg(ret.msg,{icon:6},function(){
+                         parent.location.href="<?php echo url('index/sdfahuo'); ?>?orderno"+ret.order;
+                         }); 
+                       }
+   
+                   }
+
+                   if(ret.code== 4001){
+                     layer.msg(ret.msg,{icon:5},function(){
+                        parent.location.reload();
+                     })
+                   }
+                   
+                   if(ret.code== 4002){
+                     layer.msg(ret.msg,{icon:5},function(){
+                        parent.location.reload();
+                     })
+                   }
+
+                   
+                   if(ret.code== 4003){
+                     layer.msg(ret.msg,{icon:5},function(){
+                        parent.location.reload();
+                     })
+                   }
+
+                   
+                   if(ret.code== 4004){
+                     layer.msg(ret.msg,{icon:5},function(){
+                        parent.location.reload();
+                     })
+                   }
+
+                   
+                   if(ret.code== 4005){
+                     layer.msg(ret.msg,{icon:5},function(){
+                        parent.location.reload();
+                     })
+                   }
+
+                   
+                   if(ret.code== 4006){
+                     layer.msg(ret.msg,{icon:5},function(){
+                        parent.location.reload();
+                     })
+                   }
+                
+           },'json')
+       }else {
+       
+        window.location.href=url+"?types="+types+"&goodnames="+goodnames+"&order_no="+order_no+"&paynum="+paynum+"&sitename="+sitename;
+
+       }
    })
 
 </script>
