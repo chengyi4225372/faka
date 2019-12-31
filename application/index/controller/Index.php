@@ -39,10 +39,10 @@ class Index extends Base
             $categorys = array_column($cates,'title','id');
              //商品库存
             $num = Db::name('card')->field('gid,count(kami) as num')->where(['over'=>0])->group('gid')->select();
-
+            $num = $num?$num:'';
             foreach ($list as $k =>$val){
                 if(!is_array($num) || empty($num)){
-                    $list[$k]['num'] = null;
+                    $list[$k]['num'] =$num;
                 }
 
                 if(is_array($num) && !empty($num)){
@@ -57,7 +57,7 @@ class Index extends Base
                     $list[$k]['num'] = '人工发货';
                 }
             }
-
+     
             $this->assign('list',$list);
             $this->assign('categorys',$categorys);
             $this->assign('indexs',$indexs);

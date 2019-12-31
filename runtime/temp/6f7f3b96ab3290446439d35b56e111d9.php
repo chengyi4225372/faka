@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:85:"C:\Users\Administrator\Desktop\faka\public/../application/admin\view\index\index.html";i:1577542709;s:79:"C:\Users\Administrator\Desktop\faka\application\admin\view\template\layout.html";i:1577542709;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:85:"C:\Users\Administrator\Desktop\faka\public/../application/admin\view\index\index.html";i:1577797479;s:79:"C:\Users\Administrator\Desktop\faka\application\admin\view\template\layout.html";i:1577542709;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -153,7 +153,7 @@
 
             <div class="info-box-content">
                 <span class="info-box-text">会员总数</span>
-                <span class="info-box-number">90</span>
+                <span class="info-box-number"><?php echo (isset($member) && ($member !== '')?$member:'0'); ?></span>
             </div>
 
         </div>
@@ -166,7 +166,7 @@
 
             <div class="info-box-content">
                 <span class="info-box-text">未发货订单</span>
-                <span class="info-box-number">41,410</span>
+                <span class="info-box-number">暂时为空</span>
             </div>
         </div>
     </div>
@@ -181,7 +181,7 @@
 
             <div class="info-box-content">
                 <span class="info-box-text">昨日订单</span>
-                <span class="info-box-number">760</span>
+                <span class="info-box-number"><?php echo (isset($zuo_order) && ($zuo_order !== '')?$zuo_order:'0'); ?></span>
             </div>
         </div>
     </div>
@@ -193,7 +193,7 @@
 
         <div class="info-box-content">
             <span class="info-box-text">今日订单</span>
-            <span class="info-box-number">2,000</span>
+            <span class="info-box-number"><?php echo (isset($today) && ($today !== '')?$today:'0'); ?></span>
         </div>
     </div>
   </div>
@@ -204,7 +204,7 @@
 
             <div class="info-box-content">
                 <span class="info-box-text">昨日金额</span>
-                <span class="info-box-number">2,000</span>
+                <span class="info-box-number"><?php echo $zuo_money; ?></span>
             </div>
         </div>
     </div>
@@ -214,7 +214,7 @@
             <span class="info-box-icon bg-yellow"><i class="ion ion-ios-cart-outline"></i></span>
             <div class="info-box-content">
                 <span class="info-box-text">今日金额</span>
-                <span class="info-box-number">2,000</span>
+                <span class="info-box-number"><?php echo $today_money; ?></span>
             </div>
         </div>
     </div>

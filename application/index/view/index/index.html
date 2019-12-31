@@ -70,16 +70,22 @@
                         </td>
                         <td >
                             <font color="#000CF9"  size="3" title="物品库存">
-                                 {$vo.num|default='人工发货'}
+                                 {if isset($vo.num)}
+                                  {$vo.num|default='0'}
+                                 {else /}
+                                  0
+                                {/if}
                             </font>
                         </td>
 
 
                         <td >
-                            {if condition="$vo.num eq null or $vo.sum eq 0"}
-                             <a class="button button-tiny button-rounded button-small" onclick="layer.msg('该商品缺货！！',{icon:5});return false;">缺货</a>
-                             {else /}
-                            <a class="button button-primary button-rounded button-small"  href = "{:url('index/trade')}?id={$vo.id}">购买</a>
+
+                            {if condition="$vo.huo eq 0 and !isset($vo.num)"}
+                             <a class="button button-tiny button-rounded button-small" onclick="layer.msg('该商品缺货,请勿购买！',{icon:5});return false;">缺货</a>
+
+                            {else /}
+                             <a class="button button-primary button-rounded button-small"  href = "{:url('index/trade')}?id={$vo.id}">购买</a>
                             {/if}
                         </td>
                     </tr>

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"C:\Users\Administrator\Desktop\faka\public/../application/admin\view\goods\addg.html";i:1577542709;s:79:"C:\Users\Administrator\Desktop\faka\application\admin\view\template\layout.html";i:1577542709;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"C:\Users\Administrator\Desktop\faka\public/../application/admin\view\goods\addg.html";i:1577797479;s:79:"C:\Users\Administrator\Desktop\faka\application\admin\view\template\layout.html";i:1577542709;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -189,10 +189,10 @@
                             <label for="images" class="col-sm-2 control-label">商品图片</label>
                             <div class="col-sm-10 col-md-4">
                                 <div class="input-group iconpicker-container">
-                                    <input type="file" class="layui-btn" name="uploadImg" id="uploadImg" onchange="uploadImages();" />
+                                    <input type="file" class="layui-btn" name="uploadImg" id="uploadImg" accept="image/png,image/jpg,image/jpeg,image/ico" onchange="uploadImages();" />
                              <div class="timeline-body">
 
-                              <img style="width:150px;height:100px;" src="<?php echo (isset($info['images']) && ($info['images'] !== '')?$info['images']:'http://placehold.it/150x100'); ?>" id="imgs" class="margin">
+                              <img style="width:150px;height:100px;" src="<?php echo (isset($info['images']) && ($info['images'] !== '')?$info['images']:'http://placehold.it/150x100'); ?>"  id="imgs" class="margin">
 
                                <input type="hidden" id="images" value="<?php echo $info['images']; ?>">
                              </div>
@@ -478,12 +478,12 @@
             success:function(ret){
 
                 if(ret.code == 200){
-                    layer.msg(ret.msg,{time:2000},function(){
+                    layer.msg(ret.msg,{icon:6},function(){
                         parent.location.href="<?php echo url('goods/glist'); ?>";
                     })
                 };
                 if(ret.code == 400){
-                    layer.msg(ret.msg,{time:2000},function(){
+                    layer.msg(ret.msg,{icon:5},function(){
                         parent.location.reload();
                     })
                 };
