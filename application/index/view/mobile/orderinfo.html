@@ -8,6 +8,7 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp" />
   <link rel="stylesheet" href="/index/sink/css/amazeui.min.css"/>
+  <script type="text/javascript" src="/index/sink/js/jquery-1.8.3.min.js"></script>
   <style>
     .header {
       text-align: center;
@@ -34,7 +35,7 @@
   <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
     <h3>以下是卡密内容，请自行保存&nbsp;&nbsp;&nbsp;&nbsp;
       {if condition='$info.huo eq 1'}
-      <a href="javascript:void(0);" onclick="window.location.href='{:url('mobile/index')}'">[返回]</a>
+      <a href="javascript:void(0);"  data-url="{:url('mobile/index')}" onclick="url_href(this);">[返回]</a>
       {else /}
       <a href="javascript:void(0);" onclick="history.go(-1)">[返回]</a>
       {/if}
@@ -56,5 +57,16 @@
     <p>{$config.info}</p>
   </div>
 </div>
+<script>
+function url_href(obj){
+  var urls = $(obj).attr('data-url');
+
+  if(urls == '' || urls == undefined || urls == 'undefined'){
+    return false;
+  }
+
+  window.location.href = urls;
+}
+</script>
 </body>
 </html>

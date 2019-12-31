@@ -290,7 +290,7 @@ class Pays extends Controller
 
                 //订单支付失败
                 if($pays === false){
-                    echo  "<script>alert('订单支付失败，请重新下单')</script>";
+                    echo  "<script>alert('订单支付失败，请重新下单');window.location.go(-1);</script>";
                 }
 
                 if($order['huo'] ==0){
@@ -318,6 +318,17 @@ class Pays extends Controller
                         Db::rollback();
                     }
 
+                }else {
+                    //手动发货
+                    Db::startTrans();
+                    try {
+                        Db::name('order')->where(['order_no'=>$out_trade_no])->update(['status'=>1]);
+                        // 提交事务
+                        Db::commit();
+                    } catch (\Exception $e) {
+                        // 回滚事务
+                        Db::rollback();
+                    }
                 }
 
             } else {

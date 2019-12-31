@@ -11,21 +11,19 @@
                         <li class="am-text-truncate">订单编号：{$orders['order_no']}</li>
                         <li class="am-text-truncate">商品名称：{$goods[$orders.gid]}</li>
                         <li>下单时间：{$orders.create_time}</li>
-                        <li>支付价格：￥{$orders.countpay}</li>
+                        <li>支付价格：￥{$orders.countpay|floatval}</li>
                         <li>购买数量：{$orders.num}件</li>
                         <li>发货方式：{if condition='$orders.huo eq 0'} 自动发货{else /}手动发货{/if}</li>
                         <li>发卡状态：
-                            {if condition='$orders.status eq 2'}
+                            {if condition='$orders.status egt 1'}
                               已发货
-                            {elseif condition='$orders.status eq 3'/}
-                             联系客服退款
                             {else /}
                              未发货
                             {/if}
                         </li>
 <!--                        <li>支付方式：微信支付</li>-->
                         <li>订单状态：
-                        {if condition='$orders.status gt 1'}
+                        {if condition='$orders.status egt 1'}
                         <font style="cursor:pointer;" color="#ff4351">已付款</font>
                         {else /}
                         <font style="cursor:pointer" color="#CCCCCC" >未付款</font>
@@ -77,6 +75,8 @@
                         layer.msg('复制成功');
                     });
                 });
+
+
                 function editaccount(orderid) {
                     layer.open({
                         type: 2,
