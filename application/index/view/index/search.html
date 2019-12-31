@@ -114,10 +114,10 @@
                 <td align="center">{$vo.order_no}</td>
                 <td ><div align="left"><a target="_blank" href="{:url('index/trade')}?id={$vo.gid}">{$goods[$vo.gid]}</a></div></td>
                 <td align="center">{$vo.num}个</td>
-                <td align="center">{$vo.danpay}元</td>
-                <td align="center">{$vo.countpay}元</td>
+                <td align="center">{$vo.danpay|floatval}元</td>
+                <td align="center">{$vo.countpay|floatval}元</td>
                 <td align="center">
-                    {if condition='$vo.status gt 1'}
+                    {if condition='$vo.status egt 1'}
                     <font style="cursor:pointer;" color="#ff4351">已付款</font>
                     {else /}
                     <font style="cursor:pointer" color="#CCCCCC">未付款</font>
@@ -136,7 +136,6 @@
                 <td align="center">
                      <!-- 已经支付 -->
                     {eq name='$vo.status' value='0'}
-                     <!-- 未支付 todo -->
                     【<a onclick="setpay(this)" data-href="{:url('index/buy')}?order_no={$vo.order_no}&did={$vo.id}" >付款</a>】【<a  style="cursor:pointer" onclick="del(this)" data-id="{$vo.id}" >删除</a>】
                     {else /}
                      <!-- 已经支付    -->

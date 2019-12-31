@@ -1,23 +1,18 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:83:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\index\buy.html";i:1577542709;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\head.html";i:1577542709;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\foot.html";i:1577542709;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:83:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\index\buy.html";i:1577806874;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\head.html";i:1577800834;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\foot.html";i:1577542709;}*/ ?>
 
 <!DOCTYPE html> 
 
 <html> 
-
-    <head> 
-
-        <meta charset="utf-8" /> 
-
+<head>
+        <meta charset="utf-8" />
         <title><?php echo $config['title']; ?></title>
-
         <meta name="keywords" content="<?php echo $config['keywords']; ?>" />
-
         <meta name="description" content="<?php echo $config['miao']; ?>" />
         <link rel="shortcut icon" href="<?php echo $config['logo']; ?>" />
-
         <script type="text/javascript" src="/index/sink/js/jquery-1.8.3.min.js"></script>
         <link href="/index/sink/css/css7.css" rel="stylesheet" type="text/css" />
         <link href="/index/sink/css/zzsc.css" rel="stylesheet" type="text/css" />
+        <link href="/index/sink/css/layui.css" rel="stylesheet" type="text/css" />
         <link href="/index/sink/css/buttons.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="/index/sink/js/Validform_v5.3.2_min.js"></script>
         <script type="text/javascript" src="/index/sink/js/layer/layer.js"></script>
@@ -182,7 +177,7 @@
             </div>
         </div>
         <div class="from">
-            <div class="from_wz_3"><font color="#363636"  size="3">商品单价：</font></div><div class="from_in_5"><font color="#363636"  size="3"><?php echo $order['danpay']; ?>元 (单价)</font></div>
+            <div class="from_wz_3"><font color="#363636"  size="3">商品单价：</font></div><div class="from_in_5"><font color="#363636"  size="3"><?php echo floatval($order['danpay']); ?>元 (单价)</font></div>
         </div>
         <div class="from">
             <div class="from_wz_3"><font color="#363636"  size="3">购买数量：</font></div><div class="from_in_5"><font color="#363636"  size="3"><?php echo $order['num']; ?>个</font> <font color="#2bb800"  size="2">
@@ -213,7 +208,7 @@
                 <div class="payment-list">
                     <ul>
                         <?php if(!(empty(\think\Session::get('info')) || ((\think\Session::get('info') instanceof \think\Collection || \think\Session::get('info') instanceof \think\Paginator ) && \think\Session::get('info')->isEmpty()))): ?>
-                        <li class="yu" data-paytype="yu" onclick="layer.msg('该功能正在开发中！！')"><i class="payment-icon-yu">余额支付</i></li>
+                        <li class="yu" data-paytype="yupay" ><i class="payment-icon-yu">余额支付</i></li>
                         <?php endif; ?>
 
                         <li class="tenpay" data-paytype="alipay" ><i class="payment-icon-cft">支付宝支付</i></li>
@@ -267,19 +262,75 @@
 
       var  url = "<?php echo url('pays/index'); ?>";
 
-      if(types == '' || types== undefined){
+      if(types == '' || types== undefined || types == 'undefined'){
           layer.msg('请选择支付类型');
           return false;
       }
 
-       if(types == 'yu'){
-           layer.msg('改功能正在开发中。。');
-           return false;
+       if(types == 'yupay'){
+           //余额支付
+          var urls = "<?php echo url('index/yupay'); ?>"; 
+          $.post(urls,{'order':order_no},function(ret){
+                   if(ret.code== 2000){
+
+                       if(ret.huo ==0){
+                         layer.msg(ret.msg,{icon:6},function(){
+                         parent.location.href="<?php echo url('index/zdfahuo'); ?>?orderno"+ret.order;
+                          });
+                       }else {
+                          layer.msg(ret.msg,{icon:6},function(){
+                         parent.location.href="<?php echo url('index/sdfahuo'); ?>?orderno"+ret.order;
+                         }); 
+                       }
+   
+                   }
+
+                   if(ret.code== 4001){
+                     layer.msg(ret.msg,{icon:5},function(){
+                        parent.location.reload();
+                     })
+                   }
+                   
+                   if(ret.code== 4002){
+                     layer.msg(ret.msg,{icon:5},function(){
+                        parent.location.reload();
+                     })
+                   }
+
+                   
+                   if(ret.code== 4003){
+                     layer.msg(ret.msg,{icon:5},function(){
+                        parent.location.reload();
+                     })
+                   }
+
+                   
+                   if(ret.code== 4004){
+                     layer.msg(ret.msg,{icon:5},function(){
+                        parent.location.reload();
+                     })
+                   }
+
+                   
+                   if(ret.code== 4005){
+                     layer.msg(ret.msg,{icon:5},function(){
+                        parent.location.reload();
+                     })
+                   }
+
+                   
+                   if(ret.code== 4006){
+                     layer.msg(ret.msg,{icon:5},function(){
+                        parent.location.reload();
+                     })
+                   }
+                
+           },'json')
+       }else {
+       
+        window.location.href=url+"?types="+types+"&goodnames="+goodnames+"&order_no="+order_no+"&paynum="+paynum+"&sitename="+sitename;
+
        }
-
-
-      window.location.href=url+"?types="+types+"&goodnames="+goodnames+"&order_no="+order_no+"&paynum="+paynum+"&sitename="+sitename;
-
    })
 
 </script>

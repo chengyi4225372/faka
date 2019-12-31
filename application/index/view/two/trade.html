@@ -34,7 +34,7 @@
                     <h2 style="margin-top: 0px;color: #333;font-family: 微软雅黑;" class="am-text-truncate">{$info.title|default=''}</h2>
                     <p class="trade-goodinfo" style="background-color:#f5f3ef;margin-top: 20px">
                         <span style="color:#6c6c6c">促销：</span>
-                        <span class="trade-price">￥{$info.money} </span>
+                        <span class="trade-price">￥{$info.money|floatval} </span>
                         <span style="float:right">
                                         <span style="color: #6C6C6C;">累积销量：</span>
                                         <span style="color:#6c6c6c;font-size:18px;">{$info.paynum|default='0'}</span>

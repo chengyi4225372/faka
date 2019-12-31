@@ -111,7 +111,7 @@ class Pays extends Controller
                 if($pays === false){
                     echo  "<script>alert('订单支付失败，请重新下单')</script>";
                 }
-
+               //自动发货
                if($order['huo'] ==0){
                        //获取没有使用的卡密
                        $list = Db::name('card')->where(['gid'=>$order['gid'],'over'=>0,'oid'=>null])->order('id asc')->limit(0,$order['num'])->select();
@@ -136,6 +136,17 @@ class Pays extends Controller
                        Db::rollback();
                    }
 
+               }else {
+                   //手动发货
+                   Db::startTrans();
+                   try {
+                       Db::name('order')->where(['order_no'=>$out_trade_no])->update(['status'=>1]);
+                       // 提交事务
+                       Db::commit();
+                   } catch (\Exception $e) {
+                       // 回滚事务
+                       Db::rollback();
+                   }
                }
 
             } else {
@@ -190,12 +201,19 @@ class Pays extends Controller
                    exit();
                }
 
+
+                if($order['is_delete'] == 1){
+                    echo "<script>alert('该订单已经删除')</script>";
+                    exit();
+                }
+
                Db::name('order')->where(['order_no'=>$out_trade_no])->update(array(
                       'types'=>$type,
                       'status'=>1,
                       'trade_no'=>$trade_no,
                   ));
                 /* 订单支付结果处理  */
+
 
             }
             echo "success";		//请不要修改或删除

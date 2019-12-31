@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:85:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\index\trade.html";i:1577797480;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\head.html";i:1577800834;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\foot.html";i:1577542709;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:85:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\index\trade.html";i:1577806349;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\head.html";i:1577800834;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\foot.html";i:1577542709;}*/ ?>
 
 <!DOCTYPE html> 
 
@@ -168,7 +168,13 @@
                         <input min="0" id="p_num" name="p_num" class="z" type="number"  placeholder="请输入购买数量" />
                     </div>
 
-                    <div class="from_in_2 yanzheng" style="width:200px"> <font size="2" color="#FF7200"><?php echo $info['num']; ?> 库存个</span> </div>
+                    <div class="from_in_2 yanzheng" style="width:200px">
+                        <?php if($info['huo'] == 0): ?>
+                        <font size="2" color="#FF7200"><?php echo $info['num']; ?> 库存个</span>
+                         <?php else: ?>
+                            <font size="2" color="#FF7200">人工发货</span>
+                         <?php endif; ?>
+                    </div>
                 </div>
             </form>
             <input id="minnum" name="minnum" class="z" type="hidden" value="<?php echo $info['mins']; ?>" >
@@ -254,7 +260,7 @@
         var sid    = $('#sid').val();//id
         var hid    = $('#hid').val(); //0 自动 1 手动
         var mobile = $('#mobile').val();
-        var paynum = parseInt($('#p_num').val()); //购买数量
+        var paynum = parseInt($.trim($('#p_num').val())); //购买数量
         var min    = parseInt($('#minnum').val());
         var max    = parseInt($('#maxnum').val());
         var bei    = $('#beishu').val();
@@ -273,7 +279,7 @@
             }
 
 
-            if(paynum <= 0){
+            if(paynum <= 0 || paynum == '' || paynum=='null' || paynum == undefined || isNaN(paynum)){
             layer.msg('最少购买数量为'+min);
             return ;
             }
@@ -282,7 +288,7 @@
            if(hid ==0){
 
            if(paynum > num){
-               layer.msg('商品购买数量大于库存');
+               layer.msg('商品购买数量大于库存数量');
                return ;
            }
 

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:85:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\index\index.html";i:1577800253;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\head.html";i:1577800834;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\foot.html";i:1577542709;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:85:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\index\index.html";i:1577806556;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\head.html";i:1577800834;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\foot.html";i:1577542709;}*/ ?>
 
 <!DOCTYPE html> 
 
@@ -144,7 +144,7 @@
                             </div>
                         </td>
                         <td>
-                            <font color="#FF5400"  size="2" title="会员单价"><?php echo $vo['money']; ?></font>
+                            <font color="#FF5400"  size="2" title="会员单价"><?php echo floatval($vo['money']); ?></font>
                             <br/>
                             <font color="#BBBBBB"  size="1" title="销量">销量:<?php echo $vo['paynum']; ?></font>
                         </td>
