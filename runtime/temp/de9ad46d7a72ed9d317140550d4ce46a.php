@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:88:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\user\mychongzi.html";i:1577542709;s:79:"C:\Users\Administrator\Desktop\faka\application\index\view\public\userhead.html";i:1577610618;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:88:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\user\mychongzi.html";i:1577809875;s:79:"C:\Users\Administrator\Desktop\faka\application\index\view\public\userhead.html";i:1577610618;}*/ ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -145,7 +145,7 @@
                 <tbody>
                 <tr>
                     <td><?php echo $pay['member_no']; ?></td>
-                    <td><?php echo $pay['pay']; ?></td>
+                    <td><?php echo floatval($pay['pay']); ?></td>
                     <td>
                         <?php if($pay['status'] == '2'): ?>
                           未付款

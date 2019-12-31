@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:87:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\mobile\search.html";i:1577626306;s:81:"C:\Users\Administrator\Desktop\faka\application\index\view\public\mobilehead.html";i:1577542709;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:87:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\mobile\search.html";i:1577809205;s:81:"C:\Users\Administrator\Desktop\faka\application\index\view\public\mobilehead.html";i:1577802052;}*/ ?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -13,7 +13,7 @@
 <script src="/mobile/sink/js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="/mobile/sink/js/Validform_v5.3.2_min.js"></script>
 <link href="/mobile/sink/css/owl.carousel.css" rel="stylesheet">
-<script src="/mobile/sink/js/owl.carousel.min.js"></script>
+<!--<script src="/mobile/sink/js/owl.carousel.min.js"></script>-->
 <script src="/index/sink/js/layer/layer.js"></script>
 </head>
 
@@ -113,14 +113,14 @@ $(document).ready(function(){
 
     <div class="msg_content">总价<?php echo $vo['countpay']; ?> 元 数量<?php echo $vo['num']; ?>个
         <?php if($vo['status'] == 1): ?>
-        <a  onclick="layer.msg('待开发中..')" title="点击查看卡密" target="_blank">
+        <a  href="<?php echo url('mobile/orderinfo'); ?>?orderno=<?php echo $vo['order_no']; ?>" title="点击查看卡密" >
             <span class="bl_type" style="background-color:#c500e8;">提取卡密</span></a>
         <?php elseif($vo['status'] == 3): ?>
         <font style="cursor:pointer;" color="#ff4351">联系客服退款</font>
         <?php elseif($vo['status'] == 2): ?>
         <font style="cursor:pointer;" color="#ff4351">已发货</font>
         <?php elseif($vo['status'] == 0): ?>
-        【<a onclick="layer.msg('待开发中...');" target="_blank" >付款</a>】
+        【<a href="<?php echo url('index/buy'); ?>?order_no=<?php echo $vo['order_no']; ?>&did=<?php echo $vo['id']; ?>">付款</a>】
         <?php else: ?>
         <font style="cursor:pointer" color="#CCCCCC">未发货</font>
         <?php endif; ?>

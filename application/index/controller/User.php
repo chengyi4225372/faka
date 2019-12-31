@@ -134,7 +134,7 @@ class User extends Controller
              $yumoney = Db::name('member')->where(['id'=>$data['mid']])->find(); //查询用户
             if($levelpay !== false){
                 if($yumoney['level'] == $data['member_level']){
-                    return json(['code'=>405,'msg'=>'您已经是改等级了，请不要重复支付了']);
+                    return json(['code'=>405,'msg'=>'您已经是该等级了，请不要重复支付了']);
                 }
                 //获取现有金额
                 $nowmoney = $yumoney['money']- $data['paymoney'];
@@ -146,16 +146,17 @@ class User extends Controller
                 //更新余额 和 支付状态
                 Db::startTrans();
                 try {
-                    $info = Db::name('member')->where(['id'=>$data['mid']])->update(['money'=>$nowmoney,'level'=> $data['member_level']]);
-                    Db::name('lavel_pay')->where(['id'=>$levelpay])->update(['status'=>1]);
+                    Db::name('member')->where(['id'=>$data['mid']])->update(['money'=>$nowmoney,'level'=> $data['member_level']]);
+                    Db::name('level_pay')->where(['id'=>$levelpay])->update(['status'=>1]);
                     // 提交事务
                     Db::commit();
+                    return json(['code'=>200,'msg'=>'支付成功']);
                 } catch (\Exception $e) {
                     // 回滚事务
                     Db::rollback();
                 }
-                session('info',$info);
-                return json(['code'=>200,'msg'=>'支付成功']);
+                //session('info',$info);
+                return json(['code'=>400,'msg'=>'支付失败']);
             }else {
                 return json(['code'=>400,'msg'=>'支付失败']);
             }

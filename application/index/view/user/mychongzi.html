@@ -33,7 +33,7 @@
                 <tbody>
                 <tr>
                     <td>{$pay.member_no}</td>
-                    <td>{$pay.pay}</td>
+                    <td>{$pay.pay|floatval}</td>
                     <td>
                         {eq name='$pay.status' value='2'}
                           未付款

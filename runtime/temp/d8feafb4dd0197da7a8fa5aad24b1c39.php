@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:86:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\user\myorder.html";i:1577542709;s:79:"C:\Users\Administrator\Desktop\faka\application\index\view\public\userhead.html";i:1577610618;s:79:"C:\Users\Administrator\Desktop\faka\application\index\view\public\userfoot.html";i:1577542709;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:86:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\user\myorder.html";i:1577797480;s:79:"C:\Users\Administrator\Desktop\faka\application\index\view\public\userhead.html";i:1577610618;}*/ ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -190,29 +190,5 @@
 </div>
 
 </main>
-
-
-
-<script>
-    //Demo 事件
-    layui.use('form', function() {
-        var form = layui.form, layer = layui.layer,
-            $ = layui.jquery;
-        //监听提交
-        form.on('submit(formDemo)', function(data) {
-            //layer.msg(JSON.stringify(data.field));
-            return true;
-        });
-    });
-</script>
-
-
-<footer class="footer" style="clear:both">
-        <p class="copyright"><?php echo $config['info']; ?></p>
-    </footer>
-
-
-
-
 </body>
 </html>

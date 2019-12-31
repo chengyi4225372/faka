@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:84:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\user\index.html";i:1577542709;s:79:"C:\Users\Administrator\Desktop\faka\application\index\view\public\userhead.html";i:1577610618;s:79:"C:\Users\Administrator\Desktop\faka\application\index\view\public\userfoot.html";i:1577542709;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:84:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\user\index.html";i:1577809739;s:79:"C:\Users\Administrator\Desktop\faka\application\index\view\public\userhead.html";i:1577610618;s:79:"C:\Users\Administrator\Desktop\faka\application\index\view\public\userfoot.html";i:1577542709;}*/ ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -118,11 +118,6 @@
         <div class="panel-body">
             <h2 class="page-header">
                 会员中心                        
-<!--
-    <a href="/index/user/profile.html" class="btn btn-success pull-right">
-                    <i class="fa fa-pencil"></i>
-                    个人资料</a>
-  -->
             </h2>
             <div class="row user-baseinfo">
 
@@ -139,7 +134,7 @@
                                 <div class="col-xs-8 col-md-4">
                                     <span class="xred">
                                       <?php if(\think\Session::get('info.level') == 1): ?>
-                                         无
+                                        正常用户
                                       <?php elseif(\think\Session::get('info.level') == 2): ?>
                                         普通代理
                                       <?php elseif(\think\Session::get('info.level') == 3): ?>
@@ -151,7 +146,7 @@
                                 </div>
                                 <div class="col-xs-4 col-md-2">账户余额</div>
                                 <div class="col-xs-8 col-md-4">
-                                    <a href="javascript:;" class="viewmoney"><?php echo (\think\Session::get('money') ?: '0.00'); ?></a>
+                                    <a href="javascript:;" class="viewmoney"><?php echo (floatval(\think\Session::get('info.money')) ?: '0.00'); ?></a>
                                 </div>
                             </div>
 <!--                            <div class="row">
