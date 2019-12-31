@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:81:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\two\buy.html";i:1577542709;s:80:"C:\Users\Administrator\Desktop\faka\application\index\view\public\twombhead.html";i:1577542709;s:80:"C:\Users\Administrator\Desktop\faka\application\index\view\public\twombfoot.html";i:1577542709;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:81:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\two\buy.html";i:1577814703;s:80:"C:\Users\Administrator\Desktop\faka\application\index\view\public\twombhead.html";i:1577542709;s:80:"C:\Users\Administrator\Desktop\faka\application\index\view\public\twombfoot.html";i:1577542709;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -159,7 +159,7 @@
             <div class="payment-list">
                 <ul>
                     <?php if(!(empty(\think\Session::get('info')) || ((\think\Session::get('info') instanceof \think\Collection || \think\Session::get('info') instanceof \think\Paginator ) && \think\Session::get('info')->isEmpty()))): ?>
-                    <li class="yu" data-paytype="yu" ><i class="payment-icon-yu"></i></li>
+                    <li class="yu" data-paytype="yupay" ><i class="payment-icon-yu"></i></li>
                     <?php endif; ?>
                     <li class="tenpay" data-paytype="alipay"><i class="payment-icon-cft">支付宝支付</i></li>
                     <li class="wx " data-paytype="wx" ><i class="payment-icon-wx">微信支付</i></li>
@@ -265,16 +265,72 @@
                 return false;
             }
 
-            if(types == 'yu'){
-                layer.msg('改功能正在开发中。。');
-                return false;
-            }
-
             if(paynum == '' || paynum == undefined || paynum == 'undefined'){
                 return false;
             }
 
-            window.location.href=url+"?types="+types+"&goodnames="+goodnames+"&order_no="+order_no+"&paynum="+paynum+"&sitename="+sitename;
+            if(types == 'yupay'){
+                //余额支付
+                var urls = "<?php echo url('two/yupay'); ?>";
+                $.post(urls,{'order':order_no},function(ret){
+                    if(ret.code== 2000){
+
+                        if(ret.huo ==0){
+                            layer.msg(ret.msg,{icon:6},function(){
+                                parent.location.href="<?php echo url('two/zdfahuo'); ?>?orderno="+ret.order;
+                            });
+                        }else {
+                            layer.msg(ret.msg,{icon:6},function(){
+                                parent.location.href="<?php echo url('two/sdfahuo'); ?>?orderno="+ret.order;
+                            });
+                        }
+
+                    }
+
+                    if(ret.code== 4001){
+                        layer.msg(ret.msg,{icon:5},function(){
+                            parent.location.reload();
+                        })
+                    }
+
+                    if(ret.code== 4002){
+                        layer.msg(ret.msg,{icon:5},function(){
+                            parent.location.reload();
+                        })
+                    }
+
+
+                    if(ret.code== 4003){
+                        layer.msg(ret.msg,{icon:5},function(){
+                            parent.location.reload();
+                        })
+                    }
+
+
+                    if(ret.code== 4004){
+                        layer.msg(ret.msg,{icon:5},function(){
+                            parent.location.reload();
+                        })
+                    }
+
+
+                    if(ret.code== 4005){
+                        layer.msg(ret.msg,{icon:5},function(){
+                            parent.location.reload();
+                        })
+                    }
+
+
+                    if(ret.code== 4006){
+                        layer.msg(ret.msg,{icon:5},function(){
+                            parent.location.reload();
+                        })
+                    }
+
+                },'json')
+            }else {
+                window.location.href=url+"?types="+types+"&goodnames="+goodnames+"&order_no="+order_no+"&paynum="+paynum+"&sitename="+sitename;
+            }
         }
 
     </script>
