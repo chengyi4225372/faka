@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\goods\cates.html";i:1566887732;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\view\template\layout.html";i:1567134813;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\goods\cates.html";i:1577780275;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\view\template\layout.html";i:1567134813;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -192,7 +192,7 @@
                             <a href="<?php echo url('goods/addc',array('id'=>$vo['id'])); ?>" class="btn btn-primary btn-xs" title="修改">
                                 <i class="fa fa-pencil">编辑</i>
                             </a>
-                            <a class="btn btn-danger btn-xs" title="删除" href="<?php echo url('goods/delc',array('id'=>$vo['id'])); ?>" >
+                            <a class="btn btn-danger btn-xs" title="删除" onclick='dels(this)' data-href="<?php echo url('goods/delc'); ?>" data-id="<?php echo $vo['id']; ?>" >
                                 <i class="fa fa-trash">删除</i>
                             </a>
                         </td>
@@ -217,6 +217,40 @@
                     content: url //iframe的url
                 })
             })
+
+            function dels(onj){
+                var urls = $(onj).attr('data-href');
+                var id   = $(onj).attr('data-id');
+
+                if(urls == '' || urls == undefined){
+                    return false;
+                }
+
+                if(id =='' || id== undefined){
+                    return false;
+                }
+
+                $.get(urls,{'id':id},function(ret){
+                    if(ret.code == 200){
+                        layer.msg(ret.msg,{icon:6},function(){
+                            parent.location.reload();
+                        })
+                    }
+
+                    if(ret.code == 401){
+                        layer.msg(ret.msg,{icon:5},function(){
+                            parent.location.reload();
+                        })
+                    }
+
+                    if(ret.code == 400){
+                        layer.msg(ret.msg,{icon:5},function(){
+                            parent.location.reload();
+                        })
+                    }
+
+                },'json')
+            }
         </script>
 
         </section>

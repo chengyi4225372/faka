@@ -72,7 +72,7 @@ class Goods extends Base
         if($this->request->isGet()){
             $id  = input('get.id','','int');
             //查询是否关联商品
-            $cates = Db::name()->where(['cid'=>$id])->find();
+            $cates = Db::name('goods')->where(['cid'=>$id])->find();
             if(!empty($cates) || isset($cates)){
                 return json(['code'=>401,'msg'=>'分类关联商品，不能删除']);
             }
@@ -166,7 +166,7 @@ class Goods extends Base
                  ]);
           }
 
-          if($res){
+          if($res !== false){
               return json(['code'=>200,'msg'=>'操作成功']);
           }else{
               return json(['code'=>400,'msg'=>'操作失败']);
