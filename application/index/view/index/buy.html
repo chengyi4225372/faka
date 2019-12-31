@@ -193,11 +193,11 @@
 
                        if(ret.huo ==0){
                          layer.msg(ret.msg,{icon:6},function(){
-                         parent.location.href="{:url('index/zdfahuo')}?orderno"+ret.order;
+                         parent.location.href="{:url('index/zdfahuo')}?orderno="+ret.order;
                           });
                        }else {
                           layer.msg(ret.msg,{icon:6},function(){
-                         parent.location.href="{:url('index/sdfahuo')}?orderno"+ret.order;
+                         parent.location.href="{:url('index/sdfahuo')}?orderno="+ret.order;
                          }); 
                        }
    

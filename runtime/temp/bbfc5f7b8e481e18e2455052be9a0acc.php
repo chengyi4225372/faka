@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:87:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\user\recharge.html";i:1577542709;s:79:"C:\Users\Administrator\Desktop\faka\application\index\view\public\userhead.html";i:1577610618;s:79:"C:\Users\Administrator\Desktop\faka\application\index\view\public\userfoot.html";i:1577542709;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:87:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\user\recharge.html";i:1577813192;s:79:"C:\Users\Administrator\Desktop\faka\application\index\view\public\userhead.html";i:1577610618;s:79:"C:\Users\Administrator\Desktop\faka\application\index\view\public\userfoot.html";i:1577542709;}*/ ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -130,7 +130,7 @@
                     <label class="layui-form-label">余额</label>
                     <div class="layui-input-block">
                         <div class="layui-form-mid layui-word-aux" style="color:red !important">
-                           <?php echo (floatval(\think\Session::get('info.money')) ?: 'null'); ?>
+                           <?php echo (floatval(\think\Session::get('info.money')) ?: '0.00'); ?>
                         </div>
                     </div>
                 </div>

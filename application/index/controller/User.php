@@ -35,6 +35,13 @@ class User extends Controller
     public function index()
     {
         if($this->request->isGet()){
+            $id   = session('info.id');
+            if(empty($id) || !isset($id)){
+                echo "<script>alert('请退出后再重新登录！');</script>";
+                exit();
+            }
+            $info = Db::name('member')->where(['id'=>$id])->find();
+            session('info',$info);
             return $this->fetch();
         }
         return false;

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:83:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\index\buy.html";i:1577806874;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\head.html";i:1577800834;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\foot.html";i:1577542709;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:83:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\index\buy.html";i:1577814249;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\head.html";i:1577800834;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\foot.html";i:1577542709;}*/ ?>
 
 <!DOCTYPE html> 
 
@@ -275,11 +275,11 @@
 
                        if(ret.huo ==0){
                          layer.msg(ret.msg,{icon:6},function(){
-                         parent.location.href="<?php echo url('index/zdfahuo'); ?>?orderno"+ret.order;
+                         parent.location.href="<?php echo url('index/zdfahuo'); ?>?orderno="+ret.order;
                           });
                        }else {
                           layer.msg(ret.msg,{icon:6},function(){
-                         parent.location.href="<?php echo url('index/sdfahuo'); ?>?orderno"+ret.order;
+                         parent.location.href="<?php echo url('index/sdfahuo'); ?>?orderno="+ret.order;
                          }); 
                        }
    

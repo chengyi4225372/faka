@@ -57,7 +57,7 @@ class Index extends Base
                     $list[$k]['num'] = '人工发货';
                 }
             }
-     
+
             $this->assign('list',$list);
             $this->assign('categorys',$categorys);
             $this->assign('indexs',$indexs);
@@ -284,7 +284,7 @@ class Index extends Base
               return false;
           }
 
-          $member_order = Db::name('order')->where(['order_no'=>$order_no])->find();
+          $member_order = Db::name('order')->where(['order_no'=>$order_no])->find();//根据订单号查询当前用户的订单信息
 
           if(empty($member_order) || $member_order['is_delete'] ==1){
               return json(['code'=>4003,'msg'=>'订单删除或丢失，请重新下单']);
@@ -297,44 +297,63 @@ class Index extends Base
           $member = Db::name('member')->where(['id'=>session('info.id'),'status'=>1])->find();
           
           if(empty($member) || !isset($member)){
-              return  json(['code'=>4001,'msg'=>'订单数据异常，请重新下单...']);
+              return  json(['code'=>4001,'msg'=>'订单数据异常，请重新下单...']); //说明用户不存在
           }
 
           $nowmoney = $member['money'] - $member_order['countpay'];
+
           
           if($nowmoney < 0){
             return json(['code'=>4004,'msg'=>'余额不足，请充值...']);
           }
-          
-        //1.先支付 
-         $nowpay = Db::name('member')->where(['id'=>session('info.id'),'status'=>1])->data(['money'=>$nowmoney])->update(); 
-         if($nowpay === false){
-             return json(['code'=>4005,'msg'=>'余额支付失败']);
-             //更新失败 应该回到原来的数据
-         }
 
-        //2.更新卡密
-        $cardlist = Db::name('card')->where(['over'=>0,'oid'=>null])->order('id asc')->limit(0,$member_order['num'])->update([
-            'oid'=>$member_order['id']]
-        );
-          //卡密失败 应该回调原来 
+           //余额足够支付 需要判断商品类型
+           //自动发货
+          if($member_order['huo'] == 0){
+              //1.先支付
+              $nowpay = Db::name('member')->where(['id'=>session('info.id'),'status'=>1])->data(['money'=>$nowmoney])->update();
+              if($nowpay === false){
+                  return json(['code'=>4005,'msg'=>'余额支付失败']);
+              }
+              //2.更新卡密
+              //先取出未使用的卡密
+              $cardlist = Db::name('card')->where(['over'=>0,'oid'=>null,'gid'=>$member_order['gid']])->order('id asc')->limit(0,$member_order['num'])->select();
+              if($cardlist === false || empty($cardlist)){
+                  return json(['code'=>4006,'msg'=>'获取卡密失败，请联系客服']);
+              }
+              //返回成功
+              Db::startTrans();
+              try {
+                  foreach ($cardlist as $k =>$val){
+                      Db::name('card')->where(['id'=>$val['id']])
+                          ->data(['over'=>1,'oid'=>$member_order['id']])->update(); //更新卡密与订单关联
+                  }
+                  Db::name('order')->where(['order_no'=>$order_no])->data(['status'=>1,'typs'=>'yupay'])->update(); //更新订单状态
+                  Db::name('member')->where(['id'=>session('info.id')])->data(['money'=>$nowmoney])->update(); //更新用户余额
+                  // 提交事务
+                  Db::commit();
+                  return json(['code'=>2000,'msg'=>'余额支付成功,马上为您跳转卡密页...','order'=>$order_no,'huo'=>$member_order['huo']]);
+              } catch (\Exception $e) {
+                  // 回滚事务
+                  Db::rollback();
+                  return json(['code'=>2000,'msg'=>'余额支付失败！']);
+              }
+          }
 
-        if($cardlist === false){
-          return json(['code'=>4006,'msg'=>'获取卡密失败，请联系客服']);
-        }  
-        //返回成功
-         Db::startTrans();
-         try {
-            Db::name('card')->where(['oid'=>$member_order['id']])->data(['over'=>1])->update(); //更新卡密
-            Db::name('order')->where(['order_no'=>$order_no])->data(['status'=>1])->update(); //更新订单状态
-             // 提交事务
-            Db::commit();
-         } catch (\Exception $e) {
-            // 回滚事务
-            Db::rollback();
-         }
+           //人工发货 返回成功
+           Db::startTrans();
+           try {
+               Db::name('order')->where(['order_no'=>$order_no])->data(['status'=>1,'typs'=>'yupay'])->update(); //更新订单状态
+               Db::name('member')->where(['id'=>session('info.id')])->data(['money'=>$nowmoney])->update(); //更新用户余额
+               // 提交事务
+               Db::commit();
+           } catch (\Exception $e) {
+               // 回滚事务
+               Db::rollback();
+               return json(['code'=>2000,'msg'=>'余额支付失败！']);
+           }
 
-         return json(['code'=>2000,'msg'=>'支付成功','order'=>$order_no,'huo'=>$member_order['huo']]);
+           return json(['code'=>2000,'msg'=>'余额支付成功,马上为您跳转卡密页...','order'=>$order_no,'huo'=>$member_order['huo']]);
          
         }
 
