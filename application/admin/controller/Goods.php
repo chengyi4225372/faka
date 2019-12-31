@@ -71,12 +71,17 @@ class Goods extends Base
     {
         if($this->request->isGet()){
             $id  = input('get.id','','int');
-            $res = Db::name('good_cates')->where(['id'=>$id])->delete();
+            //查询是否关联商品
+            $cates = Db::name()->where(['cid'=>$id])->find();
+            if(!empty($cates) || isset($cates)){
+                return json(['code'=>401,'msg'=>'分类关联商品，不能删除']);
+            }
 
-            if($res){
-                $this->success('操作成功');
+            $res = Db::name('good_cates')->where(['id'=>$id])->delete();
+            if($res !== false){
+                 return json(['code'=>200,'msg'=>'删除成功']);
             }else {
-                $this->error('操作失败');
+                return json(['code'=>400,'msg'=>'删除失败']);
             }
         }
     }
