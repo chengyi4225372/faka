@@ -14,7 +14,7 @@
 
             <div class="info-box-content">
                 <span class="info-box-text">会员总数</span>
-                <span class="info-box-number">90</span>
+                <span class="info-box-number">{$member|default='0'}</span>
             </div>
 
         </div>
@@ -27,7 +27,7 @@
 
             <div class="info-box-content">
                 <span class="info-box-text">未发货订单</span>
-                <span class="info-box-number">41,410</span>
+                <span class="info-box-number">暂时为空</span>
             </div>
         </div>
     </div>
@@ -42,7 +42,7 @@
 
             <div class="info-box-content">
                 <span class="info-box-text">昨日订单</span>
-                <span class="info-box-number">760</span>
+                <span class="info-box-number">{$zuo_order|default='0'}</span>
             </div>
         </div>
     </div>
@@ -54,7 +54,7 @@
 
         <div class="info-box-content">
             <span class="info-box-text">今日订单</span>
-            <span class="info-box-number">2,000</span>
+            <span class="info-box-number">{$today|default='0'}</span>
         </div>
     </div>
   </div>
@@ -65,7 +65,7 @@
 
             <div class="info-box-content">
                 <span class="info-box-text">昨日金额</span>
-                <span class="info-box-number">2,000</span>
+                <span class="info-box-number">{$zuo_money}</span>
             </div>
         </div>
     </div>
@@ -75,7 +75,7 @@
             <span class="info-box-icon bg-yellow"><i class="ion ion-ios-cart-outline"></i></span>
             <div class="info-box-content">
                 <span class="info-box-text">今日金额</span>
-                <span class="info-box-number">2,000</span>
+                <span class="info-box-number">{$today_money}</span>
             </div>
         </div>
     </div>
