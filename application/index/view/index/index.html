@@ -76,8 +76,8 @@
 
 
                         <td >
-                            {if condition="$vo.num eq null"}
-                             <a class="button button-tiny button-rounded button-small" >缺货</a>
+                            {if condition="$vo.num eq null or $vo.sum eq 0"}
+                             <a class="button button-tiny button-rounded button-small" onclick="layer.msg('该商品缺货！！',{icon:5});return false;">缺货</a>
                              {else /}
                             <a class="button button-primary button-rounded button-small"  href = "{:url('index/trade')}?id={$vo.id}">购买</a>
                             {/if}

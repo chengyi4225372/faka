@@ -30,7 +30,7 @@
                 {volist name='list' id='vo'}
 
                 {eq name='$vo.huo' value='0'}
-                <li><a href="{:url('two/trade',array('id'=>$vo.id))}">
+                <li><a  data-href="{:url('two/trade',array('id'=>$vo.id))}" data-num="{$vo.num}" onclick="checknum(this)">
                     <div style="background-color: #fff;" class="index_good_body">
                         <img class="" src="{$vo.images|default=''}" style="width:100%;height:280px">
                         <div class="pr-info" style="padding:5px">
@@ -73,3 +73,22 @@
 
     {include file="public:twombfoot" /}
 </div>
+<script>
+//kucun
+function checknum(obj){
+    var urls = $(obj).attr('data-href');
+    var num  = $(obj).attr('data-num');
+
+    if(urls =='' || urls == undefined){
+        return false;
+    } 
+
+    if(num =='' || num ==0 || num == undefined || num == 'null'){
+        layer.msg('该商品缺货，请勿购买');
+        return false;
+    } 
+
+    window.location.href = urls;
+}
+
+</script>

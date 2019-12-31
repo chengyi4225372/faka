@@ -24,7 +24,7 @@
         <a><br><div class="menux">
             <div align="center">{$categorys[$vo.cid]}</div></div></a>
 
-        <a href="{:url('mobile/trade',['id'=>$vo.id])}">
+        <a data-href="{:url('mobile/trade',['id'=>$vo.id])}" data-huo="{$vo.huo}" data-num="{$vo.num}" onclick="checknum(this)">
             <div class="baoliao_content">
 
                 {eq name='$vo.huo' value='1'}
@@ -50,7 +50,8 @@
                          <span class="bl_type" style="background-color:#0086EE;">
                          <span class="am-badge am-badge-primary" style="margin-left: 5px">库存({$vo.num})</span></span>&nbsp;
                             <span class="bl_type" style="background-color:#B187C1;">销量({$vo.paynum})</span> ￥{$vo.money|floatval}&nbsp;&nbsp;&nbsp;
-                            <font color="#F8A059">批发价￥{$vo.pipay|floatval}</font></div>
+                            <font color="#F8A059">批发价￥{$vo.pipay|floatval}</font>
+                        </div>
                         {else /}
                         <div class="bl_price">
                             <span class="bl_type" style="background-color:#0086EE;">
@@ -83,5 +84,24 @@
 </div>
 
 </div>
+
+<script>
+function checknum(obj){
+    var huo   = $(obj).attr('data-huo');
+    var num   = $(obj).attr('data-num');
+    var hrefs = $(obj).attr('data-href');
+    if(huo == 1){
+       window.location.href = hrefs;
+    }
+    
+    if(num == '' || num ==0 || num == null || num == undefined || num == 'null'){
+        layer.msg('该商品缺货，请勿购买！',{icon:5});
+        return false;
+    } 
+
+    window.location.href = hrefs;
+
+}
+</script>
 </body>
 </html>
