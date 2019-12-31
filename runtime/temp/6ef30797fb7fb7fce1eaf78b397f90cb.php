@@ -1,23 +1,18 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:85:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\index\trade.html";i:1577625490;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\head.html";i:1577542709;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\foot.html";i:1577542709;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:85:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\index\trade.html";i:1577797480;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\head.html";i:1577800834;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\foot.html";i:1577542709;}*/ ?>
 
 <!DOCTYPE html> 
 
 <html> 
-
-    <head> 
-
-        <meta charset="utf-8" /> 
-
+<head>
+        <meta charset="utf-8" />
         <title><?php echo $config['title']; ?></title>
-
         <meta name="keywords" content="<?php echo $config['keywords']; ?>" />
-
         <meta name="description" content="<?php echo $config['miao']; ?>" />
         <link rel="shortcut icon" href="<?php echo $config['logo']; ?>" />
-
         <script type="text/javascript" src="/index/sink/js/jquery-1.8.3.min.js"></script>
         <link href="/index/sink/css/css7.css" rel="stylesheet" type="text/css" />
         <link href="/index/sink/css/zzsc.css" rel="stylesheet" type="text/css" />
+        <link href="/index/sink/css/layui.css" rel="stylesheet" type="text/css" />
         <link href="/index/sink/css/buttons.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="/index/sink/js/Validform_v5.3.2_min.js"></script>
         <script type="text/javascript" src="/index/sink/js/layer/layer.js"></script>
@@ -309,15 +304,15 @@
         data.huo  = hid;
         if(hid ==0){
             data.num  = parseInt(paynum) * parseInt(bei);
+        }else{
+            data.num  = parseInt(paynum) * parseInt(bei); //手动
             var len   = $('form .mo').length;
             for(var i=1;i<=len;i++){
                 moban.push($("#title"+i).text());
                 moban.push($("#moban"+i).val());;
             }
-        }else{
-            data.num  = 1; //手动默认购买一个
-            moban ='';
         }
+
         data.content  = JSON.stringify(moban);
         data.danpay   = money;
         data.countpay = money * data.num;

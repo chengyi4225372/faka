@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:86:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\mobile\index.html";i:1577797480;s:81:"C:\Users\Administrator\Desktop\faka\application\index\view\public\mobilehead.html";i:1577542709;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:86:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\mobile\index.html";i:1577801416;s:81:"C:\Users\Administrator\Desktop\faka\application\index\view\public\mobilehead.html";i:1577802052;}*/ ?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -13,7 +13,7 @@
 <script src="/mobile/sink/js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="/mobile/sink/js/Validform_v5.3.2_min.js"></script>
 <link href="/mobile/sink/css/owl.carousel.css" rel="stylesheet">
-<script src="/mobile/sink/js/owl.carousel.min.js"></script>
+<!--<script src="/mobile/sink/js/owl.carousel.min.js"></script>-->
 <script src="/index/sink/js/layer/layer.js"></script>
 </head>
 
@@ -110,7 +110,7 @@ $(document).ready(function(){
         <a><br><div class="menux">
             <div align="center"><?php echo $categorys[$vo['cid']]; ?></div></div></a>
 
-        <a data-href="<?php echo url('mobile/trade',['id'=>$vo['id']]); ?>" data-huo="<?php echo $vo['huo']; ?>" data-num="<?php echo $vo['num']; ?>" onclick="checknum(this)">
+        <a data-href="<?php echo url('mobile/trade',['id'=>$vo['id']]); ?>" data-huo="<?php echo $vo['huo']; ?>" data-num="<?php if(isset($vo['num'])): ?><?php echo $vo['num']; else: ?>0<?php endif; ?>" onclick="checknum(this)">
             <div class="baoliao_content">
 
                 <?php if($vo['huo'] == '1'): ?>
@@ -134,7 +134,7 @@ $(document).ready(function(){
                         <?php if($vo['huo'] == '0'): ?>
                         <div class="bl_price">
                          <span class="bl_type" style="background-color:#0086EE;">
-                         <span class="am-badge am-badge-primary" style="margin-left: 5px">库存(<?php echo $vo['num']; ?>)</span></span>&nbsp;
+                         <span class="am-badge am-badge-primary" style="margin-left: 5px">库存(<?php if(isset($vo['num'])): ?><?php echo $vo['num']; else: ?>0<?php endif; ?>)</span></span>&nbsp;
                             <span class="bl_type" style="background-color:#B187C1;">销量(<?php echo $vo['paynum']; ?>)</span> ￥<?php echo floatval($vo['money']); ?>&nbsp;&nbsp;&nbsp;
                             <font color="#F8A059">批发价￥<?php echo floatval($vo['pipay']); ?></font>
                         </div>

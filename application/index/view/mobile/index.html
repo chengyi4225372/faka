@@ -24,7 +24,7 @@
         <a><br><div class="menux">
             <div align="center">{$categorys[$vo.cid]}</div></div></a>
 
-        <a data-href="{:url('mobile/trade',['id'=>$vo.id])}" data-huo="{$vo.huo}" data-num="{$vo.num}" onclick="checknum(this)">
+        <a data-href="{:url('mobile/trade',['id'=>$vo.id])}" data-huo="{$vo.huo}" data-num="{if isset($vo.num)}{$vo.num}{else/}0{/if}" onclick="checknum(this)">
             <div class="baoliao_content">
 
                 {eq name='$vo.huo' value='1'}
@@ -48,7 +48,7 @@
                         {eq name='$vo.huo' value='0'}
                         <div class="bl_price">
                          <span class="bl_type" style="background-color:#0086EE;">
-                         <span class="am-badge am-badge-primary" style="margin-left: 5px">库存({$vo.num})</span></span>&nbsp;
+                         <span class="am-badge am-badge-primary" style="margin-left: 5px">库存({if isset($vo.num)}{$vo.num}{else/}0{/if})</span></span>&nbsp;
                             <span class="bl_type" style="background-color:#B187C1;">销量({$vo.paynum})</span> ￥{$vo.money|floatval}&nbsp;&nbsp;&nbsp;
                             <font color="#F8A059">批发价￥{$vo.pipay|floatval}</font>
                         </div>

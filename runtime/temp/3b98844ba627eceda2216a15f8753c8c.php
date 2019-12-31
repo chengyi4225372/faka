@@ -1,20 +1,14 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:85:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\index\index.html";i:1577800253;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\head.html";i:1577800482;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\foot.html";i:1577542709;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:85:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\index\index.html";i:1577800253;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\head.html";i:1577800834;s:75:"C:\Users\Administrator\Desktop\faka\application\index\view\public\foot.html";i:1577542709;}*/ ?>
 
 <!DOCTYPE html> 
 
 <html> 
-
-    <head> 
-
-        <meta charset="utf-8" /> 
-
+<head>
+        <meta charset="utf-8" />
         <title><?php echo $config['title']; ?></title>
-
         <meta name="keywords" content="<?php echo $config['keywords']; ?>" />
-
         <meta name="description" content="<?php echo $config['miao']; ?>" />
         <link rel="shortcut icon" href="<?php echo $config['logo']; ?>" />
-
         <script type="text/javascript" src="/index/sink/js/jquery-1.8.3.min.js"></script>
         <link href="/index/sink/css/css7.css" rel="stylesheet" type="text/css" />
         <link href="/index/sink/css/zzsc.css" rel="stylesheet" type="text/css" />

@@ -52,7 +52,7 @@
 
         {if condition="$info['huo'] eq 0"}
         <div class="bl_view_title"> 购买数量：
-            <input class="search_input2" id="p_num"  type="number" value="" min="0"  placeholder="请输购买数量" required>
+            <input class="search_input2" id="p_num"  type="number" value="" min="1"  placeholder="请输购买数量" required>
         </div>
         {/if}
 
@@ -122,12 +122,14 @@
                  layer.msg('联系方式不合法');
                  return false;
              }
-            var num = parseInt($('#p_num').val()); //商品购买数量
+            var num = $.trim($('#p_num').val()); //商品购买数量
+             num = parseInt(num);
             var bei = $('#bei').val();
             var mins = parseInt($('#minnum').val());
             var maxs =parseInt($('#maxnum').val());
             var counts = $('#counts').val();
-            if(num < mins || num =='' || num == undefined){
+            console.log(num);
+            if(num < mins || num =='' || num == undefined ||num == 0 || isNaN(num)){
                 layer.msg('购买商品最少数量是'+mins);
                 return false;
             }

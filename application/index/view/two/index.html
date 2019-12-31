@@ -30,13 +30,13 @@
                 {volist name='list' id='vo'}
 
                 {eq name='$vo.huo' value='0'}
-                <li><a  data-href="{:url('two/trade',array('id'=>$vo.id))}" data-num="{$vo.num}" onclick="checknum(this)">
+                <li><a  data-href="{:url('two/trade',array('id'=>$vo.id))}" data-num="{if isset($vo.num)}{$vo.num}{else/}0{/if}" onclick="checknum(this)">
                     <div style="background-color: #fff;" class="index_good_body">
                         <img class="" src="{$vo.images|default=''}" style="width:100%;height:280px">
                         <div class="pr-info" style="padding:5px">
                             <span class="price">￥{$vo.money|default=''}</span>
 
-                            <span class="pr-xl am-badge am-badge-danger" style="color:#fff">库存{$vo.num|default='0'}</span>
+                            <span class="pr-xl am-badge am-badge-danger" style="color:#fff">库存{if isset($vo.num)}{$vo.num}{else/}0{/if}</span>
 
                             <div class="index-goodname-xq" style="height:45px;color:#333">
                                 <p title="{$vo.title}">{$vo.title|default=''}</p>
@@ -84,7 +84,7 @@ function checknum(obj){
     } 
 
     if(num =='' || num ==0 || num == undefined || num == 'null'){
-        layer.msg('该商品缺货，请勿购买');
+        layer.msg('该商品缺货，请勿购买',{icon:5});
         return false;
     } 
 

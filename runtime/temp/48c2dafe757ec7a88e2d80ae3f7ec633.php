@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\mobile\buy.html";i:1577624631;s:81:"C:\Users\Administrator\Desktop\faka\application\index\view\public\mobilehead.html";i:1577542709;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"C:\Users\Administrator\Desktop\faka\public/../application/index\view\mobile\buy.html";i:1577624631;s:81:"C:\Users\Administrator\Desktop\faka\application\index\view\public\mobilehead.html";i:1577802052;}*/ ?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -13,7 +13,7 @@
 <script src="/mobile/sink/js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="/mobile/sink/js/Validform_v5.3.2_min.js"></script>
 <link href="/mobile/sink/css/owl.carousel.css" rel="stylesheet">
-<script src="/mobile/sink/js/owl.carousel.min.js"></script>
+<!--<script src="/mobile/sink/js/owl.carousel.min.js"></script>-->
 <script src="/index/sink/js/layer/layer.js"></script>
 </head>
 
