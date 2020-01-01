@@ -117,7 +117,7 @@ class Order extends Base
                return false;
            }
            $info = Db::name('order')->where(['id'=>$id,'huo'=>1,'is_delete'=>0])->find();
-           $info['content'] = json_decode($info['content']);
+          // $info['content'] = $info['content'];
            $goods= Db::name('goods')->field('id,title')->select();
            $goods= array_column($goods,'title','id');
            $member = Db::name('member')->field('id ,account')->select();
