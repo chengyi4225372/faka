@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:105:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\two\trade.html";i:1577243298;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombhead.html";i:1571190314;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombfoot.html";i:1571190465;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:105:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\two\trade.html";i:1577926366;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombhead.html";i:1571190314;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombfoot.html";i:1577263336;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -92,7 +92,7 @@
                     <h2 style="margin-top: 0px;color: #333;font-family: 微软雅黑;" class="am-text-truncate"><?php echo (isset($info['title']) && ($info['title'] !== '')?$info['title']:''); ?></h2>
                     <p class="trade-goodinfo" style="background-color:#f5f3ef;margin-top: 20px">
                         <span style="color:#6c6c6c">促销：</span>
-                        <span class="trade-price">￥<?php echo $info['money']; ?> </span>
+                        <span class="trade-price">￥<?php echo floatval($info['money']); ?> </span>
                         <span style="float:right">
                                         <span style="color: #6C6C6C;">累积销量：</span>
                                         <span style="color:#6c6c6c;font-size:18px;"><?php echo (isset($info['paynum']) && ($info['paynum'] !== '')?$info['paynum']:'0'); ?></span>
@@ -173,12 +173,12 @@
     </div>
 
             <div class="tongji"><?php echo (isset($config['info']) && ($config['info'] !== '')?$config['info']:''); ?></div>
-            <form action="/search" method="post" class="am-modal am-modal-alert" tabindex="-1" id="my-alerts">
+            <form action="<?php echo url('two/search'); ?>" method="get" class="am-modal am-modal-alert" tabindex="-1" id="my-alerts">
                 <div class="am-modal-dialog">
                   <div class="am-modal-hd">订单查询</div>
                   <div class="am-modal-bd">
                     请输入订单号或联系方式
-                      <input type="text" class="am-modal-prompt-input" name="content" required>
+                      <input type="text" class="am-modal-prompt-input" name="orderno" required>
                   </div>
                   <div class="am-modal-footer">
                     <button type="submit" class="am-btn am-btn-primary" >确定</button>
@@ -220,7 +220,7 @@
         var gid = $('#gid').val();//商品id
         var member_id = $('#member_id').val(); //member
         var urls  = "<?php echo url('two/buy'); ?>";
-        var hrefs ="<?php echo url('two/buy'); ?>";
+        var hrefs = "<?php echo url('two/buy'); ?>";
         //自动发货
         if(huo == 0){
             var mobile = $.trim($('#mobile_zi').val());
@@ -234,10 +234,10 @@
                 layer.msg('电话号码不合法');
                 return false;
             }
-            var num = $('#p_num').val(); //商品购买数量
-            var bei = $('#bei').val();
-            var min = $('#minnum').val();
-            var max = $('#maxnum').val();
+            var num = parseInt($('#p_num').val()); //商品购买数量
+            var bei = parseInt($('#bei').val());
+            var min = parseInt($('#minnum').val());
+            var max = parseInt($('#maxnum').val());
             var counts = $('#counts').val();
             if(num < min || num =='' || num == undefined){
                 layer.msg('最少购买数量是'+min);

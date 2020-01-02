@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:106:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\two\search.html";i:1577324725;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombhead.html";i:1571190314;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombfoot.html";i:1577263336;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:106:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\two\search.html";i:1577926366;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombhead.html";i:1571190314;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombfoot.html";i:1577263336;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -69,25 +69,29 @@
                         <li class="am-text-truncate">订单编号：<?php echo $orders['order_no']; ?></li>
                         <li class="am-text-truncate">商品名称：<?php echo $goods[$orders['gid']]; ?></li>
                         <li>下单时间：<?php echo $orders['create_time']; ?></li>
-                        <li>支付价格：￥<?php echo $orders['countpay']; ?></li>
+                        <li>支付价格：￥<?php echo floatval($orders['countpay']); ?></li>
                         <li>购买数量：<?php echo $orders['num']; ?>件</li>
                         <li>发货方式：<?php if($orders['huo'] == 0): ?> 自动发货<?php else: ?>手动发货<?php endif; ?></li>
                         <li>发卡状态：
-                            <?php if($orders['status'] == 2): ?>
+                            <?php if($orders['status'] >= 1): ?>
                               已发货
-                            <?php elseif($orders['status'] == 3): ?>
-                             联系客服退款
                             <?php else: ?>
                              未发货
                             <?php endif; ?>
                         </li>
 <!--                        <li>支付方式：微信支付</li>-->
                         <li>订单状态：
-                        <?php if($orders['status'] == 1): ?>
+                        <?php if($orders['status'] >= 1): ?>
                         <font style="cursor:pointer;" color="#ff4351">已付款</font>
-                        <?php endif; if($orders['status'] == 0): ?>
-                        <font style="cursor:pointer" color="#CCCCCC">未付款</font>
-                        <?php endif; ?></li>
+                        <?php else: ?>
+                        <font style="cursor:pointer" color="#CCCCCC" >未付款</font>
+                        <?php endif; ?>
+                        </li>
+                        <?php if($orders['huo'] == 1): ?>
+                        <li>订单回执信息：
+                            <?php echo $orders['orderback']; ?>
+                        </li>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </section>
@@ -126,6 +130,8 @@
                         layer.msg('复制成功');
                     });
                 });
+
+
                 function editaccount(orderid) {
                     layer.open({
                         type: 2,

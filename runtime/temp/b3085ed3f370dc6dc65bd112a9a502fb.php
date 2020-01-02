@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\order\zedit.html";i:1577436997;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\order\zedit.html";i:1577666982;}*/ ?>
 
 
 <link rel="stylesheet" href="/static/admin/css/app.min.css">
@@ -86,10 +86,7 @@
                         </div></td>
                         <td>发货模板信息</td>
                         <td><div>
-                         <?php if($info['content'] == null or $info['content'] == 0): ?>
                           自动发货订单
-                          <?php else: ?>
-                          <?php echo $info['content']; endif; ?>
                         </div></td>
                       </tr>
 

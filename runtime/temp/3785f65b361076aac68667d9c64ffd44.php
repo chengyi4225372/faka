@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\mobile\trade.html";i:1576499553;s:103:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\mobilehead.html";i:1576225073;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\mobile\trade.html";i:1577926366;s:103:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\mobilehead.html";i:1577926366;}*/ ?>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -13,7 +13,7 @@
 <script src="/mobile/sink/js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="/mobile/sink/js/Validform_v5.3.2_min.js"></script>
 <link href="/mobile/sink/css/owl.carousel.css" rel="stylesheet">
-<script src="/mobile/sink/js/owl.carousel.min.js"></script>
+<!--<script src="/mobile/sink/js/owl.carousel.min.js"></script>-->
 <script src="/index/sink/js/layer/layer.js"></script>
 </head>
 
@@ -135,7 +135,7 @@ $(document).ready(function(){
         </div>
         <?php endif; if($info['huo'] == 0): ?>
         <div class="bl_view_title"> 购买数量：
-            <input class="search_input2" id="p_num" name="num" type="number" value="" min="0" max="" placeholder="请输购买数量" required>
+            <input class="search_input2" id="p_num"  type="number" value="" min="1"  placeholder="请输购买数量" required>
         </div>
         <?php endif; ?>
 
@@ -174,6 +174,17 @@ $(document).ready(function(){
 <script type="text/javascript" src="/index/sink/js/jquery-1.8.3.min.js"></script>
 <script src='/index/sink/js/layer/layer.js'></script>
 <script>
+
+    //手机验证
+    function checkPhone(phone) {
+        var tel_reg = /^1(3|4|5|6|7|8|9)\d{9}$/;
+        if (tel_reg.test(phone)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     //手机端
     $('#mobileadd').click(function(){
          var huo = $('#huo').val(); //发货类型
@@ -189,18 +200,24 @@ $(document).ready(function(){
               layer.msg('请输入电话信息');
               return false;
              }
-            var num = $('#p_num').val(); //商品购买数量
+
+             if(checkPhone(mobile) == false){
+                 layer.msg('联系方式不合法');
+                 return false;
+             }
+            var num = $.trim($('#p_num').val()); //商品购买数量
+             num = parseInt(num);
             var bei = $('#bei').val();
-            var min = $('#minnum').val();
-            var max = $('#maxnum').val();
+            var mins = parseInt($('#minnum').val());
+            var maxs =parseInt($('#maxnum').val());
             var counts = $('#counts').val();
-            if(num < min || num =='' || num == undefined){
-                layer.msg('购买商品太少了，无法发货');
+            console.log(num);
+            if(num < mins || num =='' || num == undefined ||num == 0 || isNaN(num)){
+                layer.msg('购买商品最少数量是'+mins);
                 return false;
             }
-
-            if(num > max){
-                layer.msg('商品购买数量太多了，我们无法发货');
+            if(maxs < num){
+                layer.msg('商品购买数量最多为'+maxs);
                 return false;
             }
 
@@ -237,6 +254,11 @@ $(document).ready(function(){
                 return false;
             }
 
+            if(checkPhone(mobile) == false){
+                 layer.msg('联系方式不合法');
+                 return false;
+             }
+
             //模板数据
              var content= [];
 
@@ -246,7 +268,7 @@ $(document).ready(function(){
                  content.push($("#moban"+i).val());
              }
 
-             console.log(content);
+             //console.log(content);
 
              var danpay = $('#danpay').val();//单价
 

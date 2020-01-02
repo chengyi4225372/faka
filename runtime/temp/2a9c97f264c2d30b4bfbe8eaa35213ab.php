@@ -1,20 +1,14 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\trade.html";i:1577686869;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1576907381;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\trade.html";i:1577926366;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1577930674;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
 
 <!DOCTYPE html> 
 
 <html> 
-
-    <head> 
-
-        <meta charset="utf-8" /> 
-
+<head>
+        <meta charset="utf-8" />
         <title><?php echo $config['title']; ?></title>
-
         <meta name="keywords" content="<?php echo $config['keywords']; ?>" />
-
         <meta name="description" content="<?php echo $config['miao']; ?>" />
         <link rel="shortcut icon" href="<?php echo $config['logo']; ?>" />
-
         <script type="text/javascript" src="/index/sink/js/jquery-1.8.3.min.js"></script>
         <link href="/index/sink/css/css7.css" rel="stylesheet" type="text/css" />
         <link href="/index/sink/css/zzsc.css" rel="stylesheet" type="text/css" />
@@ -173,7 +167,13 @@
                         <input min="0" id="p_num" name="p_num" class="z" type="number"  placeholder="请输入购买数量" />
                     </div>
 
-                    <div class="from_in_2 yanzheng" style="width:200px"> <font size="2" color="#FF7200"><?php echo $info['num']; ?> 库存个</span> </div>
+                    <div class="from_in_2 yanzheng" style="width:200px">
+                        <?php if($info['huo'] == 0): ?>
+                        <font size="2" color="#FF7200"><?php echo $info['num']; ?> 库存个</span>
+                         <?php else: ?>
+                            <font size="2" color="#FF7200">人工发货</span>
+                         <?php endif; ?>
+                    </div>
                 </div>
             </form>
             <input id="minnum" name="minnum" class="z" type="hidden" value="<?php echo $info['mins']; ?>" >
@@ -259,7 +259,7 @@
         var sid    = $('#sid').val();//id
         var hid    = $('#hid').val(); //0 自动 1 手动
         var mobile = $('#mobile').val();
-        var paynum = parseInt($('#p_num').val()); //购买数量
+        var paynum = parseInt($.trim($('#p_num').val())); //购买数量
         var min    = parseInt($('#minnum').val());
         var max    = parseInt($('#maxnum').val());
         var bei    = $('#beishu').val();
@@ -278,7 +278,7 @@
             }
 
 
-            if(paynum <= 0){
+            if(paynum <= 0 || paynum == '' || paynum=='null' || paynum == undefined || isNaN(paynum)){
             layer.msg('最少购买数量为'+min);
             return ;
             }
@@ -287,7 +287,7 @@
            if(hid ==0){
 
            if(paynum > num){
-               layer.msg('商品购买数量大于库存');
+               layer.msg('商品购买数量大于库存数量');
                return ;
            }
 

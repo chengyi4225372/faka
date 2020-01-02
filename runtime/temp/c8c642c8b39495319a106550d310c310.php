@@ -1,20 +1,14 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:105:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\buy.html";i:1577757984;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1576907381;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:105:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\buy.html";i:1577935499;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1577930674;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
 
 <!DOCTYPE html> 
 
 <html> 
-
-    <head> 
-
-        <meta charset="utf-8" /> 
-
+<head>
+        <meta charset="utf-8" />
         <title><?php echo $config['title']; ?></title>
-
         <meta name="keywords" content="<?php echo $config['keywords']; ?>" />
-
         <meta name="description" content="<?php echo $config['miao']; ?>" />
         <link rel="shortcut icon" href="<?php echo $config['logo']; ?>" />
-
         <script type="text/javascript" src="/index/sink/js/jquery-1.8.3.min.js"></script>
         <link href="/index/sink/css/css7.css" rel="stylesheet" type="text/css" />
         <link href="/index/sink/css/zzsc.css" rel="stylesheet" type="text/css" />
@@ -182,7 +176,7 @@
             </div>
         </div>
         <div class="from">
-            <div class="from_wz_3"><font color="#363636"  size="3">商品单价：</font></div><div class="from_in_5"><font color="#363636"  size="3"><?php echo $order['danpay']; ?>元 (单价)</font></div>
+            <div class="from_wz_3"><font color="#363636"  size="3">商品单价：</font></div><div class="from_in_5"><font color="#363636"  size="3"><?php echo floatval($order['danpay']); ?>元 (单价)</font></div>
         </div>
         <div class="from">
             <div class="from_wz_3"><font color="#363636"  size="3">购买数量：</font></div><div class="from_in_5"><font color="#363636"  size="3"><?php echo $order['num']; ?>个</font> <font color="#2bb800"  size="2">
@@ -241,7 +235,7 @@
             <div class="from_in_5" style="width:150px">
 <!--                <form id="payform" method="post" action="/pay">-->
                     <input type="hidden" name="id" value="<?php echo $order['id']; ?> ">
-                    <input type="hidden" id="payment" value="<?php echo $order['countpay']; ?>">
+                    <input type="hidden" id="payment" value="<?php echo floatval($order['countpay']); ?>">
 <!--                </form>-->
                 <input type="button"  class="button button-3d button-primary button-rounded button-small kuan"  value="确认购买" />
 
@@ -280,11 +274,11 @@
 
                        if(ret.huo ==0){
                          layer.msg(ret.msg,{icon:6},function(){
-                         parent.location.href="<?php echo url('index/zdfahuo'); ?>?orderno"+ret.order;
+                         parent.location.href="<?php echo url('index/zdfahuo'); ?>?orderno="+ret.order;
                           });
                        }else {
                           layer.msg(ret.msg,{icon:6},function(){
-                         parent.location.href="<?php echo url('index/sdfahuo'); ?>?orderno"+ret.order;
+                         parent.location.href="<?php echo url('index/sdfahuo'); ?>?orderno="+ret.order;
                          }); 
                        }
    

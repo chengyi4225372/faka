@@ -90,15 +90,6 @@ class Pays extends Controller
                 //查询订单类型
                 $order  = Db::name('order')->where(['order_no'=>$out_trade_no])->find();
 
-                if($order['status'] == 1){
-                    echo "<script>alert('该订单已经支付')</script>";
-                    exit();
-                }
-
-                if($order['is_delete'] == 1){
-                    echo "<script>alert('该订单已经删除')</script>";
-                    exit();
-                }
 
                 //已支付 自动发货 更新卡密与关联订单id
                 $pays =  Db::name('order')->where(['order_no'=>$out_trade_no])->update(array(
@@ -276,10 +267,10 @@ class Pays extends Controller
                 //查询订单类型
                 $order  = Db::name('order')->where(['order_no'=>$out_trade_no])->find();
 
-                if($order['status'] == 1){
-                    echo "<script>alert('该订单已经支付')</script>";
-                    exit();
-                }
+                // if($order['status'] == 1){
+                //     echo "<script>alert('该订单已经支付')</script>";
+                //     exit();
+                // }
 
                 //已支付 自动发货 更新卡密与关联订单id
                 $pays =  Db::name('order')->where(['order_no'=>$out_trade_no])->update(array(
@@ -415,10 +406,10 @@ class Pays extends Controller
                //查询改订单是否已经支付
                $order = Db::name('member_pay')->where(['member_no'=>$out_trade_no])->find();
 
-               if($order['status'] ==1){
-                   echo "<script>alert('该订单已经支付');window.location.go(-1);</script>";
-                   exit();
-               }
+            //    if($order['status'] ==1){
+            //        echo "<script>alert('该订单已经支付');window.location.go(-1);</script>";
+            //        exit();
+            //    }
                 /* 订单支付结果处理  */
                 
 
@@ -558,16 +549,7 @@ class Pays extends Controller
 
                 //查询改订单是否已经支付
                 $order = Db::name('level_pay')->where(['order'=>$out_trade_no])->find();
-
-                if($order['status'] ==1){
-                    echo "<script>alert('该订单已经支付');window.location.go(-1);</script>";
-                    exit();
-                }
-
-                if($order['is_del'] == 0){
-                    echo "<script>alert('该订单已经取消');window.location.go(-1);</script>";
-                    exit();
-                }
+                
                 /* 订单支付结果处理  */
                 Db::startTrans();
                 try {

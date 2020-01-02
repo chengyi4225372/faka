@@ -186,14 +186,20 @@ class Goods extends Base
              return false;
          }
 
+         $cardlist = Db::name('card')->where(['gid'=>$id])->find();
+
+         if(!empty($cardlist) || isset($cardlist)){
+             return json(['code'=>400,'msg'=>'商品存在卡密，不能删除']);
+         }
+
          if($id){
 
-             $res = Db::name('goods')->where(['id'=>$id])->delete();
+             $res = Db::name('goods')->where(['id'=>$id])->data(['status'=>0])->update();
 
              if($res){
-                 $this->success('删除成功');
+                return json(['code'=>200,'msg'=>'删除成功']);
              }else{
-                 $this->error('删除失败');
+                return json(['code'=>400,'msg'=>'删除失败']);
              }
          }
        }

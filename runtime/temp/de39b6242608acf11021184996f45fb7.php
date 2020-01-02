@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:106:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\index.html";i:1577759430;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userhead.html";i:1577666982;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userfoot.html";i:1576140011;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:106:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\index.html";i:1577926366;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userhead.html";i:1577666982;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userfoot.html";i:1576140011;}*/ ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -134,7 +134,7 @@
                                 <div class="col-xs-8 col-md-4">
                                     <span class="xred">
                                       <?php if(\think\Session::get('info.level') == 1): ?>
-                                         无
+                                        正常用户
                                       <?php elseif(\think\Session::get('info.level') == 2): ?>
                                         普通代理
                                       <?php elseif(\think\Session::get('info.level') == 3): ?>

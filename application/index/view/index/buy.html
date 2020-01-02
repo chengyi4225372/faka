@@ -154,7 +154,7 @@
             <div class="from_in_5" style="width:150px">
 <!--                <form id="payform" method="post" action="/pay">-->
                     <input type="hidden" name="id" value="{$order.id} ">
-                    <input type="hidden" id="payment" value="{$order.countpay}">
+                    <input type="hidden" id="payment" value="{$order.countpay|floatval}">
 <!--                </form>-->
                 <input type="button"  class="button button-3d button-primary button-rounded button-small kuan"  value="确认购买" />
 

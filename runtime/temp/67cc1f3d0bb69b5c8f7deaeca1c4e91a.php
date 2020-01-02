@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:105:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\two\index.html";i:1577256363;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombhead.html";i:1571190314;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombfoot.html";i:1577263336;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:105:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\two\index.html";i:1577926366;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombhead.html";i:1571190314;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombfoot.html";i:1577263336;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -86,13 +86,13 @@
         <div class="am-show-landscape">
             <ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-4 am-thumbnails">
                 <?php if(is_array($list) || $list instanceof \think\Collection || $list instanceof \think\Paginator): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;if($vo['huo'] == '0'): ?>
-                <li><a href="<?php echo url('two/trade',array('id'=>$vo['id'])); ?>">
+                <li><a  data-href="<?php echo url('two/trade',array('id'=>$vo['id'])); ?>" data-num="<?php if(isset($vo['num'])): ?><?php echo $vo['num']; else: ?>0<?php endif; ?>" onclick="checknum(this)">
                     <div style="background-color: #fff;" class="index_good_body">
                         <img class="" src="<?php echo (isset($vo['images']) && ($vo['images'] !== '')?$vo['images']:''); ?>" style="width:100%;height:280px">
                         <div class="pr-info" style="padding:5px">
                             <span class="price">￥<?php echo (isset($vo['money']) && ($vo['money'] !== '')?$vo['money']:''); ?></span>
 
-                            <span class="pr-xl am-badge am-badge-danger" style="color:#fff">库存<?php echo (isset($vo['num']) && ($vo['num'] !== '')?$vo['num']:'0'); ?></span>
+                            <span class="pr-xl am-badge am-badge-danger" style="color:#fff">库存<?php if(isset($vo['num'])): ?><?php echo $vo['num']; else: ?>0<?php endif; ?></span>
 
                             <div class="index-goodname-xq" style="height:45px;color:#333">
                                 <p title="<?php echo $vo['title']; ?>"><?php echo (isset($vo['title']) && ($vo['title'] !== '')?$vo['title']:''); ?></p>
@@ -141,3 +141,22 @@
      
             </form>
 </div>
+<script>
+//kucun
+function checknum(obj){
+    var urls = $(obj).attr('data-href');
+    var num  = $(obj).attr('data-num');
+
+    if(urls =='' || urls == undefined){
+        return false;
+    } 
+
+    if(num =='' || num ==0 || num == undefined || num == 'null'){
+        layer.msg('该商品缺货，请勿购买',{icon:5});
+        return false;
+    } 
+
+    window.location.href = urls;
+}
+
+</script>

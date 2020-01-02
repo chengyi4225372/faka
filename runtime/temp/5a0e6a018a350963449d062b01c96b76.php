@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\search.html";i:1577926366;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1577926366;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\search.html";i:1577936792;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1577930674;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
 
 <!DOCTYPE html> 
 
@@ -12,7 +12,6 @@
         <script type="text/javascript" src="/index/sink/js/jquery-1.8.3.min.js"></script>
         <link href="/index/sink/css/css7.css" rel="stylesheet" type="text/css" />
         <link href="/index/sink/css/zzsc.css" rel="stylesheet" type="text/css" />
-        <link href="/index/sink/css/layui.css" rel="stylesheet" type="text/css" />
         <link href="/index/sink/css/buttons.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="/index/sink/js/Validform_v5.3.2_min.js"></script>
         <script type="text/javascript" src="/index/sink/js/layer/layer.js"></script>
@@ -223,7 +222,7 @@
                     <?php else: ?>
                      <!-- 已经支付    -->
                     <?php if($vo['status'] == 1): ?>
-                    <a href="<?php echo url('index/orderinfo'); ?>?orderno=<?php echo $vo['order_no']; ?>" title="点击查看卡密" target="_blank" class="button button-highlight button-rounded button-tiny">提卡</a>
+                    <a href="<?php echo url('index/orderinfo'); ?>?orderno=<?php echo $vo['order_no']; ?>" title="点击查看卡密"  class="button button-highlight button-rounded button-tiny">提卡</a>
                     <?php elseif($vo['status'] == 2): ?>
                     <font style="cursor:pointer;" color="#ff4351">已发货</font>
                     <?php elseif($vo['status'] == 3): ?>

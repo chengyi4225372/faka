@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:113:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\wconfig\setconfig.html";i:1571281234;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\view\template\layout.html";i:1567134813;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:113:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\wconfig\setconfig.html";i:1577782515;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\view\template\layout.html";i:1567134813;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -169,7 +169,7 @@
                             <label for="images" class="col-sm-2 control-label">导航栏图片</label>
                             <div class="col-sm-10 col-md-4">
                                 <div class="input-group iconpicker-container">
-                                    <input type="file" class="layui-btn" name="uploadImg" id="uploadImg" onchange="UploadImages();" />
+                                    <input type="file" class="layui-btn" name="uploadImg" id="uploadImg" accept="image/png,image/jpg,image/jpeg,image/ico" onchange="UploadImages();" />
                                     <div class="timeline-body">
 
                                         <img style="width:150px;height:100px;" src="<?php echo (isset($info['images']) && ($info['images'] !== '')?$info['images']:'http://placehold.it/150x100'); ?>" id="img1" class="margin">
@@ -185,7 +185,7 @@
                             <label for="images" class="col-sm-2 control-label">网站logo</label>
                             <div class="col-sm-10 col-md-4">
                                 <div class="input-group iconpicker-container">
-                                    <input type="file" class="layui-btn" name="uploadImg1" id="uploadImg1" onchange="UploadLogo();" />
+                                    <input type="file" class="layui-btn" name="uploadImg1" accept="image/png,image/jpg,image/jpeg,image/ico" id="uploadImg1" onchange="UploadLogo();" />
                                     <div class="timeline-body">
 
                                         <img style="width:150px;height:100px;" src="<?php echo (isset($info['logo']) && ($info['logo'] !== '')?$info['logo']:'http://placehold.it/150x100'); ?>" id="img2" class="margin">
@@ -201,7 +201,7 @@
                             <label for="images" class="col-sm-2 control-label">手机二维码</label>
                             <div class="col-sm-10 col-md-4">
                                 <div class="input-group iconpicker-container">
-                                    <input type="file" class="layui-btn" name="uploadImg2" id="uploadImg2" onchange="UploadQcode();" />
+                                    <input type="file" class="layui-btn" name="uploadImg2" accept="image/png,image/jpg,image/jpeg,image/ico" id="uploadImg2" onchange="UploadQcode();" />
                                     <div class="timeline-body">
 
                                         <img style="width:150px;height:100px;" src="<?php echo (isset($info['qcode']) && ($info['qcode'] !== '')?$info['qcode']:'http://placehold.it/150x100'); ?>" id="img3" class="margin">

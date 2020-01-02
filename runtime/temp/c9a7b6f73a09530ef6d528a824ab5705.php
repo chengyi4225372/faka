@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:111:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\orderinfo.html";i:1574144405;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:111:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\orderinfo.html";i:1577936753;}*/ ?>
 <html>
 <head lang="en">
   <meta charset="UTF-8">
@@ -38,9 +38,10 @@
   </div>
   <hr />
 </div>
+<?php if($orders['huo'] == 0): ?>
 <div class="am-g">
   <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
-    <h3>以下是卡密内容，请自行保存&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="cancle()" class="am-btn am-btn-primary am-btn-sm">返回</a>
+    <h3>以下是卡密内容，请自行保存&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="cancle(this)" data-order="<?php echo $orders['order_no']; ?>" class="am-btn am-btn-primary am-btn-sm">返回</a>
       <button type="button" class="copybtn am-btn am-btn-success am-btn-sm" data-clipboard-text='<?php
 foreach ($list as $vo) {
   echo $vo['kami']."\n";
@@ -59,6 +60,23 @@ foreach ($list as $vo) {
     <p><?php echo $config['info']; ?></p>
   </div>
 </div>
+<?php else: ?>
+<div class="am-g">
+  <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
+    <h3>以下是订单回执内容，请自行保存&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="cancle(this)" data-order="<?php echo $orders['order_no']; ?>" class="am-btn am-btn-primary am-btn-sm">返回</a>
+      <!-- <button type="button" class="copybtn am-btn am-btn-success am-btn-sm" data-clipboard-text=''></button> -->
+    </h3>
+    <hr>
+    <div class="am-btn-group">
+          <?php echo (isset($orders['orderback']) && ($orders['orderback'] !== '')?$orders['orderback']:'正在发货'); ?>
+    </div>
+    <br>
+    <br>
+    <hr>
+    <p><?php echo $config['info']; ?></p>
+  </div>
+</div>
+<?php endif; ?>
 </body>
 </html>
 <script type="text/javascript">
@@ -70,9 +88,17 @@ foreach ($list as $vo) {
       clipboard.on('error', function(e) {
           alert('复制失败请手动复制');
       });
+   
+   //返回
+  function cancle(obj){
+     var  urls = "<?php echo url('index/search'); ?>";
+     var order = $(obj).attr('data-order');
 
-  function cancle(){
-      parent.layer.closeAll();
+     if(order == '' || order == undefined){
+       return false;
+     }
+
+     window.location.href = urls+'?orderno='+order;
   }
 
 

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:109:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\recharge.html";i:1577431528;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userhead.html";i:1577666982;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userfoot.html";i:1576140011;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:109:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\recharge.html";i:1577926366;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userhead.html";i:1577666982;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userfoot.html";i:1576140011;}*/ ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -130,7 +130,7 @@
                     <label class="layui-form-label">余额</label>
                     <div class="layui-input-block">
                         <div class="layui-form-mid layui-word-aux" style="color:red !important">
-                           <?php echo (floatval(\think\Session::get('info.money')) ?: 'null'); ?>
+                           <?php echo (floatval(\think\Session::get('info.money')) ?: '0.00'); ?>
                         </div>
                     </div>
                 </div>

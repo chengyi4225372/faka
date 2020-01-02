@@ -216,12 +216,11 @@ class Index extends Base
 
    //自动发货卡密
    public function orderinfo(){
-       $order_no = input('get.order','','trim');
+       $order_no = input('get.orderno','','trim');
 
        $order = Db::name('order')->where(['order_no'=>$order_no])->find();
        //购买卡密量
        $list  = Db::name('card')->where(['oid'=>$order['id'],'over'=>1])->order('id asc')->limit(0,$order['num'])->select();
-
        $this->assign('list',$list);
        $this->assign('orders',$order);
        return $this->fetch();

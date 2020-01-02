@@ -140,7 +140,7 @@
                     {else /}
                      <!-- 已经支付    -->
                     {if condition='$vo.status eq 1'}
-                    <a href="{:url('index/orderinfo')}?orderno={$vo.order_no}" title="点击查看卡密" target="_blank" class="button button-highlight button-rounded button-tiny">提卡</a>
+                    <a href="{:url('index/orderinfo')}?orderno={$vo.order_no}" title="点击查看卡密"  class="button button-highlight button-rounded button-tiny">提卡</a>
                     {elseif condition='$vo.status eq 2' /}
                     <font style="cursor:pointer;" color="#ff4351">已发货</font>
                     {elseif condition='$vo.status eq 3' /}

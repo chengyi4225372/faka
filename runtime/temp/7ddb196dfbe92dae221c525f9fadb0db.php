@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\two\zdfahuo.html";i:1577089067;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombhead.html";i:1571190314;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\two\zdfahuo.html";i:1577926366;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombhead.html";i:1571190314;s:102:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\twombfoot.html";i:1577263336;}*/ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -62,38 +62,23 @@
             <div style="padding:100px 20px;text-align:center;background-color:#fff">
                 <img src="/twomb/img/fkcg.png" alt="付款成功" width="50px">
                 <span style="height:60px;vertical-align:middle;font-size:24px;color:#333333">恭喜您！付款成功！</span>
-                <p style="color:#999999">订单编号：<?php echo $info['order_no']; ?><br>支付金额：<?php echo $info['countpay']; ?>元</p>
+                <p style="color:#999999">订单编号：<?php echo $info['order_no']; ?><br>支付金额：<?php echo floatval($info['countpay']); ?>元</p>
                 <a type="button" class="am-btn am-btn-success" href="<?php echo url('two/search'); ?>?orderno=<?php echo $info['order_no']; ?>">查看订单</a>
             </div>
-            <div id="footer"><div>
-    <a><?php echo $config['info']; ?></a>
-</div></p><br/>
-</div>
-
-<script type="text/javascript">
-    function htmlmsg(a, b) {
-        layer.open({
-            title: a,
-            type: 1,
-            skin: 'layui-layer-rim', //加上边框
-            area: ['410px', '170px'], //宽高
-            content: '<div style="font-size: 12px;color: #f17100;margin:5px;border:5px;padding:5px;"> ' + b + ' </div>'
-        });
-    }
-
-    function htmlmsg2(a, b) {
-        layer.open({
-            title: a,
-            type: 1,
-            skin: 'layui-layer-rim', //加上边框
-            area: ['390px', '180px'], //宽高
-            content: '<div align=center><br/>点击下方的按钮进行查阅<br/><br/><a class="button button-3d button-primary button-rounded button-small" href="/Home/User/down/lb/2/id/' + b + '" target="_blank">查看卡密</a> <a class="button button-3d button-highlight button-rounded button-small" href="/Home/User/down/lb/1/id/' + b + '">下载保存</a> </div>'
-        });
-    }
-</script>
-</body> 
-
-</html> 
+                        <div class="tongji"><?php echo (isset($config['info']) && ($config['info'] !== '')?$config['info']:''); ?></div>
+            <form action="<?php echo url('two/search'); ?>" method="get" class="am-modal am-modal-alert" tabindex="-1" id="my-alerts">
+                <div class="am-modal-dialog">
+                  <div class="am-modal-hd">订单查询</div>
+                  <div class="am-modal-bd">
+                    请输入订单号或联系方式
+                      <input type="text" class="am-modal-prompt-input" name="orderno" required>
+                  </div>
+                  <div class="am-modal-footer">
+                    <button type="submit" class="am-btn am-btn-primary" >确定</button>
+                  </div>
+                </div>
+     
+            </form>
         </div>
 
     </body>

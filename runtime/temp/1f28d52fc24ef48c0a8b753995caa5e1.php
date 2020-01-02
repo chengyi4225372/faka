@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\goods\glist.html";i:1567058299;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\view\template\layout.html";i:1567134813;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/admin\view\goods\glist.html";i:1577933381;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\admin\view\template\layout.html";i:1567134813;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -215,15 +215,18 @@
                             </a>
                             <?php endif; ?>
                         </td>
+                        <?php if($vo['status'] == 1): ?>
                         <td class="td-do">
                             <a href="<?php echo url('goods/addg',array('id'=>$vo['id'])); ?>"
                                class="btn btn-primary btn-xs" title="修改">
                                 <i class="fa fa-pencil">编辑</i>
                             </a>
-                            <a class="btn btn-danger btn-xs " href="<?php echo url('goods/delg',array('id'=>$vo['id'])); ?>" title="删除" >
+                            <a class="btn btn-danger btn-xs " onclick="delg(this)" data-id="<?php echo $vo['id']; ?>"
+                             data-href="<?php echo url('goods/delg'); ?>" title="删除" >
                                 <i class="fa fa-trash">删除</i>
                             </a>
                         </td>
+                        <?php endif; ?>
                     </tr>
                     </tbody>
                     <?php endforeach; endif; else: echo "" ;endif; ?>
@@ -233,7 +236,7 @@
         <?php echo $list->render(); ?>
 
         <script>
-
+            //上架 下架  
             $('.ajax').click(function(){
                 var url  = $(this).attr('data-href');
 
@@ -252,6 +255,41 @@
                     }
                 },'json')
             });
+            
+            //删除
+            function delg(obj){
+                var urls = $(obj).attr('data-href');
+                var id   = $(obj).attr('data-id');
+
+                if(urls =='' || urls == undefined){
+                    return false;
+                }
+                
+                if(id =='' || id== undefined || isNaN(id)){
+                    return false;
+                }
+
+                $.get(urls,{'id':id},function(ret){
+                     if(ret.code == 200){
+                         layer.msg(ret.msg,{icon:6},function(){
+                             parent.location.reload();
+                         })
+                     }
+
+                     if(ret.code == 400){
+                         layer.msg(ret.msg,{icon:5},function(){
+                             parent.location.reload();
+                         })
+                     }
+
+                     if(ret.code == 403){
+                         layer.msg(ret.msg,{icon:5},function(){
+                             parent.location.reload();
+                         })
+                     }
+                },'json')
+
+            }
 
         </script>
 

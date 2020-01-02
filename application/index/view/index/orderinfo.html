@@ -37,9 +37,10 @@
   </div>
   <hr />
 </div>
+{if condition='$orders.huo eq 0'}
 <div class="am-g">
   <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
-    <h3>以下是卡密内容，请自行保存&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="cancle()" class="am-btn am-btn-primary am-btn-sm">返回</a>
+    <h3>以下是卡密内容，请自行保存&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="cancle(this)" data-order="{$orders.order_no}" class="am-btn am-btn-primary am-btn-sm">返回</a>
       <button type="button" class="copybtn am-btn am-btn-success am-btn-sm" data-clipboard-text='<?php
 foreach ($list as $vo) {
   echo $vo['kami']."\n";
@@ -58,6 +59,23 @@ foreach ($list as $vo) {
     <p>{$config.info}</p>
   </div>
 </div>
+{else /}
+<div class="am-g">
+  <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
+    <h3>以下是订单回执内容，请自行保存&nbsp;&nbsp;&nbsp;&nbsp;<a onclick="cancle(this)" data-order="{$orders.order_no}" class="am-btn am-btn-primary am-btn-sm">返回</a>
+      <!-- <button type="button" class="copybtn am-btn am-btn-success am-btn-sm" data-clipboard-text=''></button> -->
+    </h3>
+    <hr>
+    <div class="am-btn-group">
+          {$orders.orderback|default='正在发货'}
+    </div>
+    <br>
+    <br>
+    <hr>
+    <p>{$config.info}</p>
+  </div>
+</div>
+{/if}
 </body>
 </html>
 <script type="text/javascript">
@@ -69,9 +87,17 @@ foreach ($list as $vo) {
       clipboard.on('error', function(e) {
           alert('复制失败请手动复制');
       });
+   
+   //返回
+  function cancle(obj){
+     var  urls = "{:url('index/search')}";
+     var order = $(obj).attr('data-order');
 
-  function cancle(){
-      parent.layer.closeAll();
+     if(order == '' || order == undefined){
+       return false;
+     }
+
+     window.location.href = urls+'?orderno='+order;
   }
 
 

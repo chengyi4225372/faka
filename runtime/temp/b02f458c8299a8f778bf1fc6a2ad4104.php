@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:110:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\mychongzi.html";i:1577416443;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userhead.html";i:1577666982;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:110:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\user\mychongzi.html";i:1577926366;s:101:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\userhead.html";i:1577666982;}*/ ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -145,7 +145,7 @@
                 <tbody>
                 <tr>
                     <td><?php echo $pay['member_no']; ?></td>
-                    <td><?php echo $pay['pay']; ?></td>
+                    <td><?php echo floatval($pay['pay']); ?></td>
                     <td>
                         <?php if($pay['status'] == '2'): ?>
                           未付款
