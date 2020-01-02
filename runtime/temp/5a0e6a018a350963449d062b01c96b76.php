@@ -1,23 +1,18 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\search.html";i:1577755765;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1576907381;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:108:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\search.html";i:1577926366;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1577926366;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
 
 <!DOCTYPE html> 
 
 <html> 
-
-    <head> 
-
-        <meta charset="utf-8" /> 
-
+<head>
+        <meta charset="utf-8" />
         <title><?php echo $config['title']; ?></title>
-
         <meta name="keywords" content="<?php echo $config['keywords']; ?>" />
-
         <meta name="description" content="<?php echo $config['miao']; ?>" />
         <link rel="shortcut icon" href="<?php echo $config['logo']; ?>" />
-
         <script type="text/javascript" src="/index/sink/js/jquery-1.8.3.min.js"></script>
         <link href="/index/sink/css/css7.css" rel="stylesheet" type="text/css" />
         <link href="/index/sink/css/zzsc.css" rel="stylesheet" type="text/css" />
+        <link href="/index/sink/css/layui.css" rel="stylesheet" type="text/css" />
         <link href="/index/sink/css/buttons.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="/index/sink/js/Validform_v5.3.2_min.js"></script>
         <script type="text/javascript" src="/index/sink/js/layer/layer.js"></script>
@@ -203,10 +198,10 @@
                 <td align="center"><?php echo $vo['order_no']; ?></td>
                 <td ><div align="left"><a target="_blank" href="<?php echo url('index/trade'); ?>?id=<?php echo $vo['gid']; ?>"><?php echo $goods[$vo['gid']]; ?></a></div></td>
                 <td align="center"><?php echo $vo['num']; ?>个</td>
-                <td align="center"><?php echo $vo['danpay']; ?>元</td>
-                <td align="center"><?php echo $vo['countpay']; ?>元</td>
+                <td align="center"><?php echo floatval($vo['danpay']); ?>元</td>
+                <td align="center"><?php echo floatval($vo['countpay']); ?>元</td>
                 <td align="center">
-                    <?php if($vo['status'] > 1): ?>
+                    <?php if($vo['status'] >= 1): ?>
                     <font style="cursor:pointer;" color="#ff4351">已付款</font>
                     <?php else: ?>
                     <font style="cursor:pointer" color="#CCCCCC">未付款</font>
@@ -224,7 +219,6 @@
                 <td align="center">
                      <!-- 已经支付 -->
                     <?php if($vo['status'] == '0'): ?>
-                     <!-- 未支付 todo -->
                     【<a onclick="setpay(this)" data-href="<?php echo url('index/buy'); ?>?order_no=<?php echo $vo['order_no']; ?>&did=<?php echo $vo['id']; ?>" >付款</a>】【<a  style="cursor:pointer" onclick="del(this)" data-id="<?php echo $vo['id']; ?>" >删除</a>】
                     <?php else: ?>
                      <!-- 已经支付    -->

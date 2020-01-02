@@ -1,20 +1,14 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\index.html";i:1576152318;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1576907381;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:107:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\public/../application/index\view\index\index.html";i:1577926366;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\head.html";i:1577930644;s:97:"C:\Users\Administrator\Desktop\phpEnv5.6.0-Green\www\lizi\application\index\view\public\foot.html";i:1566971633;}*/ ?>
 
 <!DOCTYPE html> 
 
 <html> 
-
-    <head> 
-
-        <meta charset="utf-8" /> 
-
+<head>
+        <meta charset="utf-8" />
         <title><?php echo $config['title']; ?></title>
-
         <meta name="keywords" content="<?php echo $config['keywords']; ?>" />
-
         <meta name="description" content="<?php echo $config['miao']; ?>" />
         <link rel="shortcut icon" href="<?php echo $config['logo']; ?>" />
-
         <script type="text/javascript" src="/index/sink/js/jquery-1.8.3.min.js"></script>
         <link href="/index/sink/css/css7.css" rel="stylesheet" type="text/css" />
         <link href="/index/sink/css/zzsc.css" rel="stylesheet" type="text/css" />
@@ -149,7 +143,7 @@
                             </div>
                         </td>
                         <td>
-                            <font color="#FF5400"  size="2" title="会员单价"><?php echo $vo['money']; ?></font>
+                            <font color="#FF5400"  size="2" title="会员单价"><?php echo floatval($vo['money']); ?></font>
                             <br/>
                             <font color="#BBBBBB"  size="1" title="销量">销量:<?php echo $vo['paynum']; ?></font>
                         </td>
@@ -159,16 +153,21 @@
                         </td>
                         <td >
                             <font color="#000CF9"  size="3" title="物品库存">
-                                 <?php echo (isset($vo['num']) && ($vo['num'] !== '')?$vo['num']:'人工发货'); ?>
+                                 <?php if(isset($vo['num'])): ?>
+                                  <?php echo (isset($vo['num']) && ($vo['num'] !== '')?$vo['num']:'0'); else: ?>
+                                  0
+                                <?php endif; ?>
                             </font>
                         </td>
 
 
                         <td >
-                            <?php if($vo['num'] == null): ?>
-                             <a class="button button-tiny button-rounded button-small" >缺货</a>
-                             <?php else: ?>
-                            <a class="button button-primary button-rounded button-small"  href = "<?php echo url('index/trade'); ?>?id=<?php echo $vo['id']; ?>">购买</a>
+
+                            <?php if($vo['huo'] == 0 and !isset($vo['num'])): ?>
+                             <a class="button button-tiny button-rounded button-small" onclick="layer.msg('该商品缺货,请勿购买！',{icon:5});return false;">缺货</a>
+
+                            <?php else: ?>
+                             <a class="button button-primary button-rounded button-small"  href = "<?php echo url('index/trade'); ?>?id=<?php echo $vo['id']; ?>">购买</a>
                             <?php endif; ?>
                         </td>
                     </tr>
